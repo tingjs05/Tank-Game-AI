@@ -32,12 +32,12 @@ public class Projectile : MonoBehaviour
         HandleEndLifetime();
     }
 
-    void OnCollisionEnter(Collision other) 
+    void OnTriggerEnter(Collider other) 
     {
         // do not detect collision with self
         if (self != null && other.gameObject == self) return;
 
-        if (other.collider.TryGetComponent<IDamagable>(out IDamagable damagable))
+        if (other.TryGetComponent<IDamagable>(out IDamagable damagable))
         {
             damagable.Damage(damage);
         }
