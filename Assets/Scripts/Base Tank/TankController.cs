@@ -3,21 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class TankController : MonoBehaviour
+public class TankController : MonoBehaviour, IDamagable
 {
-    [Header("Movement")]
+    [Header("Stats")]
+    public float maxHealth = 10f;
     public float moveSpeed = 15f;
     public float rotationSpeed = 15f;
-
-    [Header("Shooting")]
-    public GameObject bulletPrefab;
     public float shootingRecoil = 0f;
-
+    public GameObject projectilePrefab;
+    
+    public float Health { get; private set; } = 0f;
     private Rigidbody rb;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+
+        // reset health
+        Health = maxHealth;
     }
 
     public void Move(Vector2 move)
@@ -33,6 +36,34 @@ public class TankController : MonoBehaviour
 
     public void Shoot()
     {
+        Projectile projectile;
 
+        // if there is no projectile namager, manually instantiate projectile
+        if (ProjectileManager.Instance == null)
+        {
+            Instantiate(projectilePrefab);
+            projectile = projectilePrefab.GetComponent<Projectile>();
+        }
+        else
+        {
+            projectile = ProjectileManager.Instance.InstantiateProjectile(projectilePrefab);
+        }
+        
+        projectile.self = gameObject;
+        projectile.transform.position = transform.position;
+        projectile.transform.rotation = Quaternion.identity;
+        projectile.moveDir = transform.forward;
+        projectile.Start();
+
+        // apply recoil
+        rb.AddForce(-transform.forward * shootingRecoil, ForceMode.Impulse);
+    }
+
+    public void Damage(float damage)
+    {
+        Health -= damage;
+        Health = Mathf.Clamp(Health, 0f, maxHealth);
+        if (Health > 0f) return;
+        // TODO: handle death
     }
 }

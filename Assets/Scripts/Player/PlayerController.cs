@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Player
@@ -39,7 +37,7 @@ namespace Player
             // increment shoot cooldown
             shoot_cooldown += Time.deltaTime;
             // check if shoot key has been pressed, if so shoot
-            if (shoot_cooldown < shootCooldown || !Input.GetKeyDown(shootKey)) return;
+            if (shoot_cooldown < shootCooldown || !Input.GetKey(shootKey)) return;
             controller.Shoot();
             shoot_cooldown = 0f;
         }

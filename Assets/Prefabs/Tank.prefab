@@ -297,9 +297,9 @@ GameObject:
   - component: {fileID: 4614866035075560864}
   - component: {fileID: 8853936079504930026}
   - component: {fileID: 5111748449651530923}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tank
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -380,10 +380,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdc36bb593edcd942aa4d8989222dcf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 10
   moveSpeed: 15
   rotationSpeed: 4
-  bulletPrefab: {fileID: 0}
-  shootingRecoil: 0
+  shootingRecoil: 15
+  projectilePrefab: {fileID: 4370645762773650600, guid: 27a4c232b5e910a46bb2f957e617a9a8,
+    type: 3}
 --- !u!1 &8965108066180059245
 GameObject:
   m_ObjectHideFlags: 0
