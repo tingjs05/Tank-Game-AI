@@ -27,7 +27,7 @@ public class TankController : MonoBehaviour
         move.y = Mathf.Clamp(move.y, -1f, 1f);
 
         // apply movement
-        rb.velocity = transform.forward * move.x * moveSpeed;
+        rb.AddForce(transform.forward * move.x * Time.deltaTime * moveSpeed, ForceMode.VelocityChange);
         rb.angularVelocity = transform.up * move.y * rotationSpeed;
     }
 
