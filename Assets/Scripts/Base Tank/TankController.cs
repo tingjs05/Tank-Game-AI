@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody))]
 public class TankController : MonoBehaviour, IDamagable
@@ -11,6 +10,7 @@ public class TankController : MonoBehaviour, IDamagable
     public float rotationSpeed = 15f;
     public float shootingRecoil = 0f;
     public GameObject projectilePrefab;
+    public Slider healthBar;
     
     public float Health { get; private set; } = 0f;
     private Rigidbody rb;
@@ -21,6 +21,8 @@ public class TankController : MonoBehaviour, IDamagable
 
         // reset health
         Health = maxHealth;
+        healthBar.maxValue = maxHealth;
+        healthBar.value = Health;
     }
 
     public void Move(Vector2 move)
@@ -63,6 +65,7 @@ public class TankController : MonoBehaviour, IDamagable
     {
         Health -= damage;
         Health = Mathf.Clamp(Health, 0f, maxHealth);
+        healthBar.value = Health;
         if (Health > 0f) return;
         // TODO: handle death
     }
