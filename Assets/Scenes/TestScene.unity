@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 7034965}
   - component: {fileID: 7034964}
   - component: {fileID: 7034963}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -540,6 +540,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4909906301586770470, guid: 13cece8ca83bf9d4d9175cefa5dbe204,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4909906301586770470, guid: 13cece8ca83bf9d4d9175cefa5dbe204,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5766022901180205037, guid: 13cece8ca83bf9d4d9175cefa5dbe204,
         type: 3}
       propertyPath: m_Name
@@ -772,6 +782,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tank (AI)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6719915223290563889, guid: d8363aba81a44b84280baebbda7b8003,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6719915223290563889, guid: d8363aba81a44b84280baebbda7b8003,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

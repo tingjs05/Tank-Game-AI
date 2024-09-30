@@ -138,7 +138,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   detectionRange: 5
+  dangerRange: 1.5
+  sphereCastRadius: 0.5
   showGizmos: 1
+  showDirections: 1
+  showDetectedObstacles: 1
+  detectionMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &2849409711887035911
 MonoBehaviour:
   m_ObjectHideFlags: 0
