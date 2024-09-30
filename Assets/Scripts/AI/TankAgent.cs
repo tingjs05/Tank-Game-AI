@@ -12,10 +12,19 @@ namespace AI
     {
         public TankController controller;
         public ObstacleDetectionManager obstacleDetection;
+        public Transform target;
 
         public override void CollectObservations(VectorSensor sensor)
         {
-            
+            float[] weights = obstacleDetection.GetWeightsBasedOnObstacles();
+
+            foreach (float value in weights)
+            {
+                sensor.AddObservation(value);
+            }
+
+            sensor.AddObservation(transform.position);
+            sensor.AddObservation(target.position);
         }
 
         public override void OnActionReceived(ActionBuffers actions)

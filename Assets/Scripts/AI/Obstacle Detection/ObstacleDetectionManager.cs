@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,20 +15,22 @@ namespace AI.ObstacleDetection
         Direction direction;
         float[] weights;
 
+        public int numberOfDirections => direction.directions.Length;
+
         void Awake()
         {
             // set directions
             direction = new Direction();
-            Debug.Log($"Number of directions: {direction.directions.Length}");
+            Debug.Log($"Number of directions: {numberOfDirections}");
             // create weights array
-            weights = new float[direction.directions.Length];
+            weights = new float[numberOfDirections];
         }
         
-        // TODO: comment this out in production, this is for debugging purposes
-        void Update()
-        {
-            GetWeightsBasedOnObstacles();
-        }
+        // TODO: comment this out in production, this is for debugging & testing purposes
+        // void Update()
+        // {
+        //     GetWeightsBasedOnObstacles();
+        // }
 
         public float[] GetWeightsBasedOnObstacles()
         {
@@ -71,7 +72,7 @@ namespace AI.ObstacleDetection
             // calculate weights for each obstacle detected
             foreach (RaycastHit hit in obstaclesDetected)
             {
-                for (int i = 0; i < direction.directions.Length; i++)
+                for (int i = 0; i < numberOfDirections; i++)
                 {
                     Vector3 dirVector = direction.directions[i];
                     Vector3 obstacleDir = (hit.point - transform.position).normalized;
@@ -115,7 +116,7 @@ namespace AI.ObstacleDetection
             // if directions is null, run awake to setup directions
             if (direction == null) Awake();
 
-            for (int i = 0; i < direction.directions.Length; i++)
+            for (int i = 0; i < numberOfDirections; i++)
             {
                 Debug.DrawRay(transform.position, direction.directions[i] * weights[i] + direction.directions[i], Color.yellow);
             }

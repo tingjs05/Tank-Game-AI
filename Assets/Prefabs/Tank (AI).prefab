@@ -164,6 +164,7 @@ MonoBehaviour:
   MaxStep: 0
   controller: {fileID: 7688244279741279644}
   obstacleDetection: {fileID: 4930844592529910517}
+  target: {fileID: 0}
 --- !u!114 &4819517146171378741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,8 +178,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 1
-    NumStackedVectorObservations: 1
+    VectorObservationSize: 32
+    NumStackedVectorObservations: 5
     m_ActionSpec:
       m_NumContinuousActions: 2
       BranchSizes: 02000000
@@ -189,7 +190,7 @@ MonoBehaviour:
   m_Model: {fileID: 0}
   m_InferenceDevice: 0
   m_BehaviorType: 0
-  m_BehaviorName: My Behavior
+  m_BehaviorName: TankBehavior
   TeamId: 0
   m_UseChildSensors: 1
   m_UseChildActuators: 1
