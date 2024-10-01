@@ -144,7 +144,7 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 0
+  MaxStep: 5000
   target: {fileID: 0}
   heuristicInputs: 0
 --- !u!114 &4930844592529910517
@@ -161,13 +161,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detectionRange: 5
   dangerRange: 1.5
-  sphereCastRadius: 0.5
+  sphereCastRadius: 0.45
   showGizmos: 1
   showDirections: 1
   showDetectedObstacles: 1
   detectionMask:
     serializedVersion: 2
-    m_Bits: 72
+    m_Bits: 64
 --- !u!114 &33722499384207290
 MonoBehaviour:
   m_ObjectHideFlags: 0
