@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,6 +15,10 @@ public class TankController : MonoBehaviour, IDamagable
     
     public float Health { get; private set; } = 0f;
     private Rigidbody rb;
+
+    public event Action Damaged;
+    public event Action Died;
+    public event Action<bool> OnShoot;
 
     void Start()
     {
@@ -51,6 +56,7 @@ public class TankController : MonoBehaviour, IDamagable
             projectile = ProjectileManager.Instance.InstantiateProjectile(projectilePrefab);
         }
         
+        projectile.OnHidden += OnProjectileHidden;
         projectile.self = gameObject;
         projectile.transform.position = transform.position;
         projectile.transform.rotation = Quaternion.identity;
@@ -66,7 +72,15 @@ public class TankController : MonoBehaviour, IDamagable
         Health -= damage;
         Health = Mathf.Clamp(Health, 0f, maxHealth);
         healthBar.value = Health;
+        Damaged?.Invoke();
         if (Health > 0f) return;
         // TODO: handle death
+        Died?.Invoke();
+    }
+
+    void OnProjectileHidden(Projectile ctx, bool hit)
+    {
+        ctx.OnHidden -= OnProjectileHidden;
+        OnShoot?.Invoke(hit);
     }
 }

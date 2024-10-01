@@ -113,6 +113,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7288267409765839309, guid: 5ac2ec880a6701c44ba3973878edf97b,
         type: 3}
       insertIndex: -1
+      addedObject: {fileID: 33722499384207290}
+    - targetCorrespondingSourceObject: {fileID: 7288267409765839309, guid: 5ac2ec880a6701c44ba3973878edf97b,
+        type: 3}
+      insertIndex: -1
       addedObject: {fileID: 4819517146171378741}
     - targetCorrespondingSourceObject: {fileID: 7288267409765839309, guid: 5ac2ec880a6701c44ba3973878edf97b,
         type: 3}
@@ -141,8 +145,6 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
-  controller: {fileID: 7688244279741279644}
-  obstacleDetection: {fileID: 4930844592529910517}
   target: {fileID: 0}
 --- !u!114 &4930844592529910517
 MonoBehaviour:
@@ -165,6 +167,18 @@ MonoBehaviour:
   detectionMask:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &33722499384207290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5289360980607516922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7241b19197e6995449f7f1078054cb28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4819517146171378741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,15 +223,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DecisionPeriod: 5
   TakeActionsBetweenDecisions: 1
---- !u!114 &7688244279741279644 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5111748449651530923, guid: 5ac2ec880a6701c44ba3973878edf97b,
-    type: 3}
-  m_PrefabInstance: {fileID: 3189310847823016247}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5289360980607516922}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdc36bb593edcd942aa4d8989222dcf9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

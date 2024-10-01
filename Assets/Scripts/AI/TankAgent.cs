@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
@@ -8,7 +6,7 @@ using AI.ObstacleDetection;
 
 namespace AI
 {
-    [RequireComponent(typeof(TankController), typeof(ObstacleDetectionManager))]
+    [RequireComponent(typeof(TankController), typeof(ObstacleDetectionManager), typeof(AgentRewardManager))]
     public class TankAgent : Agent
     {
         [SerializeField] Transform target;
@@ -16,10 +14,22 @@ namespace AI
         TankController controller;
         ObstacleDetectionManager obstacleDetection;
 
+        // TODO: this is temporary for testing purposes
+        Vector3 originalPosition;
+        void Awake()
+        {
+            originalPosition = transform.position;
+        }
+
         void Start()
         {
             controller = GetComponent<TankController>();
             obstacleDetection = GetComponent<ObstacleDetectionManager>();
+        }
+
+        public override void OnEpisodeBegin()
+        {
+            transform.position = originalPosition;
         }
 
         public override void CollectObservations(VectorSensor sensor)
