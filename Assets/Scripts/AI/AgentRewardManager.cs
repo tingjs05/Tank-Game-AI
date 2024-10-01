@@ -36,15 +36,16 @@ namespace AI
         void OnCollisionEnter(Collision other)
         {
             // punish agent for colliding with obstacle
-            if (other.collider.CompareTag(obstacleTag))
-                agent.AddReward(-obstacleCollisionPenalty);
-            
+            if (!other.collider.CompareTag(obstacleTag)) return;
+            agent.AddReward(-obstacleCollisionPenalty);
+        }
+
+        void OnTriggerEnter(Collider other) 
+        {
             // punish agent for falling off the map
-            if (other.collider.CompareTag(boundaryTag))
-            {
-                agent.AddReward(-deathPenalty);
-                agent.EndEpisode();
-            }
+            if (!other.CompareTag(boundaryTag)) return;
+            agent.AddReward(-deathPenalty);
+            agent.EndEpisode();
         }
 
         #region Event Listeners
