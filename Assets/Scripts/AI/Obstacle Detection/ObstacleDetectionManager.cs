@@ -7,9 +7,10 @@ namespace AI.ObstacleDetection
     {
         public float detectionRange = 5f;
         public float dangerRange = 1.5f;
-        public float sphereCastRadius = 1f;
+        public float agentRadius = 0.5f;
+        public string boundaryTag = "Boundary";
         public bool showGizmos, showDirections, showDetectedObstacles = true;
-        public LayerMask detectionMask;
+        public LayerMask detectionMask, groundMask;
 
         List<RaycastHit> obstaclesDetected = new List<RaycastHit>();
         Direction direction;
@@ -35,6 +36,7 @@ namespace AI.ObstacleDetection
         public float[] GetWeightsBasedOnObstacles()
         {
             DetectObstacles();
+            DetectGround();
             CalculateWeights();
             return weights;
         }
@@ -51,7 +53,7 @@ namespace AI.ObstacleDetection
             // try to fire a sphere cast at each obstacle to find the edge of the collider
             foreach (Collider hit in hits)
             {
-                if (!Physics.SphereCast(transform.position, sphereCastRadius, 
+                if (!Physics.SphereCast(transform.position, agentRadius * 0.95f, 
                     (hit.transform.position - transform.position).normalized, out RaycastHit rayHit, 
                     detectionRange, detectionMask))
                         continue;
@@ -59,6 +61,30 @@ namespace AI.ObstacleDetection
                 // add to raycast hit list for calculations
                 obstaclesDetected.Add(rayHit);
             }
+        }
+
+        void DetectGround()
+        {
+            // cast a raycast vertically down to detect the ground
+            // this is to be done at each edge of the agent
+            foreach (Vector3 dir in direction.directions)
+            {
+                if (dir.y != 0f) continue;
+                DetectGroundAtEdge(transform.position + (dir * agentRadius));
+            }
+        }
+
+        void DetectGroundAtEdge(Vector3 edge)
+        {
+            // check if ground or boundary can be detected at corner
+            if (!Physics.Raycast(edge, -Vector3.up, out RaycastHit rayHit, 
+                Mathf.Infinity, groundMask))
+                    return;
+            
+            // check if it is the boundary
+            if (!rayHit.collider.CompareTag(boundaryTag)) return;
+            // handle detecting boundary
+            obstaclesDetected.Add(rayHit);
         }
 
         void CalculateWeights()
@@ -94,6 +120,9 @@ namespace AI.ObstacleDetection
             // show danger range
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, dangerRange);
+            // show agent radius
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(transform.position, agentRadius);
 
             // handle showing direction using debug ray
             ShowDirection();

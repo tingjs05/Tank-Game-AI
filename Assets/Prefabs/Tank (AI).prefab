@@ -161,13 +161,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detectionRange: 5
   dangerRange: 1.5
-  sphereCastRadius: 0.45
+  agentRadius: 0.5
+  boundaryTag: Boundary
   showGizmos: 1
   showDirections: 1
   showDetectedObstacles: 1
   detectionMask:
     serializedVersion: 2
     m_Bits: 64
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 24
 --- !u!114 &33722499384207290
 MonoBehaviour:
   m_ObjectHideFlags: 0
