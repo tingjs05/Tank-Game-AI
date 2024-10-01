@@ -8,11 +8,19 @@ using AI.ObstacleDetection;
 
 namespace AI
 {
+    [RequireComponent(typeof(TankController), typeof(ObstacleDetectionManager))]
     public class TankAgent : Agent
     {
-        public TankController controller;
-        public ObstacleDetectionManager obstacleDetection;
-        public Transform target;
+        [SerializeField] Transform target;
+
+        TankController controller;
+        ObstacleDetectionManager obstacleDetection;
+
+        void Start()
+        {
+            controller = GetComponent<TankController>();
+            obstacleDetection = GetComponent<ObstacleDetectionManager>();
+        }
 
         public override void CollectObservations(VectorSensor sensor)
         {

@@ -105,11 +105,11 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7288267409765839309, guid: 5ac2ec880a6701c44ba3973878edf97b,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4930844592529910517}
+      addedObject: {fileID: 2849409711887035911}
     - targetCorrespondingSourceObject: {fileID: 7288267409765839309, guid: 5ac2ec880a6701c44ba3973878edf97b,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2849409711887035911}
+      addedObject: {fileID: 4930844592529910517}
     - targetCorrespondingSourceObject: {fileID: 7288267409765839309, guid: 5ac2ec880a6701c44ba3973878edf97b,
         type: 3}
       insertIndex: -1
@@ -125,6 +125,25 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3189310847823016247}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2849409711887035911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5289360980607516922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e187e525ec337447b399efefcd37e91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentParameters:
+    maxStep: 0
+  hasUpgradedFromAgentParameters: 1
+  MaxStep: 0
+  controller: {fileID: 7688244279741279644}
+  obstacleDetection: {fileID: 4930844592529910517}
+  target: {fileID: 0}
 --- !u!114 &4930844592529910517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,25 +165,6 @@ MonoBehaviour:
   detectionMask:
     serializedVersion: 2
     m_Bits: 64
---- !u!114 &2849409711887035911
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5289360980607516922}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e187e525ec337447b399efefcd37e91, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agentParameters:
-    maxStep: 0
-  hasUpgradedFromAgentParameters: 1
-  MaxStep: 0
-  controller: {fileID: 7688244279741279644}
-  obstacleDetection: {fileID: 4930844592529910517}
-  target: {fileID: 0}
 --- !u!114 &4819517146171378741
 MonoBehaviour:
   m_ObjectHideFlags: 0
