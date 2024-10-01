@@ -10,6 +10,7 @@ namespace AI
     public class TankAgent : Agent
     {
         [SerializeField] Transform target;
+        [SerializeField] bool heuristicInputs = false;
 
         TankController controller;
         ObstacleDetectionManager obstacleDetection;
@@ -57,6 +58,18 @@ namespace AI
             // check for input to not shoot
             if (shootInput <= 0) return;
             controller.Shoot();
+        }
+
+        public override void Heuristic(in ActionBuffers actionsOut)
+        {
+            if (!heuristicInputs) return;
+
+            ActionSegment<float> continuousActions = actionsOut.ContinuousActions;
+            continuousActions[0] = Input.GetAxisRaw("Vertical");
+            continuousActions[1] = Input.GetAxisRaw("Horizontal");
+
+            ActionSegment<int> discreteActions = actionsOut.DiscreteActions;
+            discreteActions[0] = Input.GetButton("Fire1") ? 1 : 0;
         }
     }
 }

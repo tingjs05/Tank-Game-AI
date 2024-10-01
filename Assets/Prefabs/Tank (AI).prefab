@@ -146,6 +146,7 @@ MonoBehaviour:
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
   target: {fileID: 0}
+  heuristicInputs: 0
 --- !u!114 &4930844592529910517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,6 +180,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7241b19197e6995449f7f1078054cb28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damagedPenalty: 0.5
+  missedShotPenalty: 0.15
+  hitShotReward: 0.5
+  obstacleCollisionPenalty: 1
+  obstacleTag: Obstacle
+  deathPenalty: 10
+  boundaryTag: Boundary
 --- !u!114 &4819517146171378741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,7 +210,7 @@ MonoBehaviour:
     VectorActionSpaceType: 0
     hasUpgradedBrainParametersWithActionSpec: 1
   m_Model: {fileID: 0}
-  m_InferenceDevice: 0
+  m_InferenceDevice: 3
   m_BehaviorType: 0
   m_BehaviorName: TankBehavior
   TeamId: 0
