@@ -30,7 +30,10 @@ namespace AI
 
         public override void OnEpisodeBegin()
         {
+            // reset position
             transform.position = originalPosition;
+            // reset health
+            controller.GetComponent<IDamagable>()?.Damage(-controller.maxHealth);
         }
 
         public override void CollectObservations(VectorSensor sensor)
