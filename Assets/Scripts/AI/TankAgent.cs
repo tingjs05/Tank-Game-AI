@@ -69,7 +69,7 @@ namespace AI
             continuousActions[1] = Input.GetAxisRaw("Horizontal");
 
             ActionSegment<int> discreteActions = actionsOut.DiscreteActions;
-            discreteActions[0] = Input.GetButton("Fire1") ? 1 : 0;
+            discreteActions[0] = Input.GetKey(KeyCode.Space) ? 1 : 0;
         }
     }
 }

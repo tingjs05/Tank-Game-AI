@@ -10,10 +10,12 @@ public class TankController : MonoBehaviour, IDamagable
     public float moveSpeed = 15f;
     public float rotationSpeed = 15f;
     public float shootingRecoil = 0f;
+    public float shootCooldown = 1f;
     public GameObject projectilePrefab;
     public Slider healthBar;
     
     public float Health { get; private set; } = 0f;
+    private float shoot_cooldown;
     private Rigidbody rb;
 
     public event Action Damaged;
@@ -30,6 +32,12 @@ public class TankController : MonoBehaviour, IDamagable
         healthBar.value = Health;
     }
 
+    void Update()
+    {
+        // increment shoot cooldown
+        shoot_cooldown += Time.deltaTime;
+    }
+
     public void Move(Vector2 move)
     {
         // clamp values between -1 and 1
@@ -43,6 +51,12 @@ public class TankController : MonoBehaviour, IDamagable
 
     public void Shoot()
     {
+        // check if can shoot (after waiting for cooldown)
+        if (shoot_cooldown < shootCooldown) return;
+        // reset cooldown after shooting
+        shoot_cooldown = 0f;
+
+        // handle shooting behaviour
         Projectile projectile;
 
         // if there is no projectile namager, manually instantiate projectile
