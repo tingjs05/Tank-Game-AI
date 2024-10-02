@@ -39,16 +39,19 @@ namespace AI.ObstacleDetection
             GetWeightsBasedOnObstacles();
             preferredDirection = Vector3.zero;
 
+            // calculate add interest direction
+            float[] interests = AddWeight(new float[numberOfDirections], transform.position + interestDir);
+
             // aggregate directions based on weights
             for (int i = 0; i < numberOfDirections; i++)
             {
-                preferredDirection += direction.directions[i] * weights[i];
+                preferredDirection += direction.directions[i] * (interests[i] - weights[i]);
             }
 
-            // reverse direction to get direction of "safe" area
-            preferredDirection = -preferredDirection;
-            // after reversing danger, add interest direction
-            preferredDirection += interestDir;
+            // keep magnitude and take out y-axis direction
+            float mag = preferredDirection.magnitude;
+            preferredDirection.y = 0f;
+            preferredDirection *= mag;
             // normalize direction before returning
             return preferredDirection.normalized;
         }
@@ -117,17 +120,24 @@ namespace AI.ObstacleDetection
             // calculate weights for each obstacle detected
             foreach (RaycastHit hit in obstaclesDetected)
             {
-                for (int i = 0; i < numberOfDirections; i++)
-                {
-                    Vector3 dirVector = direction.directions[i];
-                    Vector3 obstacleDir = (hit.point - transform.position).normalized;
-                    float dot = Mathf.Clamp01(Vector3.Dot(obstacleDir, dirVector));
-                    float dist = Vector3.Distance(hit.point, transform.position);
-                    float distWeight = dist <= dangerRange ? 1f : ((detectionRange - dist) / detectionRange);
-                    float finalWeight = dot * distWeight;
-                    weights[i] += finalWeight;
-                }
+                weights = AddWeight(weights, hit.point);
             }
+        }
+
+        float[] AddWeight(float[] weights_array, Vector3 obj_pos)
+        {
+            for (int i = 0; i < numberOfDirections; i++)
+            {
+                Vector3 dirVector = direction.directions[i];
+                Vector3 objectDir = (obj_pos - transform.position).normalized;
+                float dot = Mathf.Clamp01(Vector3.Dot(objectDir, dirVector));
+                float dist = Vector3.Distance(obj_pos, transform.position);
+                float distWeight = dist <= dangerRange ? 1f : ((detectionRange - dist) / detectionRange);
+                float finalWeight = dot * distWeight;
+                weights_array[i] += finalWeight;
+            }
+
+            return weights_array;
         }
 
         void OnDrawGizmosSelected()
