@@ -92,21 +92,27 @@ namespace AI.ObstacleDetection
             foreach (Vector3 dir in direction.directions)
             {
                 if (dir.y != 0f) continue;
-                DetectGroundAtEdge(transform.position + (dir * agentRadius));
+                // check if ground can be detected at agent radius
+                // if it can be detected, check if it can still be detected at danger and detection range
+                if (!DetectGroundAtEdge(transform.position + (dir * agentRadius))) continue;
+                if (!DetectGroundAtEdge(transform.position + (dir * dangerRange))) continue;
+                DetectGroundAtEdge(transform.position + (dir * detectionRange));
             }
         }
 
-        void DetectGroundAtEdge(Vector3 edge)
+        bool DetectGroundAtEdge(Vector3 edge)
         {
             // check if ground or boundary can be detected at corner
             if (!Physics.Raycast(edge, -Vector3.up, out RaycastHit rayHit, 
                 Mathf.Infinity, groundMask))
-                    return;
+                    return false;
             
             // check if it is the boundary
-            if (!rayHit.collider.CompareTag(boundaryTag)) return;
+            if (!rayHit.collider.CompareTag(boundaryTag)) return true;
             // handle detecting boundary
             obstaclesDetected.Add(rayHit);
+            // return not being able to detect ground
+            return false;
         }
 
         void CalculateWeights()
