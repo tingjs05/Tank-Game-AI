@@ -48,7 +48,7 @@ namespace AI.ObstacleDetection
             // reverse direction to get direction of "safe" area
             preferredDirection = -preferredDirection;
             // after reversing danger, add interest direction
-            preferredDirection += interestDir.normalized;
+            preferredDirection += interestDir;
             // normalize direction before returning
             return preferredDirection.normalized;
         }

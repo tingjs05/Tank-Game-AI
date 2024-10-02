@@ -38,8 +38,11 @@ namespace AI
 
         public override void CollectObservations(VectorSensor sensor)
         {
-            sensor.AddObservation(obstacleDetection.GetPreferredDirection(target.position - transform.position));
+            Vector3 interestDir = (target.position - transform.position).normalized;
+            sensor.AddObservation(obstacleDetection.GetPreferredDirection(interestDir));
+            sensor.AddObservation(interestDir);
             sensor.AddObservation(transform.position);
+            sensor.AddObservation(transform.forward);
             sensor.AddObservation(target.position);
         }
 
