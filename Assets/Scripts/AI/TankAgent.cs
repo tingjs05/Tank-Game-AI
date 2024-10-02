@@ -38,13 +38,7 @@ namespace AI
 
         public override void CollectObservations(VectorSensor sensor)
         {
-            float[] weights = obstacleDetection.GetWeightsBasedOnObstacles();
-
-            foreach (float value in weights)
-            {
-                sensor.AddObservation(value);
-            }
-
+            sensor.AddObservation(obstacleDetection.GetPreferredDirection(target.position - transform.position));
             sensor.AddObservation(transform.position);
             sensor.AddObservation(target.position);
         }

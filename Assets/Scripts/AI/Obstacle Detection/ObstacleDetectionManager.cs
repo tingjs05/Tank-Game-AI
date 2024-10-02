@@ -14,6 +14,7 @@ namespace AI.ObstacleDetection
 
         List<RaycastHit> obstaclesDetected = new List<RaycastHit>();
         Direction direction;
+        Vector3 preferredDirection;
         float[] weights;
 
         public int numberOfDirections => direction.directions.Length;
@@ -33,12 +34,30 @@ namespace AI.ObstacleDetection
         //     GetWeightsBasedOnObstacles();
         // }
 
-        public float[] GetWeightsBasedOnObstacles()
+        public Vector3 GetPreferredDirection(Vector3 interestDir)
+        {
+            GetWeightsBasedOnObstacles();
+            preferredDirection = Vector3.zero;
+
+            // aggregate directions based on weights
+            for (int i = 0; i < numberOfDirections; i++)
+            {
+                preferredDirection += direction.directions[i] * weights[i];
+            }
+
+            // reverse direction to get direction of "safe" area
+            preferredDirection = -preferredDirection;
+            // after reversing danger, add interest direction
+            preferredDirection += interestDir.normalized;
+            // normalize direction before returning
+            return preferredDirection.normalized;
+        }
+
+        void GetWeightsBasedOnObstacles()
         {
             DetectObstacles();
             DetectGround();
             CalculateWeights();
-            return weights;
         }
 
         void DetectObstacles()
@@ -149,6 +168,9 @@ namespace AI.ObstacleDetection
             {
                 Debug.DrawRay(transform.position, direction.directions[i] * weights[i] + direction.directions[i], Color.yellow);
             }
+
+            // show preferred direction
+            Debug.DrawRay(transform.position, preferredDirection * 5f, Color.cyan);
         }
     }
 }
