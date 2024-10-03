@@ -14,9 +14,10 @@ namespace AI
 
         TankController controller;
         ObstacleDetectionManager obstacleDetection;
-
-        // TODO: this is temporary for testing purposes
         Vector3 originalPosition;
+
+        public Transform _target => target;
+
         void Awake()
         {
             originalPosition = transform.position;

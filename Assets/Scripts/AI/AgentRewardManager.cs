@@ -9,6 +9,7 @@ namespace AI
         [SerializeField] float damagedPenalty = 0.5f;
         [SerializeField] float missedShotPenalty = 0.15f;
         [SerializeField] float hitShotReward = 0.5f;
+        [SerializeField] float killReward = 1f;
 
         [Header("Obstacle Collision")]
         [SerializeField] float obstacleCollisionPenalty = 1f;
@@ -31,6 +32,11 @@ namespace AI
             controller.Damaged += OnDamaged;
             controller.Died += OnDeath;
             controller.OnShoot += OnShoot;
+            
+            // suscribe to kill event
+            TankController enemyController = agent._target.GetComponent<TankController>();
+            if (enemyController == null) return;
+            enemyController.Died += OnKill;
         }
 
         void OnCollisionEnter(Collision other)
@@ -58,6 +64,12 @@ namespace AI
         void OnDeath()
         {
             agent.AddReward(-deathPenalty);
+            agent.EndEpisode();
+        }
+
+        void OnKill()
+        {
+            agent.AddReward(killReward);
             agent.EndEpisode();
         }
 
