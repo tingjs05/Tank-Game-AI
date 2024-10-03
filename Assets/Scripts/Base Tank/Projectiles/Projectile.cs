@@ -30,10 +30,14 @@ public class Projectile : MonoBehaviour
 
     void Update()
     {
-        rb.velocity = moveDir * speed;
         currentLifetime += Time.deltaTime;
         if (currentLifetime < maxLifetime) return;
         HandleEndLifetime();
+    }
+
+    void FixedUpdate()
+    {
+        rb.velocity = moveDir * speed;
     }
 
     void OnTriggerEnter(Collider other) 

@@ -29,11 +29,15 @@ namespace Player
             if (Input.GetKey(leftKey))
                 moveVector.y -= 1f;
             
-            controller.Move(moveVector);
-
             // handle shooting
             if (!Input.GetKey(shootKey)) return;
             controller.Shoot();
+        }
+
+        void FixedUpdate()
+        {
+            // apply movement in fixed update
+            controller.Move(moveVector);
         }
     }
 }
