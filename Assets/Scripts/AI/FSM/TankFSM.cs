@@ -12,6 +12,11 @@ namespace AI.FSM
         [SerializeField, Range(0f, 1f)] float shootThreshold = 0.9f;
         [SerializeField, Range(0f, 1f)] float minAimSpeed = 0.6f;
 
+        [Header("Handle Death")]
+        [SerializeField] bool resetOnDeath = false;
+        [SerializeField] string boundaryTag = "Boundary";
+        Vector3 originalPosition;
+
         public Transform _target => target;
         public float shoot_threshold => shootThreshold;
         public float min_aim_speed => minAimSpeed;
@@ -38,6 +43,11 @@ namespace AI.FSM
             Track = new TrackState(this, this);
             Shoot = new ShootState(this, this);
             Initialize(Idle);
+
+            // handle death reset
+            if (!resetOnDeath) return;
+            originalPosition = transform.position;
+            controller.Died += HandleDeath;
         }
 
         public bool TargetInRange()
@@ -65,6 +75,18 @@ namespace AI.FSM
             if (dot >= hardMovementThreshold) movementInputs.y = 0f;
             // input movement
             controller.Move(movementInputs);
+        }
+
+        void HandleDeath()
+        {
+            transform.position = originalPosition;
+        }
+
+        void OnTriggerEnter(Collider other) 
+        {
+            // check for falling out of boundary
+            if (!resetOnDeath || !other.CompareTag(boundaryTag)) return;
+            HandleDeath();
         }
 
         void OnDrawGizmosSelected() 
