@@ -8,7 +8,7 @@ namespace AI.FSM
         {
         }
 
-        public override void LogicUpdate()
+        public override void PhysicsUpdate()
         {
             // check if target is still within range to shoot, if not, return to idle
             if (!character.TargetInRange())
@@ -24,7 +24,7 @@ namespace AI.FSM
             if (dot >= character.shoot_threshold)
             {
                 character.controller.Shoot();
-                character.controller.Move(new Vector2(0.5f, 0f));
+                character.controller.Move(new Vector2(character.recoil_control, 0f));
                 return;
             }
 

@@ -134,7 +134,10 @@ MonoBehaviour:
   movementThreshold: 0.85
   hardMovementThreshold: 0.95
   shootThreshold: 0.999
+  recoilControl: 0.8
   minAimSpeed: 0.75
+  resetOnDeath: 0
+  boundaryTag: Boundary
 --- !u!114 &3834176862689042385
 MonoBehaviour:
   m_ObjectHideFlags: 0

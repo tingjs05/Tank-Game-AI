@@ -10,6 +10,7 @@ namespace AI.FSM
         [SerializeField, Range(0f, 1f)] float movementThreshold = 0.6f;
         [SerializeField, Range(0f, 1f)] float hardMovementThreshold = 0.85f;
         [SerializeField, Range(0f, 1f)] float shootThreshold = 0.9f;
+        [SerializeField, Range(0f, 1f)] float recoilControl = 0.75f;
         [SerializeField, Range(0f, 1f)] float minAimSpeed = 0.6f;
 
         [Header("Handle Death")]
@@ -19,6 +20,7 @@ namespace AI.FSM
 
         public Transform _target => target;
         public float shoot_threshold => shootThreshold;
+        public float recoil_control => recoilControl;
         public float min_aim_speed => minAimSpeed;
         
         public TankController controller { get; private set; }
