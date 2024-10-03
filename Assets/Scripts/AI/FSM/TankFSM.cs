@@ -80,6 +80,7 @@ namespace AI.FSM
         void HandleDeath()
         {
             transform.position = originalPosition;
+            controller?.GetComponent<IDamagable>()?.Damage(-controller.maxHealth);
         }
 
         void OnTriggerEnter(Collider other) 
