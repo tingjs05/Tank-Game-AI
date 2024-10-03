@@ -8,7 +8,7 @@ namespace AI.FSM
         {
         }
 
-        public override void LogicUpdate()
+        public override void PhysicsUpdate()
         {
             // check if target is within range to shoot
             if (character.TargetInRange())

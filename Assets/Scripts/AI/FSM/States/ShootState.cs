@@ -10,8 +10,6 @@ namespace AI.FSM
 
         public override void LogicUpdate()
         {
-            base.LogicUpdate();
-
             // check if target is still within range to shoot, if not, return to idle
             if (!character.TargetInRange())
             {
