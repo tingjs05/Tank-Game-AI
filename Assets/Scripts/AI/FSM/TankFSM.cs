@@ -9,7 +9,6 @@ namespace AI.FSM
     public class TankFSM : StateMachine<TankFSM>
     {
         [SerializeField] Transform target;
-        [SerializeField] LayerMask targetDetectionMask;
 
         public TankController controller { get; private set; }
         public ObstacleDetectionManager obstacleDetection { get; private set; }
@@ -26,6 +25,35 @@ namespace AI.FSM
         {
             controller = GetComponent<TankController>();
             obstacleDetection = GetComponent<ObstacleDetectionManager>();
+        }
+
+        public bool TargetInRange()
+        {
+            Vector3 dir = (target.position - transform.position).normalized;
+            float x = obstacleDetection.agentRadius * obstacleDetection.agentRadius;
+            float offset = Mathf.Sqrt(x + x);
+
+            return !Physics.Raycast(transform.position + (dir * offset), dir, 
+                Vector3.Distance(transform.position, target.position), obstacleDetection.detectionMask);
+        }
+
+        void OnDrawGizmosSelected() 
+        {
+            // ensure target is not null
+            if (target == null) return;
+            // ensure obstacle detection is not null
+            if (obstacleDetection == null) Start();
+            if (obstacleDetection == null) return;
+            // check if showing obstacles
+            if (!obstacleDetection.showGizmos) return;
+
+            // show target detection ray
+            Vector3 dir = (target.position - transform.position).normalized;
+            float x = obstacleDetection.agentRadius * obstacleDetection.agentRadius;
+            float offset = Mathf.Sqrt(x + x);
+
+            Debug.DrawRay(transform.position + (dir * offset), dir * 
+                Vector3.Distance(transform.position, target.position), TargetInRange() ? Color.green :  Color.red);
         }
     }
 }

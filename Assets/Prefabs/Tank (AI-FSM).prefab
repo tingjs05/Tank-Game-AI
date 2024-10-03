@@ -131,9 +131,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   current_state_name: None
   target: {fileID: 0}
-  targetDetectionMask:
-    serializedVersion: 2
-    m_Bits: 128
 --- !u!114 &3834176862689042385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,12 +147,12 @@ MonoBehaviour:
   dangerRange: 1.5
   agentRadius: 0.5
   boundaryTag: Boundary
-  showGizmos: 0
-  showDirections: 0
+  showGizmos: 1
+  showDirections: 1
   showDetectedObstacles: 1
   detectionMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   groundMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 24
