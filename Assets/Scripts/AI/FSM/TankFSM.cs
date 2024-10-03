@@ -13,9 +13,9 @@ namespace AI.FSM
         [SerializeField, Range(0f, 1f)] float recoilControl = 0.75f;
         [SerializeField, Range(0f, 1f)] float minAimSpeed = 0.6f;
 
-        [Header("Handle Death")]
-        [SerializeField] bool resetOnDeath = false;
+        [Header("Testing")]
         [SerializeField] string boundaryTag = "Boundary";
+        [SerializeField] bool resetOnDeath, resetOnKill = false;
         Vector3 originalPosition;
 
         public Transform _target => target;
@@ -47,9 +47,17 @@ namespace AI.FSM
             Initialize(Idle);
 
             // handle death reset
-            if (!resetOnDeath) return;
-            originalPosition = transform.position;
-            controller.Died += HandleDeath;
+            if (resetOnDeath)
+            {
+                originalPosition = transform.position;
+                controller.Died += Reset;
+            }
+
+            // handle resetting on kill
+            if (!resetOnKill) return;
+            TankController enemyController = target.GetComponent<TankController>();
+            if (enemyController == null) return;
+            enemyController.Died += Reset;
         }
 
         public bool TargetInRange()
@@ -79,7 +87,7 @@ namespace AI.FSM
             controller.Move(movementInputs);
         }
 
-        void HandleDeath()
+        void Reset()
         {
             transform.position = originalPosition;
             controller?.GetComponent<IDamagable>()?.Damage(-controller.maxHealth);
@@ -89,7 +97,7 @@ namespace AI.FSM
         {
             // check for falling out of boundary
             if (!resetOnDeath || !other.CompareTag(boundaryTag)) return;
-            HandleDeath();
+            Reset();
         }
 
         void OnDrawGizmosSelected() 

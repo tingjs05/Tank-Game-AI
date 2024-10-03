@@ -242,6 +242,11 @@ PrefabInstance:
       objectReference: {fileID: 513359546}
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
+      propertyPath: resetOnKill
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
+        type: 3}
       propertyPath: resetOnDeath
       value: 1
       objectReference: {fileID: 0}
