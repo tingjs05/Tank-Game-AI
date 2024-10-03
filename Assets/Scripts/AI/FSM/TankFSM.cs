@@ -9,8 +9,17 @@ namespace AI.FSM
     public class TankFSM : StateMachine<TankFSM>
     {
         [SerializeField] Transform target;
-        TankController controller;
-        ObstacleDetectionManager obstacleDetection;
+        [SerializeField] LayerMask targetDetectionMask;
+
+        public TankController controller { get; private set; }
+        public ObstacleDetectionManager obstacleDetection { get; private set; }
+
+        #region States
+        public IdleState Idle { get; private set; }
+        public PatrolState Patrol { get; private set; }
+        public TrackState Track { get; private set; }
+        public ShootState Shoot { get; private set; }
+        #endregion
 
         // Start is called before the first frame update
         void Start()
