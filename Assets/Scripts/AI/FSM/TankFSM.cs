@@ -9,7 +9,13 @@ namespace AI.FSM
     public class TankFSM : StateMachine<TankFSM>
     {
         [SerializeField] Transform target;
+        [SerializeField, Range(0f, 1f)] float movementThreshold = 0.6f;
+        [SerializeField, Range(0f, 1f)] float hardMovementThreshold = 0.85f;
+        [SerializeField, Range(0f, 1f)] float shootThreshold = 0.9f;
 
+        public Transform _target => target;
+        public float shoot_threshold => shootThreshold;
+        
         public TankController controller { get; private set; }
         public ObstacleDetectionManager obstacleDetection { get; private set; }
 
@@ -25,6 +31,13 @@ namespace AI.FSM
         {
             controller = GetComponent<TankController>();
             obstacleDetection = GetComponent<ObstacleDetectionManager>();
+
+            // initialize fsm
+            Idle = new IdleState(this, this);
+            Patrol = new PatrolState(this, this);
+            Track = new TrackState(this, this);
+            Shoot = new ShootState(this, this);
+            Initialize(Idle);
         }
 
         public bool TargetInRange()
@@ -35,6 +48,23 @@ namespace AI.FSM
 
             return !Physics.Raycast(transform.position + (dir * offset), dir, 
                 Vector3.Distance(transform.position, target.position), obstacleDetection.detectionMask);
+        }
+
+        public void Move(Vector3 direction)
+        {
+            // clean up direction input
+            direction.y = 0f;
+            direction.Normalize();
+            // store movement vector
+            Vector2 movementInputs = Vector2.zero;
+            // calculate movement
+            float dot = Vector3.Dot(transform.forward, direction);
+            if (dot >= movementThreshold) movementInputs.x = 1f;
+            float right_dot = Vector3.Dot(transform.right, direction);
+            movementInputs.y = right_dot >= 0f ? 1f : -1f;
+            if (dot >= hardMovementThreshold) movementInputs.y = 0f;
+            // input movement
+            controller.Move(movementInputs);
         }
 
         void OnDrawGizmosSelected() 

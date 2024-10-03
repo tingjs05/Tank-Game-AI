@@ -131,6 +131,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   current_state_name: None
   target: {fileID: 0}
+  movementThreshold: 0.6
+  shootThreshold: 0.9
 --- !u!114 &3834176862689042385
 MonoBehaviour:
   m_ObjectHideFlags: 0
