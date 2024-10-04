@@ -46,8 +46,12 @@ namespace AI
 
         void FixedUpdate() 
         {
+            // calculate horizontal velocity
+            Vector3 horizontalVel = controller.rb.velocity;
+            horizontalVel.y = 0f;
+            horizontalVel.Normalize();
             // check if agent is moving in a good direction, if so, reward it
-            float dot = Vector3.Dot(controller.rb.velocity.normalized, agent.preferred_direction);
+            float dot = Vector3.Dot(horizontalVel, agent.preferred_direction);
 
             if (dot >= correctDirThreshold) 
             {
@@ -55,7 +59,7 @@ namespace AI
                 return;
             }
 
-            dot = Vector3.Dot(controller.rb.velocity.normalized, agent.interest_direction);
+            dot = Vector3.Dot(horizontalVel, agent.interest_direction);
             if (dot >= correctDirThreshold) agent.AddReward(moveTowardsInterestDirReward);
         }
 
