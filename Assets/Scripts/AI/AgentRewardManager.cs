@@ -12,7 +12,8 @@ namespace AI
         [SerializeField] float killReward = 2f;
 
         [Header("Movement")]
-         [SerializeField] float moveTowardsInterestDirReward = 1f;
+        [SerializeField] float faceInteresetDirReward = 0.5f;
+        [SerializeField] float moveTowardsInterestDirReward = 1f;
         [SerializeField] float moveTowardsPreferredDirReward = 5f;
         [SerializeField, Range(0f, 1f)] float correctDirThreshold = 0.85f;
 
@@ -50,8 +51,13 @@ namespace AI
             Vector3 horizontalVel = controller.rb.velocity;
             horizontalVel.y = 0f;
             horizontalVel.Normalize();
+
+            // check if agent is facing the correct direction
+            float dot = Vector3.Dot(transform.forward, agent.interest_direction);
+            if (dot >= correctDirThreshold) agent.AddReward(faceInteresetDirReward);
+
             // check if agent is moving in a good direction, if so, reward it
-            float dot = Vector3.Dot(horizontalVel, agent.preferred_direction);
+            dot = Vector3.Dot(horizontalVel, agent.preferred_direction);
 
             if (dot >= correctDirThreshold) 
             {
