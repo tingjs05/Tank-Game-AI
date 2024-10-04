@@ -31,6 +31,15 @@ namespace AI
             obstacleDetection = GetComponent<ObstacleDetectionManager>();
         }
 
+        bool TargetInRange()
+        {
+            float x = obstacleDetection.agentRadius * obstacleDetection.agentRadius;
+            float offset = Mathf.Sqrt(x + x);
+
+            return !Physics.Raycast(transform.position + (interest_direction * offset), interest_direction, 
+                Vector3.Distance(transform.position, target.position), obstacleDetection.detectionMask);
+        }
+
         public override void OnEpisodeBegin()
         {
             // reset position
@@ -51,6 +60,7 @@ namespace AI
             sensor.AddObservation(transform.position);
             sensor.AddObservation(transform.forward);
             sensor.AddObservation(target.position);
+            sensor.AddObservation(TargetInRange());
         }
 
         public override void OnActionReceived(ActionBuffers actions)
@@ -77,6 +87,25 @@ namespace AI
 
             ActionSegment<int> discreteActions = actionsOut.DiscreteActions;
             discreteActions[0] = Input.GetKey(KeyCode.Space) ? 1 : 0;
+        }
+
+        void OnDrawGizmosSelected() 
+        {
+            // ensure target is not null
+            if (target == null) return;
+            // ensure obstacle detection is not null
+            if (obstacleDetection == null) Start();
+            if (obstacleDetection == null) return;
+            // check if showing obstacles
+            if (!obstacleDetection.showGizmos) return;
+
+            // show target detection ray
+            Vector3 dir = (target.position - transform.position).normalized;
+            float x = obstacleDetection.agentRadius * obstacleDetection.agentRadius;
+            float offset = Mathf.Sqrt(x + x);
+
+            Debug.DrawRay(transform.position + (dir * offset), dir * 
+                Vector3.Distance(transform.position, target.position), TargetInRange() ? Color.green :  Color.red);
         }
     }
 }
