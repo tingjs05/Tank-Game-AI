@@ -188,8 +188,8 @@ MonoBehaviour:
   missedShotPenalty: 0.1
   hitShotReward: 0.8
   killReward: 1
-  moveTowardsInterestDirReward: 0.25
-  moveTowardsPreferredDirReward: 0.5
+  moveTowardsInterestDirReward: 0.03
+  moveTowardsPreferredDirReward: 0.1
   correctDirThreshold: 0.85
   obstacleCollisionPenalty: 0.8
   obstacleTag: Obstacle
