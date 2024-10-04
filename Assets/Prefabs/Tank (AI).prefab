@@ -184,12 +184,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7241b19197e6995449f7f1078054cb28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedPenalty: 1
-  missedShotPenalty: 1
-  hitShotReward: 2
-  obstacleCollisionPenalty: 1
+  damagedPenalty: 0.5
+  missedShotPenalty: 0.1
+  hitShotReward: 0.8
+  killReward: 1
+  moveTowardsInterestDirReward: 0.25
+  moveTowardsPreferredDirReward: 0.5
+  correctDirThreshold: 0.85
+  obstacleCollisionPenalty: 0.8
   obstacleTag: Obstacle
-  deathPenalty: 2
+  deathPenalty: 1
   boundaryTag: Boundary
 --- !u!114 &4819517146171378741
 MonoBehaviour:
