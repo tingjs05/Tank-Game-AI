@@ -17,6 +17,8 @@ namespace AI
         Vector3 originalPosition;
 
         public Transform _target => target;
+        public Vector3 interest_direction { get; private set; }
+        public Vector3 preferred_direction { get; private set; }
 
         void Awake()
         {
@@ -39,9 +41,13 @@ namespace AI
 
         public override void CollectObservations(VectorSensor sensor)
         {
-            Vector3 interestDir = (target.position - transform.position).normalized;
-            sensor.AddObservation(obstacleDetection.GetPreferredDirection(interestDir));
-            sensor.AddObservation(interestDir);
+            // calculate directions
+            interest_direction = (target.position - transform.position).normalized;
+            preferred_direction = obstacleDetection.GetPreferredDirection(interest_direction);
+
+            // add observations
+            sensor.AddObservation(preferred_direction);
+            sensor.AddObservation(interest_direction);
             sensor.AddObservation(transform.position);
             sensor.AddObservation(transform.forward);
             sensor.AddObservation(target.position);

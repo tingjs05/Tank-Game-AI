@@ -9,7 +9,12 @@ namespace AI
         [SerializeField] float damagedPenalty = 0.5f;
         [SerializeField] float missedShotPenalty = 0.15f;
         [SerializeField] float hitShotReward = 0.5f;
-        [SerializeField] float killReward = 1f;
+        [SerializeField] float killReward = 2f;
+
+        [Header("Movement")]
+         [SerializeField] float moveTowardsInterestDirReward = 1f;
+        [SerializeField] float moveTowardsPreferredDirReward = 5f;
+        [SerializeField, Range(0f, 1f)] float correctDirThreshold = 0.85f;
 
         [Header("Obstacle Collision")]
         [SerializeField] float obstacleCollisionPenalty = 1f;
@@ -37,6 +42,21 @@ namespace AI
             TankController enemyController = agent._target.GetComponent<TankController>();
             if (enemyController == null) return;
             enemyController.Died += OnKill;
+        }
+
+        void FixedUpdate() 
+        {
+            // check if agent is moving in a good direction, if so, reward it
+            float dot = Vector3.Dot(controller.rb.velocity.normalized, agent.preferred_direction);
+
+            if (dot >= correctDirThreshold) 
+            {
+                agent.AddReward(moveTowardsPreferredDirReward);
+                return;
+            }
+
+            dot = Vector3.Dot(controller.rb.velocity.normalized, agent.interest_direction);
+            if (dot >= correctDirThreshold) agent.AddReward(moveTowardsInterestDirReward);
         }
 
         void OnCollisionEnter(Collision other)

@@ -14,9 +14,9 @@ public class TankController : MonoBehaviour, IDamagable
     public GameObject projectilePrefab;
     public Slider healthBar;
     
+    public Rigidbody rb { get; private set; }
     public float Health { get; private set; } = 0f;
     private float shoot_cooldown;
-    private Rigidbody rb;
 
     public event Action Damaged;
     public event Action Died;
