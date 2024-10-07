@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace AI.FSM
@@ -17,8 +15,9 @@ namespace AI.FSM
         {
             base.PhysicsUpdate();
 
-            // check if fled far enough
-            if (Vector3.Distance(character.transform.position, character._target.position) >= character.flee_distance)
+            // check if fled far enough or if there is a direction to flee to
+            if (Vector3.Distance(character.transform.position, character._target.position) >= character.flee_distance ||
+                fleeDirection == Vector3.zero)
             {
                 fsm.SwitchState(character.Flee);
                 return;
