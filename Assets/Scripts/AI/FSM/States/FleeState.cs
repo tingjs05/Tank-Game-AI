@@ -19,7 +19,7 @@ namespace AI.FSM
             if (Vector3.Distance(character.transform.position, character._target.position) >= character.flee_distance ||
                 fleeDirection == Vector3.zero)
             {
-                fsm.SwitchState(character.Flee);
+                fsm.SwitchState(character.Idle);
                 return;
             }
 
