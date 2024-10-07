@@ -147,6 +147,8 @@ MonoBehaviour:
   MaxStep: 5000
   target: {fileID: 0}
   heuristicInputs: 0
+  fleeDistance: 3.5
+  fleeHealthThreshold: 0.5
 --- !u!114 &4930844592529910517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,12 +187,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damagedPenalty: 0.5
-  missedShotPenalty: 0.1
+  missedShotPenalty: 0.05
   hitShotReward: 0.8
   killReward: 1
-  faceInteresetDirReward: 0.1
-  moveTowardsInterestDirReward: 0.05
-  moveTowardsPreferredDirReward: 0.1
+  fleeReward: 1
+  faceInteresetDirReward: 0.05
+  moveTowardsInterestDirReward: 0.02
+  moveTowardsPreferredDirReward: 0.05
   correctDirThreshold: 0.85
   obstacleCollisionPenalty: 0.8
   obstacleTag: Obstacle
