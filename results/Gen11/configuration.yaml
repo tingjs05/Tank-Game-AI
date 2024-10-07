@@ -63,9 +63,9 @@ engine_settings:
 environment_parameters: null
 checkpoint_settings:
   run_id: Gen11
-  initialize_from: Gen10
+  initialize_from: null
   load_model: false
-  resume: false
+  resume: true
   force: false
   train_model: false
   inference: false
