@@ -69,10 +69,9 @@ namespace AI.FSM
         {
             base.Update();
 
-            // check if need to flee and if can flee (if there is a direction to flee to)
-            if (currentState == Flee || 
-                controller.Health >= (controller.maxHealth * fleeHealthThreshold) || 
-                Flee.fleeDirection == Vector3.zero) 
+            // check if need to flee and if can flee
+            if (currentState == Flee || !Flee.CanEnter||
+                controller.Health >= (controller.maxHealth * fleeHealthThreshold)) 
                     return;
             // switch to flee state to flee
             SwitchState(Flee);
