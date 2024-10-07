@@ -18,8 +18,6 @@ namespace AI
 
         TankController controller;
         ObstacleDetectionManager obstacleDetection;
-        Vector3 originalPosition;
-
         
         public Vector3 interest_direction { get; private set; }
         public Vector3 preferred_direction { get; private set; }
@@ -27,11 +25,6 @@ namespace AI
         public bool flee => controller != null && 
             Vector3.Distance(transform.position, target.position) < fleeDistance && 
             controller.Health < (controller.maxHealth * fleeHealthThreshold);
-
-        void Awake()
-        {
-            originalPosition = transform.position;
-        }
 
         void Start()
         {
@@ -50,10 +43,8 @@ namespace AI
 
         public override void OnEpisodeBegin()
         {
-            // reset position
-            transform.position = originalPosition;
-            // reset health
-            controller.GetComponent<IDamagable>()?.Damage(-controller.maxHealth);
+            // reset agent
+            controller.Reset();
         }
 
         public override void CollectObservations(VectorSensor sensor)

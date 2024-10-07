@@ -16,11 +16,20 @@ public class TankController : MonoBehaviour, IDamagable
     
     public Rigidbody rb { get; private set; }
     public float Health { get; private set; } = 0f;
+    
+    private Vector3 originalPosition;
+    private Quaternion originalRotation;
     private float shoot_cooldown;
 
     public event Action Damaged;
     public event Action Died;
     public event Action<bool> OnShoot;
+
+    void Awake()
+    {
+        originalPosition = transform.position;
+        originalRotation = transform.rotation;
+    }
 
     void Start()
     {
@@ -79,6 +88,13 @@ public class TankController : MonoBehaviour, IDamagable
 
         // apply recoil
         rb.AddForce(-transform.forward * shootingRecoil, ForceMode.Impulse);
+    }
+
+    public void Reset()
+    {
+        transform.position = originalPosition;
+        transform.rotation = originalRotation;
+        Health = maxHealth;
     }
 
     public void Damage(float damage)
