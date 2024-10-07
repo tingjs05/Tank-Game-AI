@@ -2,15 +2,6 @@
     "TankBehavior": {
         "checkpoints": [
             {
-                "steps": 3200,
-                "file_path": "results\\Gen13\\TankBehavior\\TankBehavior-3200.onnx",
-                "reward": null,
-                "creation_time": 1728284283.6716805,
-                "auxillary_file_paths": [
-                    "results\\Gen13\\TankBehavior\\TankBehavior-3200.pt"
-                ]
-            },
-            {
                 "steps": 1927756,
                 "file_path": "results\\Gen13\\TankBehavior\\TankBehavior-1927756.onnx",
                 "reward": 74.55425998899672,
@@ -36,15 +27,33 @@
                 "auxillary_file_paths": [
                     "results\\Gen13\\TankBehavior\\TankBehavior-2068541.pt"
                 ]
+            },
+            {
+                "steps": 1999973,
+                "file_path": "results\\Gen13\\TankBehavior\\TankBehavior-1999973.onnx",
+                "reward": 36.91654737982899,
+                "creation_time": 1728285306.004285,
+                "auxillary_file_paths": [
+                    "results\\Gen13\\TankBehavior\\TankBehavior-1999973.pt"
+                ]
+            },
+            {
+                "steps": 2242949,
+                "file_path": "results\\Gen13\\TankBehavior\\TankBehavior-2242949.onnx",
+                "reward": 45.90409191697836,
+                "creation_time": 1728285743.2170274,
+                "auxillary_file_paths": [
+                    "results\\Gen13\\TankBehavior\\TankBehavior-2242949.pt"
+                ]
             }
         ],
         "final_checkpoint": {
-            "steps": 2068541,
+            "steps": 2242949,
             "file_path": "results\\Gen13\\TankBehavior.onnx",
-            "reward": 86.32457213196903,
-            "creation_time": 1728284717.9884737,
+            "reward": 45.90409191697836,
+            "creation_time": 1728285743.2170274,
             "auxillary_file_paths": [
-                "results\\Gen13\\TankBehavior\\TankBehavior-2068541.pt"
+                "results\\Gen13\\TankBehavior\\TankBehavior-2242949.pt"
             ]
         }
     },
