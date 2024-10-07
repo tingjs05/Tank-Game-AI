@@ -7,12 +7,19 @@ namespace Player
     {
         public KeyCode forwardKey, backwardKey, leftKey, rightKey, shootKey;
 
+        [Header("Testing")]
+        [SerializeField] string boundaryTag = "Boundary";
+        [SerializeField] bool resetOnDeath = false;
+
         private TankController controller;
         private Vector2 moveVector;
 
         void Start()
         {
+            // get reference to controller
             controller = GetComponent<TankController>();
+            // handle death reset
+            if (resetOnDeath) controller.Died += controller.Reset;
         }
 
         void Update()
@@ -38,6 +45,13 @@ namespace Player
         {
             // apply movement in fixed update
             controller.Move(moveVector);
+        }
+
+        void OnTriggerEnter(Collider other) 
+        {
+            // check for falling out of boundary
+            if (!resetOnDeath || !other.CompareTag(boundaryTag)) return;
+            controller.Reset();
         }
     }
 }
