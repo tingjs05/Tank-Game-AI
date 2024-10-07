@@ -325,12 +325,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a7316b93aaec4347858477e3ab3d11d, type: 3}
---- !u!4 &192341133 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 9172984854521456848, guid: 5a7316b93aaec4347858477e3ab3d11d,
+--- !u!114 &192341136 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 346442620484892858, guid: 5a7316b93aaec4347858477e3ab3d11d,
     type: 3}
   m_PrefabInstance: {fileID: 192341132}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdc36bb593edcd942aa4d8989222dcf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -664,7 +670,7 @@ PrefabInstance:
         type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 192341133}
+      objectReference: {fileID: 192341136}
     - target: {fileID: 2849409711887035911, guid: d8363aba81a44b84280baebbda7b8003,
         type: 3}
       propertyPath: heuristicInputs

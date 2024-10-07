@@ -9,7 +9,7 @@ namespace AI
     [RequireComponent(typeof(TankController), typeof(ObstacleDetectionManager), typeof(AgentRewardManager))]
     public class TankAgent : Agent
     {
-        [SerializeField] Transform target;
+        [SerializeField] TankController target;
         [SerializeField] bool heuristicInputs = false;
 
         TankController controller;
@@ -18,7 +18,7 @@ namespace AI
         
         public Vector3 interest_direction { get; private set; }
         public Vector3 preferred_direction { get; private set; }
-        public Transform _target => target;
+        public Transform _target => target.transform;
 
         void Start()
         {
@@ -33,7 +33,7 @@ namespace AI
             collider.enabled = false;
             // perform raycast
             bool raycast = !Physics.Raycast(transform.position, interest_direction, 
-                Vector3.Distance(transform.position, target.position), obstacleDetection.detectionMask);
+                Vector3.Distance(transform.position, target.transform.position), obstacleDetection.detectionMask);
             // reenable collider after raycast is compelted
             collider.enabled = true;
             return raycast;
@@ -49,15 +49,16 @@ namespace AI
         {
             // calculate directions
             preferred_direction = obstacleDetection.GetPreferredDirection(interest_direction);
-            interest_direction = (target.position - transform.position).normalized;
+            interest_direction = (target.transform.position - transform.position).normalized;
 
             // add observations
             sensor.AddObservation(preferred_direction);
             sensor.AddObservation(interest_direction);
             sensor.AddObservation(transform.position);
             sensor.AddObservation(transform.forward);
-            sensor.AddObservation(target.position);
+            sensor.AddObservation(target.transform.position);
             sensor.AddObservation(controller.Health);
+            sensor.AddObservation(target.Health);
             sensor.AddObservation(TargetInRange());
         }
 
@@ -98,12 +99,12 @@ namespace AI
             if (!obstacleDetection.showGizmos) return;
 
             // show target detection ray
-            Vector3 dir = (target.position - transform.position).normalized;
+            Vector3 dir = (target.transform.position - transform.position).normalized;
             float x = obstacleDetection.agentRadius * obstacleDetection.agentRadius;
             float offset = Mathf.Sqrt(x + x);
 
             Debug.DrawRay(transform.position + (dir * offset), dir * 
-                Vector3.Distance(transform.position, target.position), TargetInRange() ? Color.green :  Color.red);
+                Vector3.Distance(transform.position, target.transform.position), TargetInRange() ? Color.green :  Color.red);
         }
     }
 }
