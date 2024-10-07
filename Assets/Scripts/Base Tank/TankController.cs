@@ -95,6 +95,7 @@ public class TankController : MonoBehaviour, IDamagable
         transform.position = originalPosition;
         transform.rotation = originalRotation;
         Health = maxHealth;
+        healthBar.value = Health;
     }
 
     public void Damage(float damage)
