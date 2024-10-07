@@ -122,6 +122,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 4009885765388559020}
+    - targetCorrespondingSourceObject: {fileID: 7288267409765839309, guid: 5ac2ec880a6701c44ba3973878edf97b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5473802006969769839}
   m_SourcePrefab: {fileID: 100100000, guid: 5ac2ec880a6701c44ba3973878edf97b, type: 3}
 --- !u!1 &5289360980607516922 stripped
 GameObject:
@@ -147,8 +151,6 @@ MonoBehaviour:
   MaxStep: 5000
   target: {fileID: 0}
   heuristicInputs: 0
-  fleeDistance: 5
-  fleeHealthThreshold: 0.5
 --- !u!114 &4930844592529910517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,7 +192,6 @@ MonoBehaviour:
   missedShotPenalty: 0.05
   hitShotReward: 0.8
   killReward: 1
-  fleeReward: 1
   faceInteresetDirReward: 0.05
   moveTowardsInterestDirReward: 0.02
   moveTowardsPreferredDirReward: 0.05
@@ -212,7 +213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 16
+    VectorObservationSize: 17
     NumStackedVectorObservations: 5
     m_ActionSpec:
       m_NumContinuousActions: 2
@@ -243,3 +244,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DecisionPeriod: 5
   TakeActionsBetweenDecisions: 1
+--- !u!114 &5473802006969769839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5289360980607516922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2902496c0120472b90269f94a0aec7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Record: 0
+  NumStepsToRecord: 0
+  DemonstrationName: TankBehaviorDemo
+  DemonstrationDirectory: demos

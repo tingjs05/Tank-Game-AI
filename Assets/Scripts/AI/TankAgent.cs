@@ -57,6 +57,7 @@ namespace AI
             sensor.AddObservation(transform.position);
             sensor.AddObservation(transform.forward);
             sensor.AddObservation(target.position);
+            sensor.AddObservation(controller.Health);
             sensor.AddObservation(TargetInRange());
         }
 
