@@ -12,10 +12,6 @@ namespace AI
         [SerializeField] Transform target;
         [SerializeField] bool heuristicInputs = false;
 
-        [Header("Behaviour")]
-        [SerializeField] float fleeDistance = 3.5f;
-        [SerializeField, Range(0f, 1f)] float fleeHealthThreshold = 0.5f;
-
         TankController controller;
         ObstacleDetectionManager obstacleDetection;
         new Collider collider;
@@ -23,9 +19,6 @@ namespace AI
         public Vector3 interest_direction { get; private set; }
         public Vector3 preferred_direction { get; private set; }
         public Transform _target => target;
-        public bool flee => controller != null && 
-            Vector3.Distance(transform.position, target.position) < fleeDistance && 
-            controller.Health < (controller.maxHealth * fleeHealthThreshold);
 
         void Start()
         {
@@ -57,8 +50,6 @@ namespace AI
             // calculate directions
             preferred_direction = obstacleDetection.GetPreferredDirection(interest_direction);
             interest_direction = (target.position - transform.position).normalized;
-            // check flee interest
-            if (flee) interest_direction *= -1f;
 
             // add observations
             sensor.AddObservation(preferred_direction);
@@ -104,10 +95,6 @@ namespace AI
             if (obstacleDetection == null) return;
             // check if showing obstacles
             if (!obstacleDetection.showGizmos) return;
-
-            // show flee range
-            Gizmos.color = Color.grey;
-            Gizmos.DrawWireSphere(transform.position, fleeDistance);
 
             // show target detection ray
             Vector3 dir = (target.position - transform.position).normalized;

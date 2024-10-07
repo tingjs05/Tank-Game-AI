@@ -10,7 +10,6 @@ namespace AI
         [SerializeField] float missedShotPenalty = 0.15f;
         [SerializeField] float hitShotReward = 0.5f;
         [SerializeField] float killReward = 2f;
-        [SerializeField] float fleeReward = 2f;
 
         [Header("Movement")]
         [SerializeField] float faceInteresetDirReward = 0.5f;
@@ -48,10 +47,6 @@ namespace AI
 
         void FixedUpdate() 
         {
-            // check for flee behaviour
-            if (agent.flee && !agent.TargetInRange())
-                agent.AddReward(fleeReward);
-
             // calculate horizontal velocity
             Vector3 horizontalVel = controller.rb.velocity;
             horizontalVel.y = 0f;
