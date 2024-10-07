@@ -7,11 +7,19 @@ namespace AI.FSM
     public class TankFSM : StateMachine<TankFSM>
     {
         [SerializeField] Transform target;
+
+        [Header("Movement")]
         [SerializeField, Range(0f, 1f)] float movementThreshold = 0.6f;
         [SerializeField, Range(0f, 1f)] float hardMovementThreshold = 0.85f;
+
+        [Header("Combat")]
         [SerializeField, Range(0f, 1f)] float shootThreshold = 0.9f;
         [SerializeField, Range(0f, 1f)] float recoilControl = 0.75f;
         [SerializeField, Range(0f, 1f)] float minAimSpeed = 0.6f;
+
+        [Header("Flee")]
+        [SerializeField] float fleeDistance = 3.5f;
+        [SerializeField, Range(0f, 1f)] float fleeHealthThreshold = 0.5f;
 
         [Header("Testing")]
         [SerializeField] string boundaryTag = "Boundary";
@@ -21,6 +29,7 @@ namespace AI.FSM
         public float shoot_threshold => shootThreshold;
         public float recoil_control => recoilControl;
         public float min_aim_speed => minAimSpeed;
+        public float flee_distance => fleeDistance;
         
         public TankController controller { get; private set; }
         public ObstacleDetectionManager obstacleDetection { get; private set; }
@@ -30,9 +39,9 @@ namespace AI.FSM
         public PatrolState Patrol { get; private set; }
         public TrackState Track { get; private set; }
         public ShootState Shoot { get; private set; }
+        public FleeState Flee { get; private set; }
         #endregion
 
-        // Start is called before the first frame update
         void Start()
         {
             controller = GetComponent<TankController>();
@@ -43,6 +52,7 @@ namespace AI.FSM
             Patrol = new PatrolState(this, this);
             Track = new TrackState(this, this);
             Shoot = new ShootState(this, this);
+            Flee = new FleeState(this, this);
             Initialize(Idle);
 
             // handle death reset
@@ -53,6 +63,19 @@ namespace AI.FSM
             TankController enemyController = target.GetComponent<TankController>();
             if (enemyController == null) return;
             enemyController.Died += controller.Reset;
+        }
+
+        new void Update()
+        {
+            base.Update();
+
+            // check if need to flee and if can flee (if there is a direction to flee to)
+            if (currentState == Flee || 
+                controller.Health >= (controller.maxHealth * fleeHealthThreshold) || 
+                Flee.fleeDirection == Vector3.zero) 
+                    return;
+            // switch to flee state to flee
+            SwitchState(Flee);
         }
 
         public bool TargetInRange()
@@ -98,6 +121,10 @@ namespace AI.FSM
             if (obstacleDetection == null) return;
             // check if showing obstacles
             if (!obstacleDetection.showGizmos) return;
+
+            // show flee range
+            Gizmos.color = Color.grey;
+            Gizmos.DrawWireSphere(transform.position, fleeDistance);
 
             // show target detection ray
             Vector3 dir = (target.position - transform.position).normalized;
