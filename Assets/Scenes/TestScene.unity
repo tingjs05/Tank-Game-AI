@@ -555,6 +555,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tank (Player)
       objectReference: {fileID: 0}
+    - target: {fileID: 7861842616992824583, guid: 13cece8ca83bf9d4d9175cefa5dbe204,
+        type: 3}
+      propertyPath: leftKey
+      value: 106
+      objectReference: {fileID: 0}
+    - target: {fileID: 7861842616992824583, guid: 13cece8ca83bf9d4d9175cefa5dbe204,
+        type: 3}
+      propertyPath: rightKey
+      value: 108
+      objectReference: {fileID: 0}
+    - target: {fileID: 7861842616992824583, guid: 13cece8ca83bf9d4d9175cefa5dbe204,
+        type: 3}
+      propertyPath: shootKey
+      value: 112
+      objectReference: {fileID: 0}
+    - target: {fileID: 7861842616992824583, guid: 13cece8ca83bf9d4d9175cefa5dbe204,
+        type: 3}
+      propertyPath: forwardKey
+      value: 105
+      objectReference: {fileID: 0}
+    - target: {fileID: 7861842616992824583, guid: 13cece8ca83bf9d4d9175cefa5dbe204,
+        type: 3}
+      propertyPath: backwardKey
+      value: 107
+      objectReference: {fileID: 0}
     - target: {fileID: 8442960579572433792, guid: 13cece8ca83bf9d4d9175cefa5dbe204,
         type: 3}
       propertyPath: m_Drag
@@ -778,10 +803,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4819517146171378741, guid: d8363aba81a44b84280baebbda7b8003,
+        type: 3}
+      propertyPath: m_BehaviorType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5289360980607516922, guid: d8363aba81a44b84280baebbda7b8003,
         type: 3}
       propertyPath: m_Name
       value: Tank (AI)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473802006969769839, guid: d8363aba81a44b84280baebbda7b8003,
+        type: 3}
+      propertyPath: Record
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6719915223290563889, guid: d8363aba81a44b84280baebbda7b8003,
         type: 3}
