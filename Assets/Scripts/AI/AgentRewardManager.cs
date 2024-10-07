@@ -59,7 +59,8 @@ namespace AI
 
             // check if agent is facing the correct direction
             float dot = Vector3.Dot(transform.forward, agent.interest_direction);
-            if (dot >= correctDirThreshold) agent.AddReward(faceInteresetDirReward);
+            // scale reward based on how close it is to the correct direction
+            if (dot >= correctDirThreshold) agent.AddReward(faceInteresetDirReward * dot);
 
             // check if agent is moving in a good direction, if so, reward it
             dot = Vector3.Dot(horizontalVel, agent.preferred_direction);
