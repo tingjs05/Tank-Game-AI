@@ -6,8 +6,9 @@ namespace AI.FSM
     {
         private Vector3 fleeDirection => character.obstacleDetection.GetPreferredDirection(
                 (character.transform.position - character._target.position).normalized);
-        public bool CanEnter => fleeDirection != Vector3.zero || 
-            Vector3.Distance(character.transform.position, character._target.position) < character.flee_distance;
+        public bool CanEnter => character.controller.Health < (character.controller.maxHealth * character.flee_health_threshold) && 
+            Vector3.Distance(character.transform.position, character._target.position) < character.flee_distance &&
+            fleeDirection != Vector3.zero;
 
         public FleeState(StateMachine<TankFSM> fsm, TankFSM character) : base (fsm, character)
         {

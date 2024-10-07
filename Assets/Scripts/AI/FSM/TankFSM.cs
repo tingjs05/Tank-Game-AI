@@ -30,6 +30,7 @@ namespace AI.FSM
         public float recoil_control => recoilControl;
         public float min_aim_speed => minAimSpeed;
         public float flee_distance => fleeDistance;
+        public float flee_health_threshold => fleeHealthThreshold;
         
         public TankController controller { get; private set; }
         public ObstacleDetectionManager obstacleDetection { get; private set; }
@@ -70,9 +71,8 @@ namespace AI.FSM
             base.Update();
 
             // check if need to flee and if can flee
-            if (currentState == Flee || !Flee.CanEnter||
-                controller.Health >= (controller.maxHealth * fleeHealthThreshold)) 
-                    return;
+            if (currentState == Flee || !Flee.CanEnter) 
+                return;
             // switch to flee state to flee
             SwitchState(Flee);
         }
