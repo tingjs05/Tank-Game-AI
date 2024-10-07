@@ -18,6 +18,7 @@ namespace AI
 
         TankController controller;
         ObstacleDetectionManager obstacleDetection;
+        new Collider collider;
         
         public Vector3 interest_direction { get; private set; }
         public Vector3 preferred_direction { get; private set; }
@@ -30,15 +31,19 @@ namespace AI
         {
             controller = GetComponent<TankController>();
             obstacleDetection = GetComponent<ObstacleDetectionManager>();
+            collider = GetComponent<Collider>();
         }
 
         public bool TargetInRange()
         {
-            float x = obstacleDetection.agentRadius * obstacleDetection.agentRadius;
-            float offset = Mathf.Sqrt(x + x);
-
-            return !Physics.Raycast(transform.position + (interest_direction * offset), interest_direction, 
+            // disable collider to ensure raycast does not detect self
+            collider.enabled = false;
+            // perform raycast
+            bool raycast = !Physics.Raycast(transform.position, interest_direction, 
                 Vector3.Distance(transform.position, target.position), obstacleDetection.detectionMask);
+            // reenable collider after raycast is compelted
+            collider.enabled = true;
+            return raycast;
         }
 
         public override void OnEpisodeBegin()

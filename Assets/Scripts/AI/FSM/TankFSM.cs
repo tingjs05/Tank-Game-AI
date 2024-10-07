@@ -34,6 +34,7 @@ namespace AI.FSM
         
         public TankController controller { get; private set; }
         public ObstacleDetectionManager obstacleDetection { get; private set; }
+        public new Collider collider { get; private set; }
 
         #region States
         public IdleState Idle { get; private set; }
@@ -47,6 +48,7 @@ namespace AI.FSM
         {
             controller = GetComponent<TankController>();
             obstacleDetection = GetComponent<ObstacleDetectionManager>();
+            collider = GetComponent<Collider>();
 
             // initialize fsm
             Idle = new IdleState(this, this);
@@ -79,12 +81,16 @@ namespace AI.FSM
 
         public bool TargetInRange()
         {
+            // get direction of target
             Vector3 dir = (target.position - transform.position).normalized;
-            float x = obstacleDetection.agentRadius * obstacleDetection.agentRadius;
-            float offset = Mathf.Sqrt(x + x);
-
-            return !Physics.Raycast(transform.position + (dir * offset), dir, 
+            // disable collider to ensure raycast does not detect self
+            collider.enabled = false;
+            // perform raycast
+            bool raycast = !Physics.Raycast(transform.position, dir, 
                 Vector3.Distance(transform.position, target.position), obstacleDetection.detectionMask);
+            // reenable collider after raycast is compelted
+            collider.enabled = true;
+            return raycast;
         }
 
         public void Move(Vector3 direction)
