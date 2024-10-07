@@ -66,8 +66,8 @@ namespace AI
         {
             // get movmeent decision
             float moveX = actions.ContinuousActions[0];
-            float moveZ = actions.ContinuousActions[1];
-            controller.Move(new Vector2(moveX, moveZ));
+            float moveY = actions.ContinuousActions[1];
+            controller.Move(new Vector2(moveX, moveY));
 
             // get shooting decision
             int shootInput = actions.DiscreteActions[0];
@@ -83,6 +83,7 @@ namespace AI
             ActionSegment<float> continuousActions = actionsOut.ContinuousActions;
             continuousActions[0] = Input.GetAxisRaw("Vertical");
             continuousActions[1] = Input.GetAxisRaw("Horizontal");
+            if (Input.GetKey(KeyCode.LeftShift)) continuousActions[1] *= 0.5f;
 
             ActionSegment<int> discreteActions = actionsOut.DiscreteActions;
             discreteActions[0] = Input.GetKey(KeyCode.Space) ? 1 : 0;

@@ -5,7 +5,7 @@ namespace Player
     [RequireComponent(typeof(TankController))]
     public class PlayerController : MonoBehaviour
     {
-        public KeyCode forwardKey, backwardKey, leftKey, rightKey, shootKey;
+        public KeyCode forwardKey, backwardKey, leftKey, rightKey, shootKey, aimKey;
 
         [Header("Testing")]
         [SerializeField] string boundaryTag = "Boundary";
@@ -35,6 +35,9 @@ namespace Player
                 moveVector.y += 1f;
             if (Input.GetKey(leftKey))
                 moveVector.y -= 1f;
+            
+            if (Input.GetKey(aimKey))
+                moveVector.y *= 0.5f;
             
             // handle shooting
             if (!Input.GetKey(shootKey)) return;
