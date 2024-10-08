@@ -23,7 +23,7 @@ namespace AI.ObstacleDetection
         {
             // set directions
             direction = new Direction();
-            Debug.Log($"Number of directions: {numberOfDirections}");
+            // Debug.Log($"Number of directions: {numberOfDirections}");
             // create weights array
             weights = new float[numberOfDirections];
         }
