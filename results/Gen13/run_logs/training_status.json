@@ -2,58 +2,58 @@
     "TankBehavior": {
         "checkpoints": [
             {
-                "steps": 1999953,
-                "file_path": "results\\Gen13\\TankBehavior\\TankBehavior-1999953.onnx",
+                "steps": 1999958,
+                "file_path": "results\\Gen13\\TankBehavior\\TankBehavior-1999958.onnx",
+                "reward": 36.98825387656689,
+                "creation_time": 1728379300.9791517,
+                "auxillary_file_paths": [
+                    "results\\Gen13\\TankBehavior\\TankBehavior-1999958.pt"
+                ]
+            },
+            {
+                "steps": 2499963,
+                "file_path": "results\\Gen13\\TankBehavior\\TankBehavior-2499963.onnx",
+                "reward": 53.663848896200456,
+                "creation_time": 1728380151.4925075,
+                "auxillary_file_paths": [
+                    "results\\Gen13\\TankBehavior\\TankBehavior-2499963.pt"
+                ]
+            },
+            {
+                "steps": 2999965,
+                "file_path": "results\\Gen13\\TankBehavior\\TankBehavior-2999965.onnx",
+                "reward": 90.23704003370725,
+                "creation_time": 1728381010.6276023,
+                "auxillary_file_paths": [
+                    "results\\Gen13\\TankBehavior\\TankBehavior-2999965.pt"
+                ]
+            },
+            {
+                "steps": 3499985,
+                "file_path": "results\\Gen13\\TankBehavior\\TankBehavior-3499985.onnx",
+                "reward": 93.02281203414455,
+                "creation_time": 1728381865.777865,
+                "auxillary_file_paths": [
+                    "results\\Gen13\\TankBehavior\\TankBehavior-3499985.pt"
+                ]
+            },
+            {
+                "steps": 3943645,
+                "file_path": "results\\Gen13\\TankBehavior\\TankBehavior-3943645.onnx",
                 "reward": null,
-                "creation_time": 1728368975.4828017,
+                "creation_time": 1728382645.600936,
                 "auxillary_file_paths": [
-                    "results\\Gen13\\TankBehavior\\TankBehavior-1999953.pt"
-                ]
-            },
-            {
-                "steps": 2499941,
-                "file_path": "results\\Gen13\\TankBehavior\\TankBehavior-2499941.onnx",
-                "reward": 44.16175166086147,
-                "creation_time": 1728369840.0733314,
-                "auxillary_file_paths": [
-                    "results\\Gen13\\TankBehavior\\TankBehavior-2499941.pt"
-                ]
-            },
-            {
-                "steps": 2999966,
-                "file_path": "results\\Gen13\\TankBehavior\\TankBehavior-2999966.onnx",
-                "reward": 78.13143545985221,
-                "creation_time": 1728370703.1041374,
-                "auxillary_file_paths": [
-                    "results\\Gen13\\TankBehavior\\TankBehavior-2999966.pt"
-                ]
-            },
-            {
-                "steps": 3499966,
-                "file_path": "results\\Gen13\\TankBehavior\\TankBehavior-3499966.onnx",
-                "reward": 108.28768804143456,
-                "creation_time": 1728371575.474361,
-                "auxillary_file_paths": [
-                    "results\\Gen13\\TankBehavior\\TankBehavior-3499966.pt"
-                ]
-            },
-            {
-                "steps": 3814393,
-                "file_path": "results\\Gen13\\TankBehavior\\TankBehavior-3814393.onnx",
-                "reward": null,
-                "creation_time": 1728372146.324497,
-                "auxillary_file_paths": [
-                    "results\\Gen13\\TankBehavior\\TankBehavior-3814393.pt"
+                    "results\\Gen13\\TankBehavior\\TankBehavior-3943645.pt"
                 ]
             }
         ],
         "final_checkpoint": {
-            "steps": 3814393,
+            "steps": 3943645,
             "file_path": "results\\Gen13\\TankBehavior.onnx",
             "reward": null,
-            "creation_time": 1728372146.324497,
+            "creation_time": 1728382645.600936,
             "auxillary_file_paths": [
-                "results\\Gen13\\TankBehavior\\TankBehavior-3814393.pt"
+                "results\\Gen13\\TankBehavior\\TankBehavior-3943645.pt"
             ]
         }
     },
