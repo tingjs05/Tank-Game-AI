@@ -70,26 +70,31 @@ namespace AI
             horizontalVel.y = 0f;
             horizontalVel.Normalize();
 
-            dot = Vector3.Dot(transform.forward, horizontalVel);
-
-            // reward agent for facing forward while moving
-            if (dot >= correctDirThreshold)
-                agent.AddReward(faceForwardWhenMovingReward);
-
             dot = Vector3.Dot(horizontalVel, agent.preferred_direction);
 
             // reward for moving in preferred direction
             if (agent.preferred_direction != Vector3.zero && dot >= correctDirThreshold)
             {
                 agent.AddReward(moveTowardsPreferredDirReward * dot);
+                CheckFaceForward();
                 return;
             }
 
             dot = Vector3.Dot(horizontalVel, agent.interest_direction);
 
             // reward for moving in interest direction when no preferred direction
+            if (dot < correctDirThreshold) return;
+            agent.AddReward(moveTowardsInterestDirReward * dot);
+            CheckFaceForward();
+        }
+
+        void CheckFaceForward()
+        {
+            dot = Vector3.Dot(transform.forward, horizontalVel);
+
+            // reward agent for facing forward while moving
             if (dot >= correctDirThreshold)
-                agent.AddReward(moveTowardsInterestDirReward * dot);
+                agent.AddReward(faceForwardWhenMovingReward);
         }
 
         void OnCollisionEnter(Collision other)
