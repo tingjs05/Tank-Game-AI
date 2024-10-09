@@ -189,15 +189,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   logRewards: 0
-  damagedPenalty: 0.05
+  damagedPenalty: 0.01
   missedShotPenalty: 0.1
   hitShotReward: 0.8
   aimedShotReward: 0.3
   killReward: 1
-  faceForwardWhenMovingReward: 0.001
-  faceInteresetDirReward: 0.005
-  moveTowardsInterestDirReward: 0.005
-  moveTowardsPreferredDirReward: 0.005
+  faceForwardWhenMovingReward: 0.01
+  faceInteresetDirReward: 0.05
+  moveTowardsInterestDirReward: 0.05
+  moveTowardsPreferredDirReward: 0.05
+  rotateTowardsDirectionReward: 0.05
   correctDirThreshold: 0.85
   obstacleCollisionPenalty: 0.8
   obstacleTag: Obstacle

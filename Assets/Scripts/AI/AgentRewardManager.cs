@@ -19,6 +19,7 @@ namespace AI
         [SerializeField] float faceInteresetDirReward = 0.5f;
         [SerializeField] float moveTowardsInterestDirReward = 1f;
         [SerializeField] float moveTowardsPreferredDirReward = 5f;
+        [SerializeField] float rotateTowardsDirectionReward = 0.5f;
         [SerializeField, Range(0f, 1f)] float correctDirThreshold = 0.85f;
 
         [Header("Obstacle Collision")]
@@ -78,6 +79,13 @@ namespace AI
             horizontalVel.y = 0f;
             horizontalVel.Normalize();
 
+            dot = Vector3.Dot(transform.forward, horizontalVel);
+
+            // reward agent for facing forward while moving
+            if (dot < correctDirThreshold) return;
+            LogReward("Move Forward Reward");
+            agent.AddReward(faceForwardWhenMovingReward);
+
             dot = Vector3.Dot(horizontalVel, agent.preferred_direction);
 
             // reward for moving in preferred direction
@@ -85,7 +93,6 @@ namespace AI
             {
                 agent.AddReward(moveTowardsPreferredDirReward * dot);
                 LogReward("Pref Dir Reward");
-                CheckFaceForward();
                 return;
             }
 
@@ -95,17 +102,6 @@ namespace AI
             if (dot < correctDirThreshold) return;
             LogReward("Int Dir Reward");
             agent.AddReward(moveTowardsInterestDirReward * dot);
-            CheckFaceForward();
-        }
-
-        void CheckFaceForward()
-        {
-            dot = Vector3.Dot(transform.forward, horizontalVel);
-
-            // reward agent for facing forward while moving
-            if (dot < correctDirThreshold) return;
-            LogReward("Move Forward Reward");
-            agent.AddReward(faceForwardWhenMovingReward);
         }
 
         void LogReward(string log)
@@ -167,6 +163,16 @@ namespace AI
 
         void HandleActionRewards(Vector2 moveInput, bool shoot)
         {
+            // reward for rotating towards correct direction
+            Vector3 direction = agent.preferred_direction == Vector3.zero ? agent.interest_direction : agent.preferred_direction;
+            dot = Vector3.Dot(transform.right, direction);
+
+            if (dot != 0f && ((dot > 0f && moveInput.y > 0) || (dot < 0f && moveInput.y < 0)))
+            {
+                LogReward("Rotation Reward");
+                agent.AddReward(rotateTowardsDirectionReward);
+            }
+
             // do not check for reward if target is not seen
             if (!targetSeen) return;
             // reward for aiming in correct direction and shooting
