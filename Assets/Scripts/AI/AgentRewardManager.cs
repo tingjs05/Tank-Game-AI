@@ -5,6 +5,8 @@ namespace AI
     [RequireComponent(typeof(TankAgent))]
     public class AgentRewardManager : MonoBehaviour
     {
+        [SerializeField] bool logRewards = true;
+
         [Header("Combat")]
         [SerializeField] float damagedPenalty = 0.5f;
         [SerializeField] float missedShotPenalty = 0.15f;
@@ -61,7 +63,13 @@ namespace AI
             {
                 // reward for aiming at target when seen
                 dot = Vector3.Dot(transform.forward, agent.interest_direction);
-                if (dot >= correctDirThreshold) agent.AddReward(faceInteresetDirReward * dot);
+
+                if (dot >= correctDirThreshold) 
+                {
+                    LogReward("Aim Reward");
+                    agent.AddReward(faceInteresetDirReward * dot);
+                }
+
                 return;
             }
 
@@ -76,6 +84,7 @@ namespace AI
             if (agent.preferred_direction != Vector3.zero && dot >= correctDirThreshold)
             {
                 agent.AddReward(moveTowardsPreferredDirReward * dot);
+                LogReward("Pref Dir Reward");
                 CheckFaceForward();
                 return;
             }
@@ -84,6 +93,7 @@ namespace AI
 
             // reward for moving in interest direction when no preferred direction
             if (dot < correctDirThreshold) return;
+            LogReward("Int Dir Reward");
             agent.AddReward(moveTowardsInterestDirReward * dot);
             CheckFaceForward();
         }
@@ -93,14 +103,22 @@ namespace AI
             dot = Vector3.Dot(transform.forward, horizontalVel);
 
             // reward agent for facing forward while moving
-            if (dot >= correctDirThreshold)
-                agent.AddReward(faceForwardWhenMovingReward);
+            if (dot < correctDirThreshold) return;
+            LogReward("Move Forward Reward");
+            agent.AddReward(faceForwardWhenMovingReward);
+        }
+
+        void LogReward(string log)
+        {
+            if (!logRewards) return;
+            Debug.Log(log);
         }
 
         void OnCollisionEnter(Collision other)
         {
             // punish agent for colliding with obstacle
             if (!other.collider.CompareTag(obstacleTag)) return;
+            LogReward("Obstacle Penalty");
             agent.AddReward(-obstacleCollisionPenalty);
         }
 
@@ -108,6 +126,7 @@ namespace AI
         {
             // punish agent for falling off the map
             if (!other.CompareTag(boundaryTag)) return;
+            LogReward("Death Penalty");
             agent.AddReward(-deathPenalty);
             agent.EndEpisode();
         }
@@ -116,17 +135,20 @@ namespace AI
         
         void OnDamaged()
         {
+            LogReward("Damaged Penalty");
             agent.AddReward(-damagedPenalty);
         }
 
         void OnDeath()
         {
+            LogReward("Death Penalty");
             agent.AddReward(-deathPenalty);
             agent.EndEpisode();
         }
 
         void OnKill()
         {
+            LogReward("Kill Reward");
             agent.AddReward(killReward);
             agent.EndEpisode();
         }
@@ -134,16 +156,24 @@ namespace AI
         void OnShoot(bool hit)
         {
             if (hit)
+            {
+                LogReward("Hit Reward");
                 agent.AddReward(hitShotReward);
-            else
-                agent.AddReward(-missedShotPenalty);
+            }
+
+            LogReward("Miss Penalty");
+            agent.AddReward(-missedShotPenalty);
         }
 
         void HandleActionRewards(Vector2 moveInput, bool shoot)
         {
+            // do not check for reward if target is not seen
+            if (!targetSeen) return;
             // reward for aiming in correct direction and shooting
             dot = Vector3.Dot(transform.forward, agent.interest_direction);
-            if (dot >= correctDirThreshold && shoot) agent.AddReward(aimedShotReward * dot);
+            if (dot < correctDirThreshold || !shoot) return;
+            LogReward("Aim + Shoot Reward");
+            agent.AddReward(aimedShotReward * dot);
         }
 
         #endregion
