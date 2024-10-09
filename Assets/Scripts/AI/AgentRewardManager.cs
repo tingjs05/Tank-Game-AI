@@ -47,27 +47,37 @@ namespace AI
 
         void FixedUpdate() 
         {
+            // store target seen result
+            bool targetSeen = agent.TargetInRange();
+            // store dot calculation (to check direction)
+            float dot;
+
             // calculate horizontal velocity
             Vector3 horizontalVel = controller.rb.velocity;
             horizontalVel.y = 0f;
             horizontalVel.Normalize();
 
-            // check if agent is facing the correct direction
-            float dot = Vector3.Dot(transform.forward, agent.interest_direction);
-            // scale reward based on how close it is to the correct direction
-            if (dot >= correctDirThreshold) agent.AddReward(faceInteresetDirReward * dot);
+            if (targetSeen)
+            {
+                dot = Vector3.Dot(transform.forward, agent.interest_direction);
+                if (dot >= correctDirThreshold) agent.AddReward(faceInteresetDirReward * dot);
+                return;
+            }
 
-            // check if agent is moving in a good direction, if so, reward it
             dot = Vector3.Dot(horizontalVel, agent.preferred_direction);
 
-            if (dot >= correctDirThreshold) 
+            // reward for moving in preferred direction
+            if (agent.preferred_direction != Vector3.zero && dot >= correctDirThreshold)
             {
                 agent.AddReward(moveTowardsPreferredDirReward);
                 return;
             }
 
             dot = Vector3.Dot(horizontalVel, agent.interest_direction);
-            if (dot >= correctDirThreshold) agent.AddReward(moveTowardsInterestDirReward);
+
+            // reward for moving in interest direction when no preferred direction
+            if (dot >= correctDirThreshold)
+                agent.AddReward(moveTowardsInterestDirReward);
         }
 
         void OnCollisionEnter(Collision other)
