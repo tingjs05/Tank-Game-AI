@@ -193,8 +193,9 @@ MonoBehaviour:
   hitShotReward: 0.8
   aimedShotReward: 0.3
   killReward: 1
+  faceForwardWhenMovingReward: 0.05
   faceInteresetDirReward: 0.05
-  moveTowardsInterestDirReward: 0.02
+  moveTowardsInterestDirReward: 0.05
   moveTowardsPreferredDirReward: 0.05
   correctDirThreshold: 0.85
   obstacleCollisionPenalty: 0.8

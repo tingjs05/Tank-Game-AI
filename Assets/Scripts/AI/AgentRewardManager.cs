@@ -13,6 +13,7 @@ namespace AI
         [SerializeField] float killReward = 2f;
 
         [Header("Movement")]
+        [SerializeField] float faceForwardWhenMovingReward = 0.5f;
         [SerializeField] float faceInteresetDirReward = 0.5f;
         [SerializeField] float moveTowardsInterestDirReward = 1f;
         [SerializeField] float moveTowardsPreferredDirReward = 5f;
@@ -53,14 +54,9 @@ namespace AI
 
         void FixedUpdate() 
         {
-            // store target seen result
             targetSeen = agent.TargetInRange();
 
-            // calculate horizontal velocity
-            horizontalVel = controller.rb.velocity;
-            horizontalVel.y = 0f;
-            horizontalVel.Normalize();
-
+            // check if target can be seen, if so, only reward for aiming and shooting
             if (targetSeen)
             {
                 // reward for aiming at target when seen
@@ -68,6 +64,17 @@ namespace AI
                 if (dot >= correctDirThreshold) agent.AddReward(faceInteresetDirReward * dot);
                 return;
             }
+
+            // calculate horizontal velocity
+            horizontalVel = controller.rb.velocity;
+            horizontalVel.y = 0f;
+            horizontalVel.Normalize();
+
+            dot = Vector3.Dot(transform.forward, horizontalVel);
+
+            // reward agent for facing forward while moving
+            if (dot >= correctDirThreshold)
+                agent.AddReward(faceForwardWhenMovingReward);
 
             dot = Vector3.Dot(horizontalVel, agent.preferred_direction);
 
