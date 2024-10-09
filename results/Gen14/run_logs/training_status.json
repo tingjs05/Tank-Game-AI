@@ -2,24 +2,6 @@
     "TankBehavior": {
         "checkpoints": [
             {
-                "steps": 3499984,
-                "file_path": "results\\Gen14\\TankBehavior\\TankBehavior-3499984.onnx",
-                "reward": 1242.0764577488105,
-                "creation_time": 1728448585.2580082,
-                "auxillary_file_paths": [
-                    "results\\Gen14\\TankBehavior\\TankBehavior-3499984.pt"
-                ]
-            },
-            {
-                "steps": 3999968,
-                "file_path": "results\\Gen14\\TankBehavior\\TankBehavior-3999968.onnx",
-                "reward": 1730.5715192159016,
-                "creation_time": 1728449259.4124088,
-                "auxillary_file_paths": [
-                    "results\\Gen14\\TankBehavior\\TankBehavior-3999968.pt"
-                ]
-            },
-            {
                 "steps": 4499968,
                 "file_path": "results\\Gen14\\TankBehavior\\TankBehavior-4499968.onnx",
                 "reward": 1718.8875829378765,
@@ -45,15 +27,33 @@
                 "auxillary_file_paths": [
                     "results\\Gen14\\TankBehavior\\TankBehavior-5126072.pt"
                 ]
+            },
+            {
+                "steps": 1935225,
+                "file_path": "results\\Gen14\\TankBehavior\\TankBehavior-1935225.onnx",
+                "reward": 45.512216687202454,
+                "creation_time": 1728451136.4478784,
+                "auxillary_file_paths": [
+                    "results\\Gen14\\TankBehavior\\TankBehavior-1935225.pt"
+                ]
+            },
+            {
+                "steps": 1944488,
+                "file_path": "results\\Gen14\\TankBehavior\\TankBehavior-1944488.onnx",
+                "reward": 14.13213001191616,
+                "creation_time": 1728451297.3622658,
+                "auxillary_file_paths": [
+                    "results\\Gen14\\TankBehavior\\TankBehavior-1944488.pt"
+                ]
             }
         ],
         "final_checkpoint": {
-            "steps": 5126072,
+            "steps": 1944488,
             "file_path": "results\\Gen14\\TankBehavior.onnx",
-            "reward": null,
-            "creation_time": 1728450714.2241974,
+            "reward": 14.13213001191616,
+            "creation_time": 1728451297.3622658,
             "auxillary_file_paths": [
-                "results\\Gen14\\TankBehavior\\TankBehavior-5126072.pt"
+                "results\\Gen14\\TankBehavior\\TankBehavior-1944488.pt"
             ]
         }
     },
