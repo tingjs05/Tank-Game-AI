@@ -188,15 +188,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7241b19197e6995449f7f1078054cb28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedPenalty: 0.1
-  missedShotPenalty: 0.05
+  logRewards: 0
+  damagedPenalty: 0.05
+  missedShotPenalty: 0.1
   hitShotReward: 0.8
   aimedShotReward: 0.3
   killReward: 1
-  faceForwardWhenMovingReward: 0.05
-  faceInteresetDirReward: 0.05
-  moveTowardsInterestDirReward: 0.05
-  moveTowardsPreferredDirReward: 0.05
+  faceForwardWhenMovingReward: 0.001
+  faceInteresetDirReward: 0.005
+  moveTowardsInterestDirReward: 0.005
+  moveTowardsPreferredDirReward: 0.005
   correctDirThreshold: 0.85
   obstacleCollisionPenalty: 0.8
   obstacleTag: Obstacle
