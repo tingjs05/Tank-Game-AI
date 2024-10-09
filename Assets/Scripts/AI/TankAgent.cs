@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
@@ -15,10 +16,16 @@ namespace AI
         TankController controller;
         ObstacleDetectionManager obstacleDetection;
         new Collider collider;
+
+        Vector2 moveInput;
+        float moveX, moveY;
+        int shootInput;
         
         public Vector3 interest_direction { get; private set; }
         public Vector3 preferred_direction { get; private set; }
         public Transform _target => target.transform;
+
+        public event Action<Vector2, bool> OnActionCalled;
 
         void Start()
         {
@@ -65,12 +72,17 @@ namespace AI
         public override void OnActionReceived(ActionBuffers actions)
         {
             // get movmeent decision
-            float moveX = actions.ContinuousActions[0];
-            float moveY = actions.ContinuousActions[1];
-            controller.Move(new Vector2(moveX, moveY));
+            moveX = actions.ContinuousActions[0];
+            moveY = actions.ContinuousActions[1];
+            moveInput = new Vector2(moveX, moveY);
+            controller.Move(moveInput);
 
             // get shooting decision
-            int shootInput = actions.DiscreteActions[0];
+            shootInput = actions.DiscreteActions[0];
+
+            // invoke action called event
+            OnActionCalled?.Invoke(moveInput, shootInput > 0);
+
             // check for input to not shoot
             if (shootInput <= 0) return;
             controller.Shoot();

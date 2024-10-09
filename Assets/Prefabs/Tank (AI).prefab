@@ -188,9 +188,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7241b19197e6995449f7f1078054cb28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedPenalty: 0.5
+  damagedPenalty: 0.1
   missedShotPenalty: 0.05
   hitShotReward: 0.8
+  aimedShotReward: 0.3
   killReward: 1
   faceInteresetDirReward: 0.05
   moveTowardsInterestDirReward: 0.02

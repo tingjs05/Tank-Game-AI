@@ -9,6 +9,7 @@ namespace AI
         [SerializeField] float damagedPenalty = 0.5f;
         [SerializeField] float missedShotPenalty = 0.15f;
         [SerializeField] float hitShotReward = 0.5f;
+        [SerializeField] float aimedShotReward = 0.5f;
         [SerializeField] float killReward = 2f;
 
         [Header("Movement")]
@@ -28,6 +29,10 @@ namespace AI
         TankAgent agent;
         TankController controller;
 
+        Vector3 horizontalVel;
+        float dot;
+        bool targetSeen;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -38,6 +43,7 @@ namespace AI
             controller.Damaged += OnDamaged;
             controller.Died += OnDeath;
             controller.OnShoot += OnShoot;
+            agent.OnActionCalled += HandleActionRewards;
             
             // suscribe to kill event
             TankController enemyController = agent._target.GetComponent<TankController>();
@@ -48,12 +54,10 @@ namespace AI
         void FixedUpdate() 
         {
             // store target seen result
-            bool targetSeen = agent.TargetInRange();
-            // store dot calculation (to check direction)
-            float dot;
+            targetSeen = agent.TargetInRange();
 
             // calculate horizontal velocity
-            Vector3 horizontalVel = controller.rb.velocity;
+            horizontalVel = controller.rb.velocity;
             horizontalVel.y = 0f;
             horizontalVel.Normalize();
 
@@ -121,6 +125,13 @@ namespace AI
                 agent.AddReward(hitShotReward);
             else
                 agent.AddReward(-missedShotPenalty);
+        }
+
+        void HandleActionRewards(Vector2 moveInput, bool shoot)
+        {
+            // reward for aiming in correct direction and shooting
+            dot = Vector3.Dot(transform.forward, agent.interest_direction);
+            if (dot >= correctDirThreshold && shoot) agent.AddReward(aimedShotReward * dot);
         }
 
         #endregion
