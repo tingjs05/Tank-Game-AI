@@ -28,7 +28,7 @@ namespace AI.FSM
             }
             
             // move towards preferred direction
-            character.Move(prefDir);
+            character.MoveTowards(prefDir);
         }
     }
 }

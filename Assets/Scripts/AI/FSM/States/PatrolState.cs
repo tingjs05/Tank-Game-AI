@@ -27,7 +27,7 @@ namespace AI.FSM
             }
             
             // if there is no direction to move towards from obstacle detection, move towards target
-            character.Move(targetDir);
+            character.MoveTowards(targetDir);
         }
     }
 }

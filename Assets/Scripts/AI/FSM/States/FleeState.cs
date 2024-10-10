@@ -26,7 +26,9 @@ namespace AI.FSM
             }
 
             // move towards flee direction
-            character.Move(fleeDirection);
+            character.MoveTowards(fleeDirection, true);
+            // continue shooting while reversing
+            character.DirectShoot();
         }
     }
 }

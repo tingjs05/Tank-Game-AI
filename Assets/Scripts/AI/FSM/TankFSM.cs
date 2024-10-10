@@ -93,7 +93,7 @@ namespace AI.FSM
             return raycast;
         }
 
-        public void Move(Vector3 direction)
+        public virtual void MoveTowards(Vector3 direction, bool reverse = false)
         {
             // clean up direction input
             direction.y = 0f;
@@ -103,11 +103,22 @@ namespace AI.FSM
             // calculate movement
             float dot = Vector3.Dot(transform.forward, direction);
             if (dot >= movementThreshold) movementInputs.x = 1f;
-            float right_dot = Vector3.Dot(transform.right, direction);
+            if (reverse) movementInputs *= -1f;
+            float right_dot = Vector3.Dot(transform.right, (reverse ? -direction : direction));
             movementInputs.y = right_dot >= 0f ? 1f : -1f;
             if (dot >= hardMovementThreshold) movementInputs.y = 0f;
             // input movement
             controller.Move(movementInputs);
+        }
+
+        public virtual void DirectMove(Vector2 input)
+        {
+            controller.Move(input);
+        }
+
+        public virtual void DirectShoot()
+        {
+            controller.Shoot();
         }
 
         void OnTriggerEnter(Collider other) 
