@@ -166,7 +166,9 @@ namespace AI
         void HandleActionRewards(Vector2 moveInput, bool shoot)
         {
             // reward for rotating towards correct direction
-            Vector3 direction = agent.preferred_direction == Vector3.zero ? agent.interest_direction : agent.preferred_direction;
+            Vector3 direction = agent.preferred_direction == Vector3.zero || targetSeen ? 
+                agent.interest_direction : agent.preferred_direction;
+            // calculate dot based on direction to face
             dot = Vector3.Dot(transform.right, direction);
 
             if (dot != 0f)
