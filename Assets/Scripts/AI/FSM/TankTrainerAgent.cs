@@ -18,8 +18,8 @@ namespace AI.FSM
             if (!heuristicInputs) return;
 
             ActionSegment<float> continuousActions = actionsOut.ContinuousActions;
-            continuousActions[0] = heuristic_move_input.y;
-            continuousActions[1] = heuristic_move_input.x;
+            continuousActions[0] = heuristic_move_input.x;
+            continuousActions[1] = heuristic_move_input.y;
 
             ActionSegment<int> discreteActions = actionsOut.DiscreteActions;
             discreteActions[0] = heuristic_shoot_input;

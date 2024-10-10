@@ -331,6 +331,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 192341132}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &192341136 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 346442620484892858, guid: 5a7316b93aaec4347858477e3ab3d11d,
+    type: 3}
+  m_PrefabInstance: {fileID: 192341132}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdc36bb593edcd942aa4d8989222dcf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -691,6 +703,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 531127621}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &531127625 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8986213182072635759, guid: 50c6c384e9552d84dbe0876c43f81334,
+    type: 3}
+  m_PrefabInstance: {fileID: 531127621}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4c4215fd3414c9418012d76340d5d8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &730236579
 GameObject:
   m_ObjectHideFlags: 0
@@ -703,6 +727,7 @@ GameObject:
   - component: {fileID: 730236582}
   - component: {fileID: 730236581}
   - component: {fileID: 730236580}
+  - component: {fileID: 730236584}
   m_Layer: 3
   m_Name: Ground
   m_TagString: Untagged
@@ -797,6 +822,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &730236584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730236579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4619eaa29d430554db9dd86b2e1af7b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentAI: {fileID: 531127625}
+  trainerAI: {fileID: 192341136}
+  resetKey: 49
+  testReset: 0
+  changeX: 1
+  changeZ: 1
+  xBounds: 5
+  zBounds: 1
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
