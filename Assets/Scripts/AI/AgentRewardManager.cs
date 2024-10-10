@@ -20,6 +20,7 @@ namespace AI
         [SerializeField] float moveTowardsInterestDirReward = 1f;
         [SerializeField] float moveTowardsPreferredDirReward = 5f;
         [SerializeField] float rotateTowardsDirectionReward = 0.5f;
+        [SerializeField] float wrongRotationDirectionPenalty = 0.5f;
         [SerializeField, Range(0f, 1f)] float correctDirThreshold = 0.85f;
         [SerializeField, Range(0f, 1f)] float aimDirThreshold = 0.99f;
 
@@ -168,10 +169,18 @@ namespace AI
             Vector3 direction = agent.preferred_direction == Vector3.zero ? agent.interest_direction : agent.preferred_direction;
             dot = Vector3.Dot(transform.right, direction);
 
-            if (dot != 0f && ((dot > 0f && moveInput.y > 0) || (dot < 0f && moveInput.y < 0)))
+            if (dot != 0f)
             {
-                LogReward("Rotation Reward");
-                agent.AddReward(rotateTowardsDirectionReward);
+                if ((dot > 0f && moveInput.y > 0) || (dot < 0f && moveInput.y < 0))
+                {
+                    LogReward("Rotation Reward");
+                    agent.AddReward(rotateTowardsDirectionReward);
+                }
+                else
+                {
+                    LogReward("Wrong Rotation Penalty");
+                    agent.AddReward(-wrongRotationDirectionPenalty);
+                }
             }
 
             // do not check for reward if target is not seen
