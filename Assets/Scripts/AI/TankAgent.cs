@@ -75,7 +75,7 @@ namespace AI
         public override void OnActionReceived(ActionBuffers actions)
         {
             // get movmeent decision
-            // moveX = actions.ContinuousActions[0];
+            moveX = actions.ContinuousActions[0];
             moveY = actions.ContinuousActions[1];
             moveInput = new Vector2(moveX, moveY);
             controller.Move(moveInput);
