@@ -9,8 +9,53 @@
                 "auxillary_file_paths": [
                     "results\\Gen14-MVT\\TankBehavior\\TankBehavior-499937.pt"
                 ]
+            },
+            {
+                "steps": 999988,
+                "file_path": "results\\Gen14-MVT\\TankBehavior\\TankBehavior-999988.onnx",
+                "reward": null,
+                "creation_time": 1728542449.1532297,
+                "auxillary_file_paths": [
+                    "results\\Gen14-MVT\\TankBehavior\\TankBehavior-999988.pt"
+                ]
+            },
+            {
+                "steps": 1499993,
+                "file_path": "results\\Gen14-MVT\\TankBehavior\\TankBehavior-1499993.onnx",
+                "reward": -1.5855663284659385,
+                "creation_time": 1728543932.592104,
+                "auxillary_file_paths": [
+                    "results\\Gen14-MVT\\TankBehavior\\TankBehavior-1499993.pt"
+                ]
+            },
+            {
+                "steps": 1999998,
+                "file_path": "results\\Gen14-MVT\\TankBehavior\\TankBehavior-1999998.onnx",
+                "reward": -2.382788950204849,
+                "creation_time": 1728545305.02794,
+                "auxillary_file_paths": [
+                    "results\\Gen14-MVT\\TankBehavior\\TankBehavior-1999998.pt"
+                ]
+            },
+            {
+                "steps": 2057929,
+                "file_path": "results\\Gen14-MVT\\TankBehavior\\TankBehavior-2057929.onnx",
+                "reward": -11.954427413281895,
+                "creation_time": 1728545526.6162822,
+                "auxillary_file_paths": [
+                    "results\\Gen14-MVT\\TankBehavior\\TankBehavior-2057929.pt"
+                ]
             }
-        ]
+        ],
+        "final_checkpoint": {
+            "steps": 2057929,
+            "file_path": "results\\Gen14-MVT\\TankBehavior.onnx",
+            "reward": -11.954427413281895,
+            "creation_time": 1728545526.6162822,
+            "auxillary_file_paths": [
+                "results\\Gen14-MVT\\TankBehavior\\TankBehavior-2057929.pt"
+            ]
+        }
     },
     "metadata": {
         "stats_format_version": "0.3.0",

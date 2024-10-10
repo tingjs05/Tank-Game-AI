@@ -24,7 +24,7 @@ behaviors:
     reward_signals:
       extrinsic:
         gamma: 0.99
-        strength: 1.0
+        strength: 0.8
         network_settings:
           normalize: false
           hidden_units: 128
@@ -57,7 +57,13 @@ behaviors:
     summary_freq: 50000
     threaded: false
     self_play: null
-    behavioral_cloning: null
+    behavioral_cloning:
+      demo_path: demos/TankBehaviorDemo.demo
+      steps: 0
+      strength: 0.5
+      samples_per_update: 0
+      num_epoch: null
+      batch_size: null
 env_settings:
   env_path: null
   env_args: null
@@ -79,9 +85,9 @@ engine_settings:
 environment_parameters: null
 checkpoint_settings:
   run_id: Gen14-MVT
-  initialize_from: Gen14-RCL-2
+  initialize_from: null
   load_model: false
-  resume: false
+  resume: true
   force: false
   train_model: false
   inference: false
