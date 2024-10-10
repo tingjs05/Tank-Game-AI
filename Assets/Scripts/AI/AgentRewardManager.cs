@@ -21,6 +21,7 @@ namespace AI
         [SerializeField] float moveTowardsPreferredDirReward = 5f;
         [SerializeField] float rotateTowardsDirectionReward = 0.5f;
         [SerializeField, Range(0f, 1f)] float correctDirThreshold = 0.85f;
+        [SerializeField, Range(0f, 1f)] float aimDirThreshold = 0.99f;
 
         [Header("Obstacle Collision")]
         [SerializeField] float obstacleCollisionPenalty = 1f;
@@ -65,7 +66,7 @@ namespace AI
                 // reward for aiming at target when seen
                 dot = Vector3.Dot(transform.forward, agent.interest_direction);
 
-                if (dot >= correctDirThreshold) 
+                if (dot >= aimDirThreshold) 
                 {
                     LogReward("Aim Reward");
                     agent.AddReward(faceInteresetDirReward * dot);
@@ -177,7 +178,7 @@ namespace AI
             if (!targetSeen) return;
             // reward for aiming in correct direction and shooting
             dot = Vector3.Dot(transform.forward, agent.interest_direction);
-            if (dot < correctDirThreshold || !shoot) return;
+            if (dot < aimDirThreshold || !shoot) return;
             LogReward("Aim + Shoot Reward");
             agent.AddReward(aimedShotReward * dot);
         }

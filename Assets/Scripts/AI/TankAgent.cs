@@ -26,6 +26,7 @@ namespace AI
         public Transform _target => target.transform;
 
         public event Action<Vector2, bool> OnActionCalled;
+        public event Action OnNewEpisode;
 
         void Start()
         {
@@ -50,6 +51,8 @@ namespace AI
         {
             // reset agent
             controller.Reset();
+            // invoke event for new episode
+            OnNewEpisode?.Invoke();
         }
 
         public override void CollectObservations(VectorSensor sensor)
