@@ -10,19 +10,19 @@ namespace AI
     [RequireComponent(typeof(TankController), typeof(ObstacleDetectionManager), typeof(AgentRewardManager))]
     public class TankAgent : Agent
     {
-        [SerializeField] TankController target;
-        [SerializeField] bool heuristicInputs = false;
+        [SerializeField] protected TankController target;
+        [SerializeField] protected bool heuristicInputs = false;
 
-        TankController controller;
-        ObstacleDetectionManager obstacleDetection;
-        new Collider collider;
+        protected TankController controller;
+        protected ObstacleDetectionManager obstacleDetection;
+        protected new Collider collider;
 
-        Vector2 moveInput;
-        float moveX, moveY;
-        int shootInput;
+        protected Vector2 moveInput;
+        protected float moveX, moveY;
+        protected int shootInput;
         
-        public Vector3 interest_direction { get; private set; }
-        public Vector3 preferred_direction { get; private set; }
+        public Vector3 interest_direction { get; protected set; }
+        public Vector3 preferred_direction { get; protected set; }
         public Transform _target => target.transform;
 
         public event Action<Vector2, bool> OnActionCalled;

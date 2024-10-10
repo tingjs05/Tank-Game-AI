@@ -9,21 +9,21 @@ namespace AI.FSM
         [SerializeField] Transform target;
 
         [Header("Movement")]
-        [SerializeField, Range(0f, 1f)] float movementThreshold = 0.6f;
-        [SerializeField, Range(0f, 1f)] float hardMovementThreshold = 0.85f;
+        [SerializeField, Range(0f, 1f)] protected float movementThreshold = 0.6f;
+        [SerializeField, Range(0f, 1f)] protected float hardMovementThreshold = 0.85f;
 
         [Header("Combat")]
-        [SerializeField, Range(0f, 1f)] float shootThreshold = 0.9f;
-        [SerializeField, Range(0f, 1f)] float recoilControl = 0.75f;
-        [SerializeField, Range(0f, 1f)] float minAimSpeed = 0.6f;
+        [SerializeField, Range(0f, 1f)] protected float shootThreshold = 0.9f;
+        [SerializeField, Range(0f, 1f)] protected float recoilControl = 0.75f;
+        [SerializeField, Range(0f, 1f)] protected float minAimSpeed = 0.6f;
 
         [Header("Flee")]
-        [SerializeField] float fleeDistance = 3.5f;
-        [SerializeField, Range(0f, 1f)] float fleeHealthThreshold = 0.5f;
+        [SerializeField] protected float fleeDistance = 3.5f;
+        [SerializeField, Range(0f, 1f)] protected float fleeHealthThreshold = 0.5f;
 
         [Header("Testing")]
-        [SerializeField] string boundaryTag = "Boundary";
-        [SerializeField] bool resetOnDeath, resetOnKill = false;
+        [SerializeField] protected string boundaryTag = "Boundary";
+        [SerializeField] protected bool resetOnDeath, resetOnKill = false;
 
         public Transform _target => target;
         public float shoot_threshold => shootThreshold;
@@ -32,19 +32,19 @@ namespace AI.FSM
         public float flee_distance => fleeDistance;
         public float flee_health_threshold => fleeHealthThreshold;
         
-        public TankController controller { get; private set; }
-        public ObstacleDetectionManager obstacleDetection { get; private set; }
-        public new Collider collider { get; private set; }
+        public TankController controller { get; protected set; }
+        public ObstacleDetectionManager obstacleDetection { get; protected set; }
+        public new Collider collider { get; protected set; }
 
         #region States
-        public IdleState Idle { get; private set; }
-        public PatrolState Patrol { get; private set; }
-        public TrackState Track { get; private set; }
-        public ShootState Shoot { get; private set; }
-        public FleeState Flee { get; private set; }
+        public IdleState Idle { get; protected set; }
+        public PatrolState Patrol { get; protected set; }
+        public TrackState Track { get; protected set; }
+        public ShootState Shoot { get; protected set; }
+        public FleeState Flee { get; protected set; }
         #endregion
 
-        void Start()
+        protected virtual void Start()
         {
             controller = GetComponent<TankController>();
             obstacleDetection = GetComponent<ObstacleDetectionManager>();
@@ -68,7 +68,7 @@ namespace AI.FSM
             enemyController.Died += controller.Reset;
         }
 
-        new void Update()
+        protected new virtual void Update()
         {
             base.Update();
 
