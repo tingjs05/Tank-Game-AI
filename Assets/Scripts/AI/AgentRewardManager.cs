@@ -38,7 +38,7 @@ namespace AI
 
         Vector3 horizontalVel;
         float dot;
-        bool targetSeen, prevTargetSeen;
+        bool targetSeen, gaveFindTargetReward;
 
         // Start is called before the first frame update
         void Start()
@@ -50,6 +50,7 @@ namespace AI
             controller.Damaged += OnDamaged;
             controller.Died += OnDeath;
             controller.OnShoot += OnShoot;
+            agent.OnNewEpisode += HandleNewEpisode;
             agent.OnActionCalled += HandleActionRewards;
             
             // suscribe to kill event
@@ -60,12 +61,15 @@ namespace AI
 
         void FixedUpdate() 
         {
-            prevTargetSeen = targetSeen;
             targetSeen = agent.TargetInRange();
 
             // reward AI for finding the target
-            if (!prevTargetSeen && targetSeen)
+            if (!gaveFindTargetReward && targetSeen)
+            {
+                gaveFindTargetReward = true;
+                LogReward("Found Target Reward");
                 agent.AddReward(findTargetReward);
+            }
 
             // check if target can be seen, if so, only reward for aiming and shooting
             if (targetSeen)
@@ -167,6 +171,12 @@ namespace AI
 
             LogReward("Miss Penalty");
             agent.AddReward(-missedShotPenalty);
+        }
+
+        void HandleNewEpisode()
+        {
+            // reset on new episode
+            gaveFindTargetReward = false;
         }
 
         void HandleActionRewards(Vector2 moveInput, bool shoot)
