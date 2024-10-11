@@ -187,7 +187,7 @@ namespace AI
             // calculate dot based on direction to face
             dot = Vector3.Dot(transform.right, direction);
 
-            if (dot != 0f)
+            if (dot != 0f && moveInput.y != 0)
             {
                 if ((dot > 0f && moveInput.y > 0) || (dot < 0f && moveInput.y < 0))
                 {
