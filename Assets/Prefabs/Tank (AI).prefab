@@ -200,9 +200,9 @@ MonoBehaviour:
   moveTowardsInterestDirReward: 0.05
   moveTowardsPreferredDirReward: 0.05
   rotateTowardsDirectionReward: 0.05
-  wrongRotationDirectionPenalty: 0.01
-  correctDirThreshold: 0.95
-  aimDirThreshold: 0.995
+  wrongRotationDirectionPenalty: 0
+  correctDirThreshold: 0.85
+  aimDirThreshold: 0.99
   obstacleCollisionPenalty: 0.8
   obstacleTag: Obstacle
   deathPenalty: 1
