@@ -13,6 +13,7 @@ namespace AI
         [SerializeField] float hitShotReward = 0.5f;
         [SerializeField] float aimedShotReward = 0.5f;
         [SerializeField] float killReward = 2f;
+        [SerializeField] float findTargetReward = 0.5f;
 
         [Header("Movement")]
         [SerializeField] float faceForwardWhenMovingReward = 0.5f;
@@ -37,7 +38,7 @@ namespace AI
 
         Vector3 horizontalVel;
         float dot;
-        bool targetSeen;
+        bool targetSeen, prevTargetSeen;
 
         // Start is called before the first frame update
         void Start()
@@ -59,7 +60,12 @@ namespace AI
 
         void FixedUpdate() 
         {
+            prevTargetSeen = targetSeen;
             targetSeen = agent.TargetInRange();
+
+            // reward AI for finding the target
+            if (!prevTargetSeen && targetSeen)
+                agent.AddReward(findTargetReward);
 
             // check if target can be seen, if so, only reward for aiming and shooting
             if (targetSeen)

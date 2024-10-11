@@ -24,7 +24,7 @@ behaviors:
     reward_signals:
       extrinsic:
         gamma: 0.99
-        strength: 0.8
+        strength: 1.0
         network_settings:
           normalize: false
           hidden_units: 128
@@ -35,7 +35,7 @@ behaviors:
           deterministic: false
       gail:
         gamma: 0.99
-        strength: 0.85
+        strength: 1.0
         network_settings:
           normalize: false
           hidden_units: 128

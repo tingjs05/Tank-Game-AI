@@ -191,17 +191,18 @@ MonoBehaviour:
   logRewards: 1
   damagedPenalty: 0.01
   missedShotPenalty: 0.1
-  hitShotReward: 0.8
+  hitShotReward: 1
   aimedShotReward: 0.3
-  killReward: 1
-  faceForwardWhenMovingReward: 0.001
-  faceInteresetDirReward: 0.005
-  moveTowardsInterestDirReward: 0.005
-  moveTowardsPreferredDirReward: 0.005
-  rotateTowardsDirectionReward: 0.005
-  wrongRotationDirectionPenalty: 0.005
-  correctDirThreshold: 0.95
-  aimDirThreshold: 0.995
+  killReward: 2
+  findTargetReward: 0.25
+  faceForwardWhenMovingReward: 0.01
+  faceInteresetDirReward: 0.05
+  moveTowardsInterestDirReward: 0.05
+  moveTowardsPreferredDirReward: 0.05
+  rotateTowardsDirectionReward: 0.05
+  wrongRotationDirectionPenalty: 0.01
+  correctDirThreshold: 0.85
+  aimDirThreshold: 0.99
   obstacleCollisionPenalty: 0.8
   obstacleTag: Obstacle
   deathPenalty: 1
