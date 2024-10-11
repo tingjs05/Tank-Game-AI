@@ -80,7 +80,7 @@ namespace AI
                 if (dot >= aimDirThreshold) 
                 {
                     LogReward("Aim Reward");
-                    agent.AddReward(faceInteresetDirReward * dot);
+                    agent.AddReward(ScaleReward(faceInteresetDirReward, dot, aimDirThreshold));
                 }
 
                 return;
@@ -103,7 +103,7 @@ namespace AI
             // reward for moving in preferred direction
             if (agent.preferred_direction != Vector3.zero && dot >= correctDirThreshold)
             {
-                agent.AddReward(moveTowardsPreferredDirReward * dot);
+                agent.AddReward(ScaleReward(moveTowardsPreferredDirReward, dot, correctDirThreshold));
                 LogReward("Pref Dir Reward");
                 return;
             }
@@ -113,7 +113,12 @@ namespace AI
             // reward for moving in interest direction when no preferred direction
             if (dot < correctDirThreshold) return;
             LogReward("Int Dir Reward");
-            agent.AddReward(moveTowardsInterestDirReward * dot);
+            agent.AddReward(ScaleReward(moveTowardsInterestDirReward, dot, correctDirThreshold));
+        }
+
+        float ScaleReward(float rewardAmt, float dot, float threshold)
+        {
+            return rewardAmt * ((dot - threshold) / (1f - threshold));
         }
 
         void LogReward(string log)
@@ -207,7 +212,7 @@ namespace AI
             dot = Vector3.Dot(transform.forward, agent.interest_direction);
             if (dot < aimDirThreshold || !shoot) return;
             LogReward("Aim + Shoot Reward");
-            agent.AddReward(aimedShotReward * dot);
+            agent.AddReward(ScaleReward(aimedShotReward, dot, aimDirThreshold));
         }
 
         #endregion
