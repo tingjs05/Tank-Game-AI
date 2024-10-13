@@ -190,7 +190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   logRewards: 1
   damagedPenalty: 0.01
-  missedShotPenalty: 0.1
+  missedShotPenalty: 0.5
   hitShotReward: 1
   aimedShotReward: 0.3
   killReward: 2
@@ -200,7 +200,7 @@ MonoBehaviour:
   moveTowardsInterestDirReward: 0.05
   moveTowardsPreferredDirReward: 0.05
   rotateTowardsDirectionReward: 0.05
-  wrongRotationDirectionPenalty: 0
+  wrongRotationDirectionPenalty: 0.05
   correctDirThreshold: 0.85
   aimDirThreshold: 0.99
   obstacleCollisionPenalty: 0.8
