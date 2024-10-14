@@ -17,7 +17,6 @@ namespace AI
         [SerializeField] float findTargetReward = 0.5f;
 
         [Header("Movement")]
-        [SerializeField] float facePreferredDirReward = 0.5f;
         [SerializeField] float moveTowardsPreferredDirReward = 5f;
         [SerializeField] float closeDistanceReward = 0.5f;
         [SerializeField, Range(0f, 1f)] float dangerWeight = 0.5f;
@@ -75,13 +74,9 @@ namespace AI
             {
                 // reward for aiming at target when seen
                 dot = Vector3.Dot(transform.forward, agent.interest_direction);
-
-                if (dot >= aimDirThreshold) 
-                {
-                    LogReward("Aim Reward");
-                    agent.AddReward(ScaleReward(aimReward, dot, aimDirThreshold));
-                }
-
+                if (dot < aimDirThreshold) return;
+                LogReward("Aim Reward");
+                agent.AddReward(ScaleReward(aimReward, dot, aimDirThreshold));
                 return;
             }
 
@@ -103,8 +98,6 @@ namespace AI
                 if (dot < correctDirThreshold) continue;
                 // scale reward depending on if it is a good or bad direction (if there are obstacles)
                 dirRewardScale = (1f - agent.weights[i]) * (agent.weights[i] <= dangerWeight ? 1f : -1f);
-                LogReward(dirRewardScale < 0f ? "Faced Bad Direction" : "Faced Good Direction");
-                agent.AddReward(ScaleReward(facePreferredDirReward * dirRewardScale, dot, correctDirThreshold));
                 // check if moving in good direction
                 dot = Vector3.Dot(horizontalVel, agent.obstacle_detection.directions[i]);
                 if (dot < correctDirThreshold) continue;
