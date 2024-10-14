@@ -41,7 +41,7 @@ namespace AI
 
         Vector3 horizontalVel;
         float dot, dirRewardScale, currDistance, prevDistance, targetNotFoundCounter;
-        bool targetSeen, gaveFindTargetReward;
+        bool targetSeen, foundTarget;
 
         // Start is called before the first frame update
         void Start()
@@ -67,9 +67,9 @@ namespace AI
             targetSeen = agent.TargetInRange();
 
             // reward AI for finding the target
-            if (!gaveFindTargetReward && targetSeen)
+            if (!foundTarget && targetSeen)
             {
-                gaveFindTargetReward = true;
+                foundTarget = true;
                 LogReward("Found Target Reward");
                 agent.AddReward(findTargetReward);
             }
@@ -115,6 +115,7 @@ namespace AI
 
         void TargetFoundCheck()
         {
+            if (foundTarget) return;
             targetNotFoundCounter += Time.fixedDeltaTime;
             if (targetNotFoundCounter <= targetNotFoundPenaltyInterval) return;
             targetNotFoundCounter = 0f;
@@ -124,7 +125,7 @@ namespace AI
 
         void CheckDistanceReward()
         {
-            if (gaveFindTargetReward || targetSeen) return;
+            if (foundTarget || targetSeen) return;
             currDistance = Vector3.Distance(transform.position, agent._target.position);
             if (currDistance >= prevDistance && prevDistance != -1f) return;
             LogReward("Close Distance Reward");
@@ -198,7 +199,7 @@ namespace AI
         void HandleNewEpisode()
         {
             // reset some variables
-            gaveFindTargetReward = false;
+            foundTarget = false;
             prevDistance = -1f;
             targetNotFoundCounter = 0f;
         }
