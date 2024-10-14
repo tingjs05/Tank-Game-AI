@@ -111,9 +111,10 @@ namespace AI
         {
             if (gaveFindTargetReward || targetSeen) return;
             currDistance = Vector3.Distance(transform.position, agent._target.position);
-            if (currDistance >= prevDistance) return;
+            if (currDistance >= prevDistance && prevDistance != -1f) return;
             LogReward("Close Distance Reward");
-            agent.AddReward(closeDistanceReward * (prevDistance - currDistance));
+            agent.AddReward(prevDistance == -1f ? (closeDistanceReward) : 
+                (closeDistanceReward * (prevDistance - currDistance)));
             prevDistance = currDistance;
         }
 
@@ -183,6 +184,8 @@ namespace AI
         {
             // reset on new episode
             gaveFindTargetReward = false;
+            // reset prev distance
+            prevDistance = -1f;
         }
 
         void HandleActionRewards(Vector2 moveInput, bool shoot)
