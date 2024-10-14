@@ -11,6 +11,7 @@ namespace AI
     public class TankAgent : Agent
     {
         [SerializeField] protected TankController target;
+        [SerializeField] protected float lineOfSightRadius = 0.15f;
         [SerializeField] protected bool heuristicInputs = false;
 
         protected TankController controller;
@@ -41,7 +42,7 @@ namespace AI
             // disable collider to ensure raycast does not detect self
             collider.enabled = false;
             // perform raycast
-            bool raycast = !Physics.Raycast(transform.position, interest_direction, 
+            bool raycast = !Physics.SphereCast(new Ray(transform.position, interest_direction), lineOfSightRadius, 
                 Vector3.Distance(transform.position, target.transform.position), obstacleDetection.detectionMask);
             // reenable collider after raycast is compelted
             collider.enabled = true;

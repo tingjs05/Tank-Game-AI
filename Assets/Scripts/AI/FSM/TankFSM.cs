@@ -13,6 +13,7 @@ namespace AI.FSM
         [SerializeField, Range(0f, 1f)] protected float hardMovementThreshold = 0.85f;
 
         [Header("Combat")]
+        [SerializeField] protected float lineOfSightRadius = 0.15f;
         [SerializeField, Range(0f, 1f)] protected float shootThreshold = 0.9f;
         [SerializeField, Range(0f, 1f)] protected float recoilControl = 0.75f;
         [SerializeField, Range(0f, 1f)] protected float minAimSpeed = 0.6f;
@@ -86,7 +87,7 @@ namespace AI.FSM
             // disable collider to ensure raycast does not detect self
             collider.enabled = false;
             // perform raycast
-            bool raycast = !Physics.Raycast(transform.position, dir, 
+            bool raycast = !Physics.SphereCast(new Ray(transform.position, dir), lineOfSightRadius, 
                 Vector3.Distance(transform.position, target.position), obstacleDetection.detectionMask);
             // reenable collider after raycast is compelted
             collider.enabled = true;
