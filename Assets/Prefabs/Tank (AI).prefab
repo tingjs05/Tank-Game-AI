@@ -150,6 +150,7 @@ MonoBehaviour:
   hasUpgradedFromAgentParameters: 1
   MaxStep: 5000
   target: {fileID: 0}
+  lineOfSightRadius: 0.15
   heuristicInputs: 0
 --- !u!114 &4930844592529910517
 MonoBehaviour:
@@ -197,7 +198,7 @@ MonoBehaviour:
   killReward: 2
   recoilControlReward: 0.1
   findTargetReward: 0.5
-  moveTowardsPreferredDirReward: 0.05
+  moveTowardsPreferredDirReward: 0
   closeDistanceReward: 0.5
   dangerWeight: 0.5
   correctDirThreshold: 0.85
