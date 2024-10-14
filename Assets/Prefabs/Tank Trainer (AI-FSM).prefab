@@ -91,7 +91,7 @@ PrefabInstance:
     - target: {fileID: 5473802006969769839, guid: d8363aba81a44b84280baebbda7b8003,
         type: 3}
       propertyPath: Record
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6303575723392755158, guid: d8363aba81a44b84280baebbda7b8003,
         type: 3}
@@ -160,6 +160,7 @@ MonoBehaviour:
   hasUpgradedFromAgentParameters: 1
   MaxStep: 5000
   target: {fileID: 0}
+  lineOfSightRadius: 0.15
   heuristicInputs: 1
   heuristic_move_input: {x: 0, y: 0}
   heuristic_shoot_input: 0
@@ -179,6 +180,7 @@ MonoBehaviour:
   target: {fileID: 0}
   movementThreshold: 0.85
   hardMovementThreshold: 0.95
+  lineOfSightRadius: 0.15
   shootThreshold: 0.995
   recoilControl: 0.8
   minAimSpeed: 0.75
