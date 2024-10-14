@@ -17,7 +17,8 @@ namespace AI.ObstacleDetection
         Vector3 preferredDirection;
         float[] weights;
 
-        public int numberOfDirections => direction.directions.Length;
+        public Vector3[] directions => direction.directions;
+        public int numberOfDirections => directions.Length;
 
         void Awake()
         {
@@ -27,12 +28,6 @@ namespace AI.ObstacleDetection
             // create weights array
             weights = new float[numberOfDirections];
         }
-        
-        // TODO: comment this out in production, this is for debugging & testing purposes
-        // void Update()
-        // {
-        //     GetWeightsBasedOnObstacles();
-        // }
 
         public Vector3 GetPreferredDirection(Vector3 interestDir)
         {
@@ -45,7 +40,7 @@ namespace AI.ObstacleDetection
             // aggregate directions based on weights
             for (int i = 0; i < numberOfDirections; i++)
             {
-                preferredDirection += direction.directions[i] * (interests[i] - weights[i]);
+                preferredDirection += directions[i] * (interests[i] - weights[i]);
             }
 
             // keep magnitude and take out y-axis direction
@@ -56,11 +51,12 @@ namespace AI.ObstacleDetection
             return preferredDirection.normalized;
         }
 
-        void GetWeightsBasedOnObstacles()
+        public float[] GetWeightsBasedOnObstacles()
         {
             DetectObstacles();
             DetectGround();
             CalculateWeights();
+            return weights;
         }
 
         void DetectObstacles()
@@ -89,7 +85,7 @@ namespace AI.ObstacleDetection
         {
             // cast a raycast vertically down to detect the ground
             // this is to be done at each edge of the agent
-            foreach (Vector3 dir in direction.directions)
+            foreach (Vector3 dir in directions)
             {
                 if (dir.y != 0f) continue;
                 // check if ground can be detected at agent radius
@@ -134,7 +130,7 @@ namespace AI.ObstacleDetection
         {
             for (int i = 0; i < numberOfDirections; i++)
             {
-                Vector3 dirVector = direction.directions[i];
+                Vector3 dirVector = directions[i];
                 Vector3 objectDir = (obj_pos - transform.position).normalized;
                 float dot = Mathf.Clamp01(Vector3.Dot(objectDir, dirVector));
                 float dist = Vector3.Distance(obj_pos, transform.position);
@@ -182,7 +178,7 @@ namespace AI.ObstacleDetection
 
             for (int i = 0; i < numberOfDirections; i++)
             {
-                Debug.DrawRay(transform.position, direction.directions[i] * weights[i] + direction.directions[i], Color.yellow);
+                Debug.DrawRay(transform.position, directions[i] * weights[i] + directions[i], Color.yellow);
             }
 
             // show preferred direction

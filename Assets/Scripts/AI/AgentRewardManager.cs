@@ -11,17 +11,16 @@ namespace AI
         [SerializeField] float damagedPenalty = 0.5f;
         [SerializeField] float missedShotPenalty = 0.15f;
         [SerializeField] float hitShotReward = 0.5f;
+        [SerializeField] float aimReward = 0.5f;
         [SerializeField] float aimedShotReward = 0.5f;
         [SerializeField] float killReward = 2f;
         [SerializeField] float findTargetReward = 0.5f;
 
         [Header("Movement")]
-        [SerializeField] float faceForwardWhenMovingReward = 0.5f;
-        [SerializeField] float faceInteresetDirReward = 0.5f;
-        [SerializeField] float moveTowardsInterestDirReward = 1f;
+        [SerializeField] float facePreferredDirReward = 0.5f;
         [SerializeField] float moveTowardsPreferredDirReward = 5f;
-        [SerializeField] float rotateTowardsDirectionReward = 0.5f;
-        [SerializeField] float wrongRotationDirectionPenalty = 0.5f;
+        [SerializeField] float closeDistanceReward = 0.5f;
+        [SerializeField, Range(0f, 1f)] float dangerWeight = 0.5f;
         [SerializeField, Range(0f, 1f)] float correctDirThreshold = 0.85f;
         [SerializeField, Range(0f, 1f)] float aimDirThreshold = 0.99f;
 
@@ -37,7 +36,7 @@ namespace AI
         TankController controller;
 
         Vector3 horizontalVel;
-        float dot;
+        float dot, dirRewardScale, currDistance, prevDistance;
         bool targetSeen, gaveFindTargetReward;
 
         // Start is called before the first frame update
@@ -80,7 +79,7 @@ namespace AI
                 if (dot >= aimDirThreshold) 
                 {
                     LogReward("Aim Reward");
-                    agent.AddReward(ScaleReward(faceInteresetDirReward, dot, aimDirThreshold));
+                    agent.AddReward(ScaleReward(aimReward, dot, aimDirThreshold));
                 }
 
                 return;
@@ -91,29 +90,37 @@ namespace AI
             horizontalVel.y = 0f;
             horizontalVel.Normalize();
 
-            dot = Vector3.Dot(transform.forward, horizontalVel);
+            // check if closing distance between self and target
+            CheckDistanceReward();
 
-            // reward agent for facing forward while moving
-            if (dot < correctDirThreshold) return;
-            LogReward("Move Forward Reward");
-            agent.AddReward(faceForwardWhenMovingReward);
-
-            dot = Vector3.Dot(horizontalVel, agent.preferred_direction);
-
-            // reward for moving in preferred direction
-            if (agent.preferred_direction != Vector3.zero && dot >= correctDirThreshold)
+            // ensure weights array and obstacle detection is not null
+            if (agent.weights == null || agent.obstacle_detection == null) return;
+            
+            for (int i = 0; i < agent.weights.Length; i++)
             {
-                agent.AddReward(ScaleReward(moveTowardsPreferredDirReward, dot, correctDirThreshold));
-                LogReward("Pref Dir Reward");
-                return;
+                // check if facing a good direction
+                dot = Vector3.Dot(transform.forward, agent.obstacle_detection.directions[i]);
+                if (dot < correctDirThreshold) continue;
+                // scale reward depending on if it is a good or bad direction (if there are obstacles)
+                dirRewardScale = (1f - agent.weights[i]) * (agent.weights[i] <= dangerWeight ? 1f : -1f);
+                LogReward(dirRewardScale < 0f ? "Faced Bad Direction" : "Faced Good Direction");
+                agent.AddReward(ScaleReward(facePreferredDirReward * dirRewardScale, dot, correctDirThreshold));
+                // check if moving in good direction
+                dot = Vector3.Dot(horizontalVel, agent.obstacle_detection.directions[i]);
+                if (dot < correctDirThreshold) continue;
+                LogReward(dirRewardScale < 0f ? "Move Bad Direction" : "Move Good Direction");
+                agent.AddReward(ScaleReward(moveTowardsPreferredDirReward * dirRewardScale, dot, correctDirThreshold));
             }
+        }
 
-            dot = Vector3.Dot(horizontalVel, agent.interest_direction);
-
-            // reward for moving in interest direction when no preferred direction
-            if (dot < correctDirThreshold) return;
-            LogReward("Int Dir Reward");
-            agent.AddReward(ScaleReward(moveTowardsInterestDirReward, dot, correctDirThreshold));
+        void CheckDistanceReward()
+        {
+            if (gaveFindTargetReward || targetSeen) return;
+            currDistance = Vector3.Distance(transform.position, agent._target.position);
+            if (currDistance >= prevDistance) return;
+            LogReward("Close Distance Reward");
+            agent.AddReward(closeDistanceReward * (prevDistance - currDistance));
+            prevDistance = currDistance;
         }
 
         float ScaleReward(float rewardAmt, float dot, float threshold)
@@ -186,26 +193,6 @@ namespace AI
 
         void HandleActionRewards(Vector2 moveInput, bool shoot)
         {
-            // reward for rotating towards correct direction
-            Vector3 direction = agent.preferred_direction == Vector3.zero || targetSeen ? 
-                agent.interest_direction : agent.preferred_direction;
-            // calculate dot based on direction to face
-            dot = Vector3.Dot(transform.right, direction);
-
-            if (dot != 0f && moveInput.y != 0)
-            {
-                if ((dot > 0f && moveInput.y > 0) || (dot < 0f && moveInput.y < 0))
-                {
-                    LogReward("Rotation Reward");
-                    agent.AddReward(rotateTowardsDirectionReward);
-                }
-                else
-                {
-                    LogReward("Wrong Rotation Penalty");
-                    agent.AddReward(-wrongRotationDirectionPenalty);
-                }
-            }
-
             // do not check for reward if target is not seen
             if (!targetSeen) return;
             // reward for aiming in correct direction and shooting

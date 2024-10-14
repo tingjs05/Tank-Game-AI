@@ -21,9 +21,10 @@ namespace AI
         protected float moveX, moveY;
         protected int shootInput;
         
-        public Vector3 interest_direction { get; protected set; }
-        public Vector3 preferred_direction { get; protected set; }
+        public ObstacleDetectionManager obstacle_detection => obstacleDetection;
         public Transform _target => target.transform;
+        public Vector3 interest_direction { get; protected set; }
+        public float[] weights { get; protected set; }
 
         public event Action<Vector2, bool> OnActionCalled;
         public event Action OnNewEpisode;
@@ -57,12 +58,18 @@ namespace AI
 
         public override void CollectObservations(VectorSensor sensor)
         {
+            // add weight observations
+            weights = obstacleDetection.GetWeightsBasedOnObstacles();
+
+            foreach (float weight in weights)
+            {
+                sensor.AddObservation(weight);
+            }
+
             // calculate directions
-            preferred_direction = obstacleDetection.GetPreferredDirection(interest_direction);
             interest_direction = (target.transform.position - transform.position).normalized;
 
             // add observations
-            sensor.AddObservation(preferred_direction);
             sensor.AddObservation(interest_direction);
             sensor.AddObservation(transform.position);
             sensor.AddObservation(transform.forward);

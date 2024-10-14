@@ -192,15 +192,14 @@ MonoBehaviour:
   damagedPenalty: 0.01
   missedShotPenalty: 0.5
   hitShotReward: 1
+  aimReward: 0.15
   aimedShotReward: 0.3
   killReward: 2
   findTargetReward: 0.5
-  faceForwardWhenMovingReward: 0.01
-  faceInteresetDirReward: 0.05
-  moveTowardsInterestDirReward: 0.05
+  facePreferredDirReward: 0.05
   moveTowardsPreferredDirReward: 0.05
-  rotateTowardsDirectionReward: 0.03
-  wrongRotationDirectionPenalty: 0.05
+  closeDistanceReward: 0.5
+  dangerWeight: 0.5
   correctDirThreshold: 0.85
   aimDirThreshold: 0.99
   obstacleCollisionPenalty: 0.8
@@ -220,7 +219,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 18
+    VectorObservationSize: 41
     NumStackedVectorObservations: 5
     m_ActionSpec:
       m_NumContinuousActions: 2
