@@ -14,7 +14,8 @@ namespace AI
         [SerializeField] float aimReward = 0.5f;
         [SerializeField] float aimedShotReward = 0.5f;
         [SerializeField] float killReward = 2f;
-        [SerializeField] float findTargetReward = 0.5f;
+        [SerializeField] float recoilControlReward = 0.5f;
+        [SerializeField] float findTargetReward = 1f;
 
         [Header("Movement")]
         [SerializeField] float moveTowardsPreferredDirReward = 5f;
@@ -186,11 +187,19 @@ namespace AI
 
         void HandleActionRewards(Vector2 moveInput, bool shoot)
         {
-            // do not check for reward if target is not seen
-            if (!targetSeen) return;
+            // do not check for reward if target is not seen or shooting
+            if (!targetSeen || !shoot) return;
+
+            // reward for controlling recoil
+            if (moveInput.x > 0f)
+            {
+                LogReward("Recoil Control Reward");
+                agent.AddReward(recoilControlReward);
+            }
+
             // reward for aiming in correct direction and shooting
             dot = Vector3.Dot(transform.forward, agent.interest_direction);
-            if (dot < aimDirThreshold || !shoot) return;
+            if (dot < aimDirThreshold) return;
             LogReward("Aim + Shoot Reward");
             agent.AddReward(ScaleReward(aimedShotReward, dot, aimDirThreshold));
         }
