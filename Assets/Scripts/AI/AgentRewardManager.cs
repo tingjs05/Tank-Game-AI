@@ -15,7 +15,6 @@ namespace AI
         [SerializeField] float aimedShotReward = 0.5f;
         [SerializeField] float killReward = 2f;
         [SerializeField] float recoilControlReward = 0.5f;
-        [SerializeField] float findTargetReward = 1f;
 
         [Header("Movement")]
         [SerializeField] float moveTowardsPreferredDirReward = 5f;
@@ -23,6 +22,11 @@ namespace AI
         [SerializeField, Range(0f, 1f)] float dangerWeight = 0.5f;
         [SerializeField, Range(0f, 1f)] float correctDirThreshold = 0.85f;
         [SerializeField, Range(0f, 1f)] float aimDirThreshold = 0.99f;
+
+        [Header("Search")]
+        [SerializeField] float findTargetReward = 1f;
+        [SerializeField] float targetNotFoundPenalty = 1f;
+        [SerializeField] float targetNotFoundPenaltyInterval = 2.5f;
 
         [Header("Obstacle Collision")]
         [SerializeField] float obstacleCollisionPenalty = 1f;
@@ -36,7 +40,7 @@ namespace AI
         TankController controller;
 
         Vector3 horizontalVel;
-        float dot, dirRewardScale, currDistance, prevDistance;
+        float dot, dirRewardScale, currDistance, prevDistance, targetNotFoundCounter;
         bool targetSeen, gaveFindTargetReward;
 
         // Start is called before the first frame update
@@ -86,6 +90,8 @@ namespace AI
             horizontalVel.y = 0f;
             horizontalVel.Normalize();
 
+            // penalize the AI every interval for not finding target
+            TargetFoundCheck();
             // check if closing distance between self and target
             CheckDistanceReward();
 
@@ -105,6 +111,15 @@ namespace AI
                 LogReward(dirRewardScale < 0f ? "Move Bad Direction" : "Move Good Direction");
                 agent.AddReward(ScaleReward(moveTowardsPreferredDirReward * dirRewardScale, dot, correctDirThreshold));
             }
+        }
+
+        void TargetFoundCheck()
+        {
+            targetNotFoundCounter += Time.fixedDeltaTime;
+            if (targetNotFoundCounter <= targetNotFoundPenaltyInterval) return;
+            targetNotFoundCounter = 0f;
+            LogReward("Target Not Found Penalty");
+            agent.AddReward(-targetNotFoundPenalty);
         }
 
         void CheckDistanceReward()
@@ -182,10 +197,10 @@ namespace AI
 
         void HandleNewEpisode()
         {
-            // reset on new episode
+            // reset some variables
             gaveFindTargetReward = false;
-            // reset prev distance
             prevDistance = -1f;
+            targetNotFoundCounter = 0f;
         }
 
         void HandleActionRewards(Vector2 moveInput, bool shoot)
