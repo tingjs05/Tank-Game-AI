@@ -44,7 +44,7 @@ behaviors:
           memory: null
           goal_conditioning_type: hyper
           deterministic: false
-        learning_rate: 3e-4
+        learning_rate: 0.0003
         encoding_size: null
         use_actions: false
         use_vail: false
@@ -78,7 +78,7 @@ engine_settings:
   width: 84
   height: 84
   quality_level: 5
-  time_scale: 20
+  time_scale: 20.0
   target_frame_rate: -1
   capture_frame_rate: 60
   no_graphics: false
@@ -87,7 +87,7 @@ checkpoint_settings:
   run_id: Gen19
   initialize_from: null
   load_model: false
-  resume: false
+  resume: true
   force: false
   train_model: false
   inference: false
