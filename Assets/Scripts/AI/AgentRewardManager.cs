@@ -19,6 +19,7 @@ namespace AI
         [Header("Movement")]
         [SerializeField] float moveTowardsPreferredDirReward = 5f;
         [SerializeField] float closeDistanceReward = 0.5f;
+        [SerializeField] float movementPenalty = 0.05f;
         [SerializeField, Range(0f, 1f)] float dangerWeight = 0.5f;
         [SerializeField, Range(0f, 1f)] float correctDirThreshold = 0.85f;
         [SerializeField, Range(0f, 1f)] float aimDirThreshold = 0.99f;
@@ -206,6 +207,13 @@ namespace AI
 
         void HandleActionRewards(Vector2 moveInput, bool shoot)
         {
+            // check for movement when target is not seen, give penalty (cost while moving)
+            if (!foundTarget && !targetSeen && moveInput != Vector2.zero)
+            {
+                LogReward("Movement Penalty");
+                agent.AddReward(-movementPenalty);
+            }
+
             // do not check for reward if target is not seen or shooting
             if (!targetSeen || !shoot) return;
 

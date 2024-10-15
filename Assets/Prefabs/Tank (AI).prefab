@@ -197,8 +197,9 @@ MonoBehaviour:
   aimedShotReward: 0.3
   killReward: 2
   recoilControlReward: 0.1
-  moveTowardsPreferredDirReward: 0
+  moveTowardsPreferredDirReward: 0.05
   closeDistanceReward: 0.5
+  movementPenalty: 0.01
   dangerWeight: 0.5
   correctDirThreshold: 0.85
   aimDirThreshold: 0.99
