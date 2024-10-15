@@ -29,6 +29,8 @@ namespace AI.FSM
             
             // move towards preferred direction
             character.MoveTowards(prefDir);
+            // log move direction to patrol state
+            character.Patrol.moveDirection = prefDir;
         }
     }
 }

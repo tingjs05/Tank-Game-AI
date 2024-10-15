@@ -4,6 +4,8 @@ namespace AI.FSM
 {
     public class PatrolState : State<TankFSM>
     {
+        public Vector3 moveDirection = Vector3.zero;
+
         public PatrolState(StateMachine<TankFSM> fsm, TankFSM character) : base (fsm, character)
         {
         }
@@ -27,7 +29,13 @@ namespace AI.FSM
             }
             
             // if there is no direction to move towards from obstacle detection, move towards target
-            character.MoveTowards(targetDir);
+            // only move towards target when last move direction is unknown (0, 0, 0)
+            character.MoveTowards((moveDirection == Vector3.zero ? targetDir : moveDirection));
+        }
+
+        public override void Exit()
+        {
+            moveDirection = Vector3.zero;
         }
     }
 }
