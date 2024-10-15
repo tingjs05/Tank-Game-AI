@@ -207,8 +207,8 @@ namespace AI
 
         void HandleActionRewards(Vector2 moveInput, bool shoot)
         {
-            // check for movement when target is not seen, give penalty (cost while moving)
-            if (!foundTarget && !targetSeen && moveInput != Vector2.zero)
+            // check for movement, give penalty (cost while moving)
+            if (!targetSeen && moveInput != Vector2.zero)
             {
                 LogReward("Movement Penalty");
                 agent.AddReward(-movementPenalty);
