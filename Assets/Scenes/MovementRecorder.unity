@@ -498,7 +498,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76b208a53b2153343a231598b4f56d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  target: {fileID: 531127622}
   offset: {x: 0, y: 8, z: -5}
   smoothTime: 0.3
 --- !u!1 &410087039
@@ -848,10 +848,12 @@ MonoBehaviour:
   trainerAI: {fileID: 192341136}
   resetKey: 49
   testReset: 0
-  changeX: 0
-  changeZ: 0
+  changeX: 1
+  changeZ: 1
   xBounds: 5
   zBounds: 1
+  randomlySwitchPositions: 1
+  switchChance: 0.5
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
