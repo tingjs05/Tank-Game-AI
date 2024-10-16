@@ -34,7 +34,7 @@ behaviors:
           goal_conditioning_type: hyper
           deterministic: false
       curiosity:
-        strength: 0.5
+        strength: 0.02
         gamma: 0.99
         encoding_size: 256
         learning_rate: 3.0e-4
@@ -63,7 +63,7 @@ behaviors:
     init_path: results\Gen19\TankBehavior\checkpoint.pt
     keep_checkpoints: 5
     checkpoint_interval: 500000
-    max_steps: 100000000
+    max_steps: 1000000
     time_horizon: 1000
     summary_freq: 12000
     threaded: true
