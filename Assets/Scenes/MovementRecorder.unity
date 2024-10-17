@@ -738,6 +738,7 @@ GameObject:
   - component: {fileID: 730236581}
   - component: {fileID: 730236580}
   - component: {fileID: 730236584}
+  - component: {fileID: 730236585}
   m_Layer: 3
   m_Name: Ground
   m_TagString: Untagged
@@ -854,6 +855,22 @@ MonoBehaviour:
   zBounds: 1
   randomlySwitchPositions: 1
   switchChance: 0.5
+--- !u!114 &730236585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730236579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 267d93cdbec697742b4a216fa67eacd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentAI: {fileID: 531127625}
+  trainerAI: {fileID: 192341136}
+  succeedMat: {fileID: 2100000, guid: d8607c50887637944a204017741b1b9a, type: 2}
+  failMat: {fileID: 2100000, guid: 2261ffb890bf91b4798bad203f43c779, type: 2}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0

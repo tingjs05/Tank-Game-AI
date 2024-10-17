@@ -96,7 +96,7 @@ PrefabInstance:
     - target: {fileID: 5473802006969769839, guid: d8363aba81a44b84280baebbda7b8003,
         type: 3}
       propertyPath: Record
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6303575723392755158, guid: d8363aba81a44b84280baebbda7b8003,
         type: 3}
@@ -191,6 +191,5 @@ MonoBehaviour:
   minAimSpeed: 0.75
   fleeDistance: 4
   fleeHealthThreshold: 0.5
-  boundaryTag: Boundary
   resetOnDeath: 0
   resetOnKill: 0
