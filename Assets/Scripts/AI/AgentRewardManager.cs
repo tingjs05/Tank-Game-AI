@@ -35,7 +35,6 @@ namespace AI
 
         [Header("Death")]
         [SerializeField] float deathPenalty = 10f;
-        [SerializeField] string boundaryTag = "Boundary";
 
         TankAgent agent;
         TankController controller;
@@ -152,15 +151,6 @@ namespace AI
             if (!other.collider.CompareTag(obstacleTag)) return;
             LogReward("Obstacle Penalty");
             agent.AddReward(-obstacleCollisionPenalty);
-        }
-
-        void OnTriggerEnter(Collider other) 
-        {
-            // punish agent for falling off the map
-            if (!other.CompareTag(boundaryTag)) return;
-            LogReward("Death Penalty");
-            agent.AddReward(-deathPenalty);
-            agent.EndEpisode();
         }
 
         #region Event Listeners

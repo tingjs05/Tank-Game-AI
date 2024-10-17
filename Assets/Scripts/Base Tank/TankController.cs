@@ -9,10 +9,15 @@ public class TankController : MonoBehaviour, IDamagable
     public float maxHealth = 10f;
     public float moveSpeed = 15f;
     public float rotationSpeed = 15f;
+
+    [Header("Combat")]
     public float shootingRecoil = 0f;
     public float shootCooldown = 1f;
+
+    [Header("Other Variables")]
     public GameObject projectilePrefab;
     public Slider healthBar;
+    public string boundaryTag = "Boundary";
     
     public Rigidbody rb { get; private set; }
     public float Health { get; private set; } = 0f;
@@ -45,6 +50,13 @@ public class TankController : MonoBehaviour, IDamagable
     {
         // increment shoot cooldown
         shoot_cooldown += Time.deltaTime;
+    }
+
+    void OnTriggerEnter(Collider other) 
+    {
+        // check if fallen off map
+        if (!other.CompareTag(boundaryTag)) return;
+        Died?.Invoke();
     }
 
     public void Move(Vector2 move)

@@ -22,8 +22,7 @@ namespace AI.FSM
         [SerializeField] protected float fleeDistance = 3.5f;
         [SerializeField, Range(0f, 1f)] protected float fleeHealthThreshold = 0.5f;
 
-        [Header("Testing")]
-        [SerializeField] protected string boundaryTag = "Boundary";
+        [Header("Resets")]
         [SerializeField] protected bool resetOnDeath, resetOnKill = false;
 
         public Transform _target => target;
@@ -120,13 +119,6 @@ namespace AI.FSM
         public virtual void DirectShoot()
         {
             controller.Shoot();
-        }
-
-        void OnTriggerEnter(Collider other) 
-        {
-            // check for falling out of boundary
-            if (!resetOnDeath || !other.CompareTag(boundaryTag)) return;
-            controller.Reset();
         }
 
         void OnDrawGizmosSelected() 
