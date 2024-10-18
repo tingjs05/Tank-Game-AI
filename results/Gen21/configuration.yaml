@@ -14,7 +14,7 @@ behaviors:
       beta_schedule: linear
       epsilon_schedule: linear
     network_settings:
-      normalize: true
+      normalize: false
       hidden_units: 256
       num_layers: 2
       vis_encode_type: simple
@@ -50,7 +50,7 @@ behaviors:
         gamma: 0.99
         strength: 5.0
         network_settings:
-          normalize: true
+          normalize: false
           hidden_units: 256
           num_layers: 2
           vis_encode_type: simple
