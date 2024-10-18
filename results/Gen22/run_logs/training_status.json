@@ -9,17 +9,45 @@
                 "auxillary_file_paths": [
                     "results\\Gen22\\TankBehavior\\TankBehavior-0.pt"
                 ]
+            },
+            {
+                "steps": 499257,
+                "file_path": "results\\Gen22\\TankBehavior\\TankBehavior-499257.onnx",
+                "reward": -34.409994761149086,
+                "creation_time": 1729219896.6120548,
+                "auxillary_file_paths": [
+                    "results\\Gen22\\TankBehavior\\TankBehavior-499257.pt"
+                ]
+            },
+            {
+                "steps": 999986,
+                "file_path": "results\\Gen22\\TankBehavior\\TankBehavior-999986.onnx",
+                "reward": 272.9005716497248,
+                "creation_time": 1729220971.6675065,
+                "auxillary_file_paths": [
+                    "results\\Gen22\\TankBehavior\\TankBehavior-999986.pt"
+                ]
+            },
+            {
+                "steps": 1004740,
+                "file_path": "results\\Gen22\\TankBehavior\\TankBehavior-1004740.onnx",
+                "reward": 318.96714901924133,
+                "creation_time": 1729220972.573322,
+                "auxillary_file_paths": [
+                    "results\\Gen22\\TankBehavior\\TankBehavior-1004740.pt"
+                ]
             }
         ],
         "final_checkpoint": {
-            "steps": 0,
+            "steps": 1004740,
             "file_path": "results\\Gen22\\TankBehavior.onnx",
-            "reward": null,
-            "creation_time": 1729218473.7345417,
+            "reward": 318.96714901924133,
+            "creation_time": 1729220972.573322,
             "auxillary_file_paths": [
-                "results\\Gen22\\TankBehavior\\TankBehavior-0.pt"
+                "results\\Gen22\\TankBehavior\\TankBehavior-1004740.pt"
             ]
-        }
+        },
+        "elo": 907.0199314090075
     },
     "metadata": {
         "stats_format_version": "0.3.0",
