@@ -9,17 +9,36 @@
                 "auxillary_file_paths": [
                     "results\\Gen23\\TankBehavior\\TankBehavior-1615.pt"
                 ]
+            },
+            {
+                "steps": 52003,
+                "file_path": "results\\Gen23\\TankBehavior\\TankBehavior-52003.onnx",
+                "reward": -11.85999870300293,
+                "creation_time": 1729228343.5398324,
+                "auxillary_file_paths": [
+                    "results\\Gen23\\TankBehavior\\TankBehavior-52003.pt"
+                ]
+            },
+            {
+                "steps": 298957,
+                "file_path": "results\\Gen23\\TankBehavior\\TankBehavior-298957.onnx",
+                "reward": null,
+                "creation_time": 1729229527.469465,
+                "auxillary_file_paths": [
+                    "results\\Gen23\\TankBehavior\\TankBehavior-298957.pt"
+                ]
             }
         ],
         "final_checkpoint": {
-            "steps": 1615,
+            "steps": 298957,
             "file_path": "results\\Gen23\\TankBehavior.onnx",
-            "reward": 8.850629389286041,
-            "creation_time": 1729227126.0136983,
+            "reward": null,
+            "creation_time": 1729229527.469465,
             "auxillary_file_paths": [
-                "results\\Gen23\\TankBehavior\\TankBehavior-1615.pt"
+                "results\\Gen23\\TankBehavior\\TankBehavior-298957.pt"
             ]
-        }
+        },
+        "elo": 895.8431848059384
     },
     "metadata": {
         "stats_format_version": "0.3.0",
