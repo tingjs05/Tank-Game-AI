@@ -62,10 +62,10 @@ behaviors:
         use_actions: false
         use_vail: false
         demo_path: demos/TankBehaviorDemo_CMT_AI.demo
-    init_path: results\Gen19\TankBehavior\checkpoint.pt
+    init_path: null
     keep_checkpoints: 5
     checkpoint_interval: 500000
-    max_steps: 100000
+    max_steps: 1000000
     time_horizon: 5000
     summary_freq: 12000
     threaded: true
