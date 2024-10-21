@@ -65,7 +65,7 @@ behaviors:
     init_path: null
     keep_checkpoints: 5
     checkpoint_interval: 500000
-    max_steps: 40000000
+    max_steps: 45000000
     time_horizon: 5000
     summary_freq: 12000
     threaded: true
@@ -129,7 +129,15 @@ environment_parameters:
             threshold: 900
           value: 2.0
         - name: RandomObstacle
+          completion_criteria:
+            measure: reward
+            behavior: TankBehavior
+            signal_smoothing: true
+            min_lesson_length: 100
+            threshold: 900
           value: 3.0
+        - name: RandomPosition
+          value: 4.0
 checkpoint_settings:
   run_id: null
   initialize_from: null
