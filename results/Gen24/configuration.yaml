@@ -115,7 +115,7 @@ environment_parameters:
         measure: reward
         min_lesson_length: 100
         signal_smoothing: true
-        threshold: 900.0
+        threshold: 800.0
         require_reset: false
     - value:
         sampler_type: constant
@@ -128,7 +128,7 @@ environment_parameters:
         measure: reward
         min_lesson_length: 100
         signal_smoothing: true
-        threshold: 900.0
+        threshold: 800.0
         require_reset: false
     - value:
         sampler_type: constant
@@ -141,7 +141,7 @@ environment_parameters:
         measure: reward
         min_lesson_length: 100
         signal_smoothing: true
-        threshold: 900.0
+        threshold: 800.0
         require_reset: false
     - value:
         sampler_type: constant
@@ -154,14 +154,14 @@ environment_parameters:
         measure: reward
         min_lesson_length: 100
         signal_smoothing: true
-        threshold: 900.0
+        threshold: 800.0
         require_reset: false
     - value:
         sampler_type: constant
         sampler_parameters:
           seed: 8486
           value: 4.0
-      name: RandomPosition
+      name: CombatTraining
       completion_criteria: null
 checkpoint_settings:
   run_id: Gen24
