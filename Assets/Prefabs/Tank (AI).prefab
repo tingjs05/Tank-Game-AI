@@ -209,7 +209,6 @@ MonoBehaviour:
   obstacleCollisionPenalty: 0.8
   obstacleTag: Obstacle
   deathPenalty: 1
-  boundaryTag: Boundary
 --- !u!114 &4819517146171378741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,7 +223,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_BrainParameters:
     VectorObservationSize: 41
-    NumStackedVectorObservations: 5
+    NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 2
       BranchSizes: 02000000
