@@ -22,6 +22,8 @@ namespace Training
         [SerializeField] bool randomlySwitchPositions;
         [SerializeField, Range(0f, 1f)] float switchChance = 0.5f;
 
+        float prog => Academy.Instance.EnvironmentParameters.GetWithDefault("env_params", -1);
+
         // Start is called before the first frame update
         void Start()
         {
@@ -50,11 +52,7 @@ namespace Training
 
         void CheckCurricular()
         {
-            if (!curricularTraining) return;
-
-            float prog = Academy.Instance.EnvironmentParameters.GetWithDefault("env_params", -1);
-
-            if (prog < 0) return;
+            if (!curricularTraining || prog < 0) return;
 
             randomlySwitchPositions = prog >= 1f;
             changeX = prog >= 2f;
