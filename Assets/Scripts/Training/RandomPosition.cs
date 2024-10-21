@@ -25,6 +25,13 @@ namespace Training
         // Start is called before the first frame update
         void Start()
         {
+            if (curricularTraining)
+            {
+                randomlySwitchPositions = false;
+                changeX = false;
+                changeZ = false;
+            }
+
             if (agentAI == null || trainerAI == null) return;
             agentAI.OnNewEpisode += SetNewEpisode;
         }
