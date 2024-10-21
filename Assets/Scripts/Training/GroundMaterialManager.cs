@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using AI;
 
@@ -9,6 +10,7 @@ namespace Training
         [SerializeField] TankAgent agentAI;
         [SerializeField] TankController trainerAI;
         [SerializeField] Material succeedMat, failMat;
+        [SerializeField] float resetDelay = 0.01f;
         Renderer rend;
         bool successfulRun = false;
 
@@ -20,21 +22,22 @@ namespace Training
             trainerAI.Died += Succeed;
         }
 
-        void NewEpisodeReset()
-        {
-            if (successfulRun)
-            {
-                successfulRun = false;
-                return;
-            }
-
-            rend.material = failMat;
-        }
-
         void Succeed()
         {
             successfulRun = true;
             rend.material = succeedMat;
+        }
+
+        void NewEpisodeReset()
+        {
+            StartCoroutine(DelayedReset());
+        }
+
+        IEnumerator DelayedReset()
+        {
+            yield return new WaitForSeconds(resetDelay);
+            if (!successfulRun) rend.material = failMat;
+            successfulRun = false;
         }
     }
 }
