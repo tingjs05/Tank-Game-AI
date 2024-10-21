@@ -677,6 +677,7 @@ MonoBehaviour:
   trainerAI: {fileID: 804497773}
   succeedMat: {fileID: 2100000, guid: d8607c50887637944a204017741b1b9a, type: 2}
   failMat: {fileID: 2100000, guid: 2261ffb890bf91b4798bad203f43c779, type: 2}
+  resetDelay: 0.01
 --- !u!114 &177560329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -693,7 +694,7 @@ MonoBehaviour:
   trainerAI: {fileID: 804497773}
   resetKey: 49
   testReset: 0
-  curricularTraining: 0
+  curricularTraining: 1
   changeX: 1
   changeZ: 1
   xBounds: 5
@@ -1096,6 +1097,7 @@ MonoBehaviour:
   trainerAI: {fileID: 331280321}
   succeedMat: {fileID: 2100000, guid: d8607c50887637944a204017741b1b9a, type: 2}
   failMat: {fileID: 2100000, guid: 2261ffb890bf91b4798bad203f43c779, type: 2}
+  resetDelay: 0.01
 --- !u!114 &216431947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1112,7 +1114,7 @@ MonoBehaviour:
   trainerAI: {fileID: 331280321}
   resetKey: 49
   testReset: 0
-  curricularTraining: 0
+  curricularTraining: 1
   changeX: 1
   changeZ: 1
   xBounds: 5
@@ -1387,6 +1389,7 @@ MonoBehaviour:
   trainerAI: {fileID: 952506917}
   succeedMat: {fileID: 2100000, guid: d8607c50887637944a204017741b1b9a, type: 2}
   failMat: {fileID: 2100000, guid: 2261ffb890bf91b4798bad203f43c779, type: 2}
+  resetDelay: 0.01
 --- !u!114 &251210572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1403,7 +1406,7 @@ MonoBehaviour:
   trainerAI: {fileID: 952506917}
   resetKey: 49
   testReset: 0
-  curricularTraining: 0
+  curricularTraining: 1
   changeX: 1
   changeZ: 1
   xBounds: 5
@@ -2567,6 +2570,7 @@ MonoBehaviour:
   trainerAI: {fileID: 788118317}
   succeedMat: {fileID: 2100000, guid: d8607c50887637944a204017741b1b9a, type: 2}
   failMat: {fileID: 2100000, guid: 2261ffb890bf91b4798bad203f43c779, type: 2}
+  resetDelay: 0.01
 --- !u!114 &441647596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2583,7 +2587,7 @@ MonoBehaviour:
   trainerAI: {fileID: 788118317}
   resetKey: 49
   testReset: 0
-  curricularTraining: 0
+  curricularTraining: 1
   changeX: 1
   changeZ: 1
   xBounds: 5
@@ -2848,6 +2852,7 @@ MonoBehaviour:
   trainerAI: {fileID: 881355760}
   succeedMat: {fileID: 2100000, guid: d8607c50887637944a204017741b1b9a, type: 2}
   failMat: {fileID: 2100000, guid: 2261ffb890bf91b4798bad203f43c779, type: 2}
+  resetDelay: 0.01
 --- !u!114 &467186995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2864,7 +2869,7 @@ MonoBehaviour:
   trainerAI: {fileID: 881355760}
   resetKey: 49
   testReset: 0
-  curricularTraining: 0
+  curricularTraining: 1
   changeX: 1
   changeZ: 1
   xBounds: 5
@@ -3013,6 +3018,7 @@ MonoBehaviour:
   trainerAI: {fileID: 308505987}
   succeedMat: {fileID: 2100000, guid: d8607c50887637944a204017741b1b9a, type: 2}
   failMat: {fileID: 2100000, guid: 2261ffb890bf91b4798bad203f43c779, type: 2}
+  resetDelay: 0.01
 --- !u!114 &470547927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3029,7 +3035,7 @@ MonoBehaviour:
   trainerAI: {fileID: 308505987}
   resetKey: 49
   testReset: 0
-  curricularTraining: 0
+  curricularTraining: 1
   changeX: 1
   changeZ: 1
   xBounds: 5
@@ -4055,6 +4061,7 @@ MonoBehaviour:
   trainerAI: {fileID: 724563153}
   succeedMat: {fileID: 2100000, guid: d8607c50887637944a204017741b1b9a, type: 2}
   failMat: {fileID: 2100000, guid: 2261ffb890bf91b4798bad203f43c779, type: 2}
+  resetDelay: 0.01
 --- !u!114 &634592414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4071,7 +4078,7 @@ MonoBehaviour:
   trainerAI: {fileID: 724563153}
   resetKey: 49
   testReset: 0
-  curricularTraining: 0
+  curricularTraining: 1
   changeX: 1
   changeZ: 1
   xBounds: 5
@@ -5038,7 +5045,7 @@ MonoBehaviour:
   trainerAI: {fileID: 192341134}
   resetKey: 49
   testReset: 0
-  curricularTraining: 0
+  curricularTraining: 1
   changeX: 1
   changeZ: 1
   xBounds: 5
@@ -5061,6 +5068,7 @@ MonoBehaviour:
   trainerAI: {fileID: 192341134}
   succeedMat: {fileID: 2100000, guid: d8607c50887637944a204017741b1b9a, type: 2}
   failMat: {fileID: 2100000, guid: 2261ffb890bf91b4798bad203f43c779, type: 2}
+  resetDelay: 0.01
 --- !u!114 &730236586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5525,6 +5533,7 @@ MonoBehaviour:
   trainerAI: {fileID: 877392112}
   succeedMat: {fileID: 2100000, guid: d8607c50887637944a204017741b1b9a, type: 2}
   failMat: {fileID: 2100000, guid: 2261ffb890bf91b4798bad203f43c779, type: 2}
+  resetDelay: 0.01
 --- !u!114 &789139117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5541,7 +5550,7 @@ MonoBehaviour:
   trainerAI: {fileID: 877392112}
   resetKey: 49
   testReset: 0
-  curricularTraining: 0
+  curricularTraining: 1
   changeX: 1
   changeZ: 1
   xBounds: 5
@@ -6269,6 +6278,7 @@ MonoBehaviour:
   trainerAI: {fileID: 1502750671}
   succeedMat: {fileID: 2100000, guid: d8607c50887637944a204017741b1b9a, type: 2}
   failMat: {fileID: 2100000, guid: 2261ffb890bf91b4798bad203f43c779, type: 2}
+  resetDelay: 0.01
 --- !u!114 &911000743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6285,7 +6295,7 @@ MonoBehaviour:
   trainerAI: {fileID: 1502750671}
   resetKey: 49
   testReset: 0
-  curricularTraining: 0
+  curricularTraining: 1
   changeX: 1
   changeZ: 1
   xBounds: 5
@@ -6560,6 +6570,7 @@ MonoBehaviour:
   trainerAI: {fileID: 1142856884}
   succeedMat: {fileID: 2100000, guid: d8607c50887637944a204017741b1b9a, type: 2}
   failMat: {fileID: 2100000, guid: 2261ffb890bf91b4798bad203f43c779, type: 2}
+  resetDelay: 0.01
 --- !u!114 &940993387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6576,7 +6587,7 @@ MonoBehaviour:
   trainerAI: {fileID: 1142856884}
   resetKey: 49
   testReset: 0
-  curricularTraining: 0
+  curricularTraining: 1
   changeX: 1
   changeZ: 1
   xBounds: 5
@@ -7127,6 +7138,7 @@ MonoBehaviour:
   trainerAI: {fileID: 1639968138}
   succeedMat: {fileID: 2100000, guid: d8607c50887637944a204017741b1b9a, type: 2}
   failMat: {fileID: 2100000, guid: 2261ffb890bf91b4798bad203f43c779, type: 2}
+  resetDelay: 0.01
 --- !u!114 &970106359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7143,7 +7155,7 @@ MonoBehaviour:
   trainerAI: {fileID: 1639968138}
   resetKey: 49
   testReset: 0
-  curricularTraining: 0
+  curricularTraining: 1
   changeX: 1
   changeZ: 1
   xBounds: 5
@@ -7534,6 +7546,7 @@ MonoBehaviour:
   trainerAI: {fileID: 1739938557}
   succeedMat: {fileID: 2100000, guid: d8607c50887637944a204017741b1b9a, type: 2}
   failMat: {fileID: 2100000, guid: 2261ffb890bf91b4798bad203f43c779, type: 2}
+  resetDelay: 0.01
 --- !u!114 &1043346721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7550,7 +7563,7 @@ MonoBehaviour:
   trainerAI: {fileID: 1739938557}
   resetKey: 49
   testReset: 0
-  curricularTraining: 0
+  curricularTraining: 1
   changeX: 1
   changeZ: 1
   xBounds: 5
@@ -9534,6 +9547,7 @@ MonoBehaviour:
   trainerAI: {fileID: 1861593769}
   succeedMat: {fileID: 2100000, guid: d8607c50887637944a204017741b1b9a, type: 2}
   failMat: {fileID: 2100000, guid: 2261ffb890bf91b4798bad203f43c779, type: 2}
+  resetDelay: 0.01
 --- !u!114 &1286858265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9550,7 +9564,7 @@ MonoBehaviour:
   trainerAI: {fileID: 1861593769}
   resetKey: 49
   testReset: 0
-  curricularTraining: 0
+  curricularTraining: 1
   changeX: 1
   changeZ: 1
   xBounds: 5
@@ -9699,6 +9713,7 @@ MonoBehaviour:
   trainerAI: {fileID: 1064406613}
   succeedMat: {fileID: 2100000, guid: d8607c50887637944a204017741b1b9a, type: 2}
   failMat: {fileID: 2100000, guid: 2261ffb890bf91b4798bad203f43c779, type: 2}
+  resetDelay: 0.01
 --- !u!114 &1309759578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9715,7 +9730,7 @@ MonoBehaviour:
   trainerAI: {fileID: 1064406613}
   resetKey: 49
   testReset: 0
-  curricularTraining: 0
+  curricularTraining: 1
   changeX: 1
   changeZ: 1
   xBounds: 5
@@ -9990,6 +10005,7 @@ MonoBehaviour:
   trainerAI: {fileID: 543391211}
   succeedMat: {fileID: 2100000, guid: d8607c50887637944a204017741b1b9a, type: 2}
   failMat: {fileID: 2100000, guid: 2261ffb890bf91b4798bad203f43c779, type: 2}
+  resetDelay: 0.01
 --- !u!114 &1325193997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10006,7 +10022,7 @@ MonoBehaviour:
   trainerAI: {fileID: 543391211}
   resetKey: 49
   testReset: 0
-  curricularTraining: 0
+  curricularTraining: 1
   changeX: 1
   changeZ: 1
   xBounds: 5
@@ -10503,6 +10519,7 @@ MonoBehaviour:
   trainerAI: {fileID: 681893086}
   succeedMat: {fileID: 2100000, guid: d8607c50887637944a204017741b1b9a, type: 2}
   failMat: {fileID: 2100000, guid: 2261ffb890bf91b4798bad203f43c779, type: 2}
+  resetDelay: 0.01
 --- !u!114 &1471186985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10519,7 +10536,7 @@ MonoBehaviour:
   trainerAI: {fileID: 681893086}
   resetKey: 49
   testReset: 0
-  curricularTraining: 0
+  curricularTraining: 1
   changeX: 1
   changeZ: 1
   xBounds: 5
@@ -11533,6 +11550,7 @@ MonoBehaviour:
   trainerAI: {fileID: 1050887957}
   succeedMat: {fileID: 2100000, guid: d8607c50887637944a204017741b1b9a, type: 2}
   failMat: {fileID: 2100000, guid: 2261ffb890bf91b4798bad203f43c779, type: 2}
+  resetDelay: 0.01
 --- !u!114 &1541565374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11549,7 +11567,7 @@ MonoBehaviour:
   trainerAI: {fileID: 1050887957}
   resetKey: 49
   testReset: 0
-  curricularTraining: 0
+  curricularTraining: 1
   changeX: 1
   changeZ: 1
   xBounds: 5
@@ -11991,6 +12009,7 @@ MonoBehaviour:
   trainerAI: {fileID: 1096264686}
   succeedMat: {fileID: 2100000, guid: d8607c50887637944a204017741b1b9a, type: 2}
   failMat: {fileID: 2100000, guid: 2261ffb890bf91b4798bad203f43c779, type: 2}
+  resetDelay: 0.01
 --- !u!114 &1646303281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12007,7 +12026,7 @@ MonoBehaviour:
   trainerAI: {fileID: 1096264686}
   resetKey: 49
   testReset: 0
-  curricularTraining: 0
+  curricularTraining: 1
   changeX: 1
   changeZ: 1
   xBounds: 5
@@ -12834,6 +12853,7 @@ MonoBehaviour:
   trainerAI: {fileID: 1482846522}
   succeedMat: {fileID: 2100000, guid: d8607c50887637944a204017741b1b9a, type: 2}
   failMat: {fileID: 2100000, guid: 2261ffb890bf91b4798bad203f43c779, type: 2}
+  resetDelay: 0.01
 --- !u!114 &1844543928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12850,7 +12870,7 @@ MonoBehaviour:
   trainerAI: {fileID: 1482846522}
   resetKey: 49
   testReset: 0
-  curricularTraining: 0
+  curricularTraining: 1
   changeX: 1
   changeZ: 1
   xBounds: 5
@@ -13230,6 +13250,7 @@ MonoBehaviour:
   trainerAI: {fileID: 555234548}
   succeedMat: {fileID: 2100000, guid: d8607c50887637944a204017741b1b9a, type: 2}
   failMat: {fileID: 2100000, guid: 2261ffb890bf91b4798bad203f43c779, type: 2}
+  resetDelay: 0.01
 --- !u!114 &1854323224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13246,7 +13267,7 @@ MonoBehaviour:
   trainerAI: {fileID: 555234548}
   resetKey: 49
   testReset: 0
-  curricularTraining: 0
+  curricularTraining: 1
   changeX: 1
   changeZ: 1
   xBounds: 5
@@ -14028,6 +14049,7 @@ MonoBehaviour:
   trainerAI: {fileID: 1863239211}
   succeedMat: {fileID: 2100000, guid: d8607c50887637944a204017741b1b9a, type: 2}
   failMat: {fileID: 2100000, guid: 2261ffb890bf91b4798bad203f43c779, type: 2}
+  resetDelay: 0.01
 --- !u!114 &1969859438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14044,7 +14066,7 @@ MonoBehaviour:
   trainerAI: {fileID: 1863239211}
   resetKey: 49
   testReset: 0
-  curricularTraining: 0
+  curricularTraining: 1
   changeX: 1
   changeZ: 1
   xBounds: 5
@@ -14425,6 +14447,7 @@ MonoBehaviour:
   trainerAI: {fileID: 588358574}
   succeedMat: {fileID: 2100000, guid: d8607c50887637944a204017741b1b9a, type: 2}
   failMat: {fileID: 2100000, guid: 2261ffb890bf91b4798bad203f43c779, type: 2}
+  resetDelay: 0.01
 --- !u!114 &2014033371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14441,7 +14464,7 @@ MonoBehaviour:
   trainerAI: {fileID: 588358574}
   resetKey: 49
   testReset: 0
-  curricularTraining: 0
+  curricularTraining: 1
   changeX: 1
   changeZ: 1
   xBounds: 5
@@ -14706,6 +14729,7 @@ MonoBehaviour:
   trainerAI: {fileID: 165578732}
   succeedMat: {fileID: 2100000, guid: d8607c50887637944a204017741b1b9a, type: 2}
   failMat: {fileID: 2100000, guid: 2261ffb890bf91b4798bad203f43c779, type: 2}
+  resetDelay: 0.01
 --- !u!114 &2027734767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14722,7 +14746,7 @@ MonoBehaviour:
   trainerAI: {fileID: 165578732}
   resetKey: 49
   testReset: 0
-  curricularTraining: 0
+  curricularTraining: 1
   changeX: 1
   changeZ: 1
   xBounds: 5
@@ -14997,6 +15021,7 @@ MonoBehaviour:
   trainerAI: {fileID: 954632926}
   succeedMat: {fileID: 2100000, guid: d8607c50887637944a204017741b1b9a, type: 2}
   failMat: {fileID: 2100000, guid: 2261ffb890bf91b4798bad203f43c779, type: 2}
+  resetDelay: 0.01
 --- !u!114 &2146778038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15013,7 +15038,7 @@ MonoBehaviour:
   trainerAI: {fileID: 954632926}
   resetKey: 49
   testReset: 0
-  curricularTraining: 0
+  curricularTraining: 1
   changeX: 1
   changeZ: 1
   xBounds: 5
