@@ -50,9 +50,9 @@ namespace Training
 
         void CheckCurricular()
         {
-            if (!curricularTraining) return;
+            if (!curricularTraining || EnvParamManager.Instance == null) return;
 
-            float prog = Academy.Instance.EnvironmentParameters.GetWithDefault("env_params", -1);
+            float prog = EnvParamManager.Instance.prog;
 
             if (prog < 0) return;
 
