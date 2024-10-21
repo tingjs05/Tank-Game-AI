@@ -1,4 +1,5 @@
 using UnityEngine;
+using Unity.MLAgents;
 using AI;
 
 namespace Training
@@ -9,6 +10,7 @@ namespace Training
         [SerializeField] TankController trainerAI;
         [SerializeField] KeyCode resetKey = KeyCode.Alpha1;
         [SerializeField] bool testReset = false;
+        [SerializeField] bool curricularTraining = false;
 
         [Header("Position Settings")]
         [SerializeField] bool changeX;
@@ -30,11 +32,26 @@ namespace Training
         // Update is called once per frame
         void Update()
         {
+            CheckCurricular();
+
             if (!testReset) return;
             if (!Input.GetKeyDown(resetKey)) return;
 
             agentAI.GetComponent<TankController>()?.Reset();
             SetNewEpisode();
+        }
+
+        void CheckCurricular()
+        {
+            if (!curricularTraining) return;
+
+            float prog = Academy.Instance.EnvironmentParameters.GetWithDefault("env_params", -1);
+
+            if (prog < 0) return;
+
+            randomlySwitchPositions = prog >= 1f;
+            changeX = prog >= 2f;
+            changeZ = prog >= 2f;
         }
 
         void SetNewEpisode()
