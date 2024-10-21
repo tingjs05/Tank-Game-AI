@@ -48,7 +48,7 @@ behaviors:
         encoding_size: 256
       gail:
         gamma: 0.99
-        strength: 0.5
+        strength: 5.0
         network_settings:
           normalize: true
           hidden_units: 256
@@ -61,7 +61,7 @@ behaviors:
         encoding_size: null
         use_actions: false
         use_vail: false
-        demo_path: demos/TankBehaviorDemo_CMT2_AI.demo
+        demo_path: demos/TankBehaviorDemo_CUR_AI.demo
     init_path: null
     keep_checkpoints: 5
     checkpoint_interval: 500000
@@ -77,9 +77,9 @@ behaviors:
       play_against_latest_model_ratio: 0.5
       initial_elo: 1200.0
     behavioral_cloning:
-      demo_path: demos/TankBehaviorDemo_CMT2_AI.demo
+      demo_path: demos/TankBehaviorDemo_CUR_AI.demo
       steps: 0
-      strength: 5.0
+      strength: 0.5
       samples_per_update: 0
       num_epoch: null
       batch_size: null
