@@ -193,20 +193,20 @@ MonoBehaviour:
   damagedPenalty: 0.3
   missedShotPenalty: 0.5
   hitShotReward: 1
-  aimReward: 0.15
-  aimedShotReward: 0.3
+  aimReward: 0
+  aimedShotReward: 0
   killReward: 10
-  recoilControlReward: 0.25
+  recoilControlReward: 0
   moveTowardsPreferredDirReward: 0
-  closeDistanceReward: 0.5
-  movementPenalty: 0.005
+  closeDistanceReward: 0
+  movementPenalty: 0
   dangerWeight: 0.5
   correctDirThreshold: 0.85
   aimDirThreshold: 0.99
-  findTargetReward: 0.5
-  targetNotFoundPenalty: 1
+  findTargetReward: 0
+  targetNotFoundPenalty: 0
   targetNotFoundPenaltyInterval: 5
-  obstacleCollisionPenalty: 0.8
+  obstacleCollisionPenalty: 0.5
   obstacleTag: Obstacle
   deathPenalty: 1
 --- !u!114 &4819517146171378741
