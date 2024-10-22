@@ -876,8 +876,8 @@ MonoBehaviour:
   resetKey: 49
   testReset: 0
   curricularTraining: 0
-  changeX: 1
-  changeZ: 1
+  changeX: 0
+  changeZ: 0
   xBounds: 5
   zBounds: 0.7
   randomlySwitchPositions: 1
@@ -898,6 +898,7 @@ MonoBehaviour:
   trainerAI: {fileID: 192341136}
   succeedMat: {fileID: 2100000, guid: d8607c50887637944a204017741b1b9a, type: 2}
   failMat: {fileID: 2100000, guid: 2261ffb890bf91b4798bad203f43c779, type: 2}
+  resetDelay: 0.01
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
