@@ -9,7 +9,7 @@ behaviors:
       beta: 0.03
       epsilon: 0.2
       lambd: 0.95
-      num_epoch: 8
+      num_epoch: 3
       learning_rate_schedule: linear
       beta_schedule: linear
       epsilon_schedule: linear
@@ -61,7 +61,7 @@ behaviors:
         encoding_size: null
         use_actions: false
         use_vail: false
-        demo_path: demos/TankBehaviorDemo_CUR_AI.demo
+        demo_path: demos/TankBehaviorDemo_CMT_AI.demo
     init_path: null
     keep_checkpoints: 5
     checkpoint_interval: 500000
@@ -77,7 +77,7 @@ behaviors:
       play_against_latest_model_ratio: 0.5
       initial_elo: 1200.0
     behavioral_cloning:
-      demo_path: demos/TankBehaviorDemo_CUR_AI.demo
+      demo_path: demos/TankBehaviorDemo_CMT_AI.demo
       steps: 0
       strength: 0.5
       samples_per_update: 0
@@ -167,7 +167,7 @@ checkpoint_settings:
   run_id: Gen22a
   initialize_from: null
   load_model: false
-  resume: false
+  resume: true
   force: false
   train_model: false
   inference: false
