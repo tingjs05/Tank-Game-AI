@@ -1,5 +1,4 @@
 using UnityEngine;
-using Unity.MLAgents;
 using AI;
 
 namespace Training
@@ -16,6 +15,8 @@ namespace Training
         [SerializeField] bool scaleX = true;
         [SerializeField] bool scaleZ = true;
         [SerializeField] bool rotateY = false;
+
+        float prog => EnvParamManager.Instance.prog;
 
         // Start is called before the first frame update
         void Start()
@@ -42,11 +43,7 @@ namespace Training
 
         void CheckCurricular()
         {
-            if (!curricularTraining || EnvParamManager.Instance == null) return;
-
-            float prog = EnvParamManager.Instance.prog;
-
-            if (prog < 0) return;
+            if (!curricularTraining || EnvParamManager.Instance == null || prog < 0) return;
 
             scaleX = prog >= 3f;
             scaleZ = prog >= 3f;

@@ -1,5 +1,4 @@
 using UnityEngine;
-using Unity.MLAgents;
 using AI;
 
 namespace Training
@@ -21,6 +20,8 @@ namespace Training
         [Header("Switch Settings")]
         [SerializeField] bool randomlySwitchPositions;
         [SerializeField, Range(0f, 1f)] float switchChance = 0.5f;
+
+        float prog => EnvParamManager.Instance.prog;
 
         // Start is called before the first frame update
         void Start()
@@ -50,11 +51,7 @@ namespace Training
 
         void CheckCurricular()
         {
-            if (!curricularTraining || EnvParamManager.Instance == null) return;
-
-            float prog = EnvParamManager.Instance.prog;
-
-            if (prog < 0) return;
+            if (!curricularTraining || EnvParamManager.Instance == null || prog < 0) return;
 
             randomlySwitchPositions = prog >= 1f;
             changeX = prog >= 2f;

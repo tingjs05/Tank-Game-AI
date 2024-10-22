@@ -1,5 +1,4 @@
 using UnityEngine;
-using Unity.MLAgents;
 using AI.FSM;
 
 namespace Training
@@ -8,15 +7,12 @@ namespace Training
     {
         [SerializeField] TankFSM trainerAI;
         [SerializeField] bool curricularTraining = false;
+        float prog => EnvParamManager.Instance.prog;
 
         // Update is called once per frame
         void Update()
         {
-            if (!curricularTraining || EnvParamManager.Instance == null) return;
-
-            float prog = EnvParamManager.Instance.prog;
-
-            if (prog < 0) return;
+            if (!curricularTraining || EnvParamManager.Instance == null || prog < 0) return;
 
             trainerAI.enabled = prog >= 4f;
         }
