@@ -136,19 +136,6 @@ environment_parameters:
           seed: 5002
           value: 3.0
       name: RandomObstacle
-      completion_criteria:
-        behavior: TankBehavior
-        measure: reward
-        min_lesson_length: 100
-        signal_smoothing: true
-        threshold: 1000.0
-        require_reset: false
-    - value:
-        sampler_type: constant
-        sampler_parameters:
-          seed: 5003
-          value: 4.0
-      name: CombatTraining
       completion_criteria: null
 checkpoint_settings:
   run_id: Gen26a
