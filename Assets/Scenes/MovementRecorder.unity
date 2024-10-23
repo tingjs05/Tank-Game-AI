@@ -259,7 +259,7 @@ PrefabInstance:
     - target: {fileID: 346442620484892858, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: maxHealth
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
@@ -878,7 +878,7 @@ MonoBehaviour:
   curricularTraining: 0
   changeX: 1
   changeZ: 1
-  xBounds: 5
+  xBounds: 2.5
   zBounds: 0.7
   randomlySwitchPositions: 1
   switchChance: 0.5
