@@ -79,7 +79,7 @@ behaviors:
     behavioral_cloning:
       demo_path: demos/TankBehaviorDemo_RPOS_RSWH.demo
       steps: 0
-      strength: 0.5
+      strength: 3.0
       samples_per_update: 0
       num_epoch: null
       batch_size: null
@@ -128,7 +128,7 @@ environment_parameters:
         measure: reward
         min_lesson_length: 100
         signal_smoothing: true
-        threshold: 800.0
+        threshold: 900.0
         require_reset: false
     - value:
         sampler_type: constant
@@ -141,7 +141,7 @@ environment_parameters:
         measure: reward
         min_lesson_length: 100
         signal_smoothing: true
-        threshold: 800.0
+        threshold: 1000.0
         require_reset: false
     - value:
         sampler_type: constant
@@ -154,7 +154,7 @@ environment_parameters:
         measure: reward
         min_lesson_length: 100
         signal_smoothing: true
-        threshold: 800.0
+        threshold: 1000.0
         require_reset: false
     - value:
         sampler_type: constant
@@ -167,7 +167,7 @@ checkpoint_settings:
   run_id: Gen26
   initialize_from: null
   load_model: false
-  resume: false
+  resume: true
   force: false
   train_model: false
   inference: false
