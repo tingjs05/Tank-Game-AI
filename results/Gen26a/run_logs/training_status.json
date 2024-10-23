@@ -3,7 +3,7 @@
         "lesson_num": 0
     },
     "TankBehavior": {
-        "elo": 1200.0,
+        "elo": 1141.1126675765652,
         "checkpoints": [
             {
                 "steps": 0,
@@ -13,15 +13,33 @@
                 "auxillary_file_paths": [
                     "results\\Gen26a\\TankBehavior\\TankBehavior-0.pt"
                 ]
+            },
+            {
+                "steps": 499456,
+                "file_path": "results\\Gen26a\\TankBehavior\\TankBehavior-499456.onnx",
+                "reward": -70.62738291422527,
+                "creation_time": 1729657862.43367,
+                "auxillary_file_paths": [
+                    "results\\Gen26a\\TankBehavior\\TankBehavior-499456.pt"
+                ]
+            },
+            {
+                "steps": 830371,
+                "file_path": "results\\Gen26a\\TankBehavior\\TankBehavior-830371.onnx",
+                "reward": null,
+                "creation_time": 1729658787.3832233,
+                "auxillary_file_paths": [
+                    "results\\Gen26a\\TankBehavior\\TankBehavior-830371.pt"
+                ]
             }
         ],
         "final_checkpoint": {
-            "steps": 0,
+            "steps": 830371,
             "file_path": "results\\Gen26a\\TankBehavior.onnx",
             "reward": null,
-            "creation_time": 1729656334.1290345,
+            "creation_time": 1729658787.3832233,
             "auxillary_file_paths": [
-                "results\\Gen26a\\TankBehavior\\TankBehavior-0.pt"
+                "results\\Gen26a\\TankBehavior\\TankBehavior-830371.pt"
             ]
         }
     },
