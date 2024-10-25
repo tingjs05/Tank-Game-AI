@@ -15,6 +15,7 @@ namespace Training
         [SerializeField] bool scaleX = true;
         [SerializeField] bool scaleZ = true;
         [SerializeField] bool rotateY = false;
+        [SerializeField] float lessonValue = 3f;
 
         float prog => EnvParamManager.Instance.prog;
 
@@ -45,9 +46,9 @@ namespace Training
         {
             if (!curricularTraining || EnvParamManager.Instance == null || prog < 0) return;
 
-            scaleX = prog >= 3f;
-            scaleZ = prog >= 3f;
-            rotateY = prog >= 3f;
+            scaleX = prog >= lessonValue;
+            scaleZ = prog >= lessonValue;
+            rotateY = prog >= lessonValue;
         }
 
         void SetNewEpisode()

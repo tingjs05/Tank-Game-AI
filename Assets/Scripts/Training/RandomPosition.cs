@@ -20,6 +20,8 @@ namespace Training
         [Header("Switch Settings")]
         [SerializeField] bool randomlySwitchPositions;
         [SerializeField, Range(0f, 1f)] float switchChance = 0.5f;
+        [SerializeField] float lessonValueSwitch = 1f;
+        [SerializeField] float lessonValueRandomPos = 2f;
 
         float prog => EnvParamManager.Instance.prog;
 
@@ -53,9 +55,9 @@ namespace Training
         {
             if (!curricularTraining || EnvParamManager.Instance == null || prog < 0) return;
 
-            randomlySwitchPositions = prog >= 1f;
-            changeX = prog >= 2f;
-            changeZ = prog >= 2f;
+            randomlySwitchPositions = prog >= lessonValueSwitch;
+            changeX = prog >= lessonValueRandomPos;
+            changeZ = prog >= lessonValueRandomPos;
         }
 
         void SetNewEpisode()

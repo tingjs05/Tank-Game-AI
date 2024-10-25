@@ -7,6 +7,7 @@ namespace Training
     {
         [SerializeField] TankFSM trainerAI;
         [SerializeField] bool curricularTraining = false;
+        [SerializeField] float lessonValue = 4f;
         float prog => EnvParamManager.Instance.prog;
 
         // Update is called once per frame
@@ -14,7 +15,7 @@ namespace Training
         {
             if (!curricularTraining || EnvParamManager.Instance == null || prog < 0) return;
 
-            trainerAI.enabled = prog >= 4f;
+            trainerAI.enabled = prog >= lessonValue;
         }
     }
 }
