@@ -14,6 +14,9 @@ namespace Training
         Renderer rend;
         bool successfulRun = false;
 
+        public delegate bool Condition();
+        public Condition overrideCondition = null;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -24,6 +27,9 @@ namespace Training
 
         void Succeed()
         {
+            // check if there is an override condition
+            if (overrideCondition != null && !overrideCondition.Invoke()) return;
+            // set colour to green
             successfulRun = true;
             rend.material = succeedMat;
         }
