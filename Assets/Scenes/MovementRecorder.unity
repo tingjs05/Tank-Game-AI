@@ -248,6 +248,7 @@ MonoBehaviour:
   scaleX: 0
   scaleZ: 0
   rotateY: 0
+  lessonValue: 3
 --- !u!1001 &192341132
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -765,6 +766,7 @@ GameObject:
   - component: {fileID: 730236580}
   - component: {fileID: 730236584}
   - component: {fileID: 730236585}
+  - component: {fileID: 730236586}
   m_Layer: 3
   m_Name: Ground
   m_TagString: Untagged
@@ -882,6 +884,8 @@ MonoBehaviour:
   zBounds: 0.7
   randomlySwitchPositions: 1
   switchChance: 0.5
+  lessonValueSwitch: 1
+  lessonValueRandomPos: 2
 --- !u!114 &730236585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -899,6 +903,23 @@ MonoBehaviour:
   succeedMat: {fileID: 2100000, guid: d8607c50887637944a204017741b1b9a, type: 2}
   failMat: {fileID: 2100000, guid: 2261ffb890bf91b4798bad203f43c779, type: 2}
   resetDelay: 0.01
+--- !u!114 &730236586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730236579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8488e57337173fe488669ae9d7a0b4f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentAI: {fileID: 531127625}
+  groundManager: {fileID: 730236585}
+  curricularTraining: 0
+  changeTask: 1
+  lessonValue: 2
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0

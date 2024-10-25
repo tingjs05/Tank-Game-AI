@@ -38,12 +38,9 @@ namespace AI
 
         TankAgent agent;
         TankController controller;
-
         Vector3 horizontalVel;
         float dot, dirRewardScale, currDistance, prevDistance, targetNotFoundCounter;
         bool targetSeen, foundTarget;
-
-        [HideInInspector] bool reset_on_found = false;
 
         // Start is called before the first frame update
         void Start()
@@ -74,13 +71,6 @@ namespace AI
                 foundTarget = true;
                 LogReward("Found Target Reward");
                 agent.AddReward(findTargetReward);
-
-                // check if need to end episode on found
-                if (reset_on_found) 
-                {
-                    agent.EndEpisode();
-                    return;
-                }
             }
 
             // check if target can be seen, if so, only reward for aiming and shooting

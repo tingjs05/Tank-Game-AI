@@ -25,7 +25,7 @@ namespace Training
             trainerAI.Died += Succeed;
         }
 
-        void Succeed()
+        public void Succeed()
         {
             // check if there is an override condition
             if (overrideCondition != null && !overrideCondition.Invoke()) return;
