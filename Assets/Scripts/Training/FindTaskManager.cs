@@ -30,8 +30,10 @@ namespace Training
 
             targetFound = agentAI.TargetInRange();
             dot = Vector3.Dot(agentAI.transform.forward, (trainerAI.position - agentAI.transform.position).normalized);
-            success = dot >= aimDirThreshold;
+
+            success = targetFound && dot >= aimDirThreshold;
             groundManager.overrideCondition = () => success;
+            
             if (!success) return;
             groundManager.Succeed();
             agentAI.EndEpisode();
