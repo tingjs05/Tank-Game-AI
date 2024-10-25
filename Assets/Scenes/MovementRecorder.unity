@@ -916,7 +916,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agentAI: {fileID: 531127625}
+  trainerAI: {fileID: 192341133}
   groundManager: {fileID: 730236585}
+  aimDirThreshold: 0.99
   curricularTraining: 0
   changeTask: 1
   lessonValue: 2
