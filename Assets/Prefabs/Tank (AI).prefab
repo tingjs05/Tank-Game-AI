@@ -191,10 +191,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   logRewards: 0
   damagedPenalty: 0.3
-  missedShotPenalty: 0.5
-  hitShotReward: 1
-  aimReward: 0.15
-  aimedShotReward: 0.3
+  missedShotPenalty: 1
+  hitShotReward: 2
+  aimReward: 0.5
+  aimedShotReward: 0.7
   killReward: 10
   recoilControlReward: 0.25
   moveTowardsPreferredDirReward: 0
@@ -203,7 +203,7 @@ MonoBehaviour:
   dangerWeight: 0.5
   correctDirThreshold: 0.85
   aimDirThreshold: 0.99
-  findTargetReward: 0.5
+  findTargetReward: 5
   targetNotFoundPenalty: 1
   targetNotFoundPenaltyInterval: 5
   obstacleCollisionPenalty: 0.8
