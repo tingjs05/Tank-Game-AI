@@ -104,7 +104,7 @@ environment_parameters:
           behavior: TankBehavior
           signal_smoothing: true
           min_lesson_length: 100
-          threshold: 500
+          threshold: 800
         value: 0.0
       - name: RandomPositionFindTarget
         completion_criteria:
@@ -112,7 +112,7 @@ environment_parameters:
           behavior: TankBehavior
           signal_smoothing: true
           min_lesson_length: 100
-          threshold: 500
+          threshold: 800
         value: 1.0
       - name: RandomPositionCombat
         completion_criteria:
