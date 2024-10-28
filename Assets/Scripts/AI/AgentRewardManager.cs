@@ -17,6 +17,7 @@ namespace AI
         [SerializeField] float recoilControlReward = 0.5f;
 
         [Header("Movement")]
+        [SerializeField] float faceMoveDirectionReward = 0.05f;
         [SerializeField] float moveTowardsPreferredDirReward = 5f;
         [SerializeField] float closeDistanceReward = 0.5f;
         [SerializeField] float movementPenalty = 0.05f;
@@ -63,6 +64,20 @@ namespace AI
 
         void FixedUpdate() 
         {
+            // calculate horizontal velocity
+            horizontalVel = controller.rb.velocity;
+            horizontalVel.y = 0f;
+            horizontalVel.Normalize();
+
+            // check if facing and moving forward
+            dot = Vector3.Dot(transform.forward, horizontalVel);
+
+            if (dot >= correctDirThreshold) 
+            {
+                LogReward("Face Move Direction Reward");
+                agent.AddReward(ScaleReward(faceMoveDirectionReward, dot, correctDirThreshold));
+            }
+
             targetSeen = agent.TargetInRange();
 
             // reward AI for finding the target
@@ -83,11 +98,6 @@ namespace AI
                 agent.AddReward(ScaleReward(aimReward, dot, aimDirThreshold));
                 return;
             }
-
-            // calculate horizontal velocity
-            horizontalVel = controller.rb.velocity;
-            horizontalVel.y = 0f;
-            horizontalVel.Normalize();
 
             // penalize the AI every interval for not finding target
             TargetFoundCheck();

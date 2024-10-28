@@ -196,7 +196,8 @@ MonoBehaviour:
   aimReward: 0.5
   aimedShotReward: 0.7
   killReward: 10
-  recoilControlReward: 0.05
+  recoilControlReward: 0.005
+  faceMoveDirectionReward: 0.003
   moveTowardsPreferredDirReward: 0
   closeDistanceReward: 0.5
   movementPenalty: 0.005
