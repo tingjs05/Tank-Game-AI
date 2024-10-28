@@ -8,6 +8,7 @@ namespace Training
         [SerializeField] TankAgent agentAI;
         [SerializeField] Transform trainerAI;
         [SerializeField] GroundMaterialManager groundManager;
+        [SerializeField] float completionReward = 10f;
         [SerializeField, Range(0f, 1f)] float aimDirThreshold = 0.99f;
         [SerializeField] bool curricularTraining = false;
         [SerializeField] bool changeTask = false;
@@ -37,6 +38,7 @@ namespace Training
             if (!success) return;
             groundManager.Succeed();
             agentAI.EndEpisode();
+            agentAI.AddReward(completionReward);
         }
     }
 }
