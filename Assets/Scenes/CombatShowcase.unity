@@ -248,6 +248,7 @@ MonoBehaviour:
   scaleX: 0
   scaleZ: 0
   rotateY: 0
+  lessonValue: 3
 --- !u!1001 &192341132
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -770,6 +771,8 @@ MonoBehaviour:
   zBounds: 0.7
   randomlySwitchPositions: 1
   switchChance: 0.5
+  lessonValueSwitch: 1
+  lessonValueRandomPos: 2
 --- !u!114 &730236585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1009,7 +1012,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 5022602860645237092, guid: 08e90cd26a1e1954cb3073af92652f9b,
+      objectReference: {fileID: 5022602860645237092, guid: 77a0c6ab3b9c74d4ba4c75a376a42b19,
         type: 3}
     - target: {fileID: 5289360980607516922, guid: d8363aba81a44b84280baebbda7b8003,
         type: 3}
