@@ -48,7 +48,7 @@ behaviors:
         encoding_size: 256
       gail:
         gamma: 0.99
-        strength: 0.5
+        strength: 3.0
         network_settings:
           normalize: true
           hidden_units: 256
@@ -73,7 +73,7 @@ behaviors:
     behavioral_cloning:
       demo_path: demos/TankBehaviorDemo_RPOS_RSWH.demo
       steps: 0
-      strength: 3.0
+      strength: 0.5
       samples_per_update: 0
       num_epoch: null
       batch_size: null
@@ -104,7 +104,7 @@ environment_parameters:
           behavior: TankBehavior
           signal_smoothing: true
           min_lesson_length: 100
-          threshold: 5
+          threshold: 5.0
         value: 1.0
       - name: RandomPositionCombat
         completion_criteria:
@@ -112,7 +112,7 @@ environment_parameters:
           behavior: TankBehavior
           signal_smoothing: true
           min_lesson_length: 100
-          threshold: 900
+          threshold: 900.0
         value: 2.0
       - name: RandomObstacleCombat
         value: 3.0
