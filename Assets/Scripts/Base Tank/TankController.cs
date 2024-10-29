@@ -18,6 +18,11 @@ public class TankController : MonoBehaviour, IDamagable
     public GameObject projectilePrefab;
     public Slider healthBar;
     public string boundaryTag = "Boundary";
+
+    [Header("Locks")]
+    public bool lockMovement = false;
+    public bool lockRotation = false;
+    public bool lockShooting = false;
     
     public Rigidbody rb { get; private set; }
     public float Health { get; private set; } = 0f;
@@ -65,6 +70,10 @@ public class TankController : MonoBehaviour, IDamagable
         move.x = Mathf.Clamp(move.x, -1f, 1f);
         move.y = Mathf.Clamp(move.y, -1f, 1f);
 
+        // check for locks
+        if (lockRotation) move.x = 0f;
+        if (lockMovement) move.y = 0f;
+
         // apply movement
         rb.AddForce(transform.forward * move.x * Time.deltaTime * moveSpeed, ForceMode.VelocityChange);
         rb.angularVelocity = transform.up * move.y * rotationSpeed;
@@ -72,6 +81,8 @@ public class TankController : MonoBehaviour, IDamagable
 
     public void Shoot()
     {
+        // check for shooting lock
+        if (lockShooting) return;
         // check if can shoot (after waiting for cooldown)
         if (shoot_cooldown < shootCooldown) return;
         // reset cooldown after shooting
