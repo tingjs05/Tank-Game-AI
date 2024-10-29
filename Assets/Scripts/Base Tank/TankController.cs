@@ -71,8 +71,8 @@ public class TankController : MonoBehaviour, IDamagable
         move.y = Mathf.Clamp(move.y, -1f, 1f);
 
         // check for locks
-        if (lockRotation) move.x = 0f;
-        if (lockMovement) move.y = 0f;
+        if (lockMovement) move.x = 0f;
+        if (lockRotation) move.y = 0f;
 
         // apply movement
         rb.AddForce(transform.forward * move.x * Time.deltaTime * moveSpeed, ForceMode.VelocityChange);
