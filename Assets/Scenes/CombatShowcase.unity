@@ -260,7 +260,7 @@ PrefabInstance:
     - target: {fileID: 346442620484892858, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: maxHealth
-      value: 20
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
@@ -456,8 +456,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.48476848, y: 0, z: 0, w: 0.8746425}
-  m_LocalPosition: {x: 0, y: 8.5, z: -9.1}
+  m_LocalRotation: {x: 0.4847685, y: 0, z: 0, w: 0.8746425}
+  m_LocalPosition: {x: 0, y: 8.5, z: -9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -519,7 +519,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76b208a53b2153343a231598b4f56d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  target: {fileID: 1573570260}
   offset: {x: 0, y: 8, z: -5}
   smoothTime: 0.3
 --- !u!1 &410087039
@@ -765,9 +765,9 @@ MonoBehaviour:
   resetKey: 49
   testReset: 1
   curricularTraining: 0
-  changeX: 0
-  changeZ: 0
-  xBounds: 2.5
+  changeX: 1
+  changeZ: 1
+  xBounds: 5
   zBounds: 0.7
   randomlySwitchPositions: 1
   switchChance: 0.5
@@ -1012,7 +1012,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 5022602860645237092, guid: 77a0c6ab3b9c74d4ba4c75a376a42b19,
+      objectReference: {fileID: 5022602860645237092, guid: 15e5ea17c8a585a4cbe260953f980d7b,
         type: 3}
     - target: {fileID: 5289360980607516922, guid: d8363aba81a44b84280baebbda7b8003,
         type: 3}
