@@ -95,32 +95,47 @@ engine_settings:
   target_frame_rate: -1
   capture_frame_rate: 60
   no_graphics: false
-environment_parameters: 
+environment_parameters:
   env_params:
     curriculum:
-      - name: RandomPositionFindTarget
-        completion_criteria:
-          measure: reward
-          behavior: TankBehavior
-          signal_smoothing: true
-          min_lesson_length: 100
-          threshold: 5.0
-        value: 1.0
-      - name: RandomPositionCombat
-        completion_criteria:
-          measure: reward
-          behavior: TankBehavior
-          signal_smoothing: true
-          min_lesson_length: 100
-          threshold: 900.0
-        value: 2.0
-      - name: RandomObstacleCombat
-        value: 3.0
+    - value:
+        sampler_type: constant
+        sampler_parameters:
+          seed: 4672
+          value: 1.0
+      name: RandomPositionFindTarget
+      completion_criteria:
+        behavior: TankBehavior
+        measure: reward
+        min_lesson_length: 100
+        signal_smoothing: true
+        threshold: 1.0
+        require_reset: false
+    - value:
+        sampler_type: constant
+        sampler_parameters:
+          seed: 4673
+          value: 2.0
+      name: RandomPositionCombat
+      completion_criteria:
+        behavior: TankBehavior
+        measure: reward
+        min_lesson_length: 100
+        signal_smoothing: true
+        threshold: 900.0
+        require_reset: false
+    - value:
+        sampler_type: constant
+        sampler_parameters:
+          seed: 4674
+          value: 3.0
+      name: RandomObstacleCombat
+      completion_criteria: null
 checkpoint_settings:
   run_id: Gen31a
   initialize_from: null
   load_model: false
-  resume: false
+  resume: true
   force: false
   train_model: false
   inference: false
