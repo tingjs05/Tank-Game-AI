@@ -305,6 +305,7 @@ MonoBehaviour:
   agentAI: {fileID: 1149399528}
   trainerAI: {fileID: 1027391160}
   groundManager: {fileID: 59391763}
+  completionReward: 10
   aimDirThreshold: 0.99
   curricularTraining: 1
   changeTask: 0
@@ -494,6 +495,7 @@ MonoBehaviour:
   agentAI: {fileID: 1913717613}
   trainerAI: {fileID: 554191160}
   groundManager: {fileID: 90888639}
+  completionReward: 10
   aimDirThreshold: 0.99
   curricularTraining: 1
   changeTask: 0
@@ -1031,6 +1033,7 @@ MonoBehaviour:
   agentAI: {fileID: 1336120657}
   trainerAI: {fileID: 476184276}
   groundManager: {fileID: 160533185}
+  completionReward: 10
   aimDirThreshold: 0.99
   curricularTraining: 1
   changeTask: 0
@@ -1336,6 +1339,7 @@ MonoBehaviour:
   agentAI: {fileID: 177453422}
   trainerAI: {fileID: 447931511}
   groundManager: {fileID: 180019669}
+  completionReward: 10
   aimDirThreshold: 0.99
   curricularTraining: 1
   changeTask: 0
@@ -1482,6 +1486,11 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 346442620484892858, guid: 5a7316b93aaec4347858477e3ab3d11d,
+        type: 3}
+      propertyPath: lockShooting
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: target
@@ -1490,7 +1499,7 @@ PrefabInstance:
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
@@ -1596,7 +1605,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 182869138}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab16449f6c5d8cb4c9d7525c2957b8eb, type: 3}
   m_Name: 
@@ -1620,6 +1629,11 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 346442620484892858, guid: 5a7316b93aaec4347858477e3ab3d11d,
+        type: 3}
+      propertyPath: lockShooting
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: target
@@ -1628,7 +1642,7 @@ PrefabInstance:
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
@@ -1740,7 +1754,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 192341132}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab16449f6c5d8cb4c9d7525c2957b8eb, type: 3}
   m_Name: 
@@ -1801,6 +1815,7 @@ MonoBehaviour:
   agentAI: {fileID: 1770132701}
   trainerAI: {fileID: 1435605784}
   groundManager: {fileID: 219217177}
+  completionReward: 10
   aimDirThreshold: 0.99
   curricularTraining: 1
   changeTask: 0
@@ -1990,6 +2005,7 @@ MonoBehaviour:
   agentAI: {fileID: 648686205}
   trainerAI: {fileID: 1549426883}
   groundManager: {fileID: 252644626}
+  completionReward: 10
   aimDirThreshold: 0.99
   curricularTraining: 1
   changeTask: 0
@@ -2136,6 +2152,11 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 346442620484892858, guid: 5a7316b93aaec4347858477e3ab3d11d,
+        type: 3}
+      propertyPath: lockShooting
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: target
@@ -2144,7 +2165,7 @@ PrefabInstance:
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
@@ -2250,7 +2271,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 270885563}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab16449f6c5d8cb4c9d7525c2957b8eb, type: 3}
   m_Name: 
@@ -2274,6 +2295,11 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 346442620484892858, guid: 5a7316b93aaec4347858477e3ab3d11d,
+        type: 3}
+      propertyPath: lockShooting
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: target
@@ -2282,7 +2308,7 @@ PrefabInstance:
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
@@ -2388,7 +2414,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 305532349}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab16449f6c5d8cb4c9d7525c2957b8eb, type: 3}
   m_Name: 
@@ -2962,6 +2988,7 @@ MonoBehaviour:
   agentAI: {fileID: 422741071}
   trainerAI: {fileID: 1255230654}
   groundManager: {fileID: 374672816}
+  completionReward: 10
   aimDirThreshold: 0.99
   curricularTraining: 1
   changeTask: 0
@@ -3269,6 +3296,7 @@ MonoBehaviour:
   agentAI: {fileID: 473282409}
   trainerAI: {fileID: 1376206118}
   groundManager: {fileID: 421513100}
+  completionReward: 10
   aimDirThreshold: 0.99
   curricularTraining: 1
   changeTask: 0
@@ -3658,6 +3686,11 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 346442620484892858, guid: 5a7316b93aaec4347858477e3ab3d11d,
+        type: 3}
+      propertyPath: lockShooting
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: target
@@ -3666,7 +3699,7 @@ PrefabInstance:
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
@@ -3772,7 +3805,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 447931508}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab16449f6c5d8cb4c9d7525c2957b8eb, type: 3}
   m_Name: 
@@ -3796,6 +3829,11 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 346442620484892858, guid: 5a7316b93aaec4347858477e3ab3d11d,
+        type: 3}
+      propertyPath: lockShooting
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: target
@@ -3804,7 +3842,7 @@ PrefabInstance:
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
@@ -3910,7 +3948,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 462160694}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab16449f6c5d8cb4c9d7525c2957b8eb, type: 3}
   m_Name: 
@@ -4050,6 +4088,11 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 346442620484892858, guid: 5a7316b93aaec4347858477e3ab3d11d,
+        type: 3}
+      propertyPath: lockShooting
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: target
@@ -4058,7 +4101,7 @@ PrefabInstance:
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
@@ -4164,7 +4207,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 476184273}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab16449f6c5d8cb4c9d7525c2957b8eb, type: 3}
   m_Name: 
@@ -4336,6 +4379,7 @@ MonoBehaviour:
   agentAI: {fileID: 509817525}
   trainerAI: {fileID: 2046522163}
   groundManager: {fileID: 495580972}
+  completionReward: 10
   aimDirThreshold: 0.99
   curricularTraining: 1
   changeTask: 0
@@ -4873,6 +4917,7 @@ MonoBehaviour:
   agentAI: {fileID: 1064884221}
   trainerAI: {fileID: 853880073}
   groundManager: {fileID: 534817350}
+  completionReward: 10
   aimDirThreshold: 0.99
   curricularTraining: 1
   changeTask: 0
@@ -5019,6 +5064,11 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 346442620484892858, guid: 5a7316b93aaec4347858477e3ab3d11d,
+        type: 3}
+      propertyPath: lockShooting
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: target
@@ -5027,7 +5077,7 @@ PrefabInstance:
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
@@ -5133,7 +5183,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 554191157}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab16449f6c5d8cb4c9d7525c2957b8eb, type: 3}
   m_Name: 
@@ -5157,6 +5207,11 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 346442620484892858, guid: 5a7316b93aaec4347858477e3ab3d11d,
+        type: 3}
+      propertyPath: lockShooting
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: target
@@ -5165,7 +5220,7 @@ PrefabInstance:
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
@@ -5271,7 +5326,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 554930679}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab16449f6c5d8cb4c9d7525c2957b8eb, type: 3}
   m_Name: 
@@ -5940,6 +5995,7 @@ MonoBehaviour:
   agentAI: {fileID: 1752768893}
   trainerAI: {fileID: 1282477089}
   groundManager: {fileID: 668068688}
+  completionReward: 10
   aimDirThreshold: 0.99
   curricularTraining: 1
   changeTask: 0
@@ -6256,6 +6312,7 @@ MonoBehaviour:
   agentAI: {fileID: 1425869384}
   trainerAI: {fileID: 1066710932}
   groundManager: {fileID: 702288818}
+  completionReward: 10
   aimDirThreshold: 0.99
   curricularTraining: 1
   changeTask: 0
@@ -6402,6 +6459,11 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 346442620484892858, guid: 5a7316b93aaec4347858477e3ab3d11d,
+        type: 3}
+      propertyPath: lockShooting
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: target
@@ -6410,7 +6472,7 @@ PrefabInstance:
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
@@ -6516,7 +6578,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 723986453}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab16449f6c5d8cb4c9d7525c2957b8eb, type: 3}
   m_Name: 
@@ -6712,6 +6774,7 @@ MonoBehaviour:
   agentAI: {fileID: 513359547}
   trainerAI: {fileID: 192341133}
   groundManager: {fileID: 730236585}
+  completionReward: 10
   aimDirThreshold: 0.99
   curricularTraining: 1
   changeTask: 0
@@ -6772,6 +6835,7 @@ MonoBehaviour:
   agentAI: {fileID: 587800085}
   trainerAI: {fileID: 305532352}
   groundManager: {fileID: 767833230}
+  completionReward: 10
   aimDirThreshold: 0.99
   curricularTraining: 1
   changeTask: 0
@@ -7010,6 +7074,7 @@ MonoBehaviour:
   agentAI: {fileID: 2091585765}
   trainerAI: {fileID: 462160697}
   groundManager: {fileID: 835992939}
+  completionReward: 10
   aimDirThreshold: 0.99
   curricularTraining: 1
   changeTask: 0
@@ -7156,6 +7221,11 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 346442620484892858, guid: 5a7316b93aaec4347858477e3ab3d11d,
+        type: 3}
+      propertyPath: lockShooting
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: target
@@ -7164,7 +7234,7 @@ PrefabInstance:
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
@@ -7270,7 +7340,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 853880070}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab16449f6c5d8cb4c9d7525c2957b8eb, type: 3}
   m_Name: 
@@ -7337,6 +7407,7 @@ MonoBehaviour:
   agentAI: {fileID: 1489498358}
   trainerAI: {fileID: 554930682}
   groundManager: {fileID: 857001767}
+  completionReward: 10
   aimDirThreshold: 0.99
   curricularTraining: 1
   changeTask: 0
@@ -7526,6 +7597,7 @@ MonoBehaviour:
   agentAI: {fileID: 648913471}
   trainerAI: {fileID: 1665954288}
   groundManager: {fileID: 881513585}
+  completionReward: 10
   aimDirThreshold: 0.99
   curricularTraining: 1
   changeTask: 0
@@ -8169,6 +8241,11 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 346442620484892858, guid: 5a7316b93aaec4347858477e3ab3d11d,
+        type: 3}
+      propertyPath: lockShooting
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: target
@@ -8177,7 +8254,7 @@ PrefabInstance:
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
@@ -8283,7 +8360,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 1007514697}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab16449f6c5d8cb4c9d7525c2957b8eb, type: 3}
   m_Name: 
@@ -8307,6 +8384,11 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 346442620484892858, guid: 5a7316b93aaec4347858477e3ab3d11d,
+        type: 3}
+      propertyPath: lockShooting
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: target
@@ -8315,7 +8397,7 @@ PrefabInstance:
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
@@ -8421,7 +8503,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 1008373543}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab16449f6c5d8cb4c9d7525c2957b8eb, type: 3}
   m_Name: 
@@ -8488,6 +8570,7 @@ MonoBehaviour:
   agentAI: {fileID: 310049748}
   trainerAI: {fileID: 270885566}
   groundManager: {fileID: 1012877097}
+  completionReward: 10
   aimDirThreshold: 0.99
   curricularTraining: 1
   changeTask: 0
@@ -8634,6 +8717,11 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 346442620484892858, guid: 5a7316b93aaec4347858477e3ab3d11d,
+        type: 3}
+      propertyPath: lockShooting
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: target
@@ -8642,7 +8730,7 @@ PrefabInstance:
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
@@ -8748,7 +8836,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 1027391157}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab16449f6c5d8cb4c9d7525c2957b8eb, type: 3}
   m_Name: 
@@ -8933,6 +9021,11 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 346442620484892858, guid: 5a7316b93aaec4347858477e3ab3d11d,
+        type: 3}
+      propertyPath: lockShooting
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: target
@@ -8941,7 +9034,7 @@ PrefabInstance:
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
@@ -9047,7 +9140,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 1066710929}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab16449f6c5d8cb4c9d7525c2957b8eb, type: 3}
   m_Name: 
@@ -9872,6 +9965,11 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 346442620484892858, guid: 5a7316b93aaec4347858477e3ab3d11d,
+        type: 3}
+      propertyPath: lockShooting
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: target
@@ -9880,7 +9978,7 @@ PrefabInstance:
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
@@ -9986,7 +10084,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 1255230651}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab16449f6c5d8cb4c9d7525c2957b8eb, type: 3}
   m_Name: 
@@ -10180,6 +10278,7 @@ MonoBehaviour:
   agentAI: {fileID: 125471055}
   trainerAI: {fileID: 1007514700}
   groundManager: {fileID: 1276530828}
+  completionReward: 10
   aimDirThreshold: 0.99
   curricularTraining: 1
   changeTask: 0
@@ -10326,6 +10425,11 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 346442620484892858, guid: 5a7316b93aaec4347858477e3ab3d11d,
+        type: 3}
+      propertyPath: lockShooting
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: target
@@ -10334,7 +10438,7 @@ PrefabInstance:
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
@@ -10440,7 +10544,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 1282477086}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab16449f6c5d8cb4c9d7525c2957b8eb, type: 3}
   m_Name: 
@@ -10707,6 +10811,11 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 346442620484892858, guid: 5a7316b93aaec4347858477e3ab3d11d,
+        type: 3}
+      propertyPath: lockShooting
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: target
@@ -10715,7 +10824,7 @@ PrefabInstance:
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
@@ -10821,7 +10930,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 1376206115}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab16449f6c5d8cb4c9d7525c2957b8eb, type: 3}
   m_Name: 
@@ -11088,6 +11197,11 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 346442620484892858, guid: 5a7316b93aaec4347858477e3ab3d11d,
+        type: 3}
+      propertyPath: lockShooting
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: target
@@ -11096,7 +11210,7 @@ PrefabInstance:
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
@@ -11202,7 +11316,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 1435605781}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab16449f6c5d8cb4c9d7525c2957b8eb, type: 3}
   m_Name: 
@@ -11691,6 +11805,11 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 346442620484892858, guid: 5a7316b93aaec4347858477e3ab3d11d,
+        type: 3}
+      propertyPath: lockShooting
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: target
@@ -11699,7 +11818,7 @@ PrefabInstance:
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
@@ -11805,7 +11924,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 1491097859}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab16449f6c5d8cb4c9d7525c2957b8eb, type: 3}
   m_Name: 
@@ -11934,6 +12053,11 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 346442620484892858, guid: 5a7316b93aaec4347858477e3ab3d11d,
+        type: 3}
+      propertyPath: lockShooting
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: target
@@ -11942,7 +12066,7 @@ PrefabInstance:
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
@@ -12048,7 +12172,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 1549426880}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab16449f6c5d8cb4c9d7525c2957b8eb, type: 3}
   m_Name: 
@@ -12369,6 +12493,7 @@ MonoBehaviour:
   agentAI: {fileID: 1205133188}
   trainerAI: {fileID: 723986456}
   groundManager: {fileID: 1593650425}
+  completionReward: 10
   aimDirThreshold: 0.99
   curricularTraining: 1
   changeTask: 0
@@ -12597,6 +12722,7 @@ MonoBehaviour:
   agentAI: {fileID: 1468593971}
   trainerAI: {fileID: 1008373546}
   groundManager: {fileID: 1608877542}
+  completionReward: 10
   aimDirThreshold: 0.99
   curricularTraining: 1
   changeTask: 0
@@ -12743,6 +12869,11 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 346442620484892858, guid: 5a7316b93aaec4347858477e3ab3d11d,
+        type: 3}
+      propertyPath: lockShooting
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: target
@@ -12751,7 +12882,7 @@ PrefabInstance:
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
@@ -12857,7 +12988,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 1665954285}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab16449f6c5d8cb4c9d7525c2957b8eb, type: 3}
   m_Name: 
@@ -13051,6 +13182,7 @@ MonoBehaviour:
   agentAI: {fileID: 1916354213}
   trainerAI: {fileID: 1976069126}
   groundManager: {fileID: 1716423765}
+  completionReward: 10
   aimDirThreshold: 0.99
   curricularTraining: 1
   changeTask: 0
@@ -13760,6 +13892,7 @@ MonoBehaviour:
   agentAI: {fileID: 2033437087}
   trainerAI: {fileID: 1491097862}
   groundManager: {fileID: 1883062373}
+  completionReward: 10
   aimDirThreshold: 0.99
   curricularTraining: 1
   changeTask: 0
@@ -14540,6 +14673,7 @@ MonoBehaviour:
   agentAI: {fileID: 497671293}
   trainerAI: {fileID: 182869141}
   groundManager: {fileID: 1964248894}
+  completionReward: 10
   aimDirThreshold: 0.99
   curricularTraining: 1
   changeTask: 0
@@ -14686,6 +14820,11 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 346442620484892858, guid: 5a7316b93aaec4347858477e3ab3d11d,
+        type: 3}
+      propertyPath: lockShooting
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: target
@@ -14694,7 +14833,7 @@ PrefabInstance:
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
@@ -14800,7 +14939,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 1976069123}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab16449f6c5d8cb4c9d7525c2957b8eb, type: 3}
   m_Name: 
@@ -14867,6 +15006,7 @@ MonoBehaviour:
   agentAI: {fileID: 933178474}
   trainerAI: {fileID: 2095629701}
   groundManager: {fileID: 2005589641}
+  completionReward: 10
   aimDirThreshold: 0.99
   curricularTraining: 1
   changeTask: 0
@@ -15256,6 +15396,11 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 346442620484892858, guid: 5a7316b93aaec4347858477e3ab3d11d,
+        type: 3}
+      propertyPath: lockShooting
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: target
@@ -15264,7 +15409,7 @@ PrefabInstance:
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
@@ -15370,7 +15515,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 2046522160}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab16449f6c5d8cb4c9d7525c2957b8eb, type: 3}
   m_Name: 
@@ -15637,6 +15782,11 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 346442620484892858, guid: 5a7316b93aaec4347858477e3ab3d11d,
+        type: 3}
+      propertyPath: lockShooting
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: target
@@ -15645,7 +15795,7 @@ PrefabInstance:
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2214163335328024394, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
@@ -15751,7 +15901,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 2095629698}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab16449f6c5d8cb4c9d7525c2957b8eb, type: 3}
   m_Name: 

@@ -127,9 +127,22 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 4674
-          value: 3.0
+          seed: 4673
+          value: 2.0
       name: RandomObstacleCombat
+      completion_criteria:
+        behavior: TankBehavior
+        measure: reward
+        min_lesson_length: 100
+        signal_smoothing: true
+        threshold: 700.0
+        require_reset: false
+    - value:
+        sampler_type: constant
+        sampler_parameters:
+          seed: 4674
+          value: 4.0
+      name: MovingTargetCombat
       completion_criteria: null
 checkpoint_settings:
   run_id: Gen31a
