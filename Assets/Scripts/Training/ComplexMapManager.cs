@@ -26,8 +26,8 @@ namespace Training
         Vector3 originalAIResetPosition, originalGroundScale;
         List<GameObject> obstacleLayouts = new List<GameObject>();
 
-        Vector3 originalTrainerPos => transform.parent.position + 
-            new Vector3(originalAIResetPosition.x, originalAIResetPosition.y, -originalAIResetPosition.z);
+        Vector3 originalTrainerPos => new Vector3(originalAIResetPosition.x, originalAIResetPosition.y, 
+            originalAIResetPosition.z - newAIResetPosition.z);
         Vector3 newTrainerPos => transform.parent.position + 
             new Vector3(newAIResetPosition.x, newAIResetPosition.y, -newAIResetPosition.z);
         float prog => EnvParamManager.Instance.prog;
@@ -69,8 +69,7 @@ namespace Training
                 originalGroundScale;
             
             // set original reset positions
-            agentController.SetResetPosition(useComplexMap ? (transform.parent.position + newAIResetPosition) : 
-                (transform.parent.position + originalAIResetPosition));
+            agentController.SetResetPosition(useComplexMap ? (transform.parent.position + newAIResetPosition) : originalAIResetPosition);
             trainerAI.SetResetPosition(useComplexMap ? (newTrainerPos) : (originalTrainerPos));
 
             // call random position again
