@@ -60,7 +60,7 @@ namespace Training
             changeZ = prog >= lessonValueRandomPos;
         }
 
-        void SetNewEpisode()
+        public void SetNewEpisode()
         {
             trainerAI.Reset();
 

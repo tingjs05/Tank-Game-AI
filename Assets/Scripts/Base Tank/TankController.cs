@@ -121,6 +121,11 @@ public class TankController : MonoBehaviour, IDamagable
         healthBar.value = Health;
     }
 
+    public void SetResetPosition(Vector3 newPos)
+    {
+        originalPosition = newPos;
+    }
+
     public void Damage(float damage)
     {
         Health -= damage;
