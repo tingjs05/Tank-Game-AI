@@ -72,10 +72,17 @@ namespace Training
             agentController.SetResetPosition(useComplexMap ? (transform.parent.position + newAIResetPosition) : originalAIResetPosition);
             trainerAI.SetResetPosition(useComplexMap ? (newTrainerPos) : (originalTrainerPos));
 
-            // call random position again
-            randomPositionManager.SetNewEpisode();
+            if (!useComplexMap)
+            {
+                // check if turned on automatic reset
+                randomPositionManager.reset_position = true;
+                return;
+            }
 
-            if (!useComplexMap) return;
+            // check if manual reset has been turned off
+            randomPositionManager.reset_position = false;
+            // call random position manually
+            randomPositionManager.SetNewEpisode();
 
             // show random obstacle
             foreach (GameObject obj in obstacleLayouts)
