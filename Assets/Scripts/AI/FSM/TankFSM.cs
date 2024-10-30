@@ -11,6 +11,8 @@ namespace AI.FSM
         [Header("Movement")]
         [SerializeField, Range(0f, 1f)] protected float movementThreshold = 0.6f;
         [SerializeField, Range(0f, 1f)] protected float hardMovementThreshold = 0.85f;
+        [SerializeField, Range(0f, 1f)] protected float obstacleAvoidanceCorrection = 0.05f;
+        [SerializeField] protected float movementObstacleDetectionScale = 1.25f;
 
         [Header("Combat")]
         [SerializeField] protected float lineOfSightRadius = 0.15f;
@@ -25,12 +27,16 @@ namespace AI.FSM
         [Header("Resets")]
         [SerializeField] protected bool resetOnDeath, resetOnKill = false;
 
+        #region Public Properties
         public Transform _target => target;
+        public float obstacle_avoidance_correction => obstacleAvoidanceCorrection;
+        public float movement_obstacle_detection_scale => movementObstacleDetectionScale;
         public float shoot_threshold => shootThreshold;
         public float recoil_control => recoilControl;
         public float min_aim_speed => minAimSpeed;
         public float flee_distance => fleeDistance;
         public float flee_health_threshold => fleeHealthThreshold;
+        #endregion
         
         public TankController controller { get; protected set; }
         public ObstacleDetectionManager obstacleDetection { get; protected set; }

@@ -188,8 +188,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   current_state_name: AI.FSM.IdleState
   target: {fileID: 0}
-  movementThreshold: 0.85
-  hardMovementThreshold: 0.95
+  movementThreshold: 0.75
+  hardMovementThreshold: 0.99
+  obstacleAvoidanceCorrection: 0.05
+  movementObstacleDetectionScale: 1.15
   lineOfSightRadius: 0.15
   shootThreshold: 0.995
   recoilControl: 0.8
