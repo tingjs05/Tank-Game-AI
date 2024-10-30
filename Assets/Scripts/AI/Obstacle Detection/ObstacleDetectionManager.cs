@@ -31,6 +31,17 @@ namespace AI.ObstacleDetection
 
         public Vector3 GetPreferredDirection(Vector3 interestDir)
         {
+            CalculatePreferredDirection(interestDir);
+            
+            // if there is no preferred direction, try to calculate again with no interest direction
+            if (preferredDirection == Vector3.zero)
+                return CalculatePreferredDirection(Vector3.zero);
+            else
+                return preferredDirection;
+        }
+
+        Vector3 CalculatePreferredDirection(Vector3 interestDir)
+        {
             GetWeightsBasedOnObstacles();
             preferredDirection = Vector3.zero;
 
@@ -48,7 +59,8 @@ namespace AI.ObstacleDetection
             preferredDirection.y = 0f;
             preferredDirection *= mag;
             // normalize direction before returning
-            return preferredDirection.normalized;
+            preferredDirection.Normalize();
+            return preferredDirection;
         }
 
         public float[] GetWeightsBasedOnObstacles()
