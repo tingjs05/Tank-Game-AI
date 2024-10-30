@@ -148,7 +148,7 @@ environment_parameters:
         measure: reward
         min_lesson_length: 100
         signal_smoothing: true
-        threshold: 600.0
+        threshold: 900.0
         require_reset: false
     - value:
         sampler_type: constant
