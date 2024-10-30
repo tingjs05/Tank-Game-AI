@@ -718,9 +718,9 @@ MonoBehaviour:
   testReset: 0
   curricularTraining: 1
   scaleBounds: {x: 1, y: 4}
-  scaleX: 1
-  scaleZ: 1
-  rotateY: 1
+  scaleX: 0
+  scaleZ: 0
+  rotateY: 0
   lessonValue: 3
 --- !u!1 &2571023177432808167
 GameObject:
@@ -1443,8 +1443,8 @@ MonoBehaviour:
   resetKey: 49
   testReset: 0
   curricularTraining: 1
-  changeX: 1
-  changeZ: 1
+  changeX: 0
+  changeZ: 0
   xBounds: 5
   zBounds: 0.7
   randomlySwitchPositions: 1

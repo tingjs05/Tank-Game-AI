@@ -9,8 +9,13 @@ namespace AI.ObstacleDetection
         public float dangerRange = 1.5f;
         public float agentRadius = 0.5f;
         public string boundaryTag = "Boundary";
+
+        [Range(0f, 1f)] 
+        public float interestDirectionStrength = 0f;
+
         public bool showGizmos, showDirections, showDetectedObstacles = true;
         public LayerMask detectionMask, groundMask;
+        
 
         List<RaycastHit> obstaclesDetected = new List<RaycastHit>();
         Direction direction;
@@ -31,7 +36,7 @@ namespace AI.ObstacleDetection
 
         public Vector3 GetPreferredDirection(Vector3 interestDir)
         {
-            CalculatePreferredDirection(interestDir);
+            CalculatePreferredDirection(interestDir * (1f + (1f - interestDirectionStrength)));
             
             // if there is no preferred direction, try to calculate again with no interest direction
             if (preferredDirection == Vector3.zero)
