@@ -11,7 +11,7 @@ namespace AI.ObstacleDetection
         public string boundaryTag = "Boundary";
 
         [Range(0f, 1f)] 
-        public float interestDirectionStrength = 0f;
+        public float interestDirectionStrength = 1f;
 
         public bool showGizmos, showDirections, showDetectedObstacles = true;
         public LayerMask detectionMask, groundMask;
@@ -36,7 +36,7 @@ namespace AI.ObstacleDetection
 
         public Vector3 GetPreferredDirection(Vector3 interestDir)
         {
-            CalculatePreferredDirection(interestDir * (1f + (1f - interestDirectionStrength)));
+            CalculatePreferredDirection(interestDir);
             
             // if there is no preferred direction, try to calculate again with no interest direction
             if (preferredDirection == Vector3.zero)
@@ -56,7 +56,7 @@ namespace AI.ObstacleDetection
             // aggregate directions based on weights
             for (int i = 0; i < numberOfDirections; i++)
             {
-                preferredDirection += directions[i] * (interests[i] - weights[i]);
+                preferredDirection += directions[i] * ((interests[i] * interestDirectionStrength) - weights[i]);
             }
 
             // keep magnitude and take out y-axis direction

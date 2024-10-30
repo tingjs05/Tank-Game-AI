@@ -138,12 +138,12 @@ MonoBehaviour:
   target: {fileID: 0}
   movementThreshold: 0.85
   hardMovementThreshold: 0.95
+  lineOfSightRadius: 0.15
   shootThreshold: 0.999
   recoilControl: 0.8
   minAimSpeed: 0.75
   fleeDistance: 4
   fleeHealthThreshold: 0.5
-  boundaryTag: Boundary
   resetOnDeath: 0
   resetOnKill: 0
 --- !u!114 &3834176862689042385
@@ -162,6 +162,7 @@ MonoBehaviour:
   dangerRange: 2
   agentRadius: 0.5
   boundaryTag: Boundary
+  interestDirectionStrength: 1
   showGizmos: 1
   showDirections: 1
   showDetectedObstacles: 1
