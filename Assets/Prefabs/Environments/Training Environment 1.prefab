@@ -1886,13 +1886,13 @@ MonoBehaviour:
   agentAI: {fileID: 2159381047524604370}
   trainerAI: {fileID: 4073398036687843764}
   resetKey: 51
-  testReset: 1
-  curricularTraining: 0
+  testReset: 0
+  curricularTraining: 1
   newAIResetPosition: {x: 0, y: 0.5, z: -8.5}
   randomPositionManager: {fileID: 5288000337656803694}
   ground: {fileID: 5848734675940926217}
   extendedGroundScale: {x: 2, y: 2}
-  useComplexMap: 1
+  useComplexMap: 0
   lessonValue: 4
 --- !u!1 &6932927896083564198
 GameObject:
@@ -2380,7 +2380,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 1, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4240226799762785585}
@@ -2600,7 +2600,7 @@ PrefabInstance:
     - target: {fileID: 1238511705469550070, guid: d8363aba81a44b84280baebbda7b8003,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.5
+      value: -4.1
       objectReference: {fileID: 0}
     - target: {fileID: 1238511705469550070, guid: d8363aba81a44b84280baebbda7b8003,
         type: 3}
@@ -2766,7 +2766,7 @@ PrefabInstance:
     - target: {fileID: 9172984854521456848, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8.5
+      value: 4.1
       objectReference: {fileID: 0}
     - target: {fileID: 9172984854521456848, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
