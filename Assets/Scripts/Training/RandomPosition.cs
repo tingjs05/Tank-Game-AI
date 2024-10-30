@@ -25,16 +25,16 @@ namespace Training
 
         float prog => EnvParamManager.Instance.prog;
 
-        private bool resetPosition = false;
+        private bool resetPosition;
         public bool reset_position
         {
             get { return resetPosition; }
             set
             {
-                resetPosition = value;
-
                 if (value == resetPosition || agentAI == null || trainerAI == null) 
                     return;
+
+                resetPosition = value;
 
                 if (value)
                     agentAI.OnNewEpisode += SetNewEpisode;
