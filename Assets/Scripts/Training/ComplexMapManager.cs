@@ -72,15 +72,10 @@ namespace Training
             agentController.SetResetPosition(useComplexMap ? (transform.parent.position + newAIResetPosition) : originalAIResetPosition);
             trainerAI.SetResetPosition(useComplexMap ? (newTrainerPos) : (originalTrainerPos));
 
-            if (!useComplexMap)
-            {
-                // check if turned on automatic reset
-                randomPositionManager.reset_position = true;
-                return;
-            }
-
-            // check if manual reset has been turned off
-            randomPositionManager.reset_position = false;
+            // toggle reset position
+            randomPositionManager.reset_position = !useComplexMap;
+            // check if need to handle complex map
+            if (!useComplexMap) return;
             // call random position manually
             randomPositionManager.SetNewEpisode();
 

@@ -25,7 +25,7 @@ namespace Training
 
         float prog => EnvParamManager.Instance.prog;
 
-        private bool resetPosition;
+        private bool resetPosition = false;
         public bool reset_position
         {
             get { return resetPosition; }
