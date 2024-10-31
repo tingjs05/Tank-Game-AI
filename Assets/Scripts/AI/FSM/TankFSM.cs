@@ -99,6 +99,23 @@ namespace AI.FSM
             return raycast;
         }
 
+        public void ScaleInterestStrength(Vector3 prefDir)
+        {
+            // try projecting hitbox in move direction to double check for obstacles
+            if (Physics.OverlapBox(transform.position + 
+                (prefDir * obstacleDetection.agentRadius), 
+                new Vector3(obstacleDetection.agentRadius, obstacleDetection.agentRadius, 
+                obstacleDetection.agentRadius) * movement_obstacle_detection_scale, transform.rotation, 
+                obstacleDetection.detectionMask).Length > 0)
+            {
+                obstacleDetection.interestDirectionStrength = 
+                    Mathf.Clamp01(obstacleDetection.interestDirectionStrength - obstacle_avoidance_correction);
+                return;
+            }
+
+            obstacleDetection.interestDirectionStrength = 1f;
+        }
+
         public virtual void MoveTowards(Vector3 direction, bool reverse = false)
         {
             // clean up direction input
