@@ -146,6 +146,8 @@ MonoBehaviour:
   minAimSpeed: 0.75
   fleeDistance: 4
   fleeHealthThreshold: 0.5
+  fleeDuration: {x: 3, y: 5}
+  fleeCooldown: {x: 3, y: 5}
   resetOnDeath: 0
   resetOnKill: 0
 --- !u!114 &3834176862689042385
