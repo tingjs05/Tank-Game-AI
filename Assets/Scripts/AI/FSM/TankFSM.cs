@@ -23,12 +23,13 @@ namespace AI.FSM
         [Header("Flee")]
         [SerializeField] protected float fleeDistance = 3.5f;
         [SerializeField, Range(0f, 1f)] protected float fleeHealthThreshold = 0.5f;
+        [SerializeField] protected Vector2 fleeDuration = new Vector2(3f, 5f);
+        [SerializeField] protected Vector2 fleeCooldown = new Vector2(0.5f, 2f);
 
         [Header("Resets")]
         [SerializeField] protected bool resetOnDeath, resetOnKill = false;
 
         #region Public Properties
-        public Transform _target => target;
         public float obstacle_avoidance_correction => obstacleAvoidanceCorrection;
         public float movement_obstacle_detection_scale => movementObstacleDetectionScale;
         public float shoot_threshold => shootThreshold;
@@ -36,6 +37,9 @@ namespace AI.FSM
         public float min_aim_speed => minAimSpeed;
         public float flee_distance => fleeDistance;
         public float flee_health_threshold => fleeHealthThreshold;
+        public Vector2 flee_duration => fleeDuration;
+        public Vector2 flee_cooldown => fleeCooldown;
+        public Transform _target => target;
         #endregion
         
         public TankController controller { get; protected set; }
