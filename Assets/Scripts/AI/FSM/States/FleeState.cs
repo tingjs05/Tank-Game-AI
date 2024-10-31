@@ -25,6 +25,8 @@ namespace AI.FSM
                 return;
             }
 
+            // scale interest dir strength before moving
+            character.ScaleInterestStrength(fleeDirection);
             // move towards flee direction
             character.MoveTowards(fleeDirection, true);
             // continue shooting while reversing
