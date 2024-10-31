@@ -72,18 +72,18 @@ namespace Training
             agentController.SetResetPosition(useComplexMap ? (transform.parent.position + newAIResetPosition) : originalAIResetPosition);
             trainerAI.SetResetPosition(useComplexMap ? (newTrainerPos) : (originalTrainerPos));
 
+            // hide random obstacle
+            foreach (GameObject obj in obstacleLayouts)
+            {
+                obj.SetActive(false);
+            }
+
             // toggle reset position
             randomPositionManager.reset_position = !useComplexMap;
             // check if need to handle complex map
             if (!useComplexMap) return;
             // call random position manually
             randomPositionManager.SetNewEpisode();
-
-            // show random obstacle
-            foreach (GameObject obj in obstacleLayouts)
-            {
-                obj.SetActive(false);
-            }
 
             obstacleLayouts[Random.Range(0, obstacleLayouts.Count)].SetActive(true);
         }
