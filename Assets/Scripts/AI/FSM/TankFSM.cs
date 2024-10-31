@@ -124,9 +124,8 @@ namespace AI.FSM
             // store movement vector
             Vector2 movementInputs = Vector2.zero;
             // calculate movement
-            float dot = Vector3.Dot(transform.forward, direction);
-            if (dot >= movementThreshold) movementInputs.x = 1f;
-            if (reverse) movementInputs *= -1f;
+            float dot = Vector3.Dot(transform.forward, (reverse ? -direction : direction));
+            if (dot >= movementThreshold) movementInputs.x = (reverse ? -1f : 1f);
             float right_dot = Vector3.Dot(transform.right, (reverse ? -direction : direction));
             movementInputs.y = right_dot >= 0f ? 1f : -1f;
             if (dot >= hardMovementThreshold) movementInputs.y = 0f;
