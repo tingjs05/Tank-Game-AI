@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 using AI;
 
@@ -10,12 +11,17 @@ namespace Training
         [SerializeField] bool testReset = false;
         [SerializeField] bool curricularTraining = false;
 
+        [Header("Random Position Setting")]
+        [SerializeField] Vector3[] obstaclePositions;
+        [SerializeField] float[] positionLessonValues = new float[] { 2f, 3f };
+
         [Header("Obstacle Settings")]
         [SerializeField] Vector2 scaleBounds;
         [SerializeField] bool scaleX = true;
         [SerializeField] bool scaleZ = true;
         [SerializeField] bool rotateY = false;
-        [SerializeField] float lessonValue = 3f;
+        [SerializeField] bool changePos = false;
+        [SerializeField] float obstacleLessonValue = 3f;
 
         float prog => EnvParamManager.Instance.prog;
 
@@ -27,6 +33,7 @@ namespace Training
                 scaleX = false;
                 scaleZ = false;
                 rotateY = false;
+                changePos = false;
             }
 
             if (agentAI == null) return;
@@ -46,9 +53,10 @@ namespace Training
         {
             if (!curricularTraining || EnvParamManager.Instance == null || prog < 0) return;
 
-            scaleX = prog >= lessonValue;
-            scaleZ = prog >= lessonValue;
-            rotateY = prog >= lessonValue;
+            scaleX = prog >= obstacleLessonValue;
+            scaleZ = prog >= obstacleLessonValue;
+            rotateY = prog >= obstacleLessonValue;
+            changePos = positionLessonValues.Contains(prog);
         }
 
         void SetNewEpisode()
@@ -62,9 +70,12 @@ namespace Training
             
             transform.localScale = scale;
 
-            if (!rotateY) return;
+            if (rotateY)
+                transform.rotation = Quaternion.Euler(transform.eulerAngles.x, Random.Range(0f, 360f), transform.eulerAngles.z);
+            
+            if (obstaclePositions == null || obstaclePositions.Length <= 0 || !changePos) return;
 
-            transform.rotation = Quaternion.Euler(transform.eulerAngles.x, Random.Range(0f, 360f), transform.eulerAngles.z);
+            transform.localPosition = obstaclePositions[Random.Range(0, obstaclePositions.Length)];
         }
     }
 }

@@ -1452,11 +1452,19 @@ MonoBehaviour:
   resetKey: 50
   testReset: 0
   curricularTraining: 1
+  obstaclePositions:
+  - {x: 0, y: 0.5, z: 0}
+  - {x: 3, y: 0.5, z: 0}
+  - {x: -3, y: 0.5, z: 0}
+  positionLessonValues:
+  - 2
+  - 3
   scaleBounds: {x: 1, y: 4}
   scaleX: 0
   scaleZ: 0
   rotateY: 0
-  lessonValue: 3
+  changePos: 0
+  obstacleLessonValue: 3
 --- !u!1 &2571023177432808167
 GameObject:
   m_ObjectHideFlags: 0
