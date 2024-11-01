@@ -12,6 +12,7 @@ namespace Training
         [SerializeField] bool curricularTraining = false;
 
         [Header("Random Position Setting")]
+        [SerializeField] Transform randomObstacleTarget;
         [SerializeField] Vector3[] obstaclePositions;
         [SerializeField] float[] positionLessonValues = new float[] { 2f, 3f };
 
@@ -61,6 +62,7 @@ namespace Training
 
         void SetNewEpisode()
         {
+            // handle random scale
             Vector3 scale = transform.localScale;
 
             if (scaleX)
@@ -70,12 +72,16 @@ namespace Training
             
             transform.localScale = scale;
 
+            // handle random rotation
             if (rotateY)
                 transform.rotation = Quaternion.Euler(transform.eulerAngles.x, Random.Range(0f, 360f), transform.eulerAngles.z);
             
+            // handle random position
+            randomObstacleTarget.gameObject.SetActive(changePos);
+
             if (obstaclePositions == null || obstaclePositions.Length <= 0 || !changePos) return;
 
-            transform.localPosition = obstaclePositions[Random.Range(0, obstaclePositions.Length)];
+            randomObstacleTarget.localPosition = obstaclePositions[Random.Range(0, obstaclePositions.Length)];
         }
     }
 }
