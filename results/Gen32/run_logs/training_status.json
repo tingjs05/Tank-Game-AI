@@ -5,24 +5,6 @@
     "TankBehavior": {
         "checkpoints": [
             {
-                "steps": 20499205,
-                "file_path": "results\\Gen32\\TankBehavior\\TankBehavior-20499205.onnx",
-                "reward": 731.1768728892008,
-                "creation_time": 1730348168.1626427,
-                "auxillary_file_paths": [
-                    "results\\Gen32\\TankBehavior\\TankBehavior-20499205.pt"
-                ]
-            },
-            {
-                "steps": 20999409,
-                "file_path": "results\\Gen32\\TankBehavior\\TankBehavior-20999409.onnx",
-                "reward": -125.95547933578491,
-                "creation_time": 1730349688.07755,
-                "auxillary_file_paths": [
-                    "results\\Gen32\\TankBehavior\\TankBehavior-20999409.pt"
-                ]
-            },
-            {
                 "steps": 21499872,
                 "file_path": "results\\Gen32\\TankBehavior\\TankBehavior-21499872.onnx",
                 "reward": 167.38286972045898,
@@ -48,15 +30,33 @@
                 "auxillary_file_paths": [
                     "results\\Gen32\\TankBehavior\\TankBehavior-22009618.pt"
                 ]
+            },
+            {
+                "steps": 22499994,
+                "file_path": "results\\Gen32\\TankBehavior\\TankBehavior-22499994.onnx",
+                "reward": 90.92923122903575,
+                "creation_time": 1730425394.1964433,
+                "auxillary_file_paths": [
+                    "results\\Gen32\\TankBehavior\\TankBehavior-22499994.pt"
+                ]
+            },
+            {
+                "steps": 22909647,
+                "file_path": "results\\Gen32\\TankBehavior\\TankBehavior-22909647.onnx",
+                "reward": 128.77145671844482,
+                "creation_time": 1730426627.5860207,
+                "auxillary_file_paths": [
+                    "results\\Gen32\\TankBehavior\\TankBehavior-22909647.pt"
+                ]
             }
         ],
         "final_checkpoint": {
-            "steps": 22009618,
+            "steps": 22909647,
             "file_path": "results\\Gen32\\TankBehavior.onnx",
-            "reward": null,
-            "creation_time": 1730352764.7376325,
+            "reward": 128.77145671844482,
+            "creation_time": 1730426627.5860207,
             "auxillary_file_paths": [
-                "results\\Gen32\\TankBehavior\\TankBehavior-22009618.pt"
+                "results\\Gen32\\TankBehavior\\TankBehavior-22909647.pt"
             ]
         }
     },
