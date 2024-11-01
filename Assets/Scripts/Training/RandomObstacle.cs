@@ -1,4 +1,3 @@
-using System.Linq;
 using UnityEngine;
 using AI;
 
@@ -13,8 +12,8 @@ namespace Training
 
         [Header("Random Position Setting")]
         [SerializeField] Transform randomObstacleTarget;
+        [SerializeField] Vector2 positionLessonValues = new Vector2(1f, 3f);
         [SerializeField] Vector3[] obstaclePositions;
-        [SerializeField] float[] positionLessonValues = new float[] { 2f, 3f };
 
         [Header("Obstacle Settings")]
         [SerializeField] Vector2 scaleBounds;
@@ -57,7 +56,7 @@ namespace Training
             scaleX = prog >= obstacleLessonValue;
             scaleZ = prog >= obstacleLessonValue;
             rotateY = prog >= obstacleLessonValue;
-            changePos = positionLessonValues.Contains(prog);
+            changePos = prog >= positionLessonValues.x && prog <= positionLessonValues.y;
         }
 
         void SetNewEpisode()
