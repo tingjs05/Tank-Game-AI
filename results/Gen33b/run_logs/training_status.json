@@ -1,6 +1,6 @@
 {
     "env_params": {
-        "lesson_num": 1
+        "lesson_num": 3
     },
     "metadata": {
         "stats_format_version": "0.3.0",
@@ -10,58 +10,58 @@
     "TankBehavior": {
         "checkpoints": [
             {
-                "steps": 7499898,
-                "file_path": "results\\Gen33b\\TankBehavior\\TankBehavior-7499898.onnx",
-                "reward": 306.6447744369507,
-                "creation_time": 1730483527.3943958,
+                "steps": 18499477,
+                "file_path": "results\\Gen33b\\TankBehavior\\TankBehavior-18499477.onnx",
+                "reward": -441.8485273881392,
+                "creation_time": 1730576967.260867,
                 "auxillary_file_paths": [
-                    "results\\Gen33b\\TankBehavior\\TankBehavior-7499898.pt"
+                    "results\\Gen33b\\TankBehavior\\TankBehavior-18499477.pt"
                 ]
             },
             {
-                "steps": 7793316,
-                "file_path": "results\\Gen33b\\TankBehavior\\TankBehavior-7793316.onnx",
-                "reward": 356.07630861722504,
-                "creation_time": 1730484514.1982124,
+                "steps": 18999723,
+                "file_path": "results\\Gen33b\\TankBehavior\\TankBehavior-18999723.onnx",
+                "reward": -125.34495417277019,
+                "creation_time": 1730578300.8401468,
                 "auxillary_file_paths": [
-                    "results\\Gen33b\\TankBehavior\\TankBehavior-7793316.pt"
+                    "results\\Gen33b\\TankBehavior\\TankBehavior-18999723.pt"
                 ]
             },
             {
-                "steps": 7999718,
-                "file_path": "results\\Gen33b\\TankBehavior\\TankBehavior-7999718.onnx",
-                "reward": 287.9453125,
-                "creation_time": 1730499977.1608582,
+                "steps": 19499944,
+                "file_path": "results\\Gen33b\\TankBehavior\\TankBehavior-19499944.onnx",
+                "reward": 72.80157470703125,
+                "creation_time": 1730579667.1501482,
                 "auxillary_file_paths": [
-                    "results\\Gen33b\\TankBehavior\\TankBehavior-7999718.pt"
+                    "results\\Gen33b\\TankBehavior\\TankBehavior-19499944.pt"
                 ]
             },
             {
-                "steps": 8499831,
-                "file_path": "results\\Gen33b\\TankBehavior\\TankBehavior-8499831.onnx",
-                "reward": 372.1612243652344,
-                "creation_time": 1730501441.4096718,
+                "steps": 19999621,
+                "file_path": "results\\Gen33b\\TankBehavior\\TankBehavior-19999621.onnx",
+                "reward": 95.37261657714843,
+                "creation_time": 1730580988.415561,
                 "auxillary_file_paths": [
-                    "results\\Gen33b\\TankBehavior\\TankBehavior-8499831.pt"
+                    "results\\Gen33b\\TankBehavior\\TankBehavior-19999621.pt"
                 ]
             },
             {
-                "steps": 8959303,
-                "file_path": "results\\Gen33b\\TankBehavior\\TankBehavior-8959303.onnx",
-                "reward": 481.2429642677307,
-                "creation_time": 1730502794.97613,
+                "steps": 20006586,
+                "file_path": "results\\Gen33b\\TankBehavior\\TankBehavior-20006586.onnx",
+                "reward": 306.30404977237475,
+                "creation_time": 1730580989.6328382,
                 "auxillary_file_paths": [
-                    "results\\Gen33b\\TankBehavior\\TankBehavior-8959303.pt"
+                    "results\\Gen33b\\TankBehavior\\TankBehavior-20006586.pt"
                 ]
             }
         ],
         "final_checkpoint": {
-            "steps": 8959303,
+            "steps": 20006586,
             "file_path": "results\\Gen33b\\TankBehavior.onnx",
-            "reward": 481.2429642677307,
-            "creation_time": 1730502794.97613,
+            "reward": 306.30404977237475,
+            "creation_time": 1730580989.6328382,
             "auxillary_file_paths": [
-                "results\\Gen33b\\TankBehavior\\TankBehavior-8959303.pt"
+                "results\\Gen33b\\TankBehavior\\TankBehavior-20006586.pt"
             ]
         }
     }
