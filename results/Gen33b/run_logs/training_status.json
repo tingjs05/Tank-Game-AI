@@ -1,6 +1,6 @@
 {
     "env_params": {
-        "lesson_num": 3
+        "lesson_num": 4
     },
     "metadata": {
         "stats_format_version": "0.3.0",
@@ -10,58 +10,58 @@
     "TankBehavior": {
         "checkpoints": [
             {
-                "steps": 18999723,
-                "file_path": "results\\Gen33b\\TankBehavior\\TankBehavior-18999723.onnx",
-                "reward": -125.34495417277019,
-                "creation_time": 1730578300.8401468,
-                "auxillary_file_paths": [
-                    "results\\Gen33b\\TankBehavior\\TankBehavior-18999723.pt"
-                ]
-            },
-            {
-                "steps": 19499944,
-                "file_path": "results\\Gen33b\\TankBehavior\\TankBehavior-19499944.onnx",
-                "reward": 72.80157470703125,
-                "creation_time": 1730579667.1501482,
-                "auxillary_file_paths": [
-                    "results\\Gen33b\\TankBehavior\\TankBehavior-19499944.pt"
-                ]
-            },
-            {
-                "steps": 19999621,
-                "file_path": "results\\Gen33b\\TankBehavior\\TankBehavior-19999621.onnx",
-                "reward": 95.37261657714843,
-                "creation_time": 1730580988.415561,
-                "auxillary_file_paths": [
-                    "results\\Gen33b\\TankBehavior\\TankBehavior-19999621.pt"
-                ]
-            },
-            {
-                "steps": 20006586,
-                "file_path": "results\\Gen33b\\TankBehavior\\TankBehavior-20006586.onnx",
-                "reward": 306.30404977237475,
-                "creation_time": 1730580989.6328382,
-                "auxillary_file_paths": [
-                    "results\\Gen33b\\TankBehavior\\TankBehavior-20006586.pt"
-                ]
-            },
-            {
-                "steps": 20197081,
-                "file_path": "results\\Gen33b\\TankBehavior\\TankBehavior-20197081.onnx",
+                "steps": 28499408,
+                "file_path": "results\\Gen33b\\TankBehavior\\TankBehavior-28499408.onnx",
                 "reward": null,
-                "creation_time": 1730586289.7294335,
+                "creation_time": 1730751834.67234,
                 "auxillary_file_paths": [
-                    "results\\Gen33b\\TankBehavior\\TankBehavior-20197081.pt"
+                    "results\\Gen33b\\TankBehavior\\TankBehavior-28499408.pt"
+                ]
+            },
+            {
+                "steps": 28999283,
+                "file_path": "results\\Gen33b\\TankBehavior\\TankBehavior-28999283.onnx",
+                "reward": 441.80090537438025,
+                "creation_time": 1730753251.1759024,
+                "auxillary_file_paths": [
+                    "results\\Gen33b\\TankBehavior\\TankBehavior-28999283.pt"
+                ]
+            },
+            {
+                "steps": 29499618,
+                "file_path": "results\\Gen33b\\TankBehavior\\TankBehavior-29499618.onnx",
+                "reward": 84.86979103088379,
+                "creation_time": 1730754713.6546972,
+                "auxillary_file_paths": [
+                    "results\\Gen33b\\TankBehavior\\TankBehavior-29499618.pt"
+                ]
+            },
+            {
+                "steps": 29999466,
+                "file_path": "results\\Gen33b\\TankBehavior\\TankBehavior-29999466.onnx",
+                "reward": 497.48318506777287,
+                "creation_time": 1730756139.0390275,
+                "auxillary_file_paths": [
+                    "results\\Gen33b\\TankBehavior\\TankBehavior-29999466.pt"
+                ]
+            },
+            {
+                "steps": 30001783,
+                "file_path": "results\\Gen33b\\TankBehavior\\TankBehavior-30001783.onnx",
+                "reward": 404.14707852602004,
+                "creation_time": 1730756139.5300663,
+                "auxillary_file_paths": [
+                    "results\\Gen33b\\TankBehavior\\TankBehavior-30001783.pt"
                 ]
             }
         ],
         "final_checkpoint": {
-            "steps": 20197081,
+            "steps": 30001783,
             "file_path": "results\\Gen33b\\TankBehavior.onnx",
-            "reward": null,
-            "creation_time": 1730586289.7294335,
+            "reward": 404.14707852602004,
+            "creation_time": 1730756139.5300663,
             "auxillary_file_paths": [
-                "results\\Gen33b\\TankBehavior\\TankBehavior-20197081.pt"
+                "results\\Gen33b\\TankBehavior\\TankBehavior-30001783.pt"
             ]
         }
     }
