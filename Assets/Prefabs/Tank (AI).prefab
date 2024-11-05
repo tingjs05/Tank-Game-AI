@@ -168,6 +168,7 @@ MonoBehaviour:
   dangerRange: 2
   agentRadius: 0.5
   boundaryTag: Boundary
+  interestDirectionStrength: 1
   showGizmos: 1
   showDirections: 1
   showDetectedObstacles: 1
@@ -224,7 +225,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_BrainParameters:
     VectorObservationSize: 41
-    NumStackedVectorObservations: 5
+    NumStackedVectorObservations: 25
     m_ActionSpec:
       m_NumContinuousActions: 2
       BranchSizes: 02000000
