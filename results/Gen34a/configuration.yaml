@@ -48,7 +48,7 @@ behaviors:
         encoding_size: 256
       gail:
         gamma: 0.99
-        strength: 1.0
+        strength: 3.0
         network_settings:
           normalize: true
           hidden_units: 256
