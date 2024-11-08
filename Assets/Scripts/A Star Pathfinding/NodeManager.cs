@@ -35,7 +35,7 @@ namespace Astar
         {
             get
             {
-                if (_usableNodes == null) UpdateUsableNodes();
+                if (_usableNodes == null) UpdateNodes();
                 return _usableNodes;
             }
         }
@@ -44,7 +44,6 @@ namespace Astar
         {
             Instantiate();
             UpdateNodes();
-            UpdateUsableNodes();
         }
 
         public void Instantiate()
@@ -63,11 +62,16 @@ namespace Astar
 
         public void UpdateNodes()
         {
+            // get all objects with the node component
             _nodes = FindObjectsOfType<Node>();
-        }
 
-        public void UpdateUsableNodes()
-        {
+            // check each node for obstruction
+            foreach(Node node in _nodes)
+            {
+                node.CheckObstructed();
+            }
+
+            // update usable nodes
             _usableNodes = _nodes.Where(x => !x.isObstructed).ToArray();
         }
 

@@ -74,14 +74,7 @@ namespace Astar
 
             // update nodes array
             nodeManager.UpdateNodes();
-            // check node obstructions before generating connection
-            foreach (Node node in nodeManager.Nodes)
-            {
-                node.CheckObstructed();
-            }
-
-            // update usable nodes
-            nodeManager.UpdateUsableNodes();
+            
             // generate connections
             foreach (Node node in nodeManager.UsableNodes)
             {
