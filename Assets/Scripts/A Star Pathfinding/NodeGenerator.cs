@@ -18,6 +18,9 @@ namespace Astar
         [Header("Gizmos")]
         public bool showGizmos = true;
 
+        public Vector3 pointOfOrigin => new Vector3(transform.position.x - (gridSize.x * 0.5f), 
+            transform.position.y, transform.position.z - (gridSize.y * 0.5f));
+
         [Button]
         public void GenerateNode()
         {
@@ -44,7 +47,7 @@ namespace Astar
                 for (int j = 0; j < ((1 / gridFrequency) * gridSize.y) + 1; j++)
                 {
                     // set node position
-                    currentPosition = new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z);
+                    currentPosition = new Vector3(pointOfOrigin.x + x, pointOfOrigin.y, pointOfOrigin.z + z);
                     
                     // detect ground above and below node to follow terrain
                     // only generate node if detected ground
@@ -75,7 +78,10 @@ namespace Astar
         {
             foreach (Transform node in transform)
             {
-                Destroy(node.gameObject);
+                if (Application.isPlaying)
+                    Destroy(node.gameObject);
+                else
+                    DestroyImmediate(node.gameObject);
             }
         }
 
@@ -86,13 +92,13 @@ namespace Astar
 
             // show position
             Gizmos.color = Color.grey;
-            Gizmos.DrawSphere(transform.position, 0.5f);
+            Gizmos.DrawSphere(pointOfOrigin, 0.5f);
 
             // check to show setup gizmos
             Vector3 tempPoint;
             // show point of origin
             Gizmos.color = Color.magenta;
-            tempPoint = transform.position;
+            tempPoint = pointOfOrigin;
             Gizmos.DrawSphere(tempPoint, 0.5f);
             // show other points
             tempPoint.x += gridSize.x;
