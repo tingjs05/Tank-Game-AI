@@ -3,21 +3,6 @@ using UnityEngine;
 
 namespace Astar
 {
-    public struct LocalNode
-    {
-        public Node node;
-        public Node previousNode;
-        public int G, H;
-
-        public LocalNode(Node node)
-        {
-            this.node = node;
-            previousNode = null;
-            G = 0;
-            H = 0;
-        }
-    }
-
     [RequireComponent(typeof(SphereCollider))]
     public class Node : MonoBehaviour
     {
