@@ -21,12 +21,6 @@ namespace Astar
         public Vector3 pointOfOrigin => new Vector3(transform.position.x - (gridSize.x * 0.5f), 
             transform.position.y, transform.position.z - (gridSize.y * 0.5f));
 
-        void Start()
-        {
-            ClearNodes();
-            GenerateNode();
-        }
-
         [Button]
         public void InstantiateNodeManager()
         {

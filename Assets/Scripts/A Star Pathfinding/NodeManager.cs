@@ -5,7 +5,7 @@ namespace Astar
 {
     public class NodeManager : MonoBehaviour
     {
-        [Header("Gizmos")]
+        // inspector fields for gizmos
         [SerializeField] private bool showNode = true;
         [SerializeField] private bool showConnections = false;
 
@@ -26,7 +26,7 @@ namespace Astar
             }
         }
 
-        public Node[] _usableNodes;
+        private Node[] _usableNodes;
         public Node[] UsableNodes
         {
             get
