@@ -18,15 +18,19 @@ namespace Astar
         }
     }
 
-    [RequireComponent(typeof(SphereCollider))]
+    [ExecuteInEditMode, RequireComponent(typeof(SphereCollider))]
     public class Node : MonoBehaviour
     {
         // inspector fields
         [SerializeField] private LayerMask obstacleMask;
         [SerializeField] private List<Node> connections;
+        [SerializeField] private bool obstructed = false;
 
         // properties
-        public bool obstructed { get; private set; } = false;
+        public bool isObstructed
+        {
+            get { return obstructed; }
+        }
 
         public List<Node> nodeConnections 
         {
@@ -82,8 +86,10 @@ namespace Astar
             {
                 // if the node is itself, dont add as a connection
                 if (node.Equals(this)) continue;
+                // ensure node is not obstructed
+                if (node.isObstructed) continue;
                 // ensure node is only within certain distance before making a connection
-                if (Vector3.Distance(transform.position, node.transform.position) > maxDistance) continue;
+                if (Vector3.Distance(transform.position, node.transform.position) >= maxDistance) continue;
                 // add the connection to connections list
                 connections.Add(node);
             }

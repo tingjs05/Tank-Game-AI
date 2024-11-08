@@ -50,7 +50,6 @@ namespace Astar
                     currentPosition = new Vector3(pointOfOrigin.x + x, pointOfOrigin.y, pointOfOrigin.z + z);
                     
                     // detect ground above and below node to follow terrain
-                    // only generate node if detected ground
                     if (Physics.Raycast(currentPosition, -Vector3.up, out hit, Mathf.Infinity, groundMask) ||
                         Physics.Raycast(currentPosition, Vector3.up, out hit, Mathf.Infinity, groundMask))
                     {
@@ -67,6 +66,8 @@ namespace Astar
             }
 
             // generate connection
+            nodeManager.UpdateNodes();
+
             foreach (Node node in nodeManager.Nodes)
             {
                 node.GenerateConnections(gridFrequency);
