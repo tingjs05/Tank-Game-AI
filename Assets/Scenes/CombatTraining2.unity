@@ -3894,6 +3894,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 210774454019752781, guid: bf140b80ef25973428b5a43508bee8c0,
+        type: 3}
+      propertyPath: gridSize.x
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 210774454019752781, guid: bf140b80ef25973428b5a43508bee8c0,
+        type: 3}
+      propertyPath: gridSize.y
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 210774454019752781, guid: bf140b80ef25973428b5a43508bee8c0,
+        type: 3}
+      propertyPath: gridFrequency
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 279209746607110580, guid: bf140b80ef25973428b5a43508bee8c0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3948,6 +3963,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Node Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7555660088912249333, guid: bf140b80ef25973428b5a43508bee8c0,
+        type: 3}
+      propertyPath: showNode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7555660088912249333, guid: bf140b80ef25973428b5a43508bee8c0,
+        type: 3}
+      propertyPath: showConnections
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

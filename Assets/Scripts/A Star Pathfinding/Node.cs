@@ -18,7 +18,7 @@ namespace Astar
         }
     }
 
-    [ExecuteInEditMode, RequireComponent(typeof(SphereCollider))]
+    [RequireComponent(typeof(SphereCollider))]
     public class Node : MonoBehaviour
     {
         // inspector fields
@@ -53,11 +53,6 @@ namespace Astar
         }
 
         private NodeManager nodeManager => NodeManager.Instance;
-
-        void Awake()
-        {
-            CheckObstructed();
-        }
 
         public void CheckObstructed()
         {

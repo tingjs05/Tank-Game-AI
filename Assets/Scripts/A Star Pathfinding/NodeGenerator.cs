@@ -21,6 +21,19 @@ namespace Astar
         public Vector3 pointOfOrigin => new Vector3(transform.position.x - (gridSize.x * 0.5f), 
             transform.position.y, transform.position.z - (gridSize.y * 0.5f));
 
+        void Start()
+        {
+            ClearNodes();
+            GenerateNode();
+        }
+
+        [Button]
+        public void InstantiateNodeManager()
+        {
+            if (NodeManager.Instance != null || nodeManager == null) return;
+            nodeManager.Awake();
+        }
+
         [Button]
         public void GenerateNode()
         {
@@ -32,8 +45,7 @@ namespace Astar
             }
 
             // instantiate node manager instance if not instantiated
-            if (NodeManager.Instance == null && nodeManager != null)
-                nodeManager.Awake();
+            InstantiateNodeManager();
 
             // generate grid
             float x = 0f;
@@ -50,7 +62,8 @@ namespace Astar
                     currentPosition = new Vector3(pointOfOrigin.x + x, pointOfOrigin.y, pointOfOrigin.z + z);
                     
                     // detect ground above and below node to follow terrain
-                    if (Physics.Raycast(currentPosition, -Vector3.up, out hit, Mathf.Infinity, groundMask) ||
+                    if (Physics.Raycast(currentPosition + Vector3.up, -Vector3.up, out hit, Mathf.Infinity, groundMask) ||
+                        Physics.Raycast(currentPosition, -Vector3.up, out hit, Mathf.Infinity, groundMask) ||
                         Physics.Raycast(currentPosition, Vector3.up, out hit, Mathf.Infinity, groundMask))
                     {
                         Instantiate(nodePrefab, hit.point, Quaternion.identity, transform);
@@ -65,10 +78,18 @@ namespace Astar
                 x += gridFrequency;
             }
 
-            // generate connection
+            // update nodes array
             nodeManager.UpdateNodes();
-
+            // check node obstructions before generating connection
             foreach (Node node in nodeManager.Nodes)
+            {
+                node.CheckObstructed();
+            }
+
+            // update usable nodes
+            nodeManager.UpdateUsableNodes();
+            // generate connections
+            foreach (Node node in nodeManager.UsableNodes)
             {
                 node.GenerateConnections(gridFrequency);
             }

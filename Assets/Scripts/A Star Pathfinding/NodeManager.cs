@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 namespace Astar
@@ -25,6 +26,16 @@ namespace Astar
             }
         }
 
+        public Node[] _usableNodes;
+        public Node[] UsableNodes
+        {
+            get
+            {
+                if (_usableNodes == null) UpdateUsableNodes();
+                return _usableNodes;
+            }
+        }
+
         public void Awake()
         {
             // create a singleton, only allow one node manager to exist at once
@@ -42,6 +53,11 @@ namespace Astar
         public void UpdateNodes()
         {
             _nodes = FindObjectsOfType<Node>();
+        }
+
+        public void UpdateUsableNodes()
+        {
+            _usableNodes = _nodes.Where(x => !x.isObstructed).ToArray();
         }
     }
 }
