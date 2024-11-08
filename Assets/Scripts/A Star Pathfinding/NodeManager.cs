@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using UnityEngine;
 
@@ -40,6 +41,8 @@ namespace Astar
             }
         }
 
+        public event Action OnUsableNodeUpdate;
+
         void Awake()
         {
             Instantiate();
@@ -62,9 +65,12 @@ namespace Astar
 
         public void UpdateNodes()
         {
-            // get all objects with the node component
             _nodes = FindObjectsOfType<Node>();
+            UpdateObstructedNodes();
+        }
 
+        public void UpdateObstructedNodes()
+        {
             // check each node for obstruction
             foreach(Node node in _nodes)
             {
@@ -73,6 +79,8 @@ namespace Astar
 
             // update usable nodes
             _usableNodes = _nodes.Where(x => !x.isObstructed).ToArray();
+            // invoke event when updating usable node
+            OnUsableNodeUpdate?.Invoke();
         }
 
         public Node GetNearestNode(Vector3 position)

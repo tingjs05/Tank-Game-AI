@@ -53,6 +53,8 @@ namespace Astar
             }
 
             UpdateLocalPathNodes();
+            // subscribe to event to update local nodes when usable nodes get updated
+            NodeManager.Instance.OnUsableNodeUpdate += UpdateLocalPathNodes;
         }
 
         public void UpdateLocalPathNodes()
