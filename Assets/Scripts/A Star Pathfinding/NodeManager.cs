@@ -5,7 +5,11 @@ namespace Astar
 {
     public class NodeManager : MonoBehaviour
     {
-        // inspector fields for gizmos
+        [Header("Node Detection")]
+        [SerializeField] private float nodeDetectionRange = 1.5f;
+        [SerializeField] private LayerMask nodeLayerMask;
+
+        [Header("Gizmos")]
         [SerializeField] private bool showNode = true;
         [SerializeField] private bool showConnections = false;
 
@@ -36,7 +40,14 @@ namespace Astar
             }
         }
 
-        public void Awake()
+        void Awake()
+        {
+            Instantiate();
+            UpdateNodes();
+            UpdateUsableNodes();
+        }
+
+        public void Instantiate()
         {
             // create a singleton, only allow one node manager to exist at once
             if (Instance == null)
@@ -58,6 +69,19 @@ namespace Astar
         public void UpdateUsableNodes()
         {
             _usableNodes = _nodes.Where(x => !x.isObstructed).ToArray();
+        }
+
+        public Node GetNearestNode(Vector3 position)
+        {
+            Collider[] nearbyNodes = Physics.OverlapSphere(position, nodeDetectionRange, nodeLayerMask);
+            nearbyNodes = nearbyNodes.OrderBy(x => Vector3.Distance(position, x.transform.position)).ToArray();
+
+            foreach (Collider nodeCol in nearbyNodes)
+            {
+                if (nodeCol.TryGetComponent<Node>(out Node node)) return node;
+            }
+
+            return null;
         }
     }
 }

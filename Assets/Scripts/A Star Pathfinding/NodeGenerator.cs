@@ -25,7 +25,7 @@ namespace Astar
         public void InstantiateNodeManager()
         {
             if (NodeManager.Instance != null || nodeManager == null) return;
-            nodeManager.Awake();
+            nodeManager.Instantiate();
         }
 
         [Button]
