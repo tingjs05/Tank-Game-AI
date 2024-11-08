@@ -80,14 +80,12 @@ namespace Astar
                 connections.Clear();
 
             // set the max distance for a connection between nodes
-            float maxDistance = (float) System.Math.Round(frequency * Mathf.Sqrt(2), 2);
+            float maxDistance = frequency * Mathf.Sqrt(2) * 1.15f;
             // loop through each node to find which nodes can form connection
             foreach (Node node in NodeManager.Instance.Nodes)
             {
-                // if the node is itself, dont add as a connection
-                if (node.Equals(this)) continue;
-                // ensure node is not obstructed
-                if (node.isObstructed) continue;
+                // if the node is itself or obstructed, dont add as a connection
+                if (node.Equals(this) || node.isObstructed) continue;
                 // ensure node is only within certain distance before making a connection
                 if (Vector3.Distance(transform.position, node.transform.position) >= maxDistance) continue;
                 // add the connection to connections list
