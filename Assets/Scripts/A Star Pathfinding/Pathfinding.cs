@@ -1,24 +1,38 @@
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Astar
 {
+    public class PathNode
+    {
+        public Node node;
+        public PathNode previousNode;
+        public int G, H;
+
+        public PathNode(Node node)
+        {
+            this.node = node;
+            previousNode = null;
+            G = 0;
+            H = 0;
+        }
+    }
+
     public class Pathfinding
     {
         // list of nodes stored locally
-        public Node[] nodes;
+        public PathNode[] nodes;
 
         // lists to store nodes that have been visited
-        public List<Node> open { get; private set; } = new List<Node>();
-        public List<Node> closed { get; private set; } = new List<Node>();
+        public List<PathNode> open { get; private set; } = new List<PathNode>();
+        public List<PathNode> closed { get; private set; } = new List<PathNode>();
 
         // list to store path
-        List<Node> path = new List<Node>();
+        List<PathNode> path = new List<PathNode>();
 
         // store start and end node after converting position => node
-        Node startNode, endNode;
+        PathNode startNode, endNode, connectionNode;
         // boolean to control whether or not a path is found
         bool pathFound;
 
@@ -38,17 +52,22 @@ namespace Astar
                 return;
             }
 
+            UpdateLocalPathNodes();
+        }
+
+        public void UpdateLocalPathNodes()
+        {
             // populate local nodes array
-            nodes = new Node[NodeManager.Instance.UsableNodes.Length];
+            nodes = new PathNode[NodeManager.Instance.UsableNodes.Length];
 
             for (int i = 0; i < nodes.Length; i++)
             {
-                nodes[i] = NodeManager.Instance.UsableNodes[i].Clone();
+                nodes[i] = new PathNode(NodeManager.Instance.UsableNodes[i]);
             }
         }
 
         // public method to find path from start to end vector
-        public List<Node> FindPath(Vector3 startPosition, Vector3 endPosition)
+        public List<PathNode> FindPath(Vector3 startPosition, Vector3 endPosition)
         {
             // ensure node manager is not null
             if (NodeManager.Instance == null)
@@ -56,6 +75,7 @@ namespace Astar
                 Debug.LogError($"{this}, Pathfinding.cs: NodeManager instance is null! Unable to find path. ");
                 return null;
             }
+
             // ensure nodes are generated
             if (nodes == null || nodes.Length <= 0)
             {
@@ -64,14 +84,16 @@ namespace Astar
             }
 
             // get start and end nodes
-            startNode = NodeManager.Instance.GetNearestNode(startPosition);
-            endNode = NodeManager.Instance.GetNearestNode(endPosition);
+            startNode = new PathNode(NodeManager.Instance.GetNearestNode(startPosition));
+            endNode = new PathNode(NodeManager.Instance.GetNearestNode(endPosition));
+
             // ensure start and end node can be found
             if (startNode == null || endNode == null)
             {
                 Debug.LogWarning($"{this}, Pathfinding.cs: Nodes near the start or end position could not be found, process has been terminated. ");
                 return null;
             }
+
             // reset all other variables to setup for new path find
             Reset();
 
@@ -120,11 +142,11 @@ namespace Astar
             startNode.previousNode = null;
             // set G and H value of starting node
             startNode.G = 0;
-            startNode.H = FindManhattanDistance(startNode.transform.position, endNode.transform.position);
+            startNode.H = FindManhattanDistance(startNode.node.transform.position, endNode.node.transform.position);
         }
 
         // code to "open" a node, and check it out
-        void OpenNode(Node node)
+        void OpenNode(PathNode node)
         {
             // if connection is the end point, set the previous node as current node
             // and mark path found as true
@@ -140,31 +162,34 @@ namespace Astar
             open.Remove(node);
 
             // add all connected nodes to open list
-            foreach (Node connection in node.nodeConnections)
+            foreach (Node connection in node.node.nodeConnections)
             {
+                // convert node to path node
+                connectionNode = nodes.Where(x => x.node.Equals(connection)).ToArray()[0];
+
                 // do not check connection if connection node is already opened before
-                if (closed.Contains(connection)) continue;
+                if (closed.Contains(connectionNode)) continue;
 
                 // find if the node from the connection is already known
-                if (open.Contains(connection))
+                if (open.Contains(connectionNode))
                 {
                     // if the current node is cheaper than the connection's previous node
                     // change the connection node's previous node connection to current node
-                    if (node.G < connection.previousNode.G) MakeConnection(node, connection);
+                    if (node.G < connectionNode.previousNode.G) MakeConnection(node, connectionNode);
                     // do not add connection to open if it is already known
                     continue;
                 }
                 // set connection to current node
-                MakeConnection(node, connection);
+                MakeConnection(node, connectionNode);
                 // if node is not seen before, add to open list
-                open.Add(connection);
+                open.Add(connectionNode);
             }
             // move node to closed list after visiting it
             closed.Add(node);
         }
 
         // code to trace previous nodes from end node to generate path leading to start node
-        void CalculatePath(Node node)
+        void CalculatePath(PathNode node)
         {
             // ensure a previous node is set, assuming it is not the starting node
             if (node.previousNode == null && !node.Equals(startNode))
@@ -181,19 +206,19 @@ namespace Astar
         }
 
         // method to make a connection between two nodes
-        void MakeConnection(Node node, Node connection)
+        void MakeConnection(PathNode node, PathNode connection)
         {
             // set G and H values of connection nodes
             // get H value which is manhattan distance to end node
-            connection.H = FindManhattanDistance(connection.transform.position, endNode.transform.position);
+            connection.H = FindManhattanDistance(connection.node.transform.position, endNode.node.transform.position);
             // get G value, previous node (current node making the connection) + distance travelled from previous node
-            connection.G = node.G + FindManhattanDistance(node.transform.position, connection.transform.position);
+            connection.G = node.G + FindManhattanDistance(node.node.transform.position, connection.node.transform.position);
             // make the connection to the current node
             connection.previousNode = node;
         }
 
         // methods to find cost of node
-        int GetCost(Node node)
+        int GetCost(PathNode node)
         {
             return node.G + node.H;
         }

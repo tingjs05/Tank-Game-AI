@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Astar
@@ -11,10 +10,6 @@ namespace Astar
         [SerializeField] private LayerMask obstacleMask;
         [SerializeField] private List<Node> connections;
         [SerializeField] private bool obstructed = false;
-        
-        // public hidden fields
-        [HideInInspector] public Node previousNode;
-        [HideInInspector] public int G, H;
 
         // properties
         public bool isObstructed
@@ -43,15 +38,6 @@ namespace Astar
         }
 
         private NodeManager nodeManager => NodeManager.Instance;
-
-        public Node Clone()
-        {
-            Node newNode = new();
-            newNode.obstacleMask = obstacleMask;
-            newNode.connections = new List<Node>(connections);
-            newNode.obstructed = obstructed;
-            return newNode;
-        }
 
         public void CheckObstructed()
         {
