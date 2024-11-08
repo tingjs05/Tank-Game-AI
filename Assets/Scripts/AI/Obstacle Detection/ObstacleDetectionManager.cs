@@ -1,5 +1,7 @@
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
+using Astar;
 
 namespace AI.ObstacleDetection
 {
@@ -13,25 +15,49 @@ namespace AI.ObstacleDetection
         [Range(0f, 1f)] 
         public float interestDirectionStrength = 1f;
 
-        public bool showGizmos, showDirections, showDetectedObstacles = true;
+        public bool showGizmos, showDirections, showDetectedObstacles, showPathfinding = true;
         public LayerMask detectionMask, groundMask;
         
-
+        // context steering fields
         List<RaycastHit> obstaclesDetected = new List<RaycastHit>();
         Direction direction;
         Vector3 preferredDirection;
         float[] weights;
 
+        // pathfinding fields
+        Pathfinding pathfinder;
+        List<PathNode> path;
+
         public Vector3[] directions => direction.directions;
         public int numberOfDirections => directions.Length;
 
-        void Awake()
+        void Start()
         {
             // set directions
             direction = new Direction();
             // Debug.Log($"Number of directions: {numberOfDirections}");
             // create weights array
             weights = new float[numberOfDirections];
+            // initialize pathfinding component
+            pathfinder = new Pathfinding();
+        }
+
+        public Vector3 GetPathFindingDirection(Vector3 targetPos)
+        {
+            // get path using Astar
+            path = pathfinder.FindPath(transform.position, targetPos);
+            // sort path waypoints by distance from self
+            path = path.OrderBy(x => Vector3.Distance(x.node.transform.position, transform.position)).ToList();
+
+            for (int i = 0; i < path.Count; i++)
+            {
+                // return closest waypoint to self outside of range
+                if (Vector3.Distance(path[i].node.transform.position, transform.position) > agentRadius)
+                    return (path[i].node.transform.position - transform.position).normalized;
+            }
+
+            // default direction is 0 (meaning destination reached)
+            return Vector3.zero;
         }
 
         public Vector3 GetContextSteeringDirection(Vector3 interestDir)
@@ -159,6 +185,42 @@ namespace AI.ObstacleDetection
             return weights_array;
         }
 
+        void OnDrawGizmos()
+        {
+            // do not draw gizmos of show gizmos is false
+            if (!showGizmos || !showPathfinding) return;
+            // if pathfinder cannot be found, dont draw gizmos for path finding
+            if (pathfinder == null) return;
+            
+            // draw horizon nodes
+            foreach (PathNode node in pathfinder.open)
+            {
+                // if node is part of path, draw it as yellow
+                Gizmos.color = path != null && path.Contains(node)? Color.yellow : Color.blue;
+
+                // show connection to previous node
+                if (node.previousNode != null) 
+                    Debug.DrawRay(node.node.transform.position, 
+                        node.previousNode.node.transform.position - node.node.transform.position, Gizmos.color);
+                
+                Gizmos.DrawSphere(node.node.transform.position, 0.15f);
+            }
+
+            // draw visited nodes
+            foreach (PathNode node in pathfinder.closed)
+            {
+                // if node is part of path, draw it as yellow
+                Gizmos.color = path != null && path.Contains(node)? Color.yellow : Color.cyan;
+
+                // show connection to previous node
+                if (node.previousNode != null) 
+                    Debug.DrawRay(node.node.transform.position, 
+                        node.previousNode.node.transform.position - node.node.transform.position, Gizmos.color);
+
+                Gizmos.DrawSphere(node.node.transform.position, 0.15f);
+            }
+        }
+
         void OnDrawGizmosSelected()
         {
             if (!showGizmos) return;
@@ -190,8 +252,8 @@ namespace AI.ObstacleDetection
         {
             // show directions and respective weights
             if (!showDirections) return;
-            // if directions is null, run awake to setup directions
-            if (direction == null) Awake();
+            // if directions is null, run start to setup directions
+            if (direction == null) Start();
 
             for (int i = 0; i < numberOfDirections; i++)
             {
