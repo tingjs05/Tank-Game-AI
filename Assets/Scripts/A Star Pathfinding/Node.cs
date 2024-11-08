@@ -23,7 +23,7 @@ namespace Astar
     {
         // inspector fields
         [SerializeField] private LayerMask obstacleMask;
-        [SerializeField] private List<Node> connections = new List<Node>();
+        [SerializeField] private List<Node> connections;
 
         // properties
         public bool obstructed { get; private set; } = false;
@@ -69,7 +69,11 @@ namespace Astar
                 return;
             }
 
-            connections.Clear();
+            // reset connections list
+            if (connections == null)
+                connections = new List<Node>();
+            else 
+                connections.Clear();
 
             // set the max distance for a connection between nodes
             float maxDistance = (float) System.Math.Round(frequency * Mathf.Sqrt(2), 2);
