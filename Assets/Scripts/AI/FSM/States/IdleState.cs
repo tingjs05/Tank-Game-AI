@@ -18,7 +18,7 @@ namespace AI.FSM
             }
 
             // if not within range to shoot, attempt to move to target
-            if (character.obstacleDetection.GetPreferredDirection(
+            if (character.obstacleDetection.GetContextSteeringDirection(
                 (character._target.position - character.transform.position).normalized) == Vector3.zero)
                     fsm.SwitchState(character.Patrol);
             else

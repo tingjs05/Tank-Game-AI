@@ -17,7 +17,7 @@ namespace AI.FSM
                 return;
             }
 
-            Vector3 prefDir = character.obstacleDetection.GetPreferredDirection(
+            Vector3 prefDir = character.obstacleDetection.GetContextSteeringDirection(
                 (character._target.position - character.transform.position).normalized);
 
             // check if there is a preferred direction

@@ -34,18 +34,18 @@ namespace AI.ObstacleDetection
             weights = new float[numberOfDirections];
         }
 
-        public Vector3 GetPreferredDirection(Vector3 interestDir)
+        public Vector3 GetContextSteeringDirection(Vector3 interestDir)
         {
-            CalculatePreferredDirection(interestDir);
+            CalculateContextSteering(interestDir);
             
             // if there is no preferred direction, try to calculate again with no interest direction
             if (preferredDirection == Vector3.zero)
-                return CalculatePreferredDirection(Vector3.zero);
+                return CalculateContextSteering(Vector3.zero);
             else
                 return preferredDirection;
         }
 
-        Vector3 CalculatePreferredDirection(Vector3 interestDir)
+        Vector3 CalculateContextSteering(Vector3 interestDir)
         {
             GetWeightsBasedOnObstacles();
             preferredDirection = Vector3.zero;

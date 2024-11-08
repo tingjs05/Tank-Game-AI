@@ -22,7 +22,7 @@ namespace AI.FSM
             Vector3 targetDir = (character._target.position - character.transform.position).normalized;
 
             // check if there is a preferred direction, if so, follow that instead
-            if (character.obstacleDetection.GetPreferredDirection(targetDir) != Vector3.zero)
+            if (character.obstacleDetection.GetContextSteeringDirection(targetDir) != Vector3.zero)
             {
                 fsm.SwitchState(character.Track);
                 return;

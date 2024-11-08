@@ -31,7 +31,7 @@ namespace AI.FSM
         public override void PhysicsUpdate()
         {
             // calculate flee direction
-            fleeDirection = character.obstacleDetection.GetPreferredDirection(
+            fleeDirection = character.obstacleDetection.GetContextSteeringDirection(
                 (character.transform.position - character._target.position).normalized);
             
             // move away if too close, and a direction to flee exists
@@ -51,7 +51,7 @@ namespace AI.FSM
             dodgeDirection = (character._target.position - character.transform.position).normalized;
             dodgeDirection = new Vector3(dodgeDirection.z, dodgeDirection.y, -dodgeDirection.x);
             dodgeDirection *= reverseDodge ? -1f : 1f;
-            aggregatedDodgeDirection = character.obstacleDetection.GetPreferredDirection(dodgeDirection);
+            aggregatedDodgeDirection = character.obstacleDetection.GetContextSteeringDirection(dodgeDirection);
 
             // scale interest dir strength before moving
             character.ScaleInterestStrength(aggregatedDodgeDirection);
