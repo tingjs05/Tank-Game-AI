@@ -30,8 +30,6 @@ namespace AI.FSM
         [SerializeField] protected bool resetOnDeath, resetOnKill = false;
 
         #region Public Properties
-        public float obstacle_avoidance_correction => obstacleAvoidanceCorrection;
-        public float movement_obstacle_detection_scale => movementObstacleDetectionScale;
         public float shoot_threshold => shootThreshold;
         public float recoil_control => recoilControl;
         public float min_aim_speed => minAimSpeed;
@@ -109,11 +107,11 @@ namespace AI.FSM
             if (Physics.OverlapBox(transform.position + 
                 (prefDir * obstacleDetection.agentRadius), 
                 new Vector3(obstacleDetection.agentRadius, obstacleDetection.agentRadius, 
-                obstacleDetection.agentRadius) * movement_obstacle_detection_scale, transform.rotation, 
+                obstacleDetection.agentRadius) * movementObstacleDetectionScale, transform.rotation, 
                 obstacleDetection.detectionMask).Length > 0)
             {
                 obstacleDetection.interestDirectionStrength = 
-                    Mathf.Clamp01(obstacleDetection.interestDirectionStrength - obstacle_avoidance_correction);
+                    Mathf.Clamp01(obstacleDetection.interestDirectionStrength - obstacleAvoidanceCorrection);
                 return;
             }
 
