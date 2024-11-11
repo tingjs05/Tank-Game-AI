@@ -139,24 +139,24 @@ namespace Astar
                 // convert node to path node
                 connectionNode = nodes.Where(x => x.node == connection).ToArray()[0];
 
+                // if connection is the end point, set the previous node as current node
+                // and mark path found as true
+                if (connectionNode.node == endNode.node)
+                {
+                    // set previous node as current node
+                    endNode.previousNode = node;
+                    // complete path find
+                    pathFound = true;
+                    // break out of loop when found end node, no need to continue searching
+                    return;
+                }
+
                 // do not check connection if connection node is already opened before
                 if (closed.Contains(connectionNode)) continue;
 
                 // find if the node from the connection is already known
                 if (open.Contains(connectionNode))
                 {
-                    // if connection is the end point, set the previous node as current node
-                    // and mark path found as true
-                    if (connectionNode.node == endNode.node)
-                    {
-                        // set previous node as current node
-                        endNode.previousNode = node;
-                        // complete path find
-                        pathFound = true;
-                        // break out of loop when found end node, no need to continue searching
-                        return;
-                    }
-
                     // if the current node is cheaper than the connection's previous node
                     // change the connection node's previous node connection to current node
                     if (node.G < connectionNode.previousNode.G) MakeConnection(node, connectionNode);
