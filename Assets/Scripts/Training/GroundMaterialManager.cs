@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using AI;
+using Astar;
 
 namespace Training
 {
@@ -42,8 +43,14 @@ namespace Training
         IEnumerator DelayedReset()
         {
             yield return new WaitForSeconds(resetDelay);
+
+            // reset material on reset
             if (!successfulRun) rend.material = failMat;
             successfulRun = false;
+
+            // recalculate pathfinding nodes on reset
+            if (NodeManager.Instance != null)
+                NodeManager.Instance.UpdateObstructedNodes();
         }
     }
 }
