@@ -94,8 +94,8 @@ public class TankController : MonoBehaviour, IDamagable
         // if there is no projectile namager, manually instantiate projectile
         if (ProjectileManager.Instance == null)
         {
-            Instantiate(projectilePrefab);
-            projectile = projectilePrefab.GetComponent<Projectile>();
+            GameObject prefab = Instantiate(projectilePrefab);
+            projectile = prefab.GetComponent<Projectile>();
         }
         else
         {
