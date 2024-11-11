@@ -46,6 +46,8 @@ namespace AI.ObstacleDetection
         {
             // get path using Astar
             path = pathfinder.FindPath(transform.position, targetPos);
+            // check if path can be found
+            if (path == null) return Vector3.zero;
             // sort path waypoints by distance from self
             path = path.OrderBy(x => Vector3.Distance(x.node.transform.position, transform.position)).ToList();
 

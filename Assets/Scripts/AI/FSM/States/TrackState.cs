@@ -17,8 +17,7 @@ namespace AI.FSM
                 return;
             }
 
-            Vector3 prefDir = character.obstacleDetection.GetContextSteeringDirection(
-                (character._target.position - character.transform.position).normalized);
+            Vector3 prefDir = character.obstacleDetection.GetPathFindingDirection(character._target.position);
 
             // check if there is a preferred direction
             if (prefDir == Vector3.zero)
@@ -31,8 +30,6 @@ namespace AI.FSM
             character.ScaleInterestStrength(prefDir);
             // move towards preferred direction
             character.MoveTowards(prefDir);
-            // log move direction to patrol state
-            character.Patrol.moveDirection = prefDir;
         }
     }
 }

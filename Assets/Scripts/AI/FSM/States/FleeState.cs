@@ -32,7 +32,7 @@ namespace AI.FSM
         {
             // calculate flee direction
             fleeDirection = character.obstacleDetection.GetPathFindingDirection(
-                (character.transform.position - character._target.position).normalized);
+                character.transform.position + (character.transform.position - character._target.position).normalized);
             
             // move away if too close, and a direction to flee exists
             if (Vector3.Distance(character.transform.position, character._target.position) < character.flee_distance
