@@ -21,7 +21,6 @@ namespace AI
         [SerializeField] float moveTowardsPreferredDirReward = 5f;
         [SerializeField] float closeDistanceReward = 0.5f;
         [SerializeField] float movementPenalty = 0.05f;
-        [SerializeField, Range(0f, 1f)] float dangerWeight = 0.5f;
         [SerializeField, Range(0f, 1f)] float correctDirThreshold = 0.85f;
         [SerializeField, Range(0f, 1f)] float aimDirThreshold = 0.99f;
 

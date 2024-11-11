@@ -77,6 +77,8 @@ namespace Astar
             {
                 // stop when path is found
                 if (pathFound) break;
+                // check if opened nodes list is empty, if so abort operation
+                if (open.Count <= 0) return null;
                 // sort open list based on distance to end point
                 open = open.OrderBy(x => GetCost(x)).ToList();
                 // open the closest node to the end point
