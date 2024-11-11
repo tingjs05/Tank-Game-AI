@@ -40,7 +40,7 @@ namespace AI
         TankAgent agent;
         TankController controller;
         Vector3 horizontalVel;
-        float dot, dirRewardScale, currDistance, prevDistance, targetNotFoundCounter;
+        float dot, currDistance, prevDistance, targetNotFoundCounter;
         bool targetSeen, foundTarget;
 
         // Start is called before the first frame update
@@ -106,20 +106,11 @@ namespace AI
 
             // ensure weights array and obstacle detection is not null
             if (agent.weights == null || agent.obstacle_detection == null) return;
-            
-            for (int i = 0; i < agent.weights.Length; i++)
-            {
-                // check if facing a good direction
-                dot = Vector3.Dot(transform.forward, agent.obstacle_detection.directions[i]);
-                if (dot < correctDirThreshold) continue;
-                // scale reward depending on if it is a good or bad direction (if there are obstacles)
-                dirRewardScale = (1f - agent.weights[i]) * (agent.weights[i] <= dangerWeight ? 1f : -1f);
-                // check if moving in good direction
-                dot = Vector3.Dot(horizontalVel, agent.obstacle_detection.directions[i]);
-                if (dot < correctDirThreshold) continue;
-                LogReward(dirRewardScale < 0f ? "Move Bad Direction" : "Move Good Direction");
-                agent.AddReward(ScaleReward(moveTowardsPreferredDirReward * dirRewardScale, dot, correctDirThreshold));
-            }
+
+            dot = Vector3.Dot(transform.forward, agent.obstacle_detection.GetPathFindingDirection(agent._target.position));
+            if (dot < correctDirThreshold) return;
+            LogReward("Move Towards Preferred Direction Reward");
+            agent.AddReward(ScaleReward(moveTowardsPreferredDirReward, dot, correctDirThreshold));
         }
 
         void TargetFoundCheck()
