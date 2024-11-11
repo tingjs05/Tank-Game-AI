@@ -10,10 +10,6 @@ namespace Astar
         [SerializeField] private float nodeDetectionRange = 1.5f;
         [SerializeField] private LayerMask nodeLayerMask;
 
-        [Header("Node Obstruction Detection")]
-        [SerializeField] private bool periodicallyUpdateNodeObstruction = false;
-
-
         [Header("Gizmos")]
         [SerializeField] private bool showNode = true;
         [SerializeField] private bool showConnections = false;
@@ -45,18 +41,13 @@ namespace Astar
             }
         }
 
+        [HideInInspector] public float? gridFrequency = null;
         public event Action OnUsableNodeUpdate;
 
         void Awake()
         {
             Instantiate();
             UpdateNodes();
-        }
-
-        void Update()
-        {
-            if (!periodicallyUpdateNodeObstruction) return;
-            UpdateObstructedNodes();
         }
 
         public void Instantiate()
@@ -89,6 +80,16 @@ namespace Astar
 
             // update usable nodes
             _usableNodes = _nodes.Where(x => !x.isObstructed).ToArray();
+            
+            // check if need to regenerate connections
+            if (gridFrequency != null)
+            {
+                foreach (Node node in _usableNodes)
+                {
+                    node.GenerateConnections((float) gridFrequency);
+                }
+            }
+
             // invoke event when updating usable node
             OnUsableNodeUpdate?.Invoke();
         }

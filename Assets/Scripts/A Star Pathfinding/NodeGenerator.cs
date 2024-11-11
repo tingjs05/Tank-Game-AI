@@ -22,6 +22,12 @@ namespace Astar
         public Vector3 pointOfOrigin => new Vector3(transform.position.x - (gridSize.x * 0.5f), 
             transform.position.y, transform.position.z - (gridSize.y * 0.5f));
 
+        void Awake()
+        {
+            // set grid frequency of node manager
+            nodeManager.gridFrequency = gridFrequency;
+        }
+
         [Button]
         void InstantiateNodeManager()
         {
@@ -84,12 +90,6 @@ namespace Astar
 
             // update nodes array
             nodeManager.UpdateNodes();
-            
-            // generate connections
-            foreach (Node node in nodeManager.UsableNodes)
-            {
-                node.GenerateConnections(gridFrequency);
-            }
         }
 
         [Button]
