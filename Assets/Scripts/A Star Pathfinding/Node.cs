@@ -7,7 +7,7 @@ namespace Astar
     public class Node : MonoBehaviour
     {
         // inspector fields
-        [SerializeField] private LayerMask obstacleMask;
+        [SerializeField] private LayerMask obstacleMask, groundMask;
         [SerializeField] private List<Node> connections;
         [SerializeField] private bool obstructed = false;
 
@@ -41,8 +41,11 @@ namespace Astar
 
         public void CheckObstructed()
         {
-            obstructed = Physics.OverlapSphere(
-                transform.position + sphereCollider.center, sphereCollider.radius, obstacleMask).Length > 0;
+            // checks if detected ground and there are no obstacles
+            obstructed = !(Physics.OverlapSphere(transform.position + sphereCollider.center, 
+                sphereCollider.radius, groundMask).Length > 0) ||
+                Physics.OverlapSphere(transform.position + sphereCollider.center, 
+                sphereCollider.radius, obstacleMask).Length > 0;
         }
 
         public void GenerateConnections(float frequency)

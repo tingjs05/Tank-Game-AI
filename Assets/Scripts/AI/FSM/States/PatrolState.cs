@@ -28,6 +28,8 @@ namespace AI.FSM
             Vector3 targetDir = (character._target.position - character.transform.position).normalized;
             // try to get context steering direction
             Vector3 moveDirection = character.obstacleDetection.GetContextSteeringDirection(targetDir);
+            // scale interest direction strength depending on if there is an obstacle in the way
+            character.ScaleInterestStrength(targetDir);
 
             // if there is no direction to move towards from obstacle detection, move towards target
             // only move towards target when last move direction is unknown (0, 0, 0)

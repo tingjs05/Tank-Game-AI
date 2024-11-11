@@ -25,9 +25,7 @@ namespace AI.FSM
                 fsm.SwitchState(character.Patrol);
                 return;
             }
-
-            // scale interest direction strength depending on if there is an obstacle in the way
-            character.ScaleInterestStrength(prefDir);
+            
             // move towards preferred direction
             character.MoveTowards(prefDir);
         }

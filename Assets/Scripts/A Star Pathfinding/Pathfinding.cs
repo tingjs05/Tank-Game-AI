@@ -98,7 +98,6 @@ namespace Astar
 
             // reset all other variables to setup for new path find
             Reset();
-
             // add start node to open list
             open.Add(startNode);
 

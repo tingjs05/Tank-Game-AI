@@ -14,6 +14,7 @@ namespace Astar
         public NodeManager nodeManager;
         public GameObject nodePrefab;
         public LayerMask groundMask;
+        public bool followTerrain = false;
 
         [Header("Gizmos")]
         public bool showGizmos = true;
@@ -55,12 +56,21 @@ namespace Astar
                     // set node position
                     currentPosition = new Vector3(pointOfOrigin.x + x, pointOfOrigin.y, pointOfOrigin.z + z);
                     
-                    // detect ground above and below node to follow terrain
-                    if (Physics.Raycast(currentPosition + Vector3.up, -Vector3.up, out hit, Mathf.Infinity, groundMask) ||
-                        Physics.Raycast(currentPosition, -Vector3.up, out hit, Mathf.Infinity, groundMask) ||
-                        Physics.Raycast(currentPosition, Vector3.up, out hit, Mathf.Infinity, groundMask))
+                    // check if need to follow terrain when generating nodes
+                    if (followTerrain)
                     {
-                        Instantiate(nodePrefab, hit.point, Quaternion.identity, transform);
+                        // detect ground above and below node to follow terrain
+                        if (Physics.Raycast(currentPosition + Vector3.up, -Vector3.up, out hit, Mathf.Infinity, groundMask) ||
+                            Physics.Raycast(currentPosition, -Vector3.up, out hit, Mathf.Infinity, groundMask) ||
+                            Physics.Raycast(currentPosition, Vector3.up, out hit, Mathf.Infinity, groundMask))
+                        {
+                            Instantiate(nodePrefab, hit.point, Quaternion.identity, transform);
+                        }
+                    }
+                    // otherwise generate node on position of point
+                    else
+                    {
+                        Instantiate(nodePrefab, currentPosition, Quaternion.identity, transform);
                     }
 
                     // iterate position
