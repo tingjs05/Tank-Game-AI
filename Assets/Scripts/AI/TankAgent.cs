@@ -12,6 +12,8 @@ namespace AI
     {
         [SerializeField] protected TankController target;
         [SerializeField] protected float lineOfSightRadius = 0.15f;
+        [SerializeField, Range(0f, 1f)] protected float obstacleAvoidanceCorrection = 0.05f;
+        [SerializeField] protected float movementObstacleDetectionScale = 1.25f;
         [SerializeField] protected bool heuristicInputs = false;
 
         protected TankController controller;
@@ -25,6 +27,7 @@ namespace AI
         public ObstacleDetectionManager obstacle_detection => obstacleDetection;
         public Transform _target => target.transform;
         public Vector3 interest_direction { get; protected set; }
+        public Vector3 preferred_direction { get; private set; }
         public float[] weights { get; protected set; }
 
         public event Action<Vector2, bool> OnActionCalled;
@@ -59,19 +62,11 @@ namespace AI
 
         public override void CollectObservations(VectorSensor sensor)
         {
-            // add weight observations
-            weights = obstacleDetection.GetWeightsBasedOnObstacles();
-
-            foreach (float weight in weights)
-            {
-                sensor.AddObservation(weight);
-            }
-
             // calculate directions
-            interest_direction = (target.transform.position - transform.position).normalized;
-
+            CalculateDirections();
             // add observations
             sensor.AddObservation(interest_direction);
+            sensor.AddObservation(preferred_direction);
             sensor.AddObservation(transform.position);
             sensor.AddObservation(transform.forward);
             sensor.AddObservation(target.transform.position);
@@ -110,6 +105,35 @@ namespace AI
 
             ActionSegment<int> discreteActions = actionsOut.DiscreteActions;
             discreteActions[0] = Input.GetKey(KeyCode.Space) ? 1 : 0;
+        }
+
+        void CalculateDirections()
+        {
+            // calculate interest directions
+            interest_direction = (target.transform.position - transform.position).normalized;
+            // calculate preferred direction
+            preferred_direction = obstacle_detection.GetPathFindingDirection(target.transform.position);
+
+            // handle no direction through pathfinding
+            if (preferred_direction != Vector3.zero) return;
+
+            preferred_direction = obstacle_detection.GetContextSteeringDirection(interest_direction);
+
+            if (preferred_direction == Vector3.zero) return;
+
+            // try projecting hitbox in move direction to double check for obstacles
+            if (Physics.OverlapBox(transform.position + 
+                (preferred_direction * obstacleDetection.agentRadius), 
+                new Vector3(obstacleDetection.agentRadius, obstacleDetection.agentRadius, 
+                obstacleDetection.agentRadius) * movementObstacleDetectionScale, transform.rotation, 
+                obstacleDetection.detectionMask).Length > 0)
+            {
+                obstacleDetection.interestDirectionStrength = 
+                    Mathf.Clamp01(obstacleDetection.interestDirectionStrength - obstacleAvoidanceCorrection);
+                return;
+            }
+
+            obstacleDetection.interestDirectionStrength = 1f;
         }
 
         void OnDrawGizmosSelected() 

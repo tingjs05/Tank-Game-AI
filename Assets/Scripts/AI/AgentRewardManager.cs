@@ -107,7 +107,8 @@ namespace AI
             // ensure weights array and obstacle detection is not null
             if (agent.weights == null || agent.obstacle_detection == null) return;
 
-            dot = Vector3.Dot(transform.forward, agent.obstacle_detection.GetPathFindingDirection(agent._target.position));
+            // reward AI for travelling in preferred direction
+            dot = Vector3.Dot(transform.forward, agent.preferred_direction);
             if (dot < correctDirThreshold) return;
             LogReward("Move Towards Preferred Direction Reward");
             agent.AddReward(ScaleReward(moveTowardsPreferredDirReward, dot, correctDirThreshold));
