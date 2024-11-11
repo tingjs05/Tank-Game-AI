@@ -31,8 +31,8 @@ namespace Astar
             }
         }
 
-        private Node[] _usableNodes;
-        public Node[] UsableNodes
+        private PathNode[] _usableNodes;
+        public PathNode[] UsableNodes
         {
             get
             {
@@ -79,14 +79,17 @@ namespace Astar
             }
 
             // update usable nodes
-            _usableNodes = _nodes.Where(x => !x.isObstructed).ToArray();
+            _usableNodes = _nodes
+                .Where(x => !x.isObstructed)
+                .Select(x => new PathNode(x))
+                .ToArray();
             
             // check if need to regenerate connections
             if (gridFrequency != null)
             {
-                foreach (Node node in _usableNodes)
+                foreach (PathNode node in _usableNodes)
                 {
-                    node.GenerateConnections((float) gridFrequency);
+                    node.node.GenerateConnections((float) gridFrequency);
                 }
             }
 
@@ -96,15 +99,21 @@ namespace Astar
 
         public Node GetNearestNode(Vector3 position)
         {
-            Collider[] nearbyNodes = Physics.OverlapSphere(position, nodeDetectionRange, nodeLayerMask);
-            nearbyNodes = nearbyNodes.OrderBy(x => Vector3.Distance(position, x.transform.position)).ToArray();
+            Collider[] nearbyNodeCols = Physics.OverlapSphere(position, nodeDetectionRange, nodeLayerMask);
 
-            foreach (Collider nodeCol in nearbyNodes)
-            {
-                if (nodeCol.TryGetComponent<Node>(out Node node)) return node;
-            }
+            Node[] nearbyNodes = nearbyNodeCols
+                .Select(x => x.GetComponent<Node>())
+                .Where(x => x != null && !x.isObstructed)
+                .OrderBy(x => Vector3.Distance(position, x.transform.position))
+                .ToArray();
 
-            return null;
+            if (nearbyNodes == null || nearbyNodes.Length <= 0)
+                nearbyNodes = _usableNodes
+                    .Select(x => x.node)
+                    .OrderBy(x => Vector3.Distance(position, x.transform.position))
+                    .ToArray();
+            
+            return nearbyNodes[0];
         }
     }
 }

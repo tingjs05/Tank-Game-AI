@@ -4,25 +4,10 @@ using UnityEngine;
 
 namespace Astar
 {
-    public class PathNode
-    {
-        public Node node;
-        public PathNode previousNode;
-        public int G, H;
-
-        public PathNode(Node node)
-        {
-            this.node = node;
-            previousNode = null;
-            G = 0;
-            H = 0;
-        }
-    }
-
     public class Pathfinding
     {
         // list of nodes stored locally
-        public PathNode[] nodes;
+        public PathNode[] nodes => NodeManager.Instance.UsableNodes == null ? null : NodeManager.Instance.UsableNodes;
 
         // lists to store nodes that have been visited
         public List<PathNode> open { get; private set; } = new List<PathNode>();
@@ -51,21 +36,6 @@ namespace Astar
                 Debug.LogWarning($"{this}, Pathfinding.cs: Nodes could not be found, unable to initialize pathfinding. ");
                 return;
             }
-
-            UpdateLocalPathNodes();
-            // subscribe to event to update local nodes when usable nodes get updated
-            NodeManager.Instance.OnUsableNodeUpdate += UpdateLocalPathNodes;
-        }
-
-        public void UpdateLocalPathNodes()
-        {
-            // populate local nodes array
-            nodes = new PathNode[NodeManager.Instance.UsableNodes.Length];
-
-            for (int i = 0; i < nodes.Length; i++)
-            {
-                nodes[i] = new PathNode(NodeManager.Instance.UsableNodes[i]);
-            }
         }
 
         // public method to find path from start to end vector
@@ -90,7 +60,7 @@ namespace Astar
             endNode = new PathNode(NodeManager.Instance.GetNearestNode(endPosition));
 
             // ensure start and end node can be found
-            if (startNode == null || endNode == null)
+            if (startNode.node == null || endNode.node == null)
             {
                 Debug.LogWarning($"{this}, Pathfinding.cs: Nodes near the start or end position could not be found, process has been terminated. ");
                 return null;
@@ -102,23 +72,34 @@ namespace Astar
             open.Add(startNode);
 
             // find path
-            while (!pathFound)
+            // limit loop to number of nodes
+            for (int i = 0; i < NodeManager.Instance.UsableNodes.Length; i++)
             {
+                // stop when path is found
+                if (pathFound) break;
                 // sort open list based on distance to end point
                 open = open.OrderBy(x => GetCost(x)).ToList();
                 // open the closest node to the end point
                 OpenNode(open[0]);
             }
+            // check if path has been found sucessfully
+            if (!pathFound) return null;
 
             // calculate path
             path.Add(endNode);
             // reset path found boolean
             pathFound = false;
             // calculate path
-            while (!pathFound)
+            // limit loop to number of nodes
+            for (int i = 0; i < NodeManager.Instance.UsableNodes.Length; i++)
             {
+                // stop when path is found
+                if (pathFound) break;
+                // calculate path back to starting node
                 CalculatePath(path[0]);
             }
+            // check if path has been found sucessfully
+            if (!pathFound) return null;
             // return path
             return path;
         }
@@ -149,16 +130,6 @@ namespace Astar
         // code to "open" a node, and check it out
         void OpenNode(PathNode node)
         {
-            // if connection is the end point, set the previous node as current node
-            // and mark path found as true
-            if (node.Equals(endNode))
-            {
-                // complete path find
-                pathFound = true;
-                // break out of loop when found end node, no need to continue searching
-                return;
-            }
-
             // remove from open list since its already opened
             open.Remove(node);
 
@@ -166,7 +137,7 @@ namespace Astar
             foreach (Node connection in node.node.nodeConnections)
             {
                 // convert node to path node
-                connectionNode = nodes.Where(x => x.node.Equals(connection)).ToArray()[0];
+                connectionNode = nodes.Where(x => x.node == connection).ToArray()[0];
 
                 // do not check connection if connection node is already opened before
                 if (closed.Contains(connectionNode)) continue;
@@ -174,6 +145,18 @@ namespace Astar
                 // find if the node from the connection is already known
                 if (open.Contains(connectionNode))
                 {
+                    // if connection is the end point, set the previous node as current node
+                    // and mark path found as true
+                    if (connectionNode.node == endNode.node)
+                    {
+                        // set previous node as current node
+                        endNode.previousNode = node;
+                        // complete path find
+                        pathFound = true;
+                        // break out of loop when found end node, no need to continue searching
+                        return;
+                    }
+
                     // if the current node is cheaper than the connection's previous node
                     // change the connection node's previous node connection to current node
                     if (node.G < connectionNode.previousNode.G) MakeConnection(node, connectionNode);
@@ -192,14 +175,14 @@ namespace Astar
         // code to trace previous nodes from end node to generate path leading to start node
         void CalculatePath(PathNode node)
         {
-            // ensure a previous node is set, assuming it is not the starting node
-            if (node.previousNode == null && !node.Equals(startNode))
+            // // ensure a previous node is set, assuming it is not the starting node
+            if (node.previousNode == null && node.node != startNode.node)
             {
                 Debug.LogError("Pathfinding.cs: path calculation failed due to null node. ");
                 return;
             }
             // end path calculation if current node is start node
-            if (node.Equals(startNode)) 
+            if (node.node == startNode.node)
                 pathFound = true;
             // otherwise add the previous node into the list
             else

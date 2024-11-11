@@ -198,7 +198,7 @@ namespace AI.ObstacleDetection
             foreach (PathNode node in pathfinder.open)
             {
                 // if node is part of path, draw it as yellow
-                Gizmos.color = path != null && path.Contains(node)? Color.yellow : Color.blue;
+                Gizmos.color = path != null && path.Contains(node) ? Color.yellow : Color.blue;
 
                 // show connection to previous node
                 if (node.previousNode != null) 
@@ -212,7 +212,7 @@ namespace AI.ObstacleDetection
             foreach (PathNode node in pathfinder.closed)
             {
                 // if node is part of path, draw it as yellow
-                Gizmos.color = path != null && path.Contains(node)? Color.yellow : Color.cyan;
+                Gizmos.color = path != null && path.Contains(node) ? Color.yellow : Color.cyan;
 
                 // show connection to previous node
                 if (node.previousNode != null) 

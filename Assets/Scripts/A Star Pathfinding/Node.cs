@@ -3,6 +3,21 @@ using UnityEngine;
 
 namespace Astar
 {
+    public class PathNode
+    {
+        public Node node;
+        public PathNode previousNode;
+        public int G, H;
+
+        public PathNode(Node node)
+        {
+            this.node = node;
+            previousNode = null;
+            G = 0;
+            H = 0;
+        }
+    }
+    
     [RequireComponent(typeof(SphereCollider))]
     public class Node : MonoBehaviour
     {
