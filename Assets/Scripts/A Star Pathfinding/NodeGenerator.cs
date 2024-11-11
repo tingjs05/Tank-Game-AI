@@ -22,7 +22,7 @@ namespace Astar
             transform.position.y, transform.position.z - (gridSize.y * 0.5f));
 
         [Button]
-        public void InstantiateNodeManager()
+        void InstantiateNodeManager()
         {
             if (NodeManager.Instance != null || nodeManager == null) return;
             nodeManager.Instantiate();

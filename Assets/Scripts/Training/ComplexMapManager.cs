@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using AI;
+using Astar;
 
 namespace Training
 {
@@ -21,9 +22,12 @@ namespace Training
         [SerializeField] Vector2 extendedGroundScale = new Vector2(2f, 2f);
         [SerializeField] bool useComplexMap = false;
         [SerializeField] float lessonValue = 4f;
+
+        [Header("Pathfinding")]
+        [SerializeField] NodeGenerator nodeGenerator;
         
         TankController agentController;
-        Vector3 originalAIResetPosition, originalGroundScale;
+        Vector3 originalAIResetPosition, originalGroundScale, prevGroundScale;
         List<GameObject> obstacleLayouts = new List<GameObject>();
 
         Vector3 originalTrainerPos => new Vector3(originalAIResetPosition.x, originalAIResetPosition.y, 
@@ -63,10 +67,20 @@ namespace Training
 
         void SetMap()
         {
+            // cache prev ground scale
+            prevGroundScale = ground.transform.localScale;
+
             // set ground scale
             ground.transform.localScale = useComplexMap ? 
                 new Vector3(extendedGroundScale.x, originalGroundScale.y, extendedGroundScale.y) : 
                 originalGroundScale;
+
+            // if ground scale changed, regenerate nodes
+            if (prevGroundScale != ground.transform.localScale && nodeGenerator != null)
+            {
+                nodeGenerator.ClearNodes();
+                nodeGenerator.GenerateNode();
+            }
             
             // set original reset positions
             agentController.SetResetPosition(useComplexMap ? (transform.parent.position + newAIResetPosition) : originalAIResetPosition);
@@ -86,6 +100,10 @@ namespace Training
             randomPositionManager.SetNewEpisode();
 
             obstacleLayouts[Random.Range(0, obstacleLayouts.Count)].SetActive(true);
+
+            // update obstructed nodes to match obstacles
+            if (NodeManager.Instance != null)
+                NodeManager.Instance.UpdateObstructedNodes();
         }
 
         void OnDrawGizmosSelected() 

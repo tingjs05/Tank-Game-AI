@@ -1,5 +1,6 @@
 using UnityEngine;
 using AI;
+using Astar;
 
 namespace Training
 {
@@ -61,6 +62,10 @@ namespace Training
 
         void SetNewEpisode()
         {
+            // update obstructed nodes to match obstacles
+            if (NodeManager.Instance != null)
+                NodeManager.Instance.UpdateObstructedNodes();
+
             // handle random scale
             Vector3 scale = transform.localScale;
 
