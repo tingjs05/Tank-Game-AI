@@ -48,16 +48,12 @@ namespace AI.ObstacleDetection
             path = pathfinder.FindPath(transform.position, targetPos);
             // check if path can be found
             if (path == null) return Vector3.zero;
-            // sort path waypoints by distance from self
-            path = path.OrderBy(x => Vector3.Distance(x.node.transform.position, transform.position)).ToList();
-
-            for (int i = 0; i < path.Count; i++)
+            // search through path for next closest node
+            foreach (PathNode node in path)
             {
-                // return closest waypoint to self outside of range
-                if (Vector3.Distance(path[i].node.transform.position, transform.position) > agentRadius)
-                    return (path[i].node.transform.position - transform.position).normalized;
+                if (Vector3.Distance(node.node.transform.position, transform.position) <= agentRadius) continue;
+                return (node.node.transform.position - transform.position).normalized;
             }
-
             // default direction is 0 (meaning destination reached)
             return Vector3.zero;
         }
