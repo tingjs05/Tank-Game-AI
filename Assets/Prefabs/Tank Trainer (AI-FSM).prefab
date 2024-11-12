@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: 33722499384207290, guid: d8363aba81a44b84280baebbda7b8003,
         type: 3}
       propertyPath: logRewards
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 33722499384207290, guid: d8363aba81a44b84280baebbda7b8003,
         type: 3}
@@ -171,6 +171,8 @@ MonoBehaviour:
   MaxStep: 5000
   target: {fileID: 0}
   lineOfSightRadius: 0.15
+  obstacleAvoidanceCorrection: 0.05
+  movementObstacleDetectionScale: 1.25
   heuristicInputs: 1
   heuristic_move_input: {x: 0, y: 0}
   heuristic_shoot_input: 0

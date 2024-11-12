@@ -106,11 +106,23 @@ namespace AI
             // ensure weights array and obstacle detection is not null
             if (agent.weights == null || agent.obstacle_detection == null) return;
 
-            // reward AI for travelling in preferred direction
+            // compare horizontal velocity with preferred direction
             dot = Vector3.Dot(horizontalVel, agent.preferred_direction);
-            if (dot < correctDirThreshold) return;
-            LogReward("Move Towards Preferred Direction Reward");
-            agent.AddReward(ScaleReward(moveTowardsPreferredDirReward, dot, correctDirThreshold));
+
+            // reward AI for travelling in preferred direction
+            if (dot >= correctDirThreshold)
+            {
+                LogReward("Move Towards Preferred Direction Reward");
+                agent.AddReward(ScaleReward(moveTowardsPreferredDirReward, dot, correctDirThreshold));
+                return;
+            }
+            
+            // do not give penalty if dot is still positive
+            if (dot >= 0) return;
+
+            // give penalty for moving in the wrong direction
+            LogReward("Not Moving Towards Preferred Direction Penalty");
+            agent.AddReward(ScaleReward(-moveTowardsPreferredDirReward, Mathf.Abs(dot), correctDirThreshold));
         }
 
         void TargetFoundCheck()
