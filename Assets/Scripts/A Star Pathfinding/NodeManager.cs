@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using UnityEngine;
+using EasyButtons;
 
 namespace Astar
 {
@@ -21,7 +22,8 @@ namespace Astar
 
         public static NodeManager Instance { get; private set; }
 
-        private Node[] _nodes;
+        [Header("Nodes")]
+        [SerializeField] private Node[] _nodes;
         public Node[] Nodes
         {
             get 
@@ -31,7 +33,7 @@ namespace Astar
             }
         }
 
-        private PathNode[] _usableNodes;
+        [SerializeField] private PathNode[] _usableNodes;
         public PathNode[] UsableNodes
         {
             get
@@ -47,9 +49,15 @@ namespace Astar
         void Awake()
         {
             Instantiate();
+
+            if ((_nodes != null && _nodes.Length > 0) && 
+                (_usableNodes != null && _usableNodes.Length > 0))
+                    return;
+
             UpdateNodes();
         }
 
+        [Button]
         public void Instantiate()
         {
             // create a singleton, only allow one node manager to exist at once
@@ -64,12 +72,14 @@ namespace Astar
             }
         }
 
+        [Button]
         public void UpdateNodes()
         {
             _nodes = FindObjectsOfType<Node>();
             UpdateObstructedNodes();
         }
 
+        [Button]
         public void UpdateObstructedNodes()
         {
             // check each node for obstruction

@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Astar
 {
+    [Serializable]
     public class PathNode
     {
         public Node node;
