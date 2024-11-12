@@ -40,7 +40,7 @@ namespace AI
         TankController controller;
         Vector3 horizontalVel;
         float dot, currDistance, prevDistance, targetNotFoundCounter;
-        bool targetSeen, foundTarget;
+        bool targetSeen, foundTarget, facingMoveDirection;
 
         // Start is called before the first frame update
         void Start()
@@ -70,8 +70,10 @@ namespace AI
 
             // check if facing and moving forward
             dot = Vector3.Dot(transform.forward, horizontalVel);
+            // set facing move direction flag
+            facingMoveDirection = dot >= correctDirThreshold;
 
-            if (dot >= correctDirThreshold) 
+            if (facingMoveDirection) 
             {
                 LogReward("Face Move Direction Reward");
                 agent.AddReward(ScaleReward(faceMoveDirectionReward, dot, correctDirThreshold));
@@ -109,8 +111,8 @@ namespace AI
             // compare horizontal velocity with preferred direction
             dot = Vector3.Dot(horizontalVel, agent.preferred_direction);
 
-            // reward AI for travelling in preferred direction
-            if (dot >= correctDirThreshold)
+            // reward AI for travelling in preferred direction and facing forward
+            if (dot >= correctDirThreshold && facingMoveDirection)
             {
                 LogReward("Move Towards Preferred Direction Reward");
                 agent.AddReward(ScaleReward(moveTowardsPreferredDirReward, dot, correctDirThreshold));
