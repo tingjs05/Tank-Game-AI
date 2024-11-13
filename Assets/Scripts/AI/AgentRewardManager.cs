@@ -19,7 +19,6 @@ namespace AI
         [Header("Movement")]
         [SerializeField] float faceMoveDirectionReward = 0.05f;
         [SerializeField] float moveTowardsPreferredDirReward = 5f;
-        [SerializeField] float closeDistanceReward = 0.5f;
         [SerializeField] float movementPenalty = 0.05f;
         [SerializeField, Range(0f, 1f)] float correctDirThreshold = 0.85f;
         [SerializeField, Range(0f, 1f)] float aimDirThreshold = 0.99f;
@@ -39,7 +38,7 @@ namespace AI
         TankAgent agent;
         TankController controller;
         Vector3 horizontalVel;
-        float dot, currDistance, prevDistance, targetNotFoundCounter;
+        float dot, currDistance, targetNotFoundCounter;
         bool targetSeen, foundTarget, facingMoveDirection;
 
         // Start is called before the first frame update
@@ -102,8 +101,6 @@ namespace AI
 
             // penalize the AI every interval for not finding target
             TargetFoundCheck();
-            // check if closing distance between self and target
-            CheckDistanceReward();
 
             // ensure weights array and obstacle detection is not null
             if (agent.weights == null || agent.obstacle_detection == null) return;
@@ -135,17 +132,6 @@ namespace AI
             targetNotFoundCounter = 0f;
             LogReward("Target Not Found Penalty");
             agent.AddReward(-targetNotFoundPenalty);
-        }
-
-        void CheckDistanceReward()
-        {
-            if (foundTarget || targetSeen) return;
-            currDistance = Vector3.Distance(transform.position, agent._target.position);
-            if (currDistance >= prevDistance && prevDistance != -1f) return;
-            LogReward("Close Distance Reward");
-            agent.AddReward(prevDistance == -1f ? (closeDistanceReward) : 
-                (closeDistanceReward * (prevDistance - currDistance)));
-            prevDistance = currDistance;
         }
 
         float ScaleReward(float rewardAmt, float dot, float threshold)
@@ -205,7 +191,6 @@ namespace AI
         {
             // reset some variables
             foundTarget = false;
-            prevDistance = -1f;
             targetNotFoundCounter = 0f;
         }
 
