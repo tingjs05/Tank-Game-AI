@@ -53,7 +53,7 @@ namespace AI.ObstacleDetection
             // search through path for next closest node
             foreach (PathNode node in path)
             {
-                if (Vector3.Distance(node.node.transform.position, transform.position) <= agentRadius) continue;
+                if (Vector3.Distance(node.node.transform.position, transform.position) <= agentRadius * 1.5f) continue;
                 // convert the direction into a horizontal direction before returning it
                 preferredDirection = node.node.transform.position - transform.position;
                 preferredDirection.y = 0f;
