@@ -19,6 +19,7 @@ namespace AI
         [Header("Movement")]
         [SerializeField] float faceMoveDirectionReward = 0.05f;
         [SerializeField] float moveTowardsPreferredDirReward = 5f;
+        [SerializeField] float correctRotationReward = 0.5f;
         [SerializeField] float movementPenalty = 0.05f;
         [SerializeField, Range(0f, 1f)] float correctDirThreshold = 0.85f;
         [SerializeField, Range(0f, 1f)] float aimDirThreshold = 0.99f;
@@ -38,10 +39,11 @@ namespace AI
         TankAgent agent;
         TankController controller;
         Vector3 horizontalVel;
-        float dot, currDistance, targetNotFoundCounter;
+        float currDistance, targetNotFoundCounter;
         bool targetSeen, foundTarget, facingMoveDirection;
 
-        // Start is called before the first frame update
+        #region MonoBehaviour Callbacks
+
         void Start()
         {
             agent = GetComponent<TankAgent>();
@@ -68,7 +70,7 @@ namespace AI
             horizontalVel.Normalize();
 
             // check if facing and moving forward
-            dot = Vector3.Dot(transform.forward, horizontalVel);
+            float dot = Vector3.Dot(transform.forward, horizontalVel);
             // set facing move direction flag
             facingMoveDirection = dot >= correctDirThreshold;
 
@@ -124,6 +126,16 @@ namespace AI
             agent.AddReward(ScaleReward(-moveTowardsPreferredDirReward, Mathf.Abs(dot), correctDirThreshold));
         }
 
+        void OnCollisionEnter(Collision other)
+        {
+            // punish agent for colliding with obstacle
+            if (!other.collider.CompareTag(obstacleTag)) return;
+            LogReward("Obstacle Penalty");
+            agent.AddReward(-obstacleCollisionPenalty);
+        }
+
+        #endregion
+
         void TargetFoundCheck()
         {
             if (foundTarget) return;
@@ -132,6 +144,41 @@ namespace AI
             targetNotFoundCounter = 0f;
             LogReward("Target Not Found Penalty");
             agent.AddReward(-targetNotFoundPenalty);
+        }
+
+        #region Reward Calculation
+
+        void CalculateRotationReward(float horizontalInput, Vector3 targetDir)
+        {
+            float dot = Vector3.Dot(transform.forward, targetDir);
+
+            if (dot >= aimDirThreshold)
+            {
+                ApplyRotationReward(horizontalInput == 0f, correctRotationReward, 
+                    "Perfect Rotation Reward", "Wrong Perfect Rotation Penalty");
+                return;
+            }
+
+            dot = Vector3.Dot(transform.right, targetDir);
+
+            // check rotating right
+            if (dot > 0)
+                ApplyRotationReward(horizontalInput > 0, correctRotationReward, 
+                    "Rotate Right Reward", "Wrong Rotate Left Penalty");
+            // check rotating left
+            else if (dot < 0)
+                ApplyRotationReward(horizontalInput < 0, correctRotationReward, 
+                    "Rotate Left Reward", "Wrong Rotate Right Penalty");
+            // give penalty for facing complete wrong direction and not fixing it
+            else
+                ApplyRotationReward(horizontalInput != 0, correctRotationReward, 
+                    "Fix Bad Rotation Reward", "Wrong Fix Bad Rotation Penalty");
+        }
+
+        void ApplyRotationReward(bool correctRotation, float rewardAmt, string correctLog, string wrongLog)
+        {
+            LogReward((correctRotation ? correctLog : wrongLog));
+            agent.AddReward((correctRotation ? rewardAmt : -rewardAmt));
         }
 
         float ScaleReward(float rewardAmt, float dot, float threshold)
@@ -145,13 +192,7 @@ namespace AI
             Debug.Log(log);
         }
 
-        void OnCollisionEnter(Collision other)
-        {
-            // punish agent for colliding with obstacle
-            if (!other.collider.CompareTag(obstacleTag)) return;
-            LogReward("Obstacle Penalty");
-            agent.AddReward(-obstacleCollisionPenalty);
-        }
+        #endregion
 
         #region Event Listeners
         
@@ -203,6 +244,8 @@ namespace AI
                 agent.AddReward(-movementPenalty);
             }
 
+            // check rotation reward, reward agent for rotating correctly
+            CalculateRotationReward(moveInput.y, targetSeen ? agent.interest_direction : agent.preferred_direction);
             // do not check for reward if target is not seen or shooting
             if (!targetSeen || !shoot) return;
 
@@ -214,7 +257,7 @@ namespace AI
             }
 
             // reward for aiming in correct direction and shooting
-            dot = Vector3.Dot(transform.forward, agent.interest_direction);
+            float dot = Vector3.Dot(transform.forward, agent.interest_direction);
             if (dot < aimDirThreshold) return;
             LogReward("Aim + Shoot Reward");
             agent.AddReward(ScaleReward(aimedShotReward, dot, aimDirThreshold));

@@ -54,7 +54,10 @@ namespace AI.ObstacleDetection
             foreach (PathNode node in path)
             {
                 if (Vector3.Distance(node.node.transform.position, transform.position) <= agentRadius) continue;
-                preferredDirection = (node.node.transform.position - transform.position).normalized;
+                // convert the direction into a horizontal direction before returning it
+                preferredDirection = node.node.transform.position - transform.position;
+                preferredDirection.y = 0f;
+                preferredDirection.Normalize();
                 return preferredDirection;
             }
             // default direction is 0 (meaning destination reached)
