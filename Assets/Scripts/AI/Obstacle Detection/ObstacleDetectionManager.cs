@@ -47,18 +47,18 @@ namespace AI.ObstacleDetection
             // get path using Astar
             path = pathfinder.FindPath(transform.position, targetPos);
             // reset preferred dir to 0
-            preferred_direction = Vector3.zero;
+            preferredDirection = Vector3.zero;
             // check if path can be found
-            if (path == null) return preferred_direction;
+            if (path == null) return preferredDirection;
             // search through path for next closest node
             foreach (PathNode node in path)
             {
                 if (Vector3.Distance(node.node.transform.position, transform.position) <= agentRadius) continue;
-                preferred_direction = (node.node.transform.position - transform.position).normalized;
-                return preferred_direction;
+                preferredDirection = (node.node.transform.position - transform.position).normalized;
+                return preferredDirection;
             }
             // default direction is 0 (meaning destination reached)
-            return preferred_direction;
+            return preferredDirection;
         }
 
         public Vector3 GetContextSteeringDirection(Vector3 interestDir)
