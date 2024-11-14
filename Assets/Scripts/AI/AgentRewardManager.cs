@@ -250,7 +250,7 @@ namespace AI
             if (!targetSeen || !shoot) return;
 
             // reward for controlling recoil
-            if (moveInput.x > 0f)
+            if (moveInput.x > 0f && moveInput.x <= 0.5f)
             {
                 LogReward("Recoil Control Reward");
                 agent.AddReward(recoilControlReward);
