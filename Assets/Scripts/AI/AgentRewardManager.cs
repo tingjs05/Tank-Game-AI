@@ -154,7 +154,7 @@ namespace AI
 
             if (dot >= aimDirThreshold)
             {
-                ApplyRotationReward(horizontalInput == 0f, correctRotationReward, 
+                ApplyRotationReward(horizontalInput <= 0.5f && horizontalInput >= -0.5f, horizontalInput == 0f, correctRotationReward, 
                     "Perfect Rotation Reward", "Wrong Perfect Rotation Penalty");
                 return;
             }
@@ -163,22 +163,22 @@ namespace AI
 
             // check rotating right
             if (dot > 0)
-                ApplyRotationReward(horizontalInput > 0 && (dot > 0.5f ? horizontalInput <= 0.5f : horizontalInput > 0.5f), 
+                ApplyRotationReward(horizontalInput > 0f, (dot > 0.5f ? horizontalInput <= 0.5f : horizontalInput > 0.5f), 
                     correctRotationReward, "Rotate Right Reward", "Wrong Rotate Left Penalty");
             // check rotating left
             else if (dot < 0)
-                ApplyRotationReward(horizontalInput < 0 && (dot < -0.5f ? horizontalInput >= -0.5f : horizontalInput < -0.5f), 
+                ApplyRotationReward(horizontalInput < 0f, (dot < -0.5f ? horizontalInput >= -0.5f : horizontalInput < -0.5f), 
                     correctRotationReward, "Rotate Left Reward", "Wrong Rotate Right Penalty");
             // give penalty for facing complete wrong direction and not fixing it
             else
-                ApplyRotationReward(horizontalInput > 0.5f || horizontalInput < -0.5f, correctRotationReward, 
+                ApplyRotationReward(horizontalInput != 0f, horizontalInput > 0.5f || horizontalInput < -0.5f, correctRotationReward, 
                     "Fix Bad Rotation Reward", "Wrong Fix Bad Rotation Penalty");
         }
 
-        void ApplyRotationReward(bool correctRotation, float rewardAmt, string correctLog, string wrongLog)
+        void ApplyRotationReward(bool correctRotation, bool refinedInput, float rewardAmt, string correctLog, string wrongLog)
         {
-            LogReward((correctRotation ? correctLog : wrongLog));
-            agent.AddReward((correctRotation ? rewardAmt : -rewardAmt));
+            LogReward(correctRotation ? correctLog + (refinedInput ? " (Perfect)" : "") : wrongLog);
+            agent.AddReward(correctRotation ? rewardAmt * (refinedInput ? 1f : 0.5f) : -rewardAmt);
         }
 
         float ScaleReward(float rewardAmt, float dot, float threshold)
@@ -250,10 +250,10 @@ namespace AI
             if (!targetSeen || !shoot) return;
 
             // reward for controlling recoil
-            if (moveInput.x > 0f && moveInput.x <= 0.5f)
+            if (moveInput.x > 0f)
             {
                 LogReward("Recoil Control Reward");
-                agent.AddReward(recoilControlReward);
+                agent.AddReward(recoilControlReward * (moveInput.x <= 0.5f ? 1f : 0.5f));
             }
 
             // reward for aiming in correct direction and shooting
