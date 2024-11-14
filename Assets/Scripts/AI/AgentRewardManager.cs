@@ -163,15 +163,15 @@ namespace AI
 
             // check rotating right
             if (dot > 0)
-                ApplyRotationReward(horizontalInput > 0, correctRotationReward, 
-                    "Rotate Right Reward", "Wrong Rotate Left Penalty");
+                ApplyRotationReward(horizontalInput > 0 && (dot > 0.5f ? horizontalInput < 0.5f : horizontalInput >= 0.5f), 
+                    correctRotationReward, "Rotate Right Reward", "Wrong Rotate Left Penalty");
             // check rotating left
             else if (dot < 0)
-                ApplyRotationReward(horizontalInput < 0, correctRotationReward, 
-                    "Rotate Left Reward", "Wrong Rotate Right Penalty");
+                ApplyRotationReward(horizontalInput < 0 && (dot < -0.5f ? horizontalInput > -0.5f : horizontalInput <= -0.5f), 
+                    correctRotationReward, "Rotate Left Reward", "Wrong Rotate Right Penalty");
             // give penalty for facing complete wrong direction and not fixing it
             else
-                ApplyRotationReward(horizontalInput != 0, correctRotationReward, 
+                ApplyRotationReward(horizontalInput > 0.5f || horizontalInput < -0.5f, correctRotationReward, 
                     "Fix Bad Rotation Reward", "Wrong Fix Bad Rotation Penalty");
         }
 
