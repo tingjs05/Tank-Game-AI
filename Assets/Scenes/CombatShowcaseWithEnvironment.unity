@@ -569,7 +569,7 @@ PrefabInstance:
     - target: {fileID: 2518386880721456708, guid: 869ceaafd8d63a1438da35cb67341af8,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4085779849692388745, guid: 869ceaafd8d63a1438da35cb67341af8,
         type: 3}
@@ -711,6 +711,12 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8691621659197184992, guid: 869ceaafd8d63a1438da35cb67341af8,
+        type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 5022602860645237092, guid: 78b8ddba2d6698d4081bec48c020e1b0,
+        type: 3}
     - target: {fileID: 9047200028120392739, guid: 869ceaafd8d63a1438da35cb67341af8,
         type: 3}
       propertyPath: curricularTraining
