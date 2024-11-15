@@ -178,7 +178,7 @@ namespace AI
         void ApplyRotationReward(bool correctRotation, bool refinedInput, float rewardAmt, string correctLog, string wrongLog)
         {
             LogReward(correctRotation ? correctLog + (refinedInput ? " (Perfect)" : "") : wrongLog);
-            agent.AddReward(correctRotation ? rewardAmt * (refinedInput ? 1.5f : 0.5f) : -rewardAmt);
+            agent.AddReward(correctRotation ? rewardAmt * (refinedInput ? 2f : 1f) : -rewardAmt);
         }
 
         float ScaleReward(float rewardAmt, float dot, float threshold)
@@ -253,7 +253,7 @@ namespace AI
             if (moveInput.x > 0f)
             {
                 LogReward("Recoil Control Reward");
-                agent.AddReward(recoilControlReward * (moveInput.x <= 0.5f ? 1.5f : 0.5f));
+                agent.AddReward(recoilControlReward * (moveInput.x <= 0.5f ? 2f : 1f));
             }
 
             // reward for aiming in correct direction and shooting
