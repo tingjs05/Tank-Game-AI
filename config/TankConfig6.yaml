@@ -65,7 +65,7 @@ behaviors:
     init_path: null
     keep_checkpoints: 5
     checkpoint_interval: 500000
-    max_steps: 40000000
+    max_steps: 10000000
     time_horizon: 5000
     summary_freq: 12000
     threaded: true
