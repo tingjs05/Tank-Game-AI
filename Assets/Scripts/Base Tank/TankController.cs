@@ -19,6 +19,10 @@ public class TankController : MonoBehaviour, IDamagable
     public Slider healthBar;
     public string boundaryTag = "Boundary";
 
+    [Header("Animations")]
+    public Animator turretAnimator;
+    public Animator trackAnimatorL, trackAnimatorR;
+
     [Header("Locks")]
     public bool lockMovement = false;
     public bool lockRotation = false;
@@ -77,6 +81,11 @@ public class TankController : MonoBehaviour, IDamagable
         // apply movement
         rb.AddForce(transform.forward * move.x * Time.deltaTime * moveSpeed, ForceMode.VelocityChange);
         rb.angularVelocity = transform.up * move.y * rotationSpeed;
+
+        // play animation
+        if (trackAnimatorL == null || trackAnimatorR == null) return;
+        trackAnimatorL.speed = Mathf.Clamp(move.x - move.y, -1f, 1f);
+        trackAnimatorL.speed = Mathf.Clamp(move.x + move.y, -1f, 1f);
     }
 
     public void Shoot()
@@ -111,6 +120,10 @@ public class TankController : MonoBehaviour, IDamagable
 
         // apply recoil
         rb.AddForce(-transform.forward * shootingRecoil, ForceMode.Impulse);
+
+        // play animation
+        if (turretAnimator == null) return;
+        turretAnimator.SetTrigger("Shoot");
     }
 
     public void Reset()

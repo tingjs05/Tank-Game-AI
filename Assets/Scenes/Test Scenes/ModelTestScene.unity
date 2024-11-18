@@ -581,6 +581,11 @@ PrefabInstance:
       propertyPath: agentAI
       value: 
       objectReference: {fileID: 1852932976}
+    - target: {fileID: 3815836081571524372, guid: 869ceaafd8d63a1438da35cb67341af8,
+        type: 3}
+      propertyPath: trainerAI
+      value: 
+      objectReference: {fileID: 1637771547}
     - target: {fileID: 4073398036687843764, guid: 869ceaafd8d63a1438da35cb67341af8,
         type: 3}
       propertyPath: maxHealth
@@ -630,6 +635,11 @@ PrefabInstance:
         type: 3}
       propertyPath: curricularTraining
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4211825332542630113, guid: 869ceaafd8d63a1438da35cb67341af8,
+        type: 3}
+      propertyPath: trainerAI
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4211825332542630113, guid: 869ceaafd8d63a1438da35cb67341af8,
         type: 3}
@@ -976,6 +986,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1637771546}
+    - target: {fileID: 6689214266845721852, guid: 50c6c384e9552d84dbe0876c43f81334,
+        type: 3}
+      propertyPath: Record
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6792994812036180841, guid: 50c6c384e9552d84dbe0876c43f81334,
         type: 3}
       propertyPath: m_Name
