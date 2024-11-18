@@ -14,6 +14,9 @@ namespace Astar
         public NodeManager nodeManager;
         public GameObject nodePrefab;
         public LayerMask groundMask;
+
+        [Header("Terrain Settings")]
+        public float maxDistanceFromSelf = Mathf.Infinity;
         public bool followTerrain = false;
 
         [Header("Gizmos")]
@@ -73,9 +76,9 @@ namespace Astar
                     if (followTerrain)
                     {
                         // detect ground above and below node to follow terrain
-                        if (Physics.Raycast(currentPosition + Vector3.up, -Vector3.up, out hit, Mathf.Infinity, groundMask) ||
-                            Physics.Raycast(currentPosition, -Vector3.up, out hit, Mathf.Infinity, groundMask) ||
-                            Physics.Raycast(currentPosition, Vector3.up, out hit, Mathf.Infinity, groundMask))
+                        if (Physics.Raycast(currentPosition + Vector3.up, -Vector3.up, out hit, maxDistanceFromSelf, groundMask) ||
+                            Physics.Raycast(currentPosition, -Vector3.up, out hit, maxDistanceFromSelf, groundMask) ||
+                            Physics.Raycast(currentPosition, Vector3.up, out hit, maxDistanceFromSelf, groundMask))
                         {
                             Instantiate(nodePrefab, hit.point, Quaternion.identity, transform);
                         }
