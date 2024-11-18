@@ -1,0 +1,60 @@
+{
+    "env_params": {
+        "lesson_num": 0
+    },
+    "TankBehavior": {
+        "elo": 997.6325519635003,
+        "checkpoints": [
+            {
+                "steps": 118,
+                "file_path": "results\\Gen29\\TankBehavior\\TankBehavior-118.onnx",
+                "reward": -29.949996948242188,
+                "creation_time": 1729745686.5822306,
+                "auxillary_file_paths": [
+                    "results\\Gen29\\TankBehavior\\TankBehavior-118.pt"
+                ]
+            },
+            {
+                "steps": 499965,
+                "file_path": "results\\Gen29\\TankBehavior\\TankBehavior-499965.onnx",
+                "reward": -73.4849853515625,
+                "creation_time": 1729747197.7471757,
+                "auxillary_file_paths": [
+                    "results\\Gen29\\TankBehavior\\TankBehavior-499965.pt"
+                ]
+            },
+            {
+                "steps": 999948,
+                "file_path": "results\\Gen29\\TankBehavior\\TankBehavior-999948.onnx",
+                "reward": 113.43751727833467,
+                "creation_time": 1729748577.656768,
+                "auxillary_file_paths": [
+                    "results\\Gen29\\TankBehavior\\TankBehavior-999948.pt"
+                ]
+            },
+            {
+                "steps": 1034854,
+                "file_path": "results\\Gen29\\TankBehavior\\TankBehavior-1034854.onnx",
+                "reward": null,
+                "creation_time": 1729748682.7780874,
+                "auxillary_file_paths": [
+                    "results\\Gen29\\TankBehavior\\TankBehavior-1034854.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1034854,
+            "file_path": "results\\Gen29\\TankBehavior.onnx",
+            "reward": null,
+            "creation_time": 1729748682.7780874,
+            "auxillary_file_paths": [
+                "results\\Gen29\\TankBehavior\\TankBehavior-1034854.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.29.0",
+        "torch_version": "2.2.2+cu121"
+    }
+}

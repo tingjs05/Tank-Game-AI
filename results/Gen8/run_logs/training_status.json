@@ -1,0 +1,65 @@
+{
+    "TankBehavior": {
+        "checkpoints": [
+            {
+                "steps": 15499937,
+                "file_path": "results\\Gen8\\TankBehavior\\TankBehavior-15499937.onnx",
+                "reward": 57.02132115723952,
+                "creation_time": 1728078595.9848425,
+                "auxillary_file_paths": [
+                    "results\\Gen8\\TankBehavior\\TankBehavior-15499937.pt"
+                ]
+            },
+            {
+                "steps": 15999954,
+                "file_path": "results\\Gen8\\TankBehavior\\TankBehavior-15999954.onnx",
+                "reward": 61.22000031746351,
+                "creation_time": 1728079436.571122,
+                "auxillary_file_paths": [
+                    "results\\Gen8\\TankBehavior\\TankBehavior-15999954.pt"
+                ]
+            },
+            {
+                "steps": 16499977,
+                "file_path": "results\\Gen8\\TankBehavior\\TankBehavior-16499977.onnx",
+                "reward": 56.797428807190485,
+                "creation_time": 1728080274.2422707,
+                "auxillary_file_paths": [
+                    "results\\Gen8\\TankBehavior\\TankBehavior-16499977.pt"
+                ]
+            },
+            {
+                "steps": 16582041,
+                "file_path": "results\\Gen8\\TankBehavior\\TankBehavior-16582041.onnx",
+                "reward": 56.66666678673979,
+                "creation_time": 1728080418.2603805,
+                "auxillary_file_paths": [
+                    "results\\Gen8\\TankBehavior\\TankBehavior-16582041.pt"
+                ]
+            },
+            {
+                "steps": 5481057,
+                "file_path": "results\\Gen8\\TankBehavior\\TankBehavior-5481057.onnx",
+                "reward": 49.32500032016209,
+                "creation_time": 1728082943.3382537,
+                "auxillary_file_paths": [
+                    "results\\Gen8\\TankBehavior\\TankBehavior-5481057.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 5481057,
+            "file_path": "results\\Gen8\\TankBehavior.onnx",
+            "reward": 49.32500032016209,
+            "creation_time": 1728082943.3382537,
+            "auxillary_file_paths": [
+                "results\\Gen8\\TankBehavior\\TankBehavior-5481057.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.29.0",
+        "torch_version": "2.2.2+cu121"
+    }
+}

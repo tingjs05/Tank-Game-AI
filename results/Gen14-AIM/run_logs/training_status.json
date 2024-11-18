@@ -1,0 +1,38 @@
+{
+    "TankBehavior": {
+        "checkpoints": [
+            {
+                "steps": 499983,
+                "file_path": "results\\Gen14-AIM\\TankBehavior\\TankBehavior-499983.onnx",
+                "reward": 176.20711753020683,
+                "creation_time": 1728532447.2324786,
+                "auxillary_file_paths": [
+                    "results\\Gen14-AIM\\TankBehavior\\TankBehavior-499983.pt"
+                ]
+            },
+            {
+                "steps": 869782,
+                "file_path": "results\\Gen14-AIM\\TankBehavior\\TankBehavior-869782.onnx",
+                "reward": 170.16238853459558,
+                "creation_time": 1728533771.3488572,
+                "auxillary_file_paths": [
+                    "results\\Gen14-AIM\\TankBehavior\\TankBehavior-869782.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 869782,
+            "file_path": "results\\Gen14-AIM\\TankBehavior.onnx",
+            "reward": 170.16238853459558,
+            "creation_time": 1728533771.3488572,
+            "auxillary_file_paths": [
+                "results\\Gen14-AIM\\TankBehavior\\TankBehavior-869782.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.29.0",
+        "torch_version": "2.2.2+cu121"
+    }
+}
