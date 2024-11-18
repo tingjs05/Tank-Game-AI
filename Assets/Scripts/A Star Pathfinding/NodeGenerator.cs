@@ -25,7 +25,7 @@ namespace Astar
         void Awake()
         {
             // set grid frequency of node manager
-            nodeManager.gridFrequency = gridFrequency;
+            SetGridFrequency();
         }
 
         [Button]
@@ -33,6 +33,13 @@ namespace Astar
         {
             if (NodeManager.Instance != null || nodeManager == null) return;
             nodeManager.Instantiate();
+        }
+
+        [Button]
+        void SetGridFrequency()
+        {
+            if (nodeManager == null) return;
+            nodeManager.gridFrequency = gridFrequency;
         }
 
         [Button]

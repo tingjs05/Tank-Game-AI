@@ -87,21 +87,23 @@ namespace Astar
             {
                 node.CheckObstructed();
             }
-
-            // update usable nodes
-            _usableNodes = _nodes
-                .Where(x => !x.isObstructed)
-                .Select(x => new PathNode(x))
-                .ToArray();
             
             // check if need to regenerate connections
             if (gridFrequency != null)
             {
-                foreach (PathNode node in _usableNodes)
+                foreach (Node node in _nodes)
                 {
-                    node.node.GenerateConnections((float) gridFrequency);
+                    // skip obstructed nodes
+                    if (node.isObstructed) continue;
+                    node.GenerateConnections((float) gridFrequency);
                 }
             }
+
+            // update usable nodes after generating connections
+            _usableNodes = _nodes
+                .Where(x => !x.isObstructed)
+                .Select(x => new PathNode(x))
+                .ToArray();
 
             // invoke event when updating usable node
             OnUsableNodeUpdate?.Invoke();

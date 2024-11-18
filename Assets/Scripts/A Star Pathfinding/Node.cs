@@ -91,6 +91,10 @@ namespace Astar
                 // add the connection to connections list
                 connections.Add(node);
             }
+
+            // if there are no connections, the node is obstructed
+            if (connections != null && connections.Count > 0) return;
+            obstructed = true;
         }
 
         void OnDrawGizmos() 
