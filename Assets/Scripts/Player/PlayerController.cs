@@ -5,16 +5,21 @@ namespace Player
     [RequireComponent(typeof(TankController))]
     public class PlayerController : MonoBehaviour
     {
-        public KeyCode forwardKey, backwardKey, leftKey, rightKey, shootKey;
-        public float shootCooldown = 1f;
+        public KeyCode forwardKey, backwardKey, leftKey, rightKey, shootKey, aimKey;
+
+        [Header("Testing")]
+        [SerializeField] string boundaryTag = "Boundary";
+        [SerializeField] bool resetOnDeath = false;
 
         private TankController controller;
         private Vector2 moveVector;
-        private float shoot_cooldown;
 
         void Start()
         {
+            // get reference to controller
             controller = GetComponent<TankController>();
+            // handle death reset
+            if (resetOnDeath) controller.Died += controller.Reset;
         }
 
         void Update()
@@ -31,15 +36,25 @@ namespace Player
             if (Input.GetKey(leftKey))
                 moveVector.y -= 1f;
             
-            controller.Move(moveVector);
-
+            if (Input.GetKey(aimKey))
+                moveVector.y *= 0.5f;
+            
             // handle shooting
-            // increment shoot cooldown
-            shoot_cooldown += Time.deltaTime;
-            // check if shoot key has been pressed, if so shoot
-            if (shoot_cooldown < shootCooldown || !Input.GetKey(shootKey)) return;
+            if (!Input.GetKey(shootKey)) return;
             controller.Shoot();
-            shoot_cooldown = 0f;
+        }
+
+        void FixedUpdate()
+        {
+            // apply movement in fixed update
+            controller.Move(moveVector);
+        }
+
+        void OnTriggerEnter(Collider other) 
+        {
+            // check for falling out of boundary
+            if (!resetOnDeath || !other.CompareTag(boundaryTag)) return;
+            controller.Reset();
         }
     }
 }
