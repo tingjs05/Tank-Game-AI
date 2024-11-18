@@ -33,7 +33,7 @@ public class TankController : MonoBehaviour, IDamagable
     
     private Vector3 originalPosition;
     private Quaternion originalRotation;
-    private float shoot_cooldown;
+    private float shoot_cooldown, animation_speed;
 
     public event Action Damaged;
     public event Action Died;
@@ -84,8 +84,14 @@ public class TankController : MonoBehaviour, IDamagable
 
         // play animation
         if (trackAnimatorL == null || trackAnimatorR == null) return;
-        trackAnimatorL.speed = Mathf.Clamp(move.x - move.y, -1f, 1f);
-        trackAnimatorL.speed = Mathf.Clamp(move.x + move.y, -1f, 1f);
+
+        animation_speed = Mathf.Clamp(move.x + move.y, -1f, 1f);
+        trackAnimatorL.SetFloat("speed", animation_speed);
+        trackAnimatorL.speed = Mathf.Abs(animation_speed);
+
+        animation_speed = Mathf.Clamp(move.x - move.y, -1f, 1f);
+        trackAnimatorR.SetFloat("speed", animation_speed);
+        trackAnimatorR.speed = Mathf.Abs(animation_speed);
     }
 
     public void Shoot()
