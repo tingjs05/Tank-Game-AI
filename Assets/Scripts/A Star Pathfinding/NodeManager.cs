@@ -44,21 +44,24 @@ namespace Astar
             }
         }
 
-        [HideInInspector] public float? gridFrequency = null;
-        public event Action OnUsableNodeUpdate;
-
+        [SerializeField] private int maxNodePairs = 1000;
         private List<NodePair> nodePairs = new List<NodePair>();
-        private struct NodePair
+        private class NodePair
         {
             public Vector3 position;
             public Node node;
+            public int numberOfUses;
 
             public NodePair(Vector3 position, Node node)
             {
                 this.position = position;
                 this.node = node;
+                numberOfUses = 0;
             }
         }
+
+        [HideInInspector] public float? gridFrequency = null;
+        public event Action OnUsableNodeUpdate;
 
         void Awake()
         {
@@ -146,6 +149,13 @@ namespace Astar
                     .OrderBy(x => Vector3.Distance(position, x.transform.position))
                     .ToArray();
             
+            // if there are too many node pairs, remove the one with the least number of uses
+            if (nodePairs.Count >= maxNodePairs)
+            {
+                nodePairs = nodePairs.OrderBy(x => x.numberOfUses).ToList();
+                nodePairs.RemoveAt(0);
+            }
+
             // cache node pair
             nodePairs.Add(new NodePair(position, nearbyNodes[0]));
             // return found node
@@ -154,15 +164,18 @@ namespace Astar
 
         Node FindPair(Vector3 newPosition)
         {
-            if (gridFrequency == null) return null;
+            // check if can find pair
+            if (gridFrequency == null || nodePairs == null || nodePairs.Count <= 0) return null;
             // search for matching node pair
-            List<NodePair> matchingPairs = nodePairs
-                .Where(x => Vector3.Distance(x.node.transform.position, newPosition) <= gridFrequency)
+            nodePairs = nodePairs
+                .OrderBy(x => Vector3.Distance(x.node.transform.position, newPosition))
                 .ToList();
-            // check if node pair can be found
-            if (matchingPairs == null || matchingPairs.Count <= 0) return null;
+            // check if closest node is within range
+            if (Vector3.Distance(nodePairs[0].node.transform.position, newPosition) > gridFrequency) return null;
+            // increment uses by 1
+            nodePairs[0].numberOfUses++;
             // return node pair
-            return matchingPairs[0].node;
+            return nodePairs[0].node;
         }
     }
 }
