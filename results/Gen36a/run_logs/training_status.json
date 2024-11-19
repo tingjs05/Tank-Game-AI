@@ -12,15 +12,24 @@
                 "auxillary_file_paths": [
                     "results\\Gen36a\\TankBehavior\\TankBehavior-0.pt"
                 ]
+            },
+            {
+                "steps": 46977,
+                "file_path": "results\\Gen36a\\TankBehavior\\TankBehavior-46977.onnx",
+                "reward": -99.54123160243034,
+                "creation_time": 1731995019.699285,
+                "auxillary_file_paths": [
+                    "results\\Gen36a\\TankBehavior\\TankBehavior-46977.pt"
+                ]
             }
         ],
         "final_checkpoint": {
-            "steps": 0,
+            "steps": 46977,
             "file_path": "results\\Gen36a\\TankBehavior.onnx",
-            "reward": null,
-            "creation_time": 1731994583.8399355,
+            "reward": -99.54123160243034,
+            "creation_time": 1731995019.699285,
             "auxillary_file_paths": [
-                "results\\Gen36a\\TankBehavior\\TankBehavior-0.pt"
+                "results\\Gen36a\\TankBehavior\\TankBehavior-46977.pt"
             ]
         }
     },
