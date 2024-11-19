@@ -123,7 +123,7 @@ namespace AI
 
             // give penalty for moving in the wrong direction
             LogReward("Not Moving Towards Preferred Direction Penalty");
-            agent.AddReward(ScaleReward(-moveTowardsPreferredDirReward, Mathf.Abs(dot), correctDirThreshold));
+            agent.AddReward(ScaleReward(-moveTowardsPreferredDirReward, Mathf.Abs(dot), 0f));
         }
 
         void OnCollisionEnter(Collision other)
@@ -183,7 +183,7 @@ namespace AI
 
         float ScaleReward(float rewardAmt, float dot, float threshold)
         {
-            return rewardAmt * ((dot - threshold) / (1f - threshold));
+            return rewardAmt * Mathf.Clamp01((dot - threshold) / (1f - threshold));
         }
 
         void LogReward(string log)
