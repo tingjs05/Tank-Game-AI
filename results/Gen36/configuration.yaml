@@ -61,7 +61,7 @@ behaviors:
         encoding_size: null
         use_actions: false
         use_vail: false
-        demo_path: demos/TankBehaviorDemo_ASTR_AI_v2.demo
+        demo_path: demos/TankBehaviorDemo_ASTR_AI_v3.demo
     init_path: null
     keep_checkpoints: 5
     checkpoint_interval: 500000
@@ -71,7 +71,7 @@ behaviors:
     threaded: true
     self_play: null
     behavioral_cloning:
-      demo_path: demos/TankBehaviorDemo_ASTR_AI_v2.demo
+      demo_path: demos/TankBehaviorDemo_ASTR_AI_v3.demo
       steps: 0
       strength: 0.5
       samples_per_update: 0
