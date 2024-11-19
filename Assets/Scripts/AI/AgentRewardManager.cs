@@ -253,7 +253,7 @@ namespace AI
             if (moveInput.x > 0f)
             {
                 LogReward("Recoil Control Reward");
-                agent.AddReward(recoilControlReward * (moveInput.x <= 0.5f ? 2f : 1f));
+                agent.AddReward(recoilControlReward * ((moveInput.x > 0.75f && moveInput.x < 0.85f) ? 2f : 1f));
             }
 
             // reward for aiming in correct direction and shooting
