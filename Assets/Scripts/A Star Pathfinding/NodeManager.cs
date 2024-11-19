@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using EasyButtons;
@@ -46,6 +47,19 @@ namespace Astar
         [HideInInspector] public float? gridFrequency = null;
         public event Action OnUsableNodeUpdate;
 
+        private List<NodePair> nodePairs = new List<NodePair>();
+        private struct NodePair
+        {
+            public Vector3 position;
+            public Node node;
+
+            public NodePair(Vector3 position, Node node)
+            {
+                this.position = position;
+                this.node = node;
+            }
+        }
+
         void Awake()
         {
             Instantiate();
@@ -82,6 +96,9 @@ namespace Astar
         [Button]
         public void UpdateObstructedNodes()
         {
+            // reset node pairs list
+            nodePairs.Clear();
+
             // check each node for obstruction
             foreach(Node node in _nodes)
             {
@@ -111,6 +128,10 @@ namespace Astar
 
         public Node GetNearestNode(Vector3 position)
         {
+            // try to find node from cache first
+            Node foundNode = FindPair(position);
+            if (foundNode != null) return foundNode;
+
             Collider[] nearbyNodeCols = Physics.OverlapSphere(position, nodeDetectionRange, nodeLayerMask);
 
             Node[] nearbyNodes = nearbyNodeCols
@@ -125,7 +146,23 @@ namespace Astar
                     .OrderBy(x => Vector3.Distance(position, x.transform.position))
                     .ToArray();
             
+            // cache node pair
+            nodePairs.Add(new NodePair(position, nearbyNodes[0]));
+            // return found node
             return nearbyNodes[0];
+        }
+
+        Node FindPair(Vector3 newPosition)
+        {
+            if (gridFrequency == null) return null;
+            // search for matching node pair
+            List<NodePair> matchingPairs = nodePairs
+                .Where(x => Vector3.Distance(x.node.transform.position, newPosition) <= gridFrequency)
+                .ToList();
+            // check if node pair can be found
+            if (matchingPairs == null || matchingPairs.Count <= 0) return null;
+            // return node pair
+            return matchingPairs[0].node;
         }
     }
 }
