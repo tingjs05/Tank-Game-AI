@@ -123,7 +123,7 @@ namespace AI
 
             // try projecting hitbox in move direction to double check for obstacles
             if (Physics.OverlapBox(transform.position + 
-                (preferred_direction * obstacleDetection.agentRadius), 
+                (interest_direction * obstacleDetection.agentRadius), 
                 new Vector3(obstacleDetection.agentRadius, obstacleDetection.agentRadius, 
                 obstacleDetection.agentRadius) * movementObstacleDetectionScale, transform.rotation, 
                 obstacleDetection.detectionMask).Length > 0)
