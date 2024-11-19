@@ -18,7 +18,6 @@ namespace AI.FSM
         [SerializeField] protected float lineOfSightRadius = 0.15f;
         [SerializeField, Range(0f, 1f)] protected float shootThreshold = 0.9f;
         [SerializeField, Range(0f, 1f)] protected float recoilControl = 0.75f;
-        [SerializeField, Range(0f, 1f)] protected float minAimSpeed = 0.6f;
 
         [Header("Flee")]
         [SerializeField] protected float fleeDistance = 3.5f;
@@ -32,7 +31,6 @@ namespace AI.FSM
         #region Public Properties
         public float shoot_threshold => shootThreshold;
         public float recoil_control => recoilControl;
-        public float min_aim_speed => minAimSpeed;
         public float flee_distance => fleeDistance;
         public float flee_health_threshold => fleeHealthThreshold;
         public Vector2 flee_duration => fleeDuration;
@@ -129,7 +127,7 @@ namespace AI.FSM
             float dot = Vector3.Dot(transform.forward, (reverse ? -direction : direction));
             if (dot >= movementThreshold) movementInputs.x = (reverse ? -1f : 1f);
             float right_dot = Vector3.Dot(transform.right, (reverse ? -direction : direction));
-            movementInputs.y = right_dot >= 0f ? 1f : -1f;
+            movementInputs.y = (right_dot >= 0f ? 1f : -1f) * (Mathf.Abs(right_dot) < 0.5f ? 0.5f : right_dot);
             if (dot >= hardMovementThreshold) movementInputs.y = 0f;
             // input movement
             controller.Move(movementInputs);
