@@ -30,7 +30,7 @@ namespace AI.FSM
 
             // check if the direction of the target is on the right or left
             dot = Vector3.Dot(character.transform.right, dir);
-            float yInput = Mathf.Abs(dot) < 0.5f ? (dot < 0f ? -0.5f : 0.5f) : dot;
+            float yInput = dot == 0f ? 1f : (Mathf.Abs(dot) < 0.5f ? (dot < 0f ? -0.5f : 0.5f) : dot);
             character.DirectMove(new Vector2(0f, yInput));
         }
     }

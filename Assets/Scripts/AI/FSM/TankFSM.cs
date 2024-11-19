@@ -127,7 +127,7 @@ namespace AI.FSM
             float dot = Vector3.Dot(transform.forward, (reverse ? -direction : direction));
             if (dot >= movementThreshold) movementInputs.x = (reverse ? -1f : 1f);
             float right_dot = Vector3.Dot(transform.right, (reverse ? -direction : direction));
-            movementInputs.y = (right_dot >= 0f ? 1f : -1f) * (Mathf.Abs(right_dot) < 0.5f ? 0.5f : right_dot);
+            movementInputs.y = right_dot == 0f ? 1f : (Mathf.Abs(right_dot) < 0.5f ? (right_dot < 0f ? -0.5f : 0.5f) : right_dot);
             if (dot >= hardMovementThreshold) movementInputs.y = 0f;
             // input movement
             controller.Move(movementInputs);
