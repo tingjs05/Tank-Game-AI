@@ -34,11 +34,13 @@ namespace AI.ObstacleDetection
         {
             // set directions
             direction = new Direction();
-            // Debug.Log($"Number of directions: {numberOfDirections}");
             // create weights array
             weights = new float[numberOfDirections];
             // initialize pathfinding component
             pathfinder = new Pathfinding();
+            // reset previous target position when nodes update
+            if (NodeManager.Instance == null) return;
+            NodeManager.Instance.OnUsableNodeUpdate += () => previousTargetPosition = null;
         }
 
         #region Pathfinding
