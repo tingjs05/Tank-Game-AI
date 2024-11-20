@@ -45,6 +45,7 @@ namespace Training
             randomGroundTilt.ResetTilt();
             randomObstacle.SetNewEpisode();
             complexMapManager.SetMap();
+            randomPosition.SetNewEpisode();
 
             yield return new WaitForSeconds(resetDelay);
 
@@ -54,7 +55,6 @@ namespace Training
             
             yield return new WaitForSeconds(resetDelay);
             
-            randomPosition.SetNewEpisode();
             randomGroundTilt.TiltGround();
             groundMaterialManager.NewEpisodeReset();
 
