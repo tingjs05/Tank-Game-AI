@@ -159,15 +159,15 @@ namespace AI
                 return;
             }
 
-            dot = Vector3.Dot(transform.right, targetDir);
+            float right_dot = Vector3.Dot(transform.right, targetDir);
 
             // check rotating right
-            if (dot > 0)
-                ApplyRotationReward(horizontalInput > 0f, (dot > 0.5f ? horizontalInput <= 0.5f : horizontalInput > 0.5f), 
+            if (right_dot > 0)
+                ApplyRotationReward(horizontalInput > 0f, (dot > correctDirThreshold ? horizontalInput <= 0.5f : horizontalInput > 0.5f), 
                     correctRotationReward, "Rotate Right Reward", "Wrong Rotate Left Penalty");
             // check rotating left
-            else if (dot < 0)
-                ApplyRotationReward(horizontalInput < 0f, (dot < -0.5f ? horizontalInput >= -0.5f : horizontalInput < -0.5f), 
+            else if (right_dot < 0)
+                ApplyRotationReward(horizontalInput < 0f, (dot < -correctDirThreshold ? horizontalInput >= -0.5f : horizontalInput < -0.5f), 
                     correctRotationReward, "Rotate Left Reward", "Wrong Rotate Right Penalty");
             // give penalty for facing complete wrong direction and not fixing it
             else
