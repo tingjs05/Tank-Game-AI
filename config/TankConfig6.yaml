@@ -65,7 +65,7 @@ behaviors:
     init_path: null
     keep_checkpoints: 5
     checkpoint_interval: 500000
-    max_steps: 10000000
+    max_steps: 15000000
     time_horizon: 5000
     summary_freq: 12000
     threaded: true
@@ -122,7 +122,7 @@ environment_parameters:
         measure: reward
         min_lesson_length: 100
         signal_smoothing: true
-        threshold: 500.0
+        threshold: 700.0
         require_reset: false
     - value:
         sampler_type: constant
@@ -135,7 +135,7 @@ environment_parameters:
         measure: reward
         min_lesson_length: 100
         signal_smoothing: true
-        threshold: 750.0
+        threshold: 850.0
         require_reset: false
     - value:
         sampler_type: constant
@@ -148,7 +148,7 @@ environment_parameters:
         measure: reward
         min_lesson_length: 100
         signal_smoothing: true
-        threshold: 800.0
+        threshold: 1000.0
         require_reset: false
     - value:
         sampler_type: constant
