@@ -237,8 +237,15 @@ namespace AI
 
         void HandleActionRewards(Vector2 moveInput, bool shoot)
         {
+            // reward for controlling recoil
+            if (targetSeen && moveInput.x > 0f)
+            {
+                bool perfectRecoilControl = moveInput.x > 0.75f && moveInput.x < 0.85f;
+                LogReward("Recoil Control Reward" + (perfectRecoilControl ? " (Perfect)" : ""));
+                agent.AddReward(recoilControlReward * (perfectRecoilControl ? 2f : 1f));
+            }
             // check for movement, give penalty (cost while moving)
-            if (moveInput != Vector2.zero)
+            else if (moveInput != Vector2.zero)
             {
                 LogReward("Movement Penalty");
                 agent.AddReward(-movementPenalty);
@@ -248,13 +255,6 @@ namespace AI
             CalculateRotationReward(moveInput.y, targetSeen ? agent.interest_direction : agent.preferred_direction);
             // do not check for reward if target is not seen or shooting
             if (!targetSeen || !shoot) return;
-
-            // reward for controlling recoil
-            if (moveInput.x > 0f)
-            {
-                LogReward("Recoil Control Reward");
-                agent.AddReward(recoilControlReward * ((moveInput.x > 0.75f && moveInput.x < 0.85f) ? 2f : 1f));
-            }
 
             // reward for aiming in correct direction and shooting
             float dot = Vector3.Dot(transform.forward, agent.interest_direction);
