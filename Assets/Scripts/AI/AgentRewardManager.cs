@@ -104,8 +104,8 @@ namespace AI
             // penalize the AI every interval for not finding target
             TargetFoundCheck();
 
-            // ensure weights array and obstacle detection is not null
-            if (agent.weights == null || agent.obstacle_detection == null) return;
+            // ensure obstacle detection is not null
+            if (agent.obstacle_detection == null) return;
 
             // compare horizontal velocity with preferred direction
             dot = Vector3.Dot(horizontalVel, agent.preferred_direction);
