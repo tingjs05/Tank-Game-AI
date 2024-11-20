@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using AI;
 
@@ -10,6 +11,7 @@ namespace Training
         [SerializeField] KeyCode resetKey = KeyCode.Alpha1;
         [SerializeField] bool testReset = false;
         [SerializeField] bool curricularTraining = false;
+        [SerializeField] float resetDelay = 0.01f;
 
         [Header("Position Settings")]
         [SerializeField] bool changeX;
@@ -78,6 +80,17 @@ namespace Training
         }
 
         public void SetNewEpisode()
+        {
+            StartCoroutine(DelayedNewEpisode());
+        }
+
+        IEnumerator DelayedNewEpisode()
+        {
+            yield return new WaitForSeconds(resetDelay);
+            HandleNewEpisode();
+        }
+
+        void HandleNewEpisode()
         {
             trainerAI.Reset();
 
