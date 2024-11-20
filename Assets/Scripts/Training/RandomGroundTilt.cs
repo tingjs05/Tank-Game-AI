@@ -1,19 +1,15 @@
-using System.Collections;
 using UnityEngine;
-using AI;
 
 namespace Training
 {
     public class RandomGroundTilt : MonoBehaviour
     {
-        [SerializeField] TankAgent agentAI;
         [SerializeField] Vector2 tiltBoundaries = new Vector2(-0.5f, 0.5f);
         [SerializeField] KeyCode resetKey = KeyCode.Alpha4;
         [SerializeField] bool testReset = false;
         [SerializeField] bool curricularTraining = false;
         [SerializeField] bool tiltGround = false;
         [SerializeField] float lessonValue = 5f;
-        [SerializeField] float resetDelay = 0.05f;
         
         Quaternion originalRotation;
         float prog => EnvParamManager.Instance.prog;
@@ -22,7 +18,6 @@ namespace Training
         void Start()
         {
             originalRotation = transform.rotation;
-            agentAI.OnNewEpisode += TiltGround;
         }
 
         // Update is called once per frame
@@ -34,21 +29,21 @@ namespace Training
             if (!testReset || !Input.GetKeyDown(resetKey)) return;
             TiltGround();
         }
-        void TiltGround()
+
+        public void ResetTilt()
         {
             transform.rotation = originalRotation;
-            StartCoroutine(DelayedTilt());
         }
 
-        IEnumerator DelayedTilt()
+        public void TiltGround()
         {
-            yield return new WaitForSeconds(resetDelay);
             // check if need to tilt ground
-            if (tiltGround)
-                transform.rotation = Quaternion.Euler(
-                    Random.Range(tiltBoundaries.x, tiltBoundaries.y), 
-                    originalRotation.y, 
-                    Random.Range(tiltBoundaries.x, tiltBoundaries.y));
+            if (!tiltGround) return;
+            // randomly tilt in x and z axis
+            transform.rotation = Quaternion.Euler(
+                Random.Range(tiltBoundaries.x, tiltBoundaries.y), 
+                originalRotation.y, 
+                Random.Range(tiltBoundaries.x, tiltBoundaries.y));
         }
     }
 }

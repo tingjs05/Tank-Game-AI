@@ -1,17 +1,12 @@
-using System.Collections;
 using UnityEngine;
-using AI;
-using Astar;
 
 namespace Training
 {
     [RequireComponent(typeof(Renderer))]
     public class GroundMaterialManager : MonoBehaviour
     {
-        [SerializeField] TankAgent agentAI;
         [SerializeField] TankController trainerAI;
         [SerializeField] Material succeedMat, failMat;
-        [SerializeField] float resetDelay = 0.01f;
         Renderer rend;
         bool successfulRun = false;
 
@@ -22,7 +17,6 @@ namespace Training
         void Start()
         {
             rend = GetComponent<Renderer>();
-            agentAI.OnNewEpisode += NewEpisodeReset;
             trainerAI.Died += Succeed;
         }
 
@@ -35,22 +29,11 @@ namespace Training
             rend.material = succeedMat;
         }
 
-        void NewEpisodeReset()
+        public void NewEpisodeReset()
         {
-            StartCoroutine(DelayedReset());
-        }
-
-        IEnumerator DelayedReset()
-        {
-            yield return new WaitForSeconds(resetDelay);
-
             // reset material on reset
             if (!successfulRun) rend.material = failMat;
             successfulRun = false;
-
-            // recalculate pathfinding nodes on reset
-            if (NodeManager.Instance != null)
-                NodeManager.Instance.UpdateObstructedNodes();
         }
     }
 }

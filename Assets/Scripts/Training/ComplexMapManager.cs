@@ -16,7 +16,6 @@ namespace Training
         [SerializeField] Vector3 newAIResetPosition;
 
         [Header("General Settings")]
-        [SerializeField] RandomPosition randomPositionManager;
         [SerializeField] Transform ground;
         [SerializeField] Vector2 extendedGroundScale = new Vector2(2f, 2f);
         [SerializeField] bool useComplexMap = false;
@@ -44,10 +43,8 @@ namespace Training
                 obstacleLayouts.Add(child.gameObject);
             }
 
-            if (curricularTraining) useComplexMap = false;
-
-            if (agentAI == null || trainerAI == null) return;
-            agentAI.OnNewEpisode += SetMap;
+            if (!curricularTraining) return;
+            useComplexMap = false;
         }
 
         void Update()
@@ -61,7 +58,7 @@ namespace Training
             SetMap();
         }
 
-        void SetMap()
+        public void SetMap()
         {
             // set ground scale
             ground.transform.localScale = useComplexMap ? 
@@ -78,13 +75,9 @@ namespace Training
                 obj.SetActive(false);
             }
 
-            // toggle reset position
-            randomPositionManager.reset_position = !useComplexMap;
             // check if need to handle complex map
             if (!useComplexMap) return;
-            // call random position manually
-            randomPositionManager.SetNewEpisode();
-
+            // set random obstacle for complex map
             obstacleLayouts[Random.Range(0, obstacleLayouts.Count)].SetActive(true);
         }
 

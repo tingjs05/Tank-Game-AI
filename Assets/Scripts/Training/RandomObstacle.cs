@@ -5,7 +5,6 @@ namespace Training
 {
     public class RandomObstacle : MonoBehaviour
     {
-        [SerializeField] TankAgent agentAI;
         [SerializeField] KeyCode resetKey = KeyCode.Alpha2;
         [SerializeField] bool testReset = false;
         [SerializeField] bool curricularTraining = false;
@@ -28,16 +27,12 @@ namespace Training
         // Start is called before the first frame update
         void Start()
         {
-            if (curricularTraining)
-            {
-                scaleX = false;
-                scaleZ = false;
-                rotateY = false;
-                changePos = false;
-            }
-
-            if (agentAI == null) return;
-            agentAI.OnNewEpisode += SetNewEpisode;
+            if (!curricularTraining) return;
+            
+            scaleX = false;
+            scaleZ = false;
+            rotateY = false;
+            changePos = false;
         }
 
         // Update is called once per frame
@@ -59,7 +54,7 @@ namespace Training
             changePos = prog >= positionLessonValues.x && prog <= positionLessonValues.y;
         }
 
-        void SetNewEpisode()
+        public void SetNewEpisode()
         {
             // handle random scale
             Vector3 scale = transform.localScale;
