@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using EasyButtons;
+using UnityEngine.Events;
 
 namespace UI
 {
@@ -8,9 +9,13 @@ namespace UI
     public class Button3D : MonoBehaviour
     {
         public Transform targetTransform;
+        public ParticleSystem clickParticles;
         public Vector3 floatingPosition;
         public Vector3 floatingRotation;
         public float floatSpeed = 0.5f;
+
+        [Space] 
+        public UnityEvent OnClick;
 
         private Vector3? originalPosition = null;
         private Quaternion? originalRotation = null;
@@ -31,7 +36,9 @@ namespace UI
         void OnMouseOver()
         {
             if (!Input.GetMouseButtonDown(0)) return;
-            Debug.Log($"Clicked {name}!");
+            OnClick?.Invoke();
+            if (clickParticles == null) return;
+            clickParticles.Play();
         }
 
         void OnMouseExit() 
