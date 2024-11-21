@@ -55,23 +55,22 @@ namespace UI
 
         IEnumerator MoveToTarget(bool to_start)
         {
+            int dirScale = (inverseDirection ? -1 : 1) * (!to_start ? 1 : -1);
+
             Vector3 midPoint = new Vector3(
                     (startPos.x + endPos.x) / 2f, 
                     (startPos.y + endPos.y) / 2f, 
                     (startPos.z + endPos.z) / 2f
                 );
-            Vector3 direction;
+            
+            // calculate vertical vector
+            Vector3 direction = (endPos - startPos).normalized;
+            Vector3 prepDir = new Vector3(direction.z, direction.y, -direction.x);
+            Vector3 upVector = Vector3.Cross(direction, prepDir) * dirScale;
 
             while (Vector3.Distance(transform.position, (to_start ? startPos : endPos)) > stopThreshold)
             {
-                direction = (midPoint - transform.position).normalized;
-                direction = new Vector3(direction.z * (inverseDirection ? -1f : 1f), direction.y, 
-                    direction.x * (inverseDirection ? 1f : -1f));// * (to_start ? 1 : -1);
-
-                Debug.DrawRay(transform.position, direction, Color.red);
-
-                transform.position += direction * moveSpeed * Time.deltaTime;
-
+                transform.RotateAround(midPoint, upVector, Time.deltaTime * moveSpeed);
                 yield return null;
             }
 
