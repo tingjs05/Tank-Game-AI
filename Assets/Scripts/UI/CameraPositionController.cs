@@ -9,6 +9,7 @@ namespace UI
     {
         public Vector3 startPos, endPos, targetPoint;
         public float moveSpeed = 0.5f;
+        public float smoothDistance = 0.5f;
         public float stopThreshold = 0.01f;
         public bool inverseDirection = false;
 
@@ -56,6 +57,9 @@ namespace UI
         IEnumerator MoveToTarget(bool to_start)
         {
             int dirScale = (inverseDirection ? -1 : 1) * (!to_start ? 1 : -1);
+            float totalDistance = Vector3.Distance(startPos, endPos);
+            float remainingDistance = totalDistance;
+            float speedScale = 1f;
 
             Vector3 midPoint = new Vector3(
                     (startPos.x + endPos.x) / 2f, 
@@ -68,9 +72,11 @@ namespace UI
             Vector3 prepDir = new Vector3(direction.z, direction.y, -direction.x);
             Vector3 upVector = Vector3.Cross(direction, prepDir) * dirScale;
 
-            while (Vector3.Distance(transform.position, (to_start ? startPos : endPos)) > stopThreshold)
+            while (remainingDistance > stopThreshold)
             {
-                transform.RotateAround(midPoint, upVector, Time.deltaTime * moveSpeed);
+                remainingDistance = Vector3.Distance(transform.position, (to_start ? startPos : endPos));
+                if (remainingDistance <= smoothDistance) speedScale = remainingDistance / totalDistance;
+                transform.RotateAround(midPoint, upVector, Time.deltaTime * moveSpeed * speedScale);
                 yield return null;
             }
 

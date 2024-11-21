@@ -5570,7 +5570,8 @@ MonoBehaviour:
   endPos: {x: 1.56, y: 2.735, z: -2.971}
   targetPoint: {x: 2.6, y: 2.53, z: -3.27}
   moveSpeed: 90
-  stopThreshold: 0.03
+  smoothDistance: 3
+  stopThreshold: 0.001
   inverseDirection: 1
 --- !u!1 &950711946 stripped
 GameObject:
