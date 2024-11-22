@@ -46,13 +46,7 @@ namespace UI
             if (moveCoroutine != null) StopCoroutine(moveCoroutine);
             moveCoroutine = StartCoroutine(MoveTo((Vector3) originalPosition, (Quaternion) originalRotation));
         }
-
-        void SetOriginalTransform()
-        {
-            originalPosition = targetTransform.position;
-            originalRotation = targetTransform.rotation;
-        }
-
+        
         [Button]
         void ApplyOriginalPositionToFloatingPosition()
         {
@@ -71,7 +65,14 @@ namespace UI
         }
 
         [Button]
-        void ResetPosition()
+        public void SetOriginalTransform()
+        {
+            originalPosition = targetTransform.position;
+            originalRotation = targetTransform.rotation;
+        }
+
+        [Button]
+        public void ResetPosition()
         {
             if (originalPosition == null || originalRotation == null) return;
             targetTransform.position = (Vector3) originalPosition;
