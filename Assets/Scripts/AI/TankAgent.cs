@@ -110,7 +110,9 @@ namespace AI
         void CalculateDirections()
         {
             // calculate interest directions
-            interest_direction = (target.transform.position - transform.position).normalized;
+            Vector3 tempDir = target.transform.position - transform.position;
+            tempDir.y = 0f;
+            interest_direction = tempDir.normalized;
             // calculate preferred direction
             preferred_direction = obstacle_detection.GetPathFindingDirection(target.transform.position);
 

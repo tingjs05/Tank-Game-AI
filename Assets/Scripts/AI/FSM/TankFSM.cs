@@ -88,7 +88,10 @@ namespace AI.FSM
         public bool TargetInRange()
         {
             // get direction of target
-            Vector3 dir = (target.position - transform.position).normalized;
+            Vector3 dir = target.position - transform.position;
+            // flatten direction and normalize
+            dir.y = 0f;
+            dir.Normalize();
             // disable collider to ensure raycast does not detect self
             collider.enabled = false;
             // perform raycast
