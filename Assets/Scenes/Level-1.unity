@@ -1887,17 +1887,17 @@ PrefabInstance:
     - target: {fileID: 2817981248030021084, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3692108922365122583, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3692108922365122583, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9172984854521456848, guid: 5a7316b93aaec4347858477e3ab3d11d,
         type: 3}
@@ -2416,15 +2416,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tank (AI)
       objectReference: {fileID: 0}
-    - target: {fileID: 6719915223290563889, guid: d8363aba81a44b84280baebbda7b8003,
+    - target: {fileID: 5289360980607516922, guid: d8363aba81a44b84280baebbda7b8003,
         type: 3}
-      propertyPath: m_AnchorMax.x
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6719915223290563889, guid: d8363aba81a44b84280baebbda7b8003,
         type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6719915223290563889, guid: d8363aba81a44b84280baebbda7b8003,
+        type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

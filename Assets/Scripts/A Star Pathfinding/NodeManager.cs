@@ -63,9 +63,6 @@ namespace Astar
         [HideInInspector] public float? gridFrequency = null;
         public event Action OnUsableNodeUpdate;
 
-        // iterators
-        int i, j;
-
         void Awake()
         {
             Instantiate();
@@ -104,6 +101,8 @@ namespace Astar
         {
             // reset node pairs list
             nodePairs.Clear();
+            // iterators
+            int i;
 
             // check each node for obstruction
             for (i = 0; i < _nodes.Length; i++)
@@ -141,13 +140,13 @@ namespace Astar
             Node[] nearbyNodes = nearbyNodeCols
                 .Select(x => x.GetComponent<Node>())
                 .Where(x => x != null && !x.isObstructed)
-                .OrderBy(x => Vector3.Distance(position, x.transform.position))
+                .OrderBy(x => FindManhattanDistance(position, x.transform.position))
                 .ToArray();
 
             if (nearbyNodes == null || nearbyNodes.Length <= 0)
                 nearbyNodes = _usableNodes
                     .Select(x => x.node)
-                    .OrderBy(x => Vector3.Distance(position, x.transform.position))
+                    .OrderBy(x => FindManhattanDistance(position, x.transform.position))
                     .ToArray();
             
             // if there are too many node pairs, remove the one with the least number of uses
@@ -169,14 +168,26 @@ namespace Astar
             if (gridFrequency == null || nodePairs == null || nodePairs.Count <= 0) return null;
             // search for matching node pair
             nodePairs = nodePairs
-                .OrderBy(x => Vector3.Distance(x.node.transform.position, newPosition))
+                .OrderBy(x => FindManhattanDistance(x.node.transform.position, newPosition))
                 .ToList();
             // check if closest node is within range
-            if (Vector3.Distance(nodePairs[0].node.transform.position, newPosition) > gridFrequency) return null;
+            if (FindManhattanDistance(nodePairs[0].node.transform.position, newPosition) > gridFrequency) return null;
             // increment uses by 1
             nodePairs[0].numberOfUses++;
             // return node pair
             return nodePairs[0].node;
+        }
+
+        int FindManhattanDistance(Vector3 start, Vector3 end)
+        {
+            // return Vector3.Distance(start, end);
+            return Mathf.Abs(ConvertToInt(end.x) - ConvertToInt(start.x)) + 
+                Mathf.Abs(ConvertToInt(end.z) - ConvertToInt(start.z));
+        }
+
+        int ConvertToInt(float num)
+        {
+            return (int) Mathf.Round(num * 10);
         }
     }
 }

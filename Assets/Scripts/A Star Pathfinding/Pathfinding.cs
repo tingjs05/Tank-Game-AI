@@ -21,8 +21,6 @@ namespace Astar
         PathNode startNode, endNode, connectionNode;
         // boolean to control whether or not a path is found
         bool pathFound;
-        // iterators
-        int x, y, i;
 
         public Pathfinding()
         {
@@ -73,6 +71,8 @@ namespace Astar
             Reset();
             // add start node to open list
             open.Add(startNode);
+            // iterators
+            int i;
 
             // find path
             // limit loop to number of nodes
@@ -137,6 +137,8 @@ namespace Astar
         {
             // remove from open list since its already opened
             open.Remove(node);
+            // iterators
+            int x, y;
 
             // add all connected nodes to open list
             for (x = 0; x < node.node.nodeConnections.Count; x++)
