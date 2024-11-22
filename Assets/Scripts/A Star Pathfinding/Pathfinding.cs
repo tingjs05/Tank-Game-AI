@@ -7,7 +7,8 @@ namespace Astar
     public class Pathfinding
     {
         // list of nodes stored locally
-        public PathNode[] nodes => NodeManager.Instance.UsableNodes == null ? null : NodeManager.Instance.UsableNodes;
+        public PathNode[] nodes => NodeManager.Instance.UsableNodes == null ? null : 
+            (PathNode[]) NodeManager.Instance.UsableNodes.Clone();
 
         // lists to store nodes that have been visited
         public List<PathNode> open { get; private set; } = new List<PathNode>();

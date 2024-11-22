@@ -542,7 +542,7 @@ Transform:
   m_GameObject: {fileID: 1440973839}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalPosition: {x: 0, y: -2.5, z: 0}
   m_LocalScale: {x: 5, y: 0.15, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -569,6 +569,36 @@ PrefabInstance:
     - target: {fileID: 2518386880721456708, guid: 869ceaafd8d63a1438da35cb67341af8,
         type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3151915523754703912, guid: 869ceaafd8d63a1438da35cb67341af8,
+        type: 3}
+      propertyPath: testReset
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3151915523754703912, guid: 869ceaafd8d63a1438da35cb67341af8,
+        type: 3}
+      propertyPath: tiltGround
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3151915523754703912, guid: 869ceaafd8d63a1438da35cb67341af8,
+        type: 3}
+      propertyPath: curricularTraining
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3793839647539456388, guid: 869ceaafd8d63a1438da35cb67341af8,
+        type: 3}
+      propertyPath: testReset
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3793839647539456388, guid: 869ceaafd8d63a1438da35cb67341af8,
+        type: 3}
+      propertyPath: primeEnvironment
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4073398036687843764, guid: 869ceaafd8d63a1438da35cb67341af8,
+        type: 3}
+      propertyPath: lockShooting
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4085779849692388745, guid: 869ceaafd8d63a1438da35cb67341af8,
@@ -690,6 +720,21 @@ PrefabInstance:
         type: 3}
       propertyPath: curricularTraining
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5822780373784951369, guid: 869ceaafd8d63a1438da35cb67341af8,
+        type: 3}
+      propertyPath: lockMovement
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5822780373784951369, guid: 869ceaafd8d63a1438da35cb67341af8,
+        type: 3}
+      propertyPath: lockRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5822780373784951369, guid: 869ceaafd8d63a1438da35cb67341af8,
+        type: 3}
+      propertyPath: lockShooting
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5848734675940926217, guid: 869ceaafd8d63a1438da35cb67341af8,
         type: 3}

@@ -25,35 +25,14 @@ namespace Training
 
         float prog => EnvParamManager.Instance.prog;
 
-        private bool resetPosition;
-        public bool reset_position
-        {
-            get { return resetPosition; }
-            set
-            {
-                if (value == resetPosition || agentAI == null || trainerAI == null) 
-                    return;
-
-                resetPosition = value;
-
-                if (value)
-                    agentAI.OnNewEpisode += SetNewEpisode;
-                else
-                    agentAI.OnNewEpisode -= SetNewEpisode;
-            }
-        }
-
         // Start is called before the first frame update
         void Start()
         {
-            if (curricularTraining)
-            {
-                randomlySwitchPositions = false;
-                changeX = false;
-                changeZ = false;
-            }
+            if (!curricularTraining) return;
 
-            reset_position = true;
+            randomlySwitchPositions = false;
+            changeX = false;
+            changeZ = false;
         }
 
         // Update is called once per frame

@@ -170,6 +170,7 @@ MonoBehaviour:
   dangerRange: 2
   agentRadius: 0.5
   boundaryTag: Boundary
+  stopDistanceScale: 2.5
   interestDirectionStrength: 1
   showGizmos: 1
   showDirections: 1
@@ -202,13 +203,14 @@ MonoBehaviour:
   killReward: 10
   recoilControlReward: 0.005
   faceMoveDirectionReward: 0.003
-  moveTowardsPreferredDirReward: 0.5
+  moveTowardsPreferredDirReward: 2
+  correctRotationReward: 0.15
   movementPenalty: 0.005
   correctDirThreshold: 0.85
   aimDirThreshold: 0.99
   findTargetReward: 5
-  targetNotFoundPenalty: 1
-  targetNotFoundPenaltyInterval: 5
+  targetNotFoundPenalty: 2
+  targetNotFoundPenaltyInterval: 1
   obstacleCollisionPenalty: 0.8
   obstacleTag: Obstacle
   deathPenalty: 20

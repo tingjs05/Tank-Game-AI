@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using EasyButtons;
@@ -40,6 +41,22 @@ namespace Astar
             {
                 if (_usableNodes == null) UpdateNodes();
                 return _usableNodes;
+            }
+        }
+
+        [SerializeField] private int maxNodePairs = 1000;
+        private List<NodePair> nodePairs = new List<NodePair>();
+        private class NodePair
+        {
+            public Vector3 position;
+            public Node node;
+            public int numberOfUses;
+
+            public NodePair(Vector3 position, Node node)
+            {
+                this.position = position;
+                this.node = node;
+                numberOfUses = 0;
             }
         }
 
@@ -85,6 +102,9 @@ namespace Astar
         [Button]
         public void UpdateObstructedNodes()
         {
+            // reset node pairs list
+            nodePairs.Clear();
+
             // check each node for obstruction
             for (i = 0; i < _nodes.Length; i++)
                 _nodes[i].CheckObstructed();
@@ -112,6 +132,10 @@ namespace Astar
 
         public Node GetNearestNode(Vector3 position)
         {
+            // try to find node from cache first
+            Node foundNode = FindPair(position);
+            if (foundNode != null) return foundNode;
+
             Collider[] nearbyNodeCols = Physics.OverlapSphere(position, nodeDetectionRange, nodeLayerMask);
 
             Node[] nearbyNodes = nearbyNodeCols
@@ -126,7 +150,33 @@ namespace Astar
                     .OrderBy(x => Vector3.Distance(position, x.transform.position))
                     .ToArray();
             
+            // if there are too many node pairs, remove the one with the least number of uses
+            if (nodePairs.Count >= maxNodePairs)
+            {
+                nodePairs = nodePairs.OrderBy(x => x.numberOfUses).ToList();
+                nodePairs.RemoveAt(0);
+            }
+
+            // cache node pair
+            nodePairs.Add(new NodePair(position, nearbyNodes[0]));
+            // return found node
             return nearbyNodes[0];
+        }
+
+        Node FindPair(Vector3 newPosition)
+        {
+            // check if can find pair
+            if (gridFrequency == null || nodePairs == null || nodePairs.Count <= 0) return null;
+            // search for matching node pair
+            nodePairs = nodePairs
+                .OrderBy(x => Vector3.Distance(x.node.transform.position, newPosition))
+                .ToList();
+            // check if closest node is within range
+            if (Vector3.Distance(nodePairs[0].node.transform.position, newPosition) > gridFrequency) return null;
+            // increment uses by 1
+            nodePairs[0].numberOfUses++;
+            // return node pair
+            return nodePairs[0].node;
         }
     }
 }

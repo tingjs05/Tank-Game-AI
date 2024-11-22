@@ -1,4 +1,3 @@
-using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using Astar;
@@ -11,10 +10,8 @@ namespace AI.ObstacleDetection
         public float dangerRange = 1.5f;
         public float agentRadius = 0.5f;
         public string boundaryTag = "Boundary";
-
-        [Range(0f, 1f)] 
-        public float interestDirectionStrength = 1f;
-
+        public float stopDistanceScale = 2.5f;
+        [Range(0f, 1f)] public float interestDirectionStrength = 1f;
         public bool showGizmos, showDirections, showDetectedObstacles, showPathfinding = true;
         public LayerMask detectionMask, groundMask;
         
@@ -27,6 +24,8 @@ namespace AI.ObstacleDetection
         // pathfinding fields
         Pathfinding pathfinder;
         List<PathNode> path;
+        Vector3? previousTargetPosition = null;
+        int currentPathCheckpoint = 0;
 
         public Vector3[] directions => direction.directions;
         public int numberOfDirections => directions.Length;
@@ -35,35 +34,56 @@ namespace AI.ObstacleDetection
         {
             // set directions
             direction = new Direction();
-            // Debug.Log($"Number of directions: {numberOfDirections}");
             // create weights array
             weights = new float[numberOfDirections];
             // initialize pathfinding component
             pathfinder = new Pathfinding();
+            // reset previous target position when nodes update
+            if (NodeManager.Instance == null) return;
+            NodeManager.Instance.OnUsableNodeUpdate += () => previousTargetPosition = null;
         }
 
+        #region Pathfinding
         public Vector3 GetPathFindingDirection(Vector3 targetPos)
         {
-            // get path using Astar
-            path = pathfinder.FindPath(transform.position, targetPos);
+            // ensure node manager is not null
+            if (NodeManager.Instance == null) return Vector3.zero;
+
+            // get new path using Astar if target position changed a lot
+            if (NodeManager.Instance.gridFrequency == null || previousTargetPosition == null ||
+                Vector3.Distance(targetPos, (Vector3) previousTargetPosition) > NodeManager.Instance.gridFrequency)
+            {
+                path = pathfinder.FindPath(transform.position, targetPos);
+                previousTargetPosition = targetPos;
+                currentPathCheckpoint = 0;
+            }
+            
             // reset preferred dir to 0
             preferredDirection = Vector3.zero;
             // check if path can be found
             if (path == null) return preferredDirection;
-            // search through path for next closest node
-            foreach (PathNode node in path)
+
+            // increment current path checkpoint if created current checkpoint
+            if (Vector3.Distance(path[currentPathCheckpoint].node.transform.position, transform.position) <= 
+                agentRadius * stopDistanceScale)
             {
-                if (Vector3.Distance(node.node.transform.position, transform.position) <= agentRadius * 1.5f) continue;
-                // convert the direction into a horizontal direction before returning it
-                preferredDirection = node.node.transform.position - transform.position;
-                preferredDirection.y = 0f;
-                preferredDirection.Normalize();
-                return preferredDirection;
+                // return 0 if at last checkpoint (target reached)
+                if (currentPathCheckpoint >= path.Count - 1)
+                    return preferredDirection;
+                else
+                    currentPathCheckpoint++;
             }
-            // default direction is 0 (meaning destination reached)
+
+            // convert the direction into a horizontal direction before returning it
+            preferredDirection = path[currentPathCheckpoint].node.transform.position - transform.position;
+            preferredDirection.y = 0f;
+            preferredDirection.Normalize();
+            // return direction that
             return preferredDirection;
         }
+        #endregion
 
+        #region Context Steering
         public Vector3 GetContextSteeringDirection(Vector3 interestDir)
         {
             CalculateContextSteering(interestDir);
@@ -188,7 +208,9 @@ namespace AI.ObstacleDetection
 
             return weights_array;
         }
+        #endregion
 
+        #region Gizmos
         void OnDrawGizmos()
         {
             // do not draw gizmos of show gizmos is false
@@ -267,5 +289,6 @@ namespace AI.ObstacleDetection
             // show preferred direction
             Debug.DrawRay(transform.position, preferredDirection * 5f, Color.cyan);
         }
+        #endregion
     }
 }

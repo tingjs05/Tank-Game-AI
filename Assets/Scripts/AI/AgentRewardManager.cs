@@ -104,8 +104,8 @@ namespace AI
             // penalize the AI every interval for not finding target
             TargetFoundCheck();
 
-            // ensure weights array and obstacle detection is not null
-            if (agent.weights == null || agent.obstacle_detection == null) return;
+            // ensure obstacle detection is not null
+            if (agent.obstacle_detection == null) return;
 
             // compare horizontal velocity with preferred direction
             dot = Vector3.Dot(horizontalVel, agent.preferred_direction);
@@ -123,7 +123,7 @@ namespace AI
 
             // give penalty for moving in the wrong direction
             LogReward("Not Moving Towards Preferred Direction Penalty");
-            agent.AddReward(ScaleReward(-moveTowardsPreferredDirReward, Mathf.Abs(dot), correctDirThreshold));
+            agent.AddReward(ScaleReward(-moveTowardsPreferredDirReward, Mathf.Abs(dot), 0f));
         }
 
         void OnCollisionEnter(Collision other)
@@ -159,15 +159,15 @@ namespace AI
                 return;
             }
 
-            dot = Vector3.Dot(transform.right, targetDir);
+            float right_dot = Vector3.Dot(transform.right, targetDir);
 
             // check rotating right
-            if (dot > 0)
-                ApplyRotationReward(horizontalInput > 0f, (dot > 0.5f ? horizontalInput <= 0.5f : horizontalInput > 0.5f), 
+            if (right_dot > 0)
+                ApplyRotationReward(horizontalInput > 0f, (dot > correctDirThreshold ? horizontalInput <= 0.5f : horizontalInput > 0.5f), 
                     correctRotationReward, "Rotate Right Reward", "Wrong Rotate Left Penalty");
             // check rotating left
-            else if (dot < 0)
-                ApplyRotationReward(horizontalInput < 0f, (dot < -0.5f ? horizontalInput >= -0.5f : horizontalInput < -0.5f), 
+            else if (right_dot < 0)
+                ApplyRotationReward(horizontalInput < 0f, (dot < -correctDirThreshold ? horizontalInput >= -0.5f : horizontalInput < -0.5f), 
                     correctRotationReward, "Rotate Left Reward", "Wrong Rotate Right Penalty");
             // give penalty for facing complete wrong direction and not fixing it
             else
@@ -183,7 +183,7 @@ namespace AI
 
         float ScaleReward(float rewardAmt, float dot, float threshold)
         {
-            return rewardAmt * ((dot - threshold) / (1f - threshold));
+            return rewardAmt * Mathf.Clamp01((dot - threshold) / (1f - threshold));
         }
 
         void LogReward(string log)
@@ -237,8 +237,15 @@ namespace AI
 
         void HandleActionRewards(Vector2 moveInput, bool shoot)
         {
+            // reward for controlling recoil
+            if (targetSeen && moveInput.x > 0f)
+            {
+                bool perfectRecoilControl = moveInput.x > 0.75f && moveInput.x < 0.85f;
+                LogReward("Recoil Control Reward" + (perfectRecoilControl ? " (Perfect)" : ""));
+                agent.AddReward(recoilControlReward * (perfectRecoilControl ? 2f : 1f));
+            }
             // check for movement, give penalty (cost while moving)
-            if (moveInput != Vector2.zero)
+            else if (moveInput != Vector2.zero)
             {
                 LogReward("Movement Penalty");
                 agent.AddReward(-movementPenalty);
@@ -248,13 +255,6 @@ namespace AI
             CalculateRotationReward(moveInput.y, targetSeen ? agent.interest_direction : agent.preferred_direction);
             // do not check for reward if target is not seen or shooting
             if (!targetSeen || !shoot) return;
-
-            // reward for controlling recoil
-            if (moveInput.x > 0f)
-            {
-                LogReward("Recoil Control Reward");
-                agent.AddReward(recoilControlReward * (moveInput.x <= 0.5f ? 2f : 1f));
-            }
 
             // reward for aiming in correct direction and shooting
             float dot = Vector3.Dot(transform.forward, agent.interest_direction);
