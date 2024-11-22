@@ -5228,7 +5228,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &148425420
 Transform:
   m_ObjectHideFlags: 0
@@ -10441,8 +10441,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 601580303}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.03433504, y: -0.5411372, z: -0.022120541, w: 0.83994186}
-  m_LocalPosition: {x: 3.067, y: 2.488, z: -3.482}
+  m_LocalRotation: {x: 0.056228485, y: 0.79534763, z: -0.074671865, w: 0.5989029}
+  m_LocalPosition: {x: 1.56, y: 2.735, z: -2.971}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10621,7 +10621,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 867826231}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.0126186125, y: -0.3327337, z: -0.011923691, w: 0.9428611}
+  m_LocalRotation: {x: -0.012618607, y: -0.33273372, z: -0.011923698, w: 0.9428611}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.030000001, y: 0.030000001, z: 0.030000001}
   m_ConstrainProportionsScale: 1
@@ -40791,8 +40791,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.03, y: 0.04, z: 0.03}
-  m_Center: {x: 0, y: 0.01, z: 0}
+  m_Size: {x: 0.03, y: 0.03, z: 0.03}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1780071286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40807,8 +40807,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetTransform: {fileID: 867826232}
   clickParticles: {fileID: 1797182060}
-  floatingPosition: {x: 2.2364, y: 2.75, z: -2.9088}
-  floatingRotation: {x: -5.074543, y: 358.9236, z: 26.90945}
+  floatingPosition: {x: 2.18, y: 2.7425, z: -2.925}
+  floatingRotation: {x: -5.5, y: -8.4, z: 27.23}
   floatSpeed: 0.1
   OnClick:
     m_PersistentCalls:
