@@ -727,7 +727,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76b208a53b2153343a231598b4f56d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1594096197}
+  target: {fileID: 1413261845}
   offset: {x: 0, y: 8, z: -5}
   smoothTime: 0.3
 --- !u!1 &410087039
@@ -1954,6 +1954,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a7316b93aaec4347858477e3ab3d11d, type: 3}
+--- !u!4 &1413261845 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9172984854521456848, guid: 5a7316b93aaec4347858477e3ab3d11d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1394473272}
+  m_PrefabAsset: {fileID: 0}
 --- !u!64 &1424226871
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2436,12 +2442,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8363aba81a44b84280baebbda7b8003, type: 3}
---- !u!4 &1594096197 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1238511705469550070, guid: d8363aba81a44b84280baebbda7b8003,
-    type: 3}
-  m_PrefabInstance: {fileID: 1594096196}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1615256674
 GameObject:
   m_ObjectHideFlags: 0

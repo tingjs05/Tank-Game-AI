@@ -137,19 +137,12 @@ namespace Astar
         {
             // remove from open list since its already opened
             open.Remove(node);
-            // iterators
-            int x, y;
 
             // add all connected nodes to open list
-            for (x = 0; x < node.node.nodeConnections.Count; x++)
+            for (int x = 0; x < node.node.nodeConnections.Count; x++)
             {
                 // convert node to path node
-                for (y = 0; y < nodes.Length; y++)
-                {
-                    if (nodes[y].node != node.node.nodeConnections[x]) continue;
-                    connectionNode = nodes[y];
-                    break;
-                }
+                connectionNode = nodes.Where(y => y.node == node.node.nodeConnections[x]).ToArray()[0];
 
                 // if connection is the end point, set the previous node as current node
                 // and mark path found as true
