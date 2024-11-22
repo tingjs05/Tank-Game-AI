@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace Astar
@@ -17,7 +16,7 @@ namespace Astar
         List<PathNode> path = new List<PathNode>();
 
         // store start and end node after converting position => node
-        PathNode startNode, endNode, connectionNode;
+        PathNode startNode, endNode, connectionNode, closestNode;
         // boolean to control whether or not a path is found
         bool pathFound;
 
@@ -73,21 +72,24 @@ namespace Astar
             Reset();
             // add start node to open list
             open.Add(startNode);
-            // iterators
-            int i;
 
             // find path
             // limit loop to number of nodes
-            for (i = 0; i < NodeManager.Instance.UsableNodes.Length; i++)
+            for (int i = 0; i < NodeManager.Instance.UsableNodes.Length; i++)
             {
                 // stop when path is found
                 if (pathFound) break;
                 // check if opened nodes list is empty, if so abort operation
                 if (open.Count <= 0) return null;
-                // sort open list based on distance to end point
-                open = open.OrderBy(x => GetCost(x)).ToList();
+                // search for closest node (by cost)
+                closestNode = open[0];
+                for (int j = 1; j < open.Count - 1; j++)
+                {
+                    if (GetCost(open[j]) >= GetCost(closestNode)) continue;
+                    closestNode = open[j];
+                }
                 // open the closest node to the end point
-                OpenNode(open[0]);
+                OpenNode(closestNode);
             }
             // check if path has been found sucessfully
             if (!pathFound) return null;
@@ -98,7 +100,7 @@ namespace Astar
             pathFound = false;
             // calculate path
             // limit loop to number of nodes
-            for (i = 0; i < NodeManager.Instance.UsableNodes.Length; i++)
+            for (int i = 0; i < NodeManager.Instance.UsableNodes.Length; i++)
             {
                 // stop when path is found
                 if (pathFound) break;

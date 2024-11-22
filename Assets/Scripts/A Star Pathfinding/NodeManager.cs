@@ -132,34 +132,63 @@ namespace Astar
         public Node GetNearestNode(Vector3 position)
         {
             // try to find node from cache first
-            Node foundNode = FindPair(position);
-            if (foundNode != null) return foundNode;
+            Node bestNode = FindPair(position);
+            if (bestNode != null) return bestNode;
 
             Collider[] nearbyNodeCols = Physics.OverlapSphere(position, nodeDetectionRange, nodeLayerMask);
+            
+            float? bestDist = null;
+            float currDist;
+            Node currNode;
 
-            Node[] nearbyNodes = nearbyNodeCols
-                .Select(x => x.GetComponent<Node>())
-                .Where(x => x != null && !x.isObstructed)
-                .OrderBy(x => FindManhattanDistance(position, x.transform.position))
-                .ToArray();
+            for (int i = 0; i < nearbyNodeCols.Length; i++)
+            {
+                currNode = nearbyNodeCols[i].GetComponent<Node>();
+                // filter out obstructed nodes
+                if (currNode == null || currNode.isObstructed) continue;
+                // calculate distance from node
+                currDist = FindManhattanDistance(position, nearbyNodeCols[i].transform.position);
+                // save the closest node
+                if (bestDist != null && currDist >= bestDist) continue;
+                bestNode = currNode;
+                bestDist = currDist;
+            }
 
-            if (nearbyNodes == null || nearbyNodes.Length <= 0)
-                nearbyNodes = _usableNodes
-                    .Select(x => x.node)
-                    .OrderBy(x => FindManhattanDistance(position, x.transform.position))
-                    .ToArray();
+            if (bestNode == null)
+            {
+                bestDist = null;
+
+                for (int i = 0; i < _usableNodes.Length; i++)
+                {
+                    // filter out obstructed nodes
+                    if (_usableNodes[i].node == null || _usableNodes[i].node.isObstructed) continue;
+                    // calculate distance from node
+                    currDist = FindManhattanDistance(position, _usableNodes[i].node.transform.position);
+                    // save the closest node
+                    if (bestDist != null && currDist >= bestDist) continue;
+                    bestNode = _usableNodes[i].node;
+                    bestDist = currDist;
+                }
+            }
             
             // if there are too many node pairs, remove the one with the least number of uses
             if (nodePairs.Count >= maxNodePairs)
             {
-                nodePairs = nodePairs.OrderBy(x => x.numberOfUses).ToList();
-                nodePairs.RemoveAt(0);
+                int leastUseIndex = 0;
+
+                for (int i = 1; i < nodePairs.Count - 1; i++)
+                {
+                    if (nodePairs[i].numberOfUses > nodePairs[leastUseIndex].numberOfUses) continue;
+                    leastUseIndex = i;
+                }
+
+                nodePairs.RemoveAt(leastUseIndex);
             }
 
             // cache node pair
-            nodePairs.Add(new NodePair(position, nearbyNodes[0]));
-            // return found node
-            return nearbyNodes[0];
+            nodePairs.Add(new NodePair(position, bestNode));
+            // return best node
+            return bestNode;
         }
 
         Node FindPair(Vector3 newPosition)
@@ -167,15 +196,26 @@ namespace Astar
             // check if can find pair
             if (gridFrequency == null || nodePairs == null || nodePairs.Count <= 0) return null;
             // search for matching node pair
-            nodePairs = nodePairs
-                .OrderBy(x => FindManhattanDistance(x.node.transform.position, newPosition))
-                .ToList();
+            int bestNodePairIndex = 0;
+            float bestDist = FindManhattanDistance(newPosition, nodePairs[0].node.transform.position);
+            float currDist;
+
+            for (int i = 1; i < nodePairs.Count - 1; i++)
+            {
+                // calculate distance from node
+                currDist = FindManhattanDistance(newPosition, nodePairs[i].node.transform.position);
+                // save the closest node
+                if (currDist >= bestDist) continue;
+                bestNodePairIndex = i;
+                bestDist = currDist;
+            }
+
             // check if closest node is within range
-            if (FindManhattanDistance(nodePairs[0].node.transform.position, newPosition) > gridFrequency) return null;
+            if (bestDist > gridFrequency) return null;
             // increment uses by 1
-            nodePairs[0].numberOfUses++;
+            nodePairs[bestNodePairIndex].numberOfUses++;
             // return node pair
-            return nodePairs[0].node;
+            return nodePairs[bestNodePairIndex].node;
         }
 
         int FindManhattanDistance(Vector3 start, Vector3 end)
