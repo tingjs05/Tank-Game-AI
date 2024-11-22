@@ -50,11 +50,14 @@ public class TankController : MonoBehaviour, IDamagable
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-
         // reset health
         Health = maxHealth;
         healthBar.maxValue = maxHealth;
         healthBar.value = Health;
+        // reset player position
+        if (characterAnimator == null) return;
+        characterAnimator.transform.localPosition = 
+            new Vector3(characterAnimator.transform.localPosition.x, 0f, characterAnimator.transform.localPosition.z);
     }
 
     void Update()
