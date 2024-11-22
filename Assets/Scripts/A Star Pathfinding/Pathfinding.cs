@@ -7,8 +7,7 @@ namespace Astar
     public class Pathfinding
     {
         // list of nodes stored locally
-        public PathNode[] nodes => NodeManager.Instance.UsableNodes == null ? null : 
-            (PathNode[]) NodeManager.Instance.UsableNodes.Clone();
+        public PathNode[] nodes;
 
         // lists to store nodes that have been visited
         public List<PathNode> open { get; private set; } = new List<PathNode>();
@@ -48,6 +47,9 @@ namespace Astar
                 Debug.LogError($"{this}, Pathfinding.cs: NodeManager instance is null! Unable to find path. ");
                 return null;
             }
+
+            // update nodes array
+            UpdateNodes();
 
             // ensure nodes are generated
             if (nodes == null || nodes.Length <= 0)
@@ -139,10 +141,15 @@ namespace Astar
             open.Remove(node);
 
             // add all connected nodes to open list
-            for (int x = 0; x < node.node.nodeConnections.Count; x++)
+            for (int i = 0; i < node.node.nodeConnections.Count; i++)
             {
                 // convert node to path node
-                connectionNode = nodes.Where(y => y.node == node.node.nodeConnections[x]).ToArray()[0];
+                for (int j = 0; j < nodes.Length; j++)
+                {
+                    if (nodes[j].node != node.node.nodeConnections[i]) continue;
+                    connectionNode = nodes[j];
+                    break;
+                }
 
                 // if connection is the end point, set the previous node as current node
                 // and mark path found as true
@@ -204,6 +211,13 @@ namespace Astar
             connection.G = node.G + FindManhattanDistance(node.node.transform.position, connection.node.transform.position);
             // make the connection to the current node
             connection.previousNode = node;
+        }
+
+        // method to update nodes array
+        void UpdateNodes()
+        {
+            nodes = NodeManager.Instance.UsableNodes == null ? null : 
+                (PathNode[]) NodeManager.Instance.UsableNodes.Clone();
         }
 
         // methods to find cost of node
