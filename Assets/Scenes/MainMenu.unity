@@ -324,6 +324,80 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!1001 &112549125
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 148425420}
+    m_Modifications:
+    - target: {fileID: 2475414536912027269, guid: ba868cd972c01aa44a2fbf345e486637,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.2364
+      objectReference: {fileID: 0}
+    - target: {fileID: 2475414536912027269, guid: ba868cd972c01aa44a2fbf345e486637,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.7425
+      objectReference: {fileID: 0}
+    - target: {fileID: 2475414536912027269, guid: ba868cd972c01aa44a2fbf345e486637,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.9088
+      objectReference: {fileID: 0}
+    - target: {fileID: 2475414536912027269, guid: ba868cd972c01aa44a2fbf345e486637,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2475414536912027269, guid: ba868cd972c01aa44a2fbf345e486637,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2475414536912027269, guid: ba868cd972c01aa44a2fbf345e486637,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2475414536912027269, guid: ba868cd972c01aa44a2fbf345e486637,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2475414536912027269, guid: ba868cd972c01aa44a2fbf345e486637,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2475414536912027269, guid: ba868cd972c01aa44a2fbf345e486637,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2475414536912027269, guid: ba868cd972c01aa44a2fbf345e486637,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2959323225689613375, guid: ba868cd972c01aa44a2fbf345e486637,
+        type: 3}
+      propertyPath: m_Name
+      value: Bird (Projectile) - Configuration
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ba868cd972c01aa44a2fbf345e486637, type: 3}
+--- !u!4 &112549126 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2475414536912027269, guid: ba868cd972c01aa44a2fbf345e486637,
+    type: 3}
+  m_PrefabInstance: {fileID: 112549125}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &145247866
 GameObject:
   m_ObjectHideFlags: 0
@@ -5243,6 +5317,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1780071284}
+  - {fileID: 112549126}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &258587767
@@ -10736,10 +10811,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acf0711420b0186479162141bb8d0c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
-  launchDirection: {x: -0.85, y: 0.5, z: 0.5}
-  launchForce: 50
-  isKinematic: 0
+  prefab: {fileID: 2959323225689613375, guid: ba868cd972c01aa44a2fbf345e486637, type: 3}
 --- !u!1 &950711946 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -674449036139524865, guid: 39777d1e8bc46004dae65839c3010e09,
@@ -40875,6 +40947,30 @@ MonoBehaviour:
   OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 428101907}
+        m_TargetAssemblyTypeName: UI.Button3D, Assembly-CSharp
+        m_MethodName: ResetPosition
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 831437458}
+        m_TargetAssemblyTypeName: UI.SelfLauncher, Assembly-CSharp
+        m_MethodName: LaunchCopy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
       - m_Target: {fileID: 601580308}
         m_TargetAssemblyTypeName: UI.CameraPositionController, Assembly-CSharp
         m_MethodName: MoveToStart
@@ -40910,18 +41006,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 428101907}
-        m_TargetAssemblyTypeName: UI.Button3D, Assembly-CSharp
-        m_MethodName: ResetPosition
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
         m_CallState: 2
 --- !u!1 &1797182057
 GameObject:
