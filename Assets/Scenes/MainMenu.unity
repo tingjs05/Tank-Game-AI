@@ -5228,7 +5228,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &148425420
 Transform:
   m_ObjectHideFlags: 0
@@ -10441,8 +10441,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 601580303}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.056228485, y: 0.79534763, z: -0.074671865, w: 0.5989029}
-  m_LocalPosition: {x: 1.56, y: 2.735, z: -2.971}
+  m_LocalRotation: {x: -0.03433504, y: -0.5411372, z: -0.022120541, w: 0.83994186}
+  m_LocalPosition: {x: 3.067, y: 2.488, z: -3.482}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10606,6 +10606,7 @@ GameObject:
   - component: {fileID: 867826232}
   - component: {fileID: 867826235}
   - component: {fileID: 867826234}
+  - component: {fileID: 867826236}
   m_Layer: 0
   m_Name: Object
   m_TagString: Untagged
@@ -10678,6 +10679,23 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 867826231}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &867826236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867826231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acf0711420b0186479162141bb8d0c30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 7288267409765839309, guid: 5ac2ec880a6701c44ba3973878edf97b, type: 3}
+  launchDirection: {x: -0.85, y: 0.5, z: 0.5}
+  launchForce: 50
+  maxLifeDuration: 5
+  isKinematic: 0
 --- !u!1 &950711946 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -674449036139524865, guid: 39777d1e8bc46004dae65839c3010e09,
@@ -40852,6 +40870,18 @@ MonoBehaviour:
       - m_Target: {fileID: 428101907}
         m_TargetAssemblyTypeName: UI.Button3D, Assembly-CSharp
         m_MethodName: ResetPosition
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 867826236}
+        m_TargetAssemblyTypeName: UI.SelfLauncher, Assembly-CSharp
+        m_MethodName: LaunchCopy
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
