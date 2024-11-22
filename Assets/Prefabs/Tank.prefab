@@ -704,6 +704,16 @@ MonoBehaviour:
   projectilePrefab: {fileID: 4370645762773650600, guid: 27a4c232b5e910a46bb2f957e617a9a8,
     type: 3}
   healthBar: {fileID: 7113398716088220113}
+  boundaryTag: Boundary
+  turretAnimator: {fileID: 0}
+  trackAnimatorL: {fileID: 0}
+  trackAnimatorR: {fileID: 0}
+  characterAnimator: {fileID: 0}
+  steeringIncrementPerSecond: 2
+  steeringDifferenceThreshold: 0.01
+  lockMovement: 0
+  lockRotation: 0
+  lockShooting: 0
 --- !u!1 &7607469607776667569
 GameObject:
   m_ObjectHideFlags: 0

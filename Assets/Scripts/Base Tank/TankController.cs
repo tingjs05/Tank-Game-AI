@@ -21,7 +21,9 @@ public class TankController : MonoBehaviour, IDamagable
 
     [Header("Animations")]
     public Animator turretAnimator;
-    public Animator trackAnimatorL, trackAnimatorR;
+    public Animator trackAnimatorL, trackAnimatorR, characterAnimator;
+    public float steeringIncrementPerSecond = 1f;
+    public float steeringDifferenceThreshold = 0.01f;
 
     [Header("Locks")]
     public bool lockMovement = false;
@@ -33,7 +35,7 @@ public class TankController : MonoBehaviour, IDamagable
     
     private Vector3 originalPosition;
     private Quaternion originalRotation;
-    private float shoot_cooldown, animation_speed;
+    private float shoot_cooldown, animation_speed, steering_amount;
 
     public event Action Damaged;
     public event Action Died;
@@ -83,6 +85,14 @@ public class TankController : MonoBehaviour, IDamagable
         rb.angularVelocity = transform.up * move.y * rotationSpeed;
 
         // play animation
+        if (characterAnimator != null)
+        {
+            if (steering_amount != move.y)
+                steering_amount = (Mathf.Abs(steering_amount - move.y) <= steeringDifferenceThreshold) ? move.y : 
+                    steering_amount + ((steering_amount < move.y ? 1f : -1f) * steeringIncrementPerSecond * Time.deltaTime);
+            characterAnimator.SetFloat("steering", steering_amount);
+        }
+
         if (trackAnimatorL == null || trackAnimatorR == null) return;
 
         animation_speed = Mathf.Clamp(move.x + move.y, -1f, 1f);
