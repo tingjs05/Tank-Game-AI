@@ -20,6 +20,8 @@ namespace Astar
         PathNode startNode, endNode, connectionNode;
         // boolean to control whether or not a path is found
         bool pathFound;
+        // iterators
+        int x, y, i;
 
         public Pathfinding()
         {
@@ -73,7 +75,7 @@ namespace Astar
 
             // find path
             // limit loop to number of nodes
-            for (int i = 0; i < NodeManager.Instance.UsableNodes.Length; i++)
+            for (i = 0; i < NodeManager.Instance.UsableNodes.Length; i++)
             {
                 // stop when path is found
                 if (pathFound) break;
@@ -93,7 +95,7 @@ namespace Astar
             pathFound = false;
             // calculate path
             // limit loop to number of nodes
-            for (int i = 0; i < NodeManager.Instance.UsableNodes.Length; i++)
+            for (i = 0; i < NodeManager.Instance.UsableNodes.Length; i++)
             {
                 // stop when path is found
                 if (pathFound) break;
@@ -136,10 +138,15 @@ namespace Astar
             open.Remove(node);
 
             // add all connected nodes to open list
-            foreach (Node connection in node.node.nodeConnections)
+            for (x = 0; x < node.node.nodeConnections.Count; x++)
             {
                 // convert node to path node
-                connectionNode = nodes.Where(x => x.node == connection).ToArray()[0];
+                for (y = 0; y < nodes.Length; y++)
+                {
+                    if (nodes[y].node != node.node.nodeConnections[x]) continue;
+                    connectionNode = nodes[y];
+                    break;
+                }
 
                 // if connection is the end point, set the previous node as current node
                 // and mark path found as true

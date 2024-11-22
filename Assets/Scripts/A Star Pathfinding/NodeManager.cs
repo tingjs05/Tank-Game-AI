@@ -46,6 +46,9 @@ namespace Astar
         [HideInInspector] public float? gridFrequency = null;
         public event Action OnUsableNodeUpdate;
 
+        // iterators
+        int i, j;
+
         void Awake()
         {
             Instantiate();
@@ -83,19 +86,17 @@ namespace Astar
         public void UpdateObstructedNodes()
         {
             // check each node for obstruction
-            foreach(Node node in _nodes)
-            {
-                node.CheckObstructed();
-            }
+            for (i = 0; i < _nodes.Length; i++)
+                _nodes[i].CheckObstructed();
             
             // check if need to regenerate connections
             if (gridFrequency != null)
             {
-                foreach (Node node in _nodes)
+                for (i = 0; i < _nodes.Length; i++)
                 {
                     // skip obstructed nodes
-                    if (node.isObstructed) continue;
-                    node.GenerateConnections((float) gridFrequency);
+                    if (_nodes[i].isObstructed) continue;
+                    _nodes[i].GenerateConnections((float) gridFrequency);
                 }
             }
 
