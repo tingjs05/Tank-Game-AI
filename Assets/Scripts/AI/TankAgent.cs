@@ -72,7 +72,11 @@ namespace AI
             sensor.AddObservation(interest_direction);
             sensor.AddObservation(preferred_direction);
             sensor.AddObservation(transform.forward);
+
+            // add dot value observations
             sensor.AddObservation(Vector3.Dot(transform.forward, 
+                (targetSeen ? interest_direction : preferred_direction)));
+            sensor.AddObservation(Vector3.Dot(transform.right, 
                 (targetSeen ? interest_direction : preferred_direction)));
             
             // add other observations
