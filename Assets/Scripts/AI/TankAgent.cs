@@ -74,7 +74,6 @@ namespace AI
             sensor.AddObservation(transform.forward);
             sensor.AddObservation(Vector3.Dot(transform.forward, 
                 (targetSeen ? interest_direction : preferred_direction)));
-            Debug.Log(transform.forward);
             
             // add other observations
             sensor.AddObservation(targetSeen);
