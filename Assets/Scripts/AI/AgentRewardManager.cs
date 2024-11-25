@@ -39,8 +39,8 @@ namespace AI
         TankAgent agent;
         TankController controller;
         Vector3 horizontalVel;
-        float currDistance, targetNotFoundCounter;
-        bool targetSeen, foundTarget, facingMoveDirection;
+        float targetNotFoundCounter;
+        bool foundTarget, facingMoveDirection;
 
         #region MonoBehaviour Callbacks
 
@@ -80,10 +80,8 @@ namespace AI
                 agent.AddReward(ScaleReward(faceMoveDirectionReward, dot, correctDirThreshold));
             }
 
-            targetSeen = agent.TargetInRange();
-
             // reward AI for finding the target
-            if (!foundTarget && targetSeen)
+            if (!foundTarget && agent.targetSeen)
             {
                 foundTarget = true;
                 LogReward("Found Target Reward");
@@ -91,7 +89,7 @@ namespace AI
             }
 
             // check if target can be seen, if so, only reward for aiming and shooting
-            if (targetSeen)
+            if (agent.targetSeen)
             {
                 // reward for aiming at target when seen
                 dot = Vector3.Dot(transform.forward, agent.interest_direction);
@@ -103,7 +101,6 @@ namespace AI
 
             // penalize the AI every interval for not finding target
             TargetFoundCheck();
-
             // ensure obstacle detection is not null
             if (agent.obstacle_detection == null) return;
 
@@ -238,7 +235,7 @@ namespace AI
         void HandleActionRewards(Vector2 moveInput, bool shoot)
         {
             // reward for controlling recoil
-            if (targetSeen && moveInput.x > 0f)
+            if (agent.targetSeen && moveInput.x > 0f)
             {
                 bool perfectRecoilControl = moveInput.x > 0.75f && moveInput.x < 0.85f;
                 LogReward("Recoil Control Reward" + (perfectRecoilControl ? " (Perfect)" : ""));
@@ -252,9 +249,9 @@ namespace AI
             }
 
             // check rotation reward, reward agent for rotating correctly
-            CalculateRotationReward(moveInput.y, targetSeen ? agent.interest_direction : agent.preferred_direction);
+            CalculateRotationReward(moveInput.y, agent.targetSeen ? agent.interest_direction : agent.preferred_direction);
             // do not check for reward if target is not seen or shooting
-            if (!targetSeen || !shoot) return;
+            if (!agent.targetSeen || !shoot) return;
 
             // reward for aiming in correct direction and shooting
             float dot = Vector3.Dot(transform.forward, agent.interest_direction);

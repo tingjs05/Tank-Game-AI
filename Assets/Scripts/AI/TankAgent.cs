@@ -27,8 +27,9 @@ namespace AI
         public ObstacleDetectionManager obstacle_detection => obstacleDetection;
         public Transform _target => target.transform;
         public Vector3 interest_direction { get; protected set; }
-        public Vector3 preferred_direction { get; private set; }
+        public Vector3 preferred_direction { get; protected set; }
         public float[] weights { get; protected set; }
+        public bool targetSeen { get; protected set; }
 
         public event Action<Vector2, bool> OnActionCalled;
         public event Action OnNewEpisode;
@@ -64,15 +65,21 @@ namespace AI
         {
             // calculate directions
             CalculateDirections();
-            // add observations
+            // check if target can be seen
+            targetSeen = TargetInRange();
+
+            // add direction observations
             sensor.AddObservation(interest_direction);
             sensor.AddObservation(preferred_direction);
-            sensor.AddObservation(transform.position);
             sensor.AddObservation(transform.forward);
-            sensor.AddObservation(target.transform.position);
+            sensor.AddObservation(Vector3.Dot(transform.forward, 
+                (targetSeen ? interest_direction : preferred_direction)));
+            Debug.Log(transform.forward);
+            
+            // add other observations
+            sensor.AddObservation(targetSeen);
             sensor.AddObservation(controller.Health);
             sensor.AddObservation(target.Health);
-            sensor.AddObservation(TargetInRange());
         }
 
         public override void OnActionReceived(ActionBuffers actions)
