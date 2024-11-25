@@ -204,13 +204,13 @@ MonoBehaviour:
   recoilControlReward: 0.005
   faceMoveDirectionReward: 0.003
   moveTowardsPreferredDirReward: 2
-  correctRotationReward: 0.15
+  correctRotationReward: 0.05
   movementPenalty: 0.005
   correctDirThreshold: 0.85
   aimDirThreshold: 0.99
   findTargetReward: 5
-  targetNotFoundPenalty: 2
-  targetNotFoundPenaltyInterval: 1
+  targetNotFoundPenalty: 5
+  targetNotFoundPenaltyInterval: 0.5
   obstacleCollisionPenalty: 0.8
   obstacleTag: Obstacle
   deathPenalty: 20
