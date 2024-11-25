@@ -1,6 +1,6 @@
 {
     "env_params": {
-        "lesson_num": 0
+        "lesson_num": 4
     },
     "TankBehavior": {
         "checkpoints": [
@@ -12,15 +12,24 @@
                 "auxillary_file_paths": [
                     "results\\Gen37\\TankBehavior\\TankBehavior-233.pt"
                 ]
+            },
+            {
+                "steps": 442587,
+                "file_path": "results\\Gen37\\TankBehavior\\TankBehavior-442587.onnx",
+                "reward": 824.0505659315321,
+                "creation_time": 1732512095.2557862,
+                "auxillary_file_paths": [
+                    "results\\Gen37\\TankBehavior\\TankBehavior-442587.pt"
+                ]
             }
         ],
         "final_checkpoint": {
-            "steps": 233,
+            "steps": 442587,
             "file_path": "results\\Gen37\\TankBehavior.onnx",
-            "reward": -483.3250274658203,
-            "creation_time": 1732497895.3127742,
+            "reward": 824.0505659315321,
+            "creation_time": 1732512095.2557862,
             "auxillary_file_paths": [
-                "results\\Gen37\\TankBehavior\\TankBehavior-233.pt"
+                "results\\Gen37\\TankBehavior\\TankBehavior-442587.pt"
             ]
         }
     },
