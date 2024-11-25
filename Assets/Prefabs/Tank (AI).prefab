@@ -209,8 +209,7 @@ MonoBehaviour:
   correctDirThreshold: 0.85
   aimDirThreshold: 0.99
   findTargetReward: 5
-  targetNotFoundPenalty: 5
-  targetNotFoundPenaltyInterval: 0.5
+  targetNotFoundPenalty: 0.15
   obstacleCollisionPenalty: 0.8
   obstacleTag: Obstacle
   deathPenalty: 20

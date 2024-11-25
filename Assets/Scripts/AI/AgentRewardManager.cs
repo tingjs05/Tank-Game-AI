@@ -26,8 +26,7 @@ namespace AI
 
         [Header("Search")]
         [SerializeField] float findTargetReward = 1f;
-        [SerializeField] float targetNotFoundPenalty = 1f;
-        [SerializeField] float targetNotFoundPenaltyInterval = 2.5f;
+        [SerializeField] float targetNotFoundPenalty = 0.5f;
 
         [Header("Obstacle Collision")]
         [SerializeField] float obstacleCollisionPenalty = 1f;
@@ -136,9 +135,6 @@ namespace AI
         void TargetFoundCheck()
         {
             if (foundTarget) return;
-            targetNotFoundCounter += Time.fixedDeltaTime;
-            if (targetNotFoundCounter <= targetNotFoundPenaltyInterval) return;
-            targetNotFoundCounter = 0f;
             LogReward("Target Not Found Penalty");
             agent.AddReward(-targetNotFoundPenalty);
         }
