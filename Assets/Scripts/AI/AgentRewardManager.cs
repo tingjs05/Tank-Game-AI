@@ -38,7 +38,6 @@ namespace AI
         TankAgent agent;
         TankController controller;
         Vector3 horizontalVel;
-        float targetNotFoundCounter;
         bool foundTarget, facingMoveDirection;
 
         #region MonoBehaviour Callbacks
@@ -52,8 +51,8 @@ namespace AI
             controller.Damaged += OnDamaged;
             controller.Died += OnDeath;
             controller.OnShoot += OnShoot;
-            agent.OnNewEpisode += HandleNewEpisode;
             agent.OnActionCalled += HandleActionRewards;
+            agent.OnNewEpisode += () => foundTarget = false;
             
             // suscribe to kill event
             TankController enemyController = agent._target.GetComponent<TankController>();
@@ -227,13 +226,6 @@ namespace AI
 
             LogReward("Miss Penalty");
             agent.AddReward(-missedShotPenalty);
-        }
-
-        void HandleNewEpisode()
-        {
-            // reset some variables
-            foundTarget = false;
-            targetNotFoundCounter = 0f;
         }
 
         void HandleActionRewards(Vector2 moveInput, bool shoot)
