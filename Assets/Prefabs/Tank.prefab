@@ -645,6 +645,7 @@ GameObject:
   - component: {fileID: 4614866035075560864}
   - component: {fileID: 8853936079504930026}
   - component: {fileID: 5111748449651530923}
+  - component: {fileID: 5265762827562410495}
   m_Layer: 7
   m_Name: Tank
   m_TagString: Player
@@ -749,6 +750,27 @@ MonoBehaviour:
   lockMovement: 0
   lockRotation: 0
   lockShooting: 0
+--- !u!114 &5265762827562410495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7288267409765839309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b39516150cbca14479d9710e7218aad0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characters:
+  - characterAnim: {fileID: 4948180599813627476}
+    bodyMaterial: {fileID: 2100000, guid: 9db5f09b474aa684aa3ce3e3d322b527, type: 2}
+    trackMaterial: {fileID: 2100000, guid: e5c065204109c5f4cbdb14ae737c8535, type: 2}
+  - characterAnim: {fileID: 66612741914419864}
+    bodyMaterial: {fileID: 2100000, guid: d682e5017fd28f046a5f7a4395b09af2, type: 2}
+    trackMaterial: {fileID: 2100000, guid: d145c10528d0b4648874ca06530283b6, type: 2}
+  tankBarrel: {fileID: 9053006906172435512}
+  tankChassis: {fileID: 7622042850885616084}
 --- !u!1 &7607469607776667569
 GameObject:
   m_ObjectHideFlags: 0
@@ -1063,6 +1085,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a10f35f742c2d674882e5e08856d3b2b, type: 3}
+--- !u!95 &66612741914419864 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 844799651897042405, guid: a10f35f742c2d674882e5e08856d3b2b,
+    type: 3}
+  m_PrefabInstance: {fileID: 816826231149332349}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6101005465875845362 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6917198094654216079, guid: a10f35f742c2d674882e5e08856d3b2b,
@@ -1157,11 +1185,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4427784469732560065}
     m_Modifications:
-    - target: {fileID: 3008908893590257913, guid: 984a380e89f9c914f996f3e61673d63b,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 9db5f09b474aa684aa3ce3e3d322b527, type: 2}
     - target: {fileID: 3360859306333966229, guid: 984a380e89f9c914f996f3e61673d63b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1217,16 +1240,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tank Model
       objectReference: {fileID: 0}
-    - target: {fileID: 4442124783251959061, guid: 984a380e89f9c914f996f3e61673d63b,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 9db5f09b474aa684aa3ce3e3d322b527, type: 2}
-    - target: {fileID: 4442124783251959061, guid: 984a380e89f9c914f996f3e61673d63b,
-        type: 3}
-      propertyPath: m_Materials.Array.data[1]
-      value: 
-      objectReference: {fileID: 2100000, guid: e5c065204109c5f4cbdb14ae737c8535, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1250,9 +1263,21 @@ Animator:
     type: 3}
   m_PrefabInstance: {fileID: 6080835187160575169}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &7622042850885616084 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 4442124783251959061, guid: 984a380e89f9c914f996f3e61673d63b,
+    type: 3}
+  m_PrefabInstance: {fileID: 6080835187160575169}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8847142080380461908 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3360859306333966229, guid: 984a380e89f9c914f996f3e61673d63b,
+    type: 3}
+  m_PrefabInstance: {fileID: 6080835187160575169}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &9053006906172435512 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 3008908893590257913, guid: 984a380e89f9c914f996f3e61673d63b,
     type: 3}
   m_PrefabInstance: {fileID: 6080835187160575169}
   m_PrefabAsset: {fileID: 0}
