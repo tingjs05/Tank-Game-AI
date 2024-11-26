@@ -19,7 +19,7 @@ public class CharacterController : MonoBehaviour
     void Start()
     {
         controller = GetComponent<TankController>();
-        SetCharacter(0);
+        SetCharacter(GameManager.Instance == null ? 0 : GameManager.Instance.characterValue);
     }
 
     public void SetCharacter(int index)
