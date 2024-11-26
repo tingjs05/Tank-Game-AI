@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -9,7 +8,31 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     // properties
-    public int characterValue { get; private set; } = 1;
+    private int character_value = 0;
+    public int characterValue
+    {
+        get { return character_value; }
+        set
+        {
+            character_value = Mathf.Clamp(value, 0, numberOfCharacters - 1);
+            OnCharacterValueUpdate?.Invoke();
+        }
+    }
+
+    private AIType ai_type = AIType.MACHINE_LEARNING;
+    public AIType TypeOfAI
+    {
+        get { return ai_type; }
+        set { ai_type = value; }
+    }
+    
+    public enum AIType
+    {
+        MACHINE_LEARNING, FSM
+    }
+
+    // events
+    public event Action OnCharacterValueUpdate;
 
     void Awake()
     {

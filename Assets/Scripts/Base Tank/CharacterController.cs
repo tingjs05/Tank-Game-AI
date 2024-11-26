@@ -1,5 +1,4 @@
 using System;
-using Unity.MLAgents.Integrations.Match3;
 using UnityEngine;
 
 [RequireComponent(typeof(TankController))]
@@ -20,7 +19,21 @@ public class CharacterController : MonoBehaviour
     void Start()
     {
         controller = GetComponent<TankController>();
-        SetCharacter(GameManager.Instance == null ? 0 : GameManager.Instance.characterValue);
+        
+        if (GameManager.Instance == null)
+        {
+            SetCharacter(0);
+            return;
+        }
+
+        SetCharacter(GameManager.Instance.characterValue);
+        GameManager.Instance.OnCharacterValueUpdate += OnCharacterValueUpdate;
+    }
+
+    void OnCharacterValueUpdate()
+    {
+        if (GameManager.Instance == null) return;
+        SetCharacter(GameManager.Instance.characterValue);
     }
 
     public void SetCharacter(int index)
