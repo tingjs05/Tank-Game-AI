@@ -174,6 +174,14 @@ namespace AI
             agent.AddReward(correctRotation ? rewardAmt * (refinedInput ? 2f : 1f) : -rewardAmt);
         }
 
+        void MovementPenalty(Vector2 moveInput)
+        {
+            // check for movement, give penalty (cost while moving)
+            if (moveInput == Vector2.zero) return;
+            LogReward("Movement Penalty");
+            agent.AddReward(-movementPenalty);
+        }
+
         float ScaleReward(float rewardAmt, float dot, float threshold)
         {
             return rewardAmt * Mathf.Clamp01((dot - threshold) / (1f - threshold));
@@ -230,28 +238,33 @@ namespace AI
 
         void HandleActionRewards(Vector2 moveInput, bool shoot)
         {
-            // reward for controlling recoil
-            if (agent.targetSeen && moveInput.x > 0f)
+            // check rotation reward, reward agent for rotating correctly
+            CalculateRotationReward(moveInput.y, agent.targetSeen ? agent.interest_direction : agent.preferred_direction);
+            // do not check for reward if target is not seen
+            if (!agent.targetSeen) return;
+
+            // reward for aiming in correct aiming direction
+            float dot = Vector3.Dot(transform.forward, agent.interest_direction);
+
+            // if not aiming at interest direction, exit and check for movement penalty
+            if (dot < aimDirThreshold)
+            {
+                MovementPenalty(moveInput);
+                return;
+            }
+
+            // only run if shooting
+            if (!shoot) return;
+
+            // reward for controlling recoil while aiming correctly
+            if (moveInput.x > 0f)
             {
                 bool perfectRecoilControl = moveInput.x > 0.75f && moveInput.x < 0.85f;
                 LogReward("Recoil Control Reward" + (perfectRecoilControl ? " (Perfect)" : ""));
                 agent.AddReward(recoilControlReward * (perfectRecoilControl ? 2f : 1f));
             }
-            // check for movement, give penalty (cost while moving)
-            else if (moveInput != Vector2.zero)
-            {
-                LogReward("Movement Penalty");
-                agent.AddReward(-movementPenalty);
-            }
 
-            // check rotation reward, reward agent for rotating correctly
-            CalculateRotationReward(moveInput.y, agent.targetSeen ? agent.interest_direction : agent.preferred_direction);
-            // do not check for reward if target is not seen or shooting
-            if (!agent.targetSeen || !shoot) return;
-
-            // reward for aiming in correct direction and shooting
-            float dot = Vector3.Dot(transform.forward, agent.interest_direction);
-            if (dot < aimDirThreshold) return;
+            // check if target is shooting while aiming properly
             LogReward("Aim + Shoot Reward");
             agent.AddReward(ScaleReward(aimedShotReward, dot, aimDirThreshold));
         }
