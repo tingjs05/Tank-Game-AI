@@ -9,7 +9,6 @@ namespace UI
     public class Button3D : MonoBehaviour
     {
         public Transform targetTransform;
-        public ParticleSystem clickParticles;
         public Vector3 floatingPosition;
         public Vector3 floatingRotation;
         public float floatSpeed = 0.5f;
@@ -37,8 +36,6 @@ namespace UI
         {
             if (!Input.GetMouseButtonDown(0)) return;
             OnClick?.Invoke();
-            if (clickParticles == null) return;
-            clickParticles.Play();
         }
 
         void OnMouseExit() 
