@@ -50,7 +50,7 @@ namespace AI.FSM
         public FleeState Flee { get; protected set; }
         #endregion
 
-        protected virtual void Start()
+        protected virtual void Awake()
         {
             controller = GetComponent<TankController>();
             obstacleDetection = GetComponent<ObstacleDetectionManager>();
@@ -151,7 +151,7 @@ namespace AI.FSM
             // ensure target is not null
             if (target == null) return;
             // ensure obstacle detection is not null
-            if (obstacleDetection == null) Start();
+            if (obstacleDetection == null) Awake();
             if (obstacleDetection == null) return;
             // check if showing obstacles
             if (!obstacleDetection.showGizmos) return;

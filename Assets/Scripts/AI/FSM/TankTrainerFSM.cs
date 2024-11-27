@@ -7,9 +7,9 @@ namespace AI.FSM
     {
         TankTrainerAgent agent;
 
-        protected override void Start()
+        protected override void Awake()
         {
-            base.Start();
+            base.Awake();
             agent = GetComponent<TankTrainerAgent>();
         }
 
