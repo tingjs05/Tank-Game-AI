@@ -23,7 +23,7 @@ namespace UI
         {
             StartCoroutine(DelayedAction(delay, () => 
                 {
-                    SceneManager.LoadScene(sceneIndex);
+                    SceneManager.LoadSceneAsync(sceneIndex);
                 }
             ));
         }
