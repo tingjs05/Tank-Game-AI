@@ -1,62 +1,62 @@
 {
     "env_params": {
-        "lesson_num": 2
+        "lesson_num": 4
     },
     "TankBehavior": {
         "checkpoints": [
             {
-                "steps": 0,
-                "file_path": "results\\Gen37b\\TankBehavior\\TankBehavior-0.onnx",
-                "reward": null,
-                "creation_time": 1732580805.9310145,
+                "steps": 2499716,
+                "file_path": "results\\Gen37b\\TankBehavior\\TankBehavior-2499716.onnx",
+                "reward": 1127.8142533735795,
+                "creation_time": 1732628921.896234,
                 "auxillary_file_paths": [
-                    "results\\Gen37b\\TankBehavior\\TankBehavior-0.pt"
+                    "results\\Gen37b\\TankBehavior\\TankBehavior-2499716.pt"
                 ]
             },
             {
-                "steps": 499672,
-                "file_path": "results\\Gen37b\\TankBehavior\\TankBehavior-499672.onnx",
-                "reward": 1314.3808866228376,
-                "creation_time": 1732583195.8863127,
+                "steps": 2999978,
+                "file_path": "results\\Gen37b\\TankBehavior\\TankBehavior-2999978.onnx",
+                "reward": 1616.5462538775275,
+                "creation_time": 1732638141.1155925,
                 "auxillary_file_paths": [
-                    "results\\Gen37b\\TankBehavior\\TankBehavior-499672.pt"
+                    "results\\Gen37b\\TankBehavior\\TankBehavior-2999978.pt"
                 ]
             },
             {
-                "steps": 999928,
-                "file_path": "results\\Gen37b\\TankBehavior\\TankBehavior-999928.onnx",
-                "reward": 843.4704193115234,
-                "creation_time": 1732585410.6863241,
+                "steps": 3499850,
+                "file_path": "results\\Gen37b\\TankBehavior\\TankBehavior-3499850.onnx",
+                "reward": 1523.8908988952637,
+                "creation_time": 1732647535.9115818,
                 "auxillary_file_paths": [
-                    "results\\Gen37b\\TankBehavior\\TankBehavior-999928.pt"
+                    "results\\Gen37b\\TankBehavior\\TankBehavior-3499850.pt"
                 ]
             },
             {
-                "steps": 1162160,
-                "file_path": "results\\Gen37b\\TankBehavior\\TankBehavior-1162160.onnx",
-                "reward": null,
-                "creation_time": 1732586245.3158195,
+                "steps": 3999378,
+                "file_path": "results\\Gen37b\\TankBehavior\\TankBehavior-3999378.onnx",
+                "reward": 536.7185262044271,
+                "creation_time": 1732656952.3929687,
                 "auxillary_file_paths": [
-                    "results\\Gen37b\\TankBehavior\\TankBehavior-1162160.pt"
+                    "results\\Gen37b\\TankBehavior\\TankBehavior-3999378.pt"
                 ]
             },
             {
-                "steps": 1198538,
-                "file_path": "results\\Gen37b\\TankBehavior\\TankBehavior-1198538.onnx",
-                "reward": null,
-                "creation_time": 1732587103.0920334,
+                "steps": 4289411,
+                "file_path": "results\\Gen37b\\TankBehavior\\TankBehavior-4289411.onnx",
+                "reward": 1412.1984122140068,
+                "creation_time": 1732662502.43681,
                 "auxillary_file_paths": [
-                    "results\\Gen37b\\TankBehavior\\TankBehavior-1198538.pt"
+                    "results\\Gen37b\\TankBehavior\\TankBehavior-4289411.pt"
                 ]
             }
         ],
         "final_checkpoint": {
-            "steps": 1198538,
+            "steps": 4289411,
             "file_path": "results\\Gen37b\\TankBehavior.onnx",
-            "reward": null,
-            "creation_time": 1732587103.0920334,
+            "reward": 1412.1984122140068,
+            "creation_time": 1732662502.43681,
             "auxillary_file_paths": [
-                "results\\Gen37b\\TankBehavior\\TankBehavior-1198538.pt"
+                "results\\Gen37b\\TankBehavior\\TankBehavior-4289411.pt"
             ]
         }
     },
