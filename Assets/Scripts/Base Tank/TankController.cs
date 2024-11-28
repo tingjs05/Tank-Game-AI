@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using Gameplay;
 
 [RequireComponent(typeof(Rigidbody))]
 public class TankController : MonoBehaviour, IDamagable
@@ -161,8 +162,11 @@ public class TankController : MonoBehaviour, IDamagable
         healthBar.value = Health;
         Damaged?.Invoke();
         if (Health > 0f) return;
-        // TODO: handle death
+        // invoke death event
         Died?.Invoke();
+        // play death effect
+        if (VisualEffectsManager.Instance == null) return;
+        VisualEffectsManager.Instance.InstantiateEffect(0, transform.position);
     }
 
     void OnProjectileHidden(Projectile ctx, bool hit)

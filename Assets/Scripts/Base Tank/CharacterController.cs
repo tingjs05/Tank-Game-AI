@@ -14,11 +14,17 @@ public class CharacterController : MonoBehaviour
 
     public Character[] characters;
     public Renderer tankBarrel, tankChassis;
+    public bool updateCharacter = false;
     TankController controller;
+
+    void Awake()
+    {
+        controller = GetComponent<TankController>();
+    }
 
     void Start()
     {
-        controller = GetComponent<TankController>();
+        if (!updateCharacter) return;
         
         if (GameManager.Instance == null)
         {
@@ -26,11 +32,10 @@ public class CharacterController : MonoBehaviour
             return;
         }
 
-        SetCharacter(GameManager.Instance.characterValue);
-        GameManager.Instance.OnCharacterValueUpdate += OnCharacterValueUpdate;
+        UpdateCharacter();
     }
 
-    void OnCharacterValueUpdate()
+    public void UpdateCharacter()
     {
         if (GameManager.Instance == null) return;
         SetCharacter(GameManager.Instance.characterValue);

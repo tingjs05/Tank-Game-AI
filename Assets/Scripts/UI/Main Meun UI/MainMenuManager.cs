@@ -8,6 +8,14 @@ namespace UI
     public class MainMenuManager : MonoBehaviour
     {
         [SerializeField] float delay = 0.5f;
+        [SerializeField] SelectionManager characterSelect, typeOfAISelect;
+
+        void Start()
+        {
+            if (GameManager.Instance == null) return;
+            characterSelect.Select(GameManager.Instance.characterValue);
+            typeOfAISelect.Select((int) GameManager.Instance.TypeOfAI);
+        }
 
         public void Quit()
         {
