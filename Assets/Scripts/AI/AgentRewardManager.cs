@@ -50,7 +50,7 @@ namespace AI
             // subscribe to events
             controller.Damaged += OnDamaged;
             controller.Died += OnDeath;
-            controller.OnShoot += OnShoot;
+            controller.OnHit += OnShoot;
             agent.OnActionCalled += HandleActionRewards;
             agent.OnNewEpisode += () => foundTarget = false;
             

@@ -38,9 +38,8 @@ public class TankController : MonoBehaviour, IDamagable
     private Quaternion originalRotation;
     private float shoot_cooldown, animation_speed, steering_amount;
 
-    public event Action Damaged;
-    public event Action Died;
-    public event Action<bool> OnShoot;
+    public event Action Damaged, Died, OnShoot;
+    public event Action<bool> OnHit;
 
     void Awake()
     {
@@ -113,6 +112,8 @@ public class TankController : MonoBehaviour, IDamagable
         if (shoot_cooldown < shootCooldown) return;
         // reset cooldown after shooting
         shoot_cooldown = 0f;
+        // invoke shoot event
+        OnShoot?.Invoke();
 
         // handle shooting behaviour
         Projectile projectile;
@@ -173,6 +174,6 @@ public class TankController : MonoBehaviour, IDamagable
     void OnProjectileHidden(Projectile ctx, bool hit)
     {
         ctx.OnHidden -= OnProjectileHidden;
-        OnShoot?.Invoke(hit);
+        OnHit?.Invoke(hit);
     }
 }
