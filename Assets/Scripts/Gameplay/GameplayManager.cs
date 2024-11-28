@@ -47,7 +47,7 @@ namespace Gameplay
 
         public void HideObject(bool win)
         {
-            if (win)
+            if (!win)
             {
                 player.gameObject.SetActive(false);
                 return;

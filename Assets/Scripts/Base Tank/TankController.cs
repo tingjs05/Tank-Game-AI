@@ -68,6 +68,7 @@ public class TankController : MonoBehaviour, IDamagable
         // check if fallen off map
         if (!other.CompareTag(boundaryTag)) return;
         Died?.Invoke();
+        gameObject.SetActive(false);
     }
 
     public void Move(Vector2 move)
