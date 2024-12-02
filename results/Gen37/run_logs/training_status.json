@@ -1,0 +1,41 @@
+{
+    "env_params": {
+        "lesson_num": 4
+    },
+    "TankBehavior": {
+        "checkpoints": [
+            {
+                "steps": 233,
+                "file_path": "results\\Gen37\\TankBehavior\\TankBehavior-233.onnx",
+                "reward": -483.3250274658203,
+                "creation_time": 1732497895.3127742,
+                "auxillary_file_paths": [
+                    "results\\Gen37\\TankBehavior\\TankBehavior-233.pt"
+                ]
+            },
+            {
+                "steps": 442587,
+                "file_path": "results\\Gen37\\TankBehavior\\TankBehavior-442587.onnx",
+                "reward": 824.0505659315321,
+                "creation_time": 1732512095.2557862,
+                "auxillary_file_paths": [
+                    "results\\Gen37\\TankBehavior\\TankBehavior-442587.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 442587,
+            "file_path": "results\\Gen37\\TankBehavior.onnx",
+            "reward": 824.0505659315321,
+            "creation_time": 1732512095.2557862,
+            "auxillary_file_paths": [
+                "results\\Gen37\\TankBehavior\\TankBehavior-442587.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.29.0",
+        "torch_version": "2.2.2+cu121"
+    }
+}

@@ -1,0 +1,48 @@
+{
+    "TankBehavior": {
+        "checkpoints": [
+            {
+                "steps": 499859,
+                "file_path": "results\\Gen19b-0\\TankBehavior\\TankBehavior-499859.onnx",
+                "reward": 128.2641666730245,
+                "creation_time": 1729082760.3345475,
+                "auxillary_file_paths": [
+                    "results\\Gen19b-0\\TankBehavior\\TankBehavior-499859.pt"
+                ]
+            },
+            {
+                "steps": 999076,
+                "file_path": "results\\Gen19b-0\\TankBehavior\\TankBehavior-999076.onnx",
+                "reward": -25.500003814697266,
+                "creation_time": 1729084109.331524,
+                "auxillary_file_paths": [
+                    "results\\Gen19b-0\\TankBehavior\\TankBehavior-999076.pt"
+                ]
+            },
+            {
+                "steps": 1008076,
+                "file_path": "results\\Gen19b-0\\TankBehavior\\TankBehavior-1008076.onnx",
+                "reward": 19.767016728719074,
+                "creation_time": 1729084110.600749,
+                "auxillary_file_paths": [
+                    "results\\Gen19b-0\\TankBehavior\\TankBehavior-1008076.pt"
+                ]
+            }
+        ],
+        "elo": 553.305452885646,
+        "final_checkpoint": {
+            "steps": 1008076,
+            "file_path": "results\\Gen19b-0\\TankBehavior.onnx",
+            "reward": 19.767016728719074,
+            "creation_time": 1729084110.600749,
+            "auxillary_file_paths": [
+                "results\\Gen19b-0\\TankBehavior\\TankBehavior-1008076.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.29.0",
+        "torch_version": "2.2.2+cu121"
+    }
+}

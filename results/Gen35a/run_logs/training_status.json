@@ -1,0 +1,50 @@
+{
+    "env_params": {
+        "lesson_num": 0
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.29.0",
+        "torch_version": "2.2.2+cu121"
+    },
+    "TankBehavior": {
+        "checkpoints": [
+            {
+                "steps": 0,
+                "file_path": "results\\Gen35a\\TankBehavior\\TankBehavior-0.onnx",
+                "reward": null,
+                "creation_time": 1731383050.5510867,
+                "auxillary_file_paths": [
+                    "results\\Gen35a\\TankBehavior\\TankBehavior-0.pt"
+                ]
+            },
+            {
+                "steps": 137534,
+                "file_path": "results\\Gen35a\\TankBehavior\\TankBehavior-137534.onnx",
+                "reward": null,
+                "creation_time": 1731384183.3207538,
+                "auxillary_file_paths": [
+                    "results\\Gen35a\\TankBehavior\\TankBehavior-137534.pt"
+                ]
+            },
+            {
+                "steps": 264506,
+                "file_path": "results\\Gen35a\\TankBehavior\\TankBehavior-264506.onnx",
+                "reward": null,
+                "creation_time": 1731385727.4597065,
+                "auxillary_file_paths": [
+                    "results\\Gen35a\\TankBehavior\\TankBehavior-264506.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 264506,
+            "file_path": "results\\Gen35a\\TankBehavior.onnx",
+            "reward": null,
+            "creation_time": 1731385727.4597065,
+            "auxillary_file_paths": [
+                "results\\Gen35a\\TankBehavior\\TankBehavior-264506.pt"
+            ]
+        }
+    }
+}

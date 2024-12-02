@@ -1,0 +1,30 @@
+{
+    "TankBehavior": {
+        "elo": 1146.0702137687874,
+        "checkpoints": [
+            {
+                "steps": 106843,
+                "file_path": "results\\Gen19b-2-0\\TankBehavior\\TankBehavior-106843.onnx",
+                "reward": 82.84520551893446,
+                "creation_time": 1729126153.1424544,
+                "auxillary_file_paths": [
+                    "results\\Gen19b-2-0\\TankBehavior\\TankBehavior-106843.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 106843,
+            "file_path": "results\\Gen19b-2-0\\TankBehavior.onnx",
+            "reward": 82.84520551893446,
+            "creation_time": 1729126153.1424544,
+            "auxillary_file_paths": [
+                "results\\Gen19b-2-0\\TankBehavior\\TankBehavior-106843.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.29.0",
+        "torch_version": "2.2.2+cu121"
+    }
+}
